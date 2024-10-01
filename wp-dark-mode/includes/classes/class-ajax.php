@@ -64,6 +64,9 @@ if ( ! class_exists( __NAMESPACE__ . 'Ajax' ) ) {
 		 * @since 5.0.0
 		 */
 		public function insert_new_visitor() {
+			// Check nonce.
+			check_ajax_referer( 'wp_dark_mode_nonce', 'nonce' );
+
 			$user_id = get_current_user_id();
 			$ip = isset( $_POST['ip'] ) ? sanitize_text_field( wp_unslash( $_POST['ip'] ) ) : ( isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '' );
 
@@ -105,6 +108,9 @@ if ( ! class_exists( __NAMESPACE__ . 'Ajax' ) ) {
 		 * @since 5.0.0
 		 */
 		public function update_existing_visitor( $visitor_id ) {
+
+			// Check nonce.
+			check_ajax_referer( 'wp_dark_mode_nonce', 'nonce' );
 
 			$mode = isset( $_POST['mode'] ) ? sanitize_text_field( wp_unslash( $_POST['mode'] ) ) : 'dark';
 
