@@ -117,7 +117,7 @@ if ( ! class_exists( __NAMESPACE__ . 'DarkModeWidget' ) ) {
 			$this->add_control(
 				'style', [
 					'type'        => 'wp_dark_mode_switch',
-					'options' => array_merge([ 1, 2, 3, 20, 21 ], range(4, 19)),
+					'options' => array_merge([ 1, 2, 3, 22, 20, 21 ], range(4, 19)),
 					'description' => 'Select the Dark Mode Switch Style',
 					'default'     => 1,
 					'id'          => 'wp-dark-mode-switch',

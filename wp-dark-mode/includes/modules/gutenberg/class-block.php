@@ -43,7 +43,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Block' ) ) {
 			wp_register_script(
 				'wp-dark-mode-editor-script',
 				plugin_dir_url( __DIR__ ) . 'gutenberg/main.js',
-				[ 'wp-blocks', 'wp-i18n', 'wp-element', 'react', 'wp-dark-mode-admin' ],
+				[ 'wp-blocks', 'wp-i18n', 'wp-element', 'react', 'wp-dark-mode-common' ],
 				WP_DARK_MODE_VERSION,
 				true
 			);

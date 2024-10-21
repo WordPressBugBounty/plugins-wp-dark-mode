@@ -18,20 +18,26 @@ if ( empty( $countdown_timer ) || $countdown_timer < time() ) {
 	set_transient( 'wp_dark_mode_promo_countdown_timer', $countdown_timer, 14 * HOUR_IN_SECONDS );
 }
 
+$campaign_starts = strtotime( '2024-10-21 16:00:00' );
+$campaign_ends = strtotime( '2024-11-05 16:00:00' );
+
+$is_campaign = $campaign_ends > time() && $campaign_starts < time();
+
 // Formatted data.
 $data = [
-	'counter_time' => $countdown_timer,
-	'discount'     => 35,
+	'counter_time' => $is_campaign ? $campaign_ends : $countdown_timer,
+	'discount'     => $is_campaign ? 45 : 35,
 ];
 
 $countdown_time = [
-	'year'   => gmdate( 'Y', $countdown_timer ),
-	'month'  => gmdate( 'm', $countdown_timer ),
-	'day'    => gmdate( 'd', $countdown_timer ),
-	'hour'   => gmdate( 'H', $countdown_timer ),
-	'minute' => gmdate( 'i', $countdown_timer ),
+	'year'   => gmdate( 'Y', $data['counter_time'] ),
+	'month'  => gmdate( 'm', $data['counter_time'] ),
+	'day'    => gmdate( 'd', $data['counter_time'] ),
+	'hour'   => gmdate( 'H', $data['counter_time'] ),
+	'minute' => gmdate( 'i', $data['counter_time'] ),
 ];
 
+$class = 'wp-dark-mode-promo-campaign';
 
 ?>
 
@@ -43,9 +49,12 @@ $countdown_time = [
 		<img src="<?php echo esc_url( WP_DARK_MODE_ASSETS ) . '/images/gift-box.svg'; ?>" class="promo-img">
 
 		<?php
-		echo wp_sprintf( '<h3 class="promo-title">%s</h3>', esc_html__( 'Unlock all the features', 'wp-dark-mode' ) );
+		echo wp_sprintf( '<h3 class="promo-title">%s</h3>',
+		$is_campaign ? esc_html__('Deals Sweeter than Halloween Candy!', 'wp-dark-mode') : esc_html__( 'Unlock all the features', 'wp-dark-mode' ) );
 
-		echo wp_sprintf( '<div class="discount"> <span class="discount-special">SPECIAL</span> <span class="discount-text">%s%s OFF</span></div>', esc_html( $data['discount'] ), '%' );
+		echo wp_sprintf( '<div class="discount"> <span class="discount-special">%s</span> <span class="discount-text">%s%s OFF</span></div>',
+			$is_campaign ? esc_html__( 'Halloween', 'wp-dark-mode' ) : esc_html__( 'SPECIAL', 'wp-dark-mode' ),
+			esc_html( $data['discount'] ), '%' );
 		?>
 
 		<div class="wp-dark-mode-timer">
@@ -67,10 +76,13 @@ $countdown_time = [
 			</div>
 		</div>
 
-		<a href="https://go.wppool.dev/LaSV" target="_blank"><?php echo wp_sprintf( 'Claim %s%s Discount', esc_html( $data['discount'] ), '%' ); ?></a>
+		<a href="https://go.wppool.dev/LaSV" target="_blank"><?php echo $is_campaign ? esc_html__('Grab Your Treat!', 'wp-dark-mode') : wp_sprintf( 'Claim %s%s Discount', esc_html( $data['discount'] ), '%' ); ?></a>
 	</div>
 
 	<style>
+		.promo-title {
+			font-size: <?php echo $is_campaign ? 18 : 20; ?>px;
+		}
 		.wp-dark-mode-promo {
 			opacity: .95;
 		}
