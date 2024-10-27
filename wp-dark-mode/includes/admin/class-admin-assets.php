@@ -83,6 +83,25 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 		 */
 		public function admin_enqueue_scripts( $hook ) {
 
+			// Enqueue styles.
+			wp_enqueue_style( 'wp-dark-mode-admin-common', WP_DARK_MODE_ASSETS . 'css/admin-common.css', array(), WP_DARK_MODE_VERSION );
+
+			// Enqueue inline CSS.
+			wp_add_inline_style( 'wp-dark-mode-admin-common', $this->get_inline_css() );
+
+			// Enqueue scripts.
+			wp_enqueue_script( 'wp-dark-mode-dark-mode', WP_DARK_MODE_ASSETS . 'js/admin-dark-mode.min.js', [], WP_DARK_MODE_VERSION, false );
+			wp_enqueue_script( 'wp-dark-mode-common', WP_DARK_MODE_ASSETS . 'js/admin-common.min.js', [ 'wp-i18n' ], WP_DARK_MODE_VERSION, true );
+
+			// SVG Icons.
+			$config = new \WP_Dark_Mode\Config();
+			$svg_icons = $config->get_svg_icons();
+			wp_localize_script( 'wp-dark-mode-common', 'wp_dark_mode_icons', $svg_icons );
+
+			// Localize scripts.
+			wp_localize_script( 'wp-dark-mode-common', 'wp_dark_mode_admin_json', $this->get_admin_json() );
+			wp_set_script_translations('wp-dark-mode-common', 'wp-dark-mode');
+
 			// Load settings style when on settings page.
 			if ( in_array( $hook, [ 'toplevel_page_wp-dark-mode', 'toplevel_page_wp-dark-mode-settings', 'wp-dark-mode_page_wp-dark-mode-get-started' ], true ) ) {
 
@@ -93,28 +112,8 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 				wp_enqueue_style( 'wp-dark-mode-admin-settings', WP_DARK_MODE_ASSETS . 'css/admin-settings.css', array(), WP_DARK_MODE_VERSION );
 
 				echo '<style> #wpcontent { padding: 0 !important; }</style>';
+				wp_enqueue_script( 'wp-dark-mode-settings', WP_DARK_MODE_ASSETS . 'js/admin-settings.min.js', [ 'wp-i18n' ], WP_DARK_MODE_VERSION, true );
 			}
-
-			// Enqueue styles.
-			wp_enqueue_style( 'wp-dark-mode-admin-common', WP_DARK_MODE_ASSETS . 'css/admin-common.css', array(), WP_DARK_MODE_VERSION );
-
-			// Enqueue inline CSS.
-			wp_add_inline_style( 'wp-dark-mode-admin-common', $this->get_inline_css() );
-
-			// Enqueue scripts.
-			// wp_enqueue_script( 'wp-dark-mode-auto', WP_DARK_MODE_ASSETS . 'js/wp-dark-mode.js', array(), WP_DARK_MODE_VERSION, false );
-			wp_enqueue_script( 'wp-dark-mode-dark-mode', WP_DARK_MODE_ASSETS . 'js/admin-dark-mode.min.js', [], WP_DARK_MODE_VERSION, false );
-			wp_enqueue_script( 'wp-dark-mode-common', WP_DARK_MODE_ASSETS . 'js/admin-common.min.js', [ 'wp-i18n' ], WP_DARK_MODE_VERSION, true );
-			wp_enqueue_script( 'wp-dark-mode-settings', WP_DARK_MODE_ASSETS . 'js/admin-settings.min.js', [ 'wp-i18n' ], WP_DARK_MODE_VERSION, true );
-
-			// Localize scripts.
-			wp_localize_script( 'wp-dark-mode-common', 'wp_dark_mode_admin_json', $this->get_admin_json() );
-			wp_set_script_translations('wp-dark-mode-common', 'wp-dark-mode');
-
-			// SVG Icons.
-			$config = new \WP_Dark_Mode\Config();
-			$svg_icons = $config->get_svg_icons();
-			wp_localize_script( 'wp-dark-mode-common', 'wp_dark_mode_icons', $svg_icons );
 		}
 
 		/**

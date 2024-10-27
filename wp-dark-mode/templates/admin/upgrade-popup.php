@@ -18,7 +18,7 @@ if ( empty( $countdown_timer ) || $countdown_timer < time() ) {
 	set_transient( 'wp_dark_mode_promo_countdown_timer', $countdown_timer, 14 * HOUR_IN_SECONDS );
 }
 
-$campaign_starts = strtotime( '2024-10-21 16:00:00' );
+$campaign_starts = strtotime( '2024-10-18 16:00:00' );
 $campaign_ends = strtotime( '2024-11-05 16:00:00' );
 
 $is_campaign = $campaign_ends > time() && $campaign_starts < time();
