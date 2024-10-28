@@ -89,8 +89,11 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 			// Enqueue inline CSS.
 			wp_add_inline_style( 'wp-dark-mode-admin-common', $this->get_inline_css() );
 
+			// If the current page is not edit post page.
+			if ( ! in_array( $hook, [ 'post.php', 'post-new.php' ], true ) ) {
+				wp_enqueue_script( 'wp-dark-mode-dark-mode', WP_DARK_MODE_ASSETS . 'js/admin-dark-mode.min.js', [], WP_DARK_MODE_VERSION, false );
+			}
 			// Enqueue scripts.
-			wp_enqueue_script( 'wp-dark-mode-dark-mode', WP_DARK_MODE_ASSETS . 'js/admin-dark-mode.min.js', [], WP_DARK_MODE_VERSION, false );
 			wp_enqueue_script( 'wp-dark-mode-common', WP_DARK_MODE_ASSETS . 'js/admin-common.min.js', [ 'wp-i18n' ], WP_DARK_MODE_VERSION, true );
 
 			// SVG Icons.
