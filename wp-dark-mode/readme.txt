@@ -2,9 +2,9 @@
 Contributors: wppool, wpdarkmode, azizultex, iamjafran
 Tags: dark, dark mode, night mode, dark theme, accessibility
 Requires at least: 5.0
-Tested up to: 6.6
+Tested up to: 6.7
 Requires PHP: 5.6
-Stable tag: 5.1.5
+Stable tag: 5.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -156,6 +156,11 @@ Yes, You can toggle the dark mode/ light mode by keyboard shortcut `(Ctrl + Alt 
 7. Dark Mode color presets
 
 == Changelog == 
+
+= 5.2.0 – 13 NOV 2024 =
+* **Fix:** The Annoying Flashing Issue has been killed.
+* **Improvement:** WP Dark Mode consumed a performance booster.
+* **Improvement:** Added maximum compatibility with themes, templates and plugins.
 
 = 5.1.5 – 28 OCT 2024 =
 * **Fix:** Switch 3 is not visible in Dark Mode.

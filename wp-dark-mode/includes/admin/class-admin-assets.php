@@ -89,21 +89,22 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 			// Enqueue inline CSS.
 			wp_add_inline_style( 'wp-dark-mode-admin-common', $this->get_inline_css() );
 
+			// Enqueue scripts.
 			// If the current page is not edit post page.
 			if ( ! in_array( $hook, [ 'post.php', 'post-new.php' ], true ) ) {
 				wp_enqueue_script( 'wp-dark-mode-dark-mode', WP_DARK_MODE_ASSETS . 'js/admin-dark-mode.min.js', [], WP_DARK_MODE_VERSION, false );
 			}
-			// Enqueue scripts.
+
 			wp_enqueue_script( 'wp-dark-mode-common', WP_DARK_MODE_ASSETS . 'js/admin-common.min.js', [ 'wp-i18n' ], WP_DARK_MODE_VERSION, true );
+
+			// Localize scripts.
+			wp_localize_script( 'wp-dark-mode-common', 'wp_dark_mode_admin_json', $this->get_admin_json() );
+			wp_set_script_translations('wp-dark-mode-common', 'wp-dark-mode');
 
 			// SVG Icons.
 			$config = new \WP_Dark_Mode\Config();
 			$svg_icons = $config->get_svg_icons();
 			wp_localize_script( 'wp-dark-mode-common', 'wp_dark_mode_icons', $svg_icons );
-
-			// Localize scripts.
-			wp_localize_script( 'wp-dark-mode-common', 'wp_dark_mode_admin_json', $this->get_admin_json() );
-			wp_set_script_translations('wp-dark-mode-common', 'wp-dark-mode');
 
 			// Load settings style when on settings page.
 			if ( in_array( $hook, [ 'toplevel_page_wp-dark-mode', 'toplevel_page_wp-dark-mode-settings', 'wp-dark-mode_page_wp-dark-mode-get-started' ], true ) ) {
@@ -193,15 +194,15 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 			// variables.
 			$css .= wp_sprintf(
 				':root{
-					--wp-dark-mode-get-started-hero-background : url(%s);
-					--wp-dark-mode-get-started-nav-background : url(%s);
-					--wp-dark-mode-upgrade-box1-background : url(%s);
-					--wp-dark-mode-upgrade-box2-background : url(%s);
+					--wpdm-get-started-hero-background : url(%s);
+					--wpdm-get-started-nav-background : url(%s);
+					--wpdm-upgrade-box1-background : url(%s);
+					--wpdm-upgrade-box2-background : url(%s);
 
-					--wp-dark-mode-text-color : %s;
-					--wp-dark-mode-background-color : %s;
-					--wp-dark-mode-secondary-background-color : %s;
-					--wp-dark-mode-border-color : %s;
+					--wpdm-text-color : %s;
+					--wpdm-background-color : %s;
+					--wpdm-secondary-background-color : %s;
+					--wpdm-border-color : %s;
 				}',
 				WP_DARK_MODE_ASSETS . 'images/get-started/hero-background.png',
 				WP_DARK_MODE_ASSETS . 'images/get-started/nav-background.svg',

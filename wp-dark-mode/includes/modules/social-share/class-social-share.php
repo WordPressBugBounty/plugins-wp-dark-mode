@@ -488,13 +488,13 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		public function wp_head() {
 			echo '<style id="social-share-root">
 				:root {
-					--wp-dark-mode-social-share-scale: ' . esc_html( get_option( 'wpdm_social_share_button_size', 1.2 ) ) . ';
+					--wpdm-social-share-scale: ' . esc_html( get_option( 'wpdm_social_share_button_size', 1.2 ) ) . ';
 				}
 				._fixed-size {
-					--wp-dark-mode-social-share-scale: 1.2 !important;
+					--wpdm-social-share-scale: 1.2 !important;
 				}
 				._fixed-size-large {
-					--wp-dark-mode-social-share-scale: 1.4 !important;
+					--wpdm-social-share-scale: 1.4 !important;
 				}
 			</style>';
 		}

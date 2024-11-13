@@ -194,14 +194,14 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 			$font_size = wp_sprintf( '%sem', $font_size );
 
 			$css = wp_sprintf('html[data-wp-dark-mode-active], [data-wp-dark-mode-loading] {
-				--wp-dark-mode-body-filter: %s;
-				--wp-dark-mode-grayscale: %s%%;
-	--wp-dark-mode-img-brightness: %s%%;
-	--wp-dark-mode-img-grayscale: %s%%;
-	--wp-dark-mode-video-brightness: %s%%;
-	--wp-dark-mode-video-grayscale: %s%%;
+				--wpdm-body-filter: %s;
+				--wpdm-grayscale: %s%%;
+	--wpdm-img-brightness: %s%%;
+	--wpdm-img-grayscale: %s%%;
+	--wpdm-video-brightness: %s%%;
+	--wpdm-video-grayscale: %s%%;
 
-	--wp-dark-mode-large-font-sized: %s;
+	--wpdm-large-font-sized: %s;
 }' . "\n", $body_filter, $filter_grayscale, $img_brightness, $img_grayscale, $video_brightness, $video_grayscale, $font_size);
 
 			// Preset styles.
@@ -211,7 +211,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 			$css .= $this->get_custom_css();
 
 			// Minify CSS.
-			$css = $this->minify( $css );
+			// $css = $this->minify( $css );
 
 			return apply_filters( 'wp_dark_mode_inline_styles', $css );
 		}
@@ -228,9 +228,9 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 
 			if ( $color_preset_id < 1 ) {
 				return sprintf(
-					'.wp-dark-mode-active, [data-wp-dark-mode] {
-						--wp-dark-mode-background-color: %s;
-						--wp-dark-mode-text-color: %s; }',
+					'.wp-dark-mode-active, [data-wp-dark-mode-active] {
+						--wpdm-background-color: %s;
+						--wpdm-text-color: %s; }',
 					'#232323', '#f0f0f0'
 				);
 
@@ -269,65 +269,154 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 			$track_color = $enable_scrollbar ? ( isset( $preset['scrollbar_track'] ) && ! empty( $preset['scrollbar_track'] ) ? $preset['scrollbar_track'] : '' ) : '';
 			$thumb_color = $enable_scrollbar ? ( isset( $preset['scrollbar_thumb'] ) && ! empty( $preset['scrollbar_thumb'] ) ? $preset['scrollbar_thumb'] : '' ) : '';
 
+			$elements = array( 'div', 'aside', 'header', 'footer', 'main', 'section', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'article', 'nav', 'ul', 'ol', 'li', 'nav', 'span', 'i', 'b', 'strong', 'em', 'small', 'big', 'pre', 'code', 'blockquote', 'q', 'cite' );
+			$not = array( 'a', 'button', '.button', 'template', 'iframe', 'video', 'media', 'svg', 'img', 'audio', 'input', 'textarea', 'form', 'select', '.elementor-button' );
+			$not = implode('', array_map( function ( $item ) {
+				return ':not(' . $item . '):not(' . $item . ' *)';
+			}, $not )) . ':not(.wp-dark-mode-ignore):not(.wp-dark-mode-ignore *):not(.wp-dark-mode-switch):not(.wp-dark-mode-switch *):not(.wp-dark-mode-transparent):not(.wp-dark-mode-transparent *)';
+			// $elements = implode(', ', array_map( function( $item ) use ($not) {
+			//  return '[data-wp-dark-mode-active] body ' . $item . $not;
+			// }, $elements ));
+
+			// Variables.
 			$styles = sprintf(
-				'html[data-wp-dark-mode-active], [data-wp-dark-mode-loading] { 
-	--wp-dark-mode-background-color: %s;
-	--wp-dark-mode-secondary-background-color: %s;
+				'[data-wp-dark-mode-active] { 
+	--wpdm-background-color: %s;
+	--wpdm-secondary-background-color: %s;
 
-	--wp-dark-mode-text-color: %s;
-	--wp-dark-mode-link-color: %s;
-	--wp-dark-mode-link-hover-color: %s;
+	--wpdm-text-color: %s;
+	--wpdm-link-color: %s;
+	--wpdm-link-hover-color: %s;
 
-	--wp-dark-mode-input-background-color: %s;
-	--wp-dark-mode-input-text-color: %s;
-	--wp-dark-mode-input-placeholder-color: %s;
+	--wpdm-input-background-color: %s;
+	--wpdm-input-text-color: %s;
+	--wpdm-input-placeholder-color: %s;
 
-	--wp-dark-mode-button-text-color: %s;
-	--wp-dark-mode-button-hover-text-color: %s;
-	--wp-dark-mode-button-background-color: %s;
-	--wp-dark-mode-button-hover-background-color: %s;
-	--wp-dark-mode-button-border-color: %s;
+	--wpdm-button-text-color: %s;
+	--wpdm-button-hover-text-color: %s;
+	--wpdm-button-background-color: %s;
+	--wpdm-button-hover-background-color: %s;
+	--wpdm-button-border-color: %s;
 
-	--wp-dark-mode-scrollbar-track-color: %s;
-	--wp-dark-mode-scrollbar-thumb-color: %s;
-}',
+	--wpdm-scrollbar-track-color: %s;
+	--wpdm-scrollbar-thumb-color: %s;
+}
+',
 				$background_color, $secondary_color, $text_color, $link_color, $link_hover_color, $input_background_color, $input_text_color, $input_placeholder_color, $button_text_color, $button_hover_text_color, $button_background_color, $button_hover_background_color, $button_border_color, $track_color, $thumb_color
 			);
+
+			// Add preset styles.
+			//          $styles .= wp_sprintf('[data-wp-dark-mode-active] *%s {
+			//      color: var(--wpdm-text-color, #f0f0f0) !important;
+			//      border-color: var(--wpdm-border-color, #dcdcdc) !important;
+			//      background: var(--wpdm-secondary-background-color, #212121) !important;
+			//      background-color: var(--wpdm-secondary-background-color, #212121) !important;
+			//  }
+			// [data-wp-dark-mode-active] h1, [data-wp-dark-mode-active] h2, [data-wp-dark-mode-active] h3,[data-wp-dark-mode-active] h4, [data-wp-dark-mode-active] h5, [data-wp-dark-mode-active] h6 {
+			//  color: var(--wpdm-text-color, #f0f0f0) !important;
+			// }
+			//  [data-wp-dark-mode-active] .wp-dark-mode-background {
+			//                      background: var(--wpdm-secondary-background-color, #212121) !important;
+			//                      background-color: var(--wpdm-secondary-background-color, #212121) !important;
+			//                  }
+			//          [data-wp-dark-mode-active] a:not(.wp-dark-mode-ignore):not(.button):not(.btn):not(.wp-element-button) {
+			//                     color: var(--wpdm-link-color, \'inherit\') !important;
+
+			//                     &:hover {
+			//                         color: var(--wpdm-link-hover-color, \'inherit\') !important;
+			//                         filter: brightness( 1.2 );
+			//                         transition: opacity 0.2s ease-in-out;
+			//                     }
+			//                 }
+
+			//                 [data-wp-dark-mode-active] iframe:not(.wp-dark-mode-ignore) {
+			//                     filter: var(--wpdm-video-filter, \'inherit\');
+			//                 }
+
+			//                 [data-wp-dark-mode-active] button:not(.wp-dark-mode-ignore),
+			//                 [data-wp-dark-mode-active] .button:not(.wp-dark-mode-ignore),
+			//                 [data-wp-dark-mode-active] .btn:not(.wp-dark-mode-ignore),
+			//                 [data-wp-dark-mode-active] .wp-element-button:not(.wp-dark-mode-ignore),
+			//                 [data-wp-dark-mode-active] .elementor-button:not(.wp-dark-mode-ignore),
+			//                 [data-wp-dark-mode-active] submit:not(.wp-dark-mode-ignore) {
+			//                     color: var(--wpdm-button-text-color, \'inherit\') !important;
+			//                     background: var(--wpdm-button-background-color, \'inherit\') !important;
+			//                     background-color: var(--wpdm-button-background-color, \'inherit\') !important;
+			//                     border-color: var(--wpdm-button-border-color, \'inherit\') !important;
+
+			//                     &:hover {
+			//                         color: var(--wpdm-button-hover-text-color, \'inherit\') !important;
+			//                         background: var(--wpdm-button-hover-background-color, \'inherit\') !important;
+			//                         background-color: var(--wpdm-button-hover-background-color, \'inherit\') !important;
+			//                         border-color: var(--wpdm-button-hover-border-color, \'inherit\') !important;
+			//                     }
+			//                 }
+
+			//                 [data-wp-dark-mode-active] img:not(.wp-dark-mode-ignore),
+			//                 [data-wp-dark-mode-active] img:not(.wp-dark-mode-ignore-low-brightness) {
+			//                     opacity: var(--wpdm-img-opacity, 0);
+			//                     filter: brightness(%s%%) grayscale(%s%%) !important;
+			//                 }
+
+			//                [data-wp-dark-mode-active] svg, [data-wp-dark-mode-active] svg * {
+			//                     fill: var(--wpdm-text-color, #f0f0f0) !important;
+			//                 }
+
+			//                 [data-wp-dark-mode-active] video:not(.wp-dark-mode-ignore),
+			//              [data-wp-dark-mode-active] video:not(.wp-dark-mode-ignore-low-brightness)
+			//              {
+			//                     opacity: var(--wpdm-img-opacity, 0);
+			//                     filter: brightness(%s%%) grayscale(%s%%) !important;
+			//                 }
+
+			//                 [data-wp-dark-mode-active] input:not(.wp-dark-mode-ignore):not([type="radio"]):not([type="checkbox"]),
+			//                 [data-wp-dark-mode-active] textarea:not(.wp-dark-mode-ignore),
+			//                 [data-wp-dark-mode-active] select:not(.wp-dark-mode-ignore) {
+			//                     color: var(--wpdm-input-text-color, #f0f0f0) !important;
+			//                     background: var(--wpdm-input-background-color, #222) !important;
+			//                     background-color: var(--wpdm-input-background-color, #222) !important;
+			//                     border-color: var(--wpdm-input-border-color, #f0f0f0) !important;
+
+			//                     &::placeholder {
+			//                         color: var(--wpdm-input-placeholder-color, #f0f0f0) !important;
+			//                     }
+			//                 }
+			//                  ', $not,
+			//              $this->get_option( 'image_enabled_low_brightness' ) ? $this->get_option( 'image_brightness' ) : '100',
+			//              $this->get_option( 'image_enabled_low_grayscale' ) ? $this->get_option( 'image_grayscale' ) : '0',
+			//              $this->get_option( 'video_enabled_low_brightness' ) ? $this->get_option( 'video_brightness' ) : '100',
+			//              $this->get_option( 'video_enabled_low_grayscale' ) ? $this->get_option( 'video_grayscale' ) : '0'
+			//      );
 
 			// Has scrollbar.
 			if ( $enable_scrollbar ) {
 				$styles .= wp_sprintf(
-					'html[data-wp-dark-mode-active], html[data-wp-dark-mode-loading] {
-						body::-webkit-scrollbar-track {
-							background: var(--wp-dark-mode-scrollbar-track-color) !important;
-							background-color: var(--wp-dark-mode-scrollbar-track-color) !important;
-						}
-				
-						body::-webkit-scrollbar-thumb {
-							background: var(--wp-dark-mode-scrollbar-thumb-color) !important;
-							background-color: var(--wp-dark-mode-scrollbar-thumb-color) !important;
-						}
+					'[data-wp-dark-mode-active] {
+						scrollbar-color: var(--wpdm-scrollbar-thumb-color) var(--wpdm-scrollbar-track-color) !important;
+					}
 
-						scrollbar-color: var(--wp-dark-mode-scrollbar-thumb-color) var(--wp-dark-mode-scrollbar-track-color) !important;
+					[data-wp-dark-mode-active] body::-webkit-scrollbar-track {
+						background-color: var(--wpdm-scrollbar-track-color) !important;
+					}
 			
-						body::-webkit-scrollbar {
-							width: .5rem;
-						}
-						   
-						body::-webkit-scrollbar-track {
-						box-shadow: inset 0 0 3px var(--wp-dark-mode-scrollbar-track-color);
-						}
+					[data-wp-dark-mode-active] body::-webkit-scrollbar-thumb {
+						background-color: var(--wpdm-scrollbar-thumb-color) !important;
+					}
+		
+					html[data-wp-dark-mode-active] body::-webkit-scrollbar {
+						width: .5rem;
+					}
 						
-						body::-webkit-scrollbar-thumb {
-						background-color: var(--wp-dark-mode-scrollbar-thumb-color);
-						outline: 1px solid var(--wp-dark-mode-scrollbar-thumb-color);
-						}
+					[data-wp-dark-mode-active] body::-webkit-scrollbar-track {
+						box-shadow: inset 0 0 3px var(--wpdm-scrollbar-track-color);
+					}
+					
+					[data-wp-dark-mode-active] body::-webkit-scrollbar-thumb {
+						background-color: var(--wpdm-scrollbar-thumb-color);
+						outline: 1px solid var(--wpdm-scrollbar-thumb-color);
 					}'
 				);
 			}
-
-			// Minify CSS.
-			$styles = $this->minify( $styles );
 
 			// Return the styles.
 			return apply_filters( 'wp_dark_mode_preset_styles', $styles );
