@@ -18,15 +18,15 @@ if ( empty( $countdown_timer ) || $countdown_timer < time() ) {
 	set_transient( 'wp_dark_mode_promo_countdown_timer', $countdown_timer, 14 * HOUR_IN_SECONDS );
 }
 
-$campaign_starts = strtotime( '2024-10-18 16:00:00' );
-$campaign_ends = strtotime( '2024-11-05 16:00:00' );
+$campaign_starts = strtotime( '2024-11-21 16:00:00' );
+$campaign_ends = strtotime( '2024-12-04 16:00:00' );
 
 $is_campaign = $campaign_ends > time() && $campaign_starts < time();
 
 // Formatted data.
 $data = [
 	'counter_time' => $is_campaign ? $campaign_ends : $countdown_timer,
-	'discount'     => $is_campaign ? 45 : 35,
+	'discount'     => $is_campaign ? 50 : 35,
 ];
 
 $countdown_time = [
@@ -50,10 +50,10 @@ $class = 'wp-dark-mode-promo-campaign';
 
 		<?php
 		echo wp_sprintf( '<h3 class="promo-title">%s</h3>',
-		$is_campaign ? esc_html__('Deals Sweeter than Halloween Candy!', 'wp-dark-mode') : esc_html__( 'Unlock all the features', 'wp-dark-mode' ) );
+		$is_campaign ? esc_html__('Black Friday & Cyber Monday', 'wp-dark-mode') : esc_html__( 'Unlock all the features', 'wp-dark-mode' ) );
 
 		echo wp_sprintf( '<div class="discount"> <span class="discount-special">%s</span> <span class="discount-text">%s%s OFF</span></div>',
-			$is_campaign ? esc_html__( 'Halloween', 'wp-dark-mode' ) : esc_html__( 'SPECIAL', 'wp-dark-mode' ),
+			$is_campaign ? esc_html__( 'Flash Sale', 'wp-dark-mode' ) : esc_html__( 'SPECIAL', 'wp-dark-mode' ),
 			esc_html( $data['discount'] ), '%' );
 		?>
 
@@ -76,12 +76,12 @@ $class = 'wp-dark-mode-promo-campaign';
 			</div>
 		</div>
 
-		<a href="https://go.wppool.dev/LaSV" target="_blank"><?php echo $is_campaign ? esc_html__('Grab Your Treat!', 'wp-dark-mode') : wp_sprintf( 'Claim %s%s Discount', esc_html( $data['discount'] ), '%' ); ?></a>
+		<a href="https://go.wppool.dev/LaSV" target="_blank"><?php echo $is_campaign ? esc_html__('Claim 50% Discount', 'wp-dark-mode') : wp_sprintf( 'Claim %s%s Discount', esc_html( $data['discount'] ), '%' ); ?></a>
 	</div>
 
 	<style>
 		.promo-title {
-			font-size: <?php echo $is_campaign ? 18 : 20; ?>px;
+			font-size: <?php echo $is_campaign ? 23 : 20; ?>px;
 		}
 		.wp-dark-mode-promo {
 			opacity: .95;
