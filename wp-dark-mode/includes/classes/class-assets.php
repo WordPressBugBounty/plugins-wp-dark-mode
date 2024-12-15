@@ -37,9 +37,6 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 
 			// Modify script async.
 			add_filter( 'script_loader_tag', array( $this, 'script_loader_tag' ), 10, 2 );
-
-			// Stylesheet tag.
-			add_filter( 'style_loader_tag', array( $this, 'style_loader_tag' ), 10, 2 );
 		}
 
 		/**
@@ -514,45 +511,18 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 						break;
 
 					case 'sync':
+					default:
 						// Do nothing.
 						break;
 				}
+			}
 
-				// Add nowprocket attribute to script tag.
-				if ( strpos( $tag, 'nowprocket' ) === false ) {
-					$tag = str_replace( ' src', ' nowprocket src', $tag );
-				}
-
-				// LiteSpeed exclude.
-				$tag = str_replace( ' src', ' data-no-minify="1" data-no-optimize="1" src', $tag );
+			// Exclude wp-dark-mode-js-extra from cache.
+			if ( 'wp-dark-mode-js-extra' === $handle ) {
+				$tag = str_replace( ' src', ' data-no-minify="true" nowprocket data-no-optimize="true" data-no-litespeed="true" src', $tag );
 			}
 
 			return $tag;
-		}
-
-		/**
-		 * Style loader tag
-		 *
-		 * @since 5.0.0
-		 * @param string $html HTML tag.
-		 * @param string $handle Style handle.
-		 * @return string
-		 */
-		public function style_loader_tag( $html, $handle ) {
-
-			// Check if the script is wp-dark-mode.
-			if ( 'wp-dark-mode' === $handle ) {
-
-				// Add nowprocket attribute to script tag.
-				if ( strpos( $html, 'nowprocket' ) === false ) {
-					$html = str_replace( ' rel', ' nowprocket rel', $html );
-				}
-
-				// LiteSpeed exclude.
-				$html = str_replace( ' rel', ' data-no-minify="1" data-no-optimize="1" rel', $html );
-			}
-
-			return $html;
 		}
 
 		/**

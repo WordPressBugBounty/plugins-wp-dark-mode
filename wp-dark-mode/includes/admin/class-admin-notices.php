@@ -35,7 +35,7 @@ if ( ! class_exists(__NAMESPACE__ . 'Notices') ) {
 		 * @since 5.0.0
 		 */
 		public function actions() {
-			add_action('admin_init', [$this, 'init_appsero'], 0);
+			add_action('admin_init', [ $this, 'init_appsero' ], 0);
 			add_action( 'admin_footer', array( $this, 'add_upgrade_popup' ) );
 			add_action( 'wp_dashboard_setup', array( $this, 'add_dashboard_widget' ) );
 			// Admin notice.

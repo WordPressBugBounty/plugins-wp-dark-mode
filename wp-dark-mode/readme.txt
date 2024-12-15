@@ -4,7 +4,7 @@ Tags: dark, dark mode, night mode, dark theme, accessibility
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 5.6
-Stable tag: 5.2.2
+Stable tag: 5.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -156,6 +156,14 @@ Yes, You can toggle the dark mode/ light mode by keyboard shortcut `(Ctrl + Alt 
 7. Dark Mode color presets
 
 == Changelog == 
+
+= 5.2.3 – 15 DEC 2024 =
+* **New:** Added support for replacing responsive and dynamic images using image replacement feature
+* **Fix:** Resolved an issue where sliders were not visible in Dark Mode when using presets
+* **Fix:** Fixed a problem causing some images to be invisible in Dark Mode with presets
+* **Fix:** Fixed compatibility issues with the Woodmart and Storefront themes
+* **Fix:** Removed an unnecessary AJAX request used for checking the cache state
+* **Fix:** Addressed an issue where Dark Mode was not functioning correctly with LiteSpeed Cache
 
 = 5.2.2 – 30 NOV 2024 =
 * **Fix:** Fixed minor issues and maintenance update.
