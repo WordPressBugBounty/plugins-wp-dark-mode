@@ -55,11 +55,17 @@ if ( ! class_exists( __NAMESPACE__ . 'Visitor' ) ) {
 					ip varchar(20) NULL DEFAULT NULL,
 					mode varchar(20) NULL DEFAULT NULL,
 					created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+					updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 					PRIMARY KEY  (ID)
 				) " . $wpdb->get_charset_collate();
 
 				require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 				dbDelta( $sql );
+			}
+
+			// Add updated_at column if not exists.
+			if ( ! $wpdb->get_var( $wpdb->prepare( "SHOW COLUMNS FROM {$wpdb->prefix}wpdm_visitors LIKE %s", 'updated_at' ) ) ) { // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+				$wpdb->query( "ALTER TABLE {$wpdb->prefix}wpdm_visitors ADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" );
 			}
 		}
 

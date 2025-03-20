@@ -45,7 +45,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Ajax' ) ) {
 		 */
 		public function update_visitor() {
 			// Check nonce.
-			check_ajax_referer( 'wp_dark_mode_nonce', 'nonce' );
+			check_ajax_referer( 'wp_dark_mode_security', 'security_key' );
 
 			$visitor_id = isset( $_POST['visitor_id'] ) ? intval( wp_unslash( $_POST['visitor_id'] ) ) : false;
 
@@ -65,7 +65,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Ajax' ) ) {
 		 */
 		public function insert_new_visitor() {
 			// Check nonce.
-			check_ajax_referer( 'wp_dark_mode_nonce', 'nonce' );
+			check_ajax_referer( 'wp_dark_mode_security', 'security_key' );
 
 			$user_id = get_current_user_id();
 			$ip = isset( $_POST['ip'] ) ? sanitize_text_field( wp_unslash( $_POST['ip'] ) ) : ( isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '' );
@@ -110,7 +110,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Ajax' ) ) {
 		public function update_existing_visitor( $visitor_id ) {
 
 			// Check nonce.
-			check_ajax_referer( 'wp_dark_mode_nonce', 'nonce' );
+			check_ajax_referer( 'wp_dark_mode_security', 'security_key' );
 
 			$mode = isset( $_POST['mode'] ) ? sanitize_text_field( wp_unslash( $_POST['mode'] ) ) : 'dark';
 

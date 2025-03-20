@@ -56,6 +56,7 @@ if ( ! class_exists( 'Themes' ) ) {
 		public function avada() {
 			$this->_add_attribute();
 		}
+
 		/**
 		 * Add WP Dark Mode Attribute
 		 *

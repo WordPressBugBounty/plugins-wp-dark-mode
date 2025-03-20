@@ -521,7 +521,7 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 				'wp_dark_mode_social_share',
 				[
 					'ajax_url'    => admin_url( 'admin-ajax.php' ),
-					'nonce'       => wp_create_nonce( 'wp_dark_mode_social_share' ),
+					'security_key'       => wp_create_nonce( 'wp_dark_mode_social_share_security' ),
 					'options'     => $this->social_share_options(),
 					'is_pro'      => $this->is_ultimate(),
 					'is_ultimate'      => $this->is_ultimate(),
@@ -560,16 +560,16 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 				'wp-dark-mode-social-share',
 				'wp_dark_mode_social_share',
 				[
-					'ajax_url'    => admin_url( 'admin-ajax.php' ),
-					'nonce'       => wp_create_nonce( 'wp_dark_mode_social_share' ),
-					'options'     => $options,
-					'is_pro'      => $this->is_ultimate(),
-					'is_ultimate' => $this->is_ultimate(),
-					'permalink'   => get_permalink(),
-					'post_id'     => get_the_ID(),
-					'title'       => get_the_title(),
-					'description' => get_the_excerpt(),
-					'labels'      => [
+					'ajax_url'     => admin_url( 'admin-ajax.php' ),
+					'security_key' => wp_create_nonce( 'wp_dark_mode_social_share_security' ),
+					'options'      => $options,
+					'is_pro'       => $this->is_ultimate(),
+					'is_ultimate'  => $this->is_ultimate(),
+					'permalink'    => get_permalink(),
+					'post_id'      => get_the_ID(),
+					'title'        => get_the_title(),
+					'description'  => get_the_excerpt(),
+					'labels'       => [
 						'copied' => apply_filters( 'wpdm_social_share_label_copied', 'Copied' ),
 					],
 				]
@@ -594,8 +594,8 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 			/**
 			 * Check nonce
 			 */
-			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $inputs['nonce'] ) ), 'wp_dark_mode_social_share' ) ) {
-				wp_send_json_error( __( 'Invalid nonce', 'wp-dark-mode' ) );
+			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $inputs['security_key'] ) ), 'wp_dark_mode_social_share_security' ) ) {
+				wp_send_json_error( __( 'Invalid security key', 'wp-dark-mode' ) );
 			}
 
 			// Bail, if not admin.
@@ -777,10 +777,10 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 			$inputs = file_get_contents( 'php://input' );
 			$inputs = sanitize_text_field( $inputs );
 			$inputs = json_decode( $inputs, true );
-			$nonce  = sanitize_text_field( wp_unslash( $inputs['nonce'] ) );
+			$security_key  = sanitize_text_field( wp_unslash( $inputs['security_key'] ) );
 
 			// Verify nonce.
-			if ( ! wp_verify_nonce( $nonce, 'wp_dark_mode_social_share' ) ) {
+			if ( ! wp_verify_nonce( $security_key, 'wp_dark_mode_social_share_security' ) ) {
 				wp_send_json_error( __( 'Invalid permission', 'wp-dark-mode' ) );
 				wp_die();
 			}

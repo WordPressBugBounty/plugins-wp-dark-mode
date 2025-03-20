@@ -564,7 +564,6 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 				[
 					'name' => 'Gold',
 					'bg' => '#000',
-					'secondary_bg' => '#000',
 					'text' => '#dfdedb',
 					'link' => '#e58c17',
 					'link_hover' => '#e58c17',
@@ -583,7 +582,6 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 				[
 					'name' => 'Sapphire',
 					'bg' => '#1B2836',
-					'secondary_bg' => '#1B2836',
 					'text' => '#fff',
 					'link' => '#459BE6',
 					'link_hover' => '#459BE6',
@@ -602,7 +600,6 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 				[
 					'name' => 'Fuchsia',
 					'bg' => '#1E0024',
-					'secondary_bg' => '#1E0024',
 					'text' => '#fff',
 					'link' => '#E251FF',
 					'link_hover' => '#E251FF',
@@ -621,7 +618,6 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 				[
 					'name' => 'Rose',
 					'bg' => '#270000',
-					'secondary_bg' => '#270000',
 					'text' => '#fff',
 					'link' => '#FF7878',
 					'link_hover' => '#FF7878',
@@ -640,7 +636,6 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 				[
 					'name' => 'Violet',
 					'bg' => '#160037',
-					'secondary_bg' => '#160037',
 					'text' => '#EBEBEB',
 					'link' => '#B381FF',
 					'link_hover' => '#B381FF',
@@ -659,7 +654,6 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 				[
 					'name' => 'Pink',
 					'bg' => '#121212',
-					'secondary_bg' => '#121212',
 					'text' => '#E6E6E6',
 					'link' => '#FF9191',
 					'link_hover' => '#FF9191',
@@ -678,7 +672,6 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 				[
 					'name' => 'Kelly',
 					'bg' => '#000A3B',
-					'secondary_bg' => '#000A3B',
 					'text' => '#FFFFFF',
 					'link' => '#3AFF82',
 					'link_hover' => '#3AFF82',
@@ -697,7 +690,6 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 				[
 					'name' => 'Magenta',
 					'bg' => '#171717',
-					'secondary_bg' => '#171717',
 					'text' => '#BFB7C0',
 					'link' => '#F776F0',
 					'link_hover' => '#F776F0',
@@ -716,7 +708,6 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 				[
 					'name' => 'Green',
 					'bg' => '#003711',
-					'secondary_bg' => '#003711',
 					'text' => '#FFFFFF',
 					'link' => '#84FF6D',
 					'link_hover' => '#84FF6D',
@@ -735,7 +726,6 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 				[
 					'name' => 'Orange',
 					'bg' => '#23243A',
-					'secondary_bg' => '#23243A',
 					'text' => '#D6CB99',
 					'link' => '#FF9323',
 					'link_hover' => '#FF9323',
@@ -755,7 +745,6 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 				[
 					'name' => 'Yellow',
 					'bg' => '#151819',
-					'secondary_bg' => '#151819',
 					'text' => '#D5D6D7',
 					'link' => '#DAA40B',
 					'link_hover' => '#DAA40B',
@@ -774,7 +763,6 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 				[
 					'name' => 'Facebook',
 					'bg' => '#18191A',
-					'secondary_bg' => '#18191A',
 					'text' => '#DCDEE3',
 					'link' => '#2D88FF',
 					'link_hover' => '#2D88FF',
@@ -794,7 +782,6 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 				[
 					'name' => 'Twitter',
 					'bg' => '#141d26',
-					'secondary_bg' => '#141d26',
 					'text' => '#fff',
 					'link' => '#1C9CEA',
 					'link_hover' => '#1C9CEA',

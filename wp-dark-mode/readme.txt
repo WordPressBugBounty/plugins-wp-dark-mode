@@ -4,7 +4,7 @@ Tags: dark, dark mode, night mode, dark theme, accessibility
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 5.6
-Stable tag: 5.2.6
+Stable tag: 5.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,8 +190,15 @@ Yes, You can toggle the dark mode/ light mode by keyboard shortcut `(Ctrl + Alt 
 
 == Changelog == 
 
-= 5.2.6 – 12 FEB 2025 =
-* **Fix:** Resolved issue where UTM links were not working on the upgrade button
+= 5.2.7 – 20 MAR 2025 =
+* **Fix:** Fixed thousands of theme compatibility with WP Dark Mode.
+* **Fix:** Fixed 'Color Presets not working with some imported templates'.
+* **Fix:** Fixed 'Dark Mode sending blank analytics email'.
+* **Fix:** Fixed 'Some sections are being disappeared' while Dark Mode is ON.
+* **Fix:** Dynamically loaded and lazy loaded images are not replacing in Dark Mode.
+
+= 5.2.6 – 6 FEB 2025 =
+* **Fix:** Fixed minor issues and maintenance update.
 
 = 5.2.5 – 29 JAN 2025 =
 * **Fix:** Switch not rendering on Divi theme.

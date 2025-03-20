@@ -129,8 +129,6 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 		public function get_admin_json( $hook = '' ) {
 
 			$scripts = array(
-				'nonce' => wp_create_nonce( 'wp_dark_mode_admin_nonce' ),
-
 				'default' => $this->get_default_options(),
 
 				'options' => $this->get_options(),
@@ -141,7 +139,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 				 * REST API.
 				 */
 				'rest_url' => rest_url( 'wp-dark-mode' ),
-				'rest_nonce' => wp_create_nonce( 'wp_rest' ),
+				'rest_security_key' => wp_create_nonce( 'wp_rest' ),
 
 				// urls.
 				'url' => array(

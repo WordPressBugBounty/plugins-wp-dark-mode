@@ -173,6 +173,11 @@ if ( ! class_exists( __NAMESPACE__ . 'Triggers' ) ) {
 			// Preset.
 			$preset = sanitize_title( $this->get_option( 'color_preset_id' ) );
 
+			// If not premium and preset is more than 2, then set to 1.
+			if ( ! $this->is_ultimate() && $preset > 2 ) {
+				$preset = 1;
+			}
+
 			// Add attribute.
 			$attr .= ' ' . wp_sprintf('data-wp-dark-mode-preset="%s"', 0 === $preset ? 'auto' : esc_attr( $preset ) );
 

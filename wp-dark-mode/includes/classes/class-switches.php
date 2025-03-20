@@ -45,7 +45,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Switches' ) ) {
 		 */
 		public function load_floating_switch() {
 
-			// Bail, if frontend darkmode is disabled.
+			// Bail, if frontend dark-mode is disabled.
 			if ( ! $this->get_option( 'frontend_enabled' ) ) {
 				return;
 			}

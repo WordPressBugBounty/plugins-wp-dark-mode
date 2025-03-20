@@ -491,7 +491,6 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 
 				$new_preset['name'] = 'Custom 1';
 				$new_preset['bg'] = isset( $color['darkmode_bg_color'] ) ? $color['darkmode_bg_color'] : '#000000';
-				$new_preset['secondary_bg'] = isset( $color['darkmode_bg_color'] ) ? $color['darkmode_bg_color'] : '#000000';
 				$new_preset['text'] = isset( $color['darkmode_text_color'] ) ? $color['darkmode_text_color'] : '#ffffff';
 				$new_preset['link'] = isset( $color['darkmode_link_color'] ) ? $color['darkmode_link_color'] : '#ffffff';
 
