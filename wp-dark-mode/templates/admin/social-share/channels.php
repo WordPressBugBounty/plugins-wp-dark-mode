@@ -23,8 +23,8 @@ defined( 'ABSPATH' ) || exit();
 	</div>
 
 	<!-- content	-->
-	<div class="w-full transition duration-150 relative" x-show="options.enable" :class=" {'opacity-20 pointer-events-none' : !options.enable}">
-
+	<div class="w-full transition duration-150 relative" x-show="options.enable">
+	<!-- :class=" {'opacity-20 pointer-events-none' : !options.enable}" -->
 		<label class="font-semibold text-sm text-slate-700 cursor-pointer block mb-2"><?php esc_html_e( 'Enable your preferred social channels', 'wp-dark-mode' ); ?></label>
 		<div class="relative">
 			<input type="text" x-model="state.search_channels" class="input-text text-xs" placeholder="<?php esc_html_e( 'Search Channel', 'wp-dark-mode' ); ?>">
@@ -121,7 +121,7 @@ defined( 'ABSPATH' ) || exit();
 						@dragend="handleDrop($event, channel.id)" 
 						:class="`_channel-${channel.id}`">
 
-						<div class="flex items-center gap-4 w-full cursor-pointer _social-share-container inline" tabindex="0">
+						<div class="w-full cursor-pointer _social-share-container inline" tabindex="0">
 
 							<!-- move icon -->
 							<span tabindex="1" class="text-slate-200 transition duration-100 h-full flex items-center justify-center text-2xl cursor-grab" :class="{'text-blue-600' : state.draggingChannel === channel.id }">
@@ -135,7 +135,7 @@ defined( 'ABSPATH' ) || exit();
 								<div class="bg-slate-600 text-white h-10 w-10 flex items-center justify-center text-base _icon-svg" :class="`_icon-${channel.id}`" x-html="getIcon(channel.id)"></div>
 								<div class="flex w-28 items-center gap-2 relative">
 									<!-- editable name  -->
-									<div class="text-sm h-full w-full pl-3 font-medium flex items-center focus:outline-none transition duration-100 focus:ring focus:ring-blue-400 h-8" 
+									<div class="text-sm  w-full pl-3 font-medium flex items-center focus:outline-none transition duration-100 focus:ring focus:ring-blue-400 h-8" 
 										x-text="channel.name" 
 										contenteditable="true" 
 										@input="channel.name = $event.target.innerText"></div>
@@ -173,10 +173,10 @@ defined( 'ABSPATH' ) || exit();
 						</div>
 
 						<!-- sort dropzone	-->
-						<div 
-							class="h-full w-full absolute bg-white shadow z-20 ring rounded-sm ring-blue-400 flex items-center justify-center text-center font-semibold tracking-wider" 
-							x-show="state.draggingChannel === channel.id" 
-							draggable="true"><?php esc_html_e( 'Drop here', 'wp-dark-mode' ); ?></div>
+						<template x-if="state.draggingChannel && state.draggingChannel === channel.id">
+							<div class="h-full w-full absolute bg-white shadow z-20 ring rounded-sm ring-blue-400 flex items-center justify-center text-center font-semibold tracking-wider" 
+								draggable="true">Drop here</div>
+						</template>
 					</div>
 				</template>
 			</div>

@@ -126,6 +126,22 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 							'tablet' => true,
 						],
 					],
+					'has_delay' => array(
+						'type' => 'boolean',
+						'default' => false,
+					),
+					'delay' => array(
+						'type' => 'number',
+						'default' => 5,
+					),
+					'hide_on_idle' => array(
+						'type' => 'boolean',
+						'default' => false,
+					),
+					'idle_timeout' => array(
+						'type' => 'number',
+						'default' => 5,
+					),
 					'style' => array(
 						'type' => 'number',
 						'default' => 1,

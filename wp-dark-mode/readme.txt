@@ -4,7 +4,7 @@ Tags: dark, dark mode, night mode, dark theme, accessibility
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 5.6
-Stable tag: 5.2.8
+Stable tag: 5.2.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,7 +28,7 @@ Check what popular WordPress expert Matt (WPress Doctor) thinks about WP Dark Mo
 [youtube https://www.youtube.com/watch?v=CT8yy2v05tE?rel=0]
 
 
-👁️ [View Demo](https://go.wppool.dev/fuUK) | 🚀  [Get Ultimate](https://wppool.dev/wp-dark-mode-pricing/?utm_source=readme&utm_medium=org_readme&utm_campaign=wp-dark-mode) | 🤝 Join Our Facebook Community(https://cutt.ly/ceCQgvoT)
+👁️ [View Demo](https://go.wppool.dev/fuUK) | 🚀  [Get Ultimate](https://wppool.dev/wp-dark-mode-pricing/?utm_source=readme&utm_medium=org_readme&utm_campaign=wp-dark-mode) |  🤝 [Join Our Facebook Community](https://cutt.ly/ceCQgvoT)
 
 
 === 🔝 WP DARK MODE FEATURES ===
@@ -38,7 +38,7 @@ Check what popular WordPress expert Matt (WPress Doctor) thinks about WP Dark Mo
 * **Dark mode Elementor Widget** – Place the dark mode switch on any page/post using the Elementor widget.
 * **Dark mode Gutenberg Block** – Place the dark mode toggle on any page/post using the Gutenberg block.
 * **Apply Light or Dark Theme Based on OS Setting** – WP Dark Mode can detect the user's device theme (light mode or night mode) and automatically enables dark mode for your visitors to ensure a seamless website experience.
-*  **Admin Panel Dark Mode** – Enable dark mode on the WordPress admin panel/dashboard. Give your eyes a much-needed rest while working long hours by enabling dark mode on the default WordPress dashboard.
+* **Admin Panel Dark Mode** – Enable dark mode on the WordPress admin panel/dashboard. Give your eyes a much-needed rest while working long hours by enabling dark mode on the default WordPress dashboard.
 * **Dark Mode Color Presets** – 2 exclusive dark mode color presets are available to quickly change the dark mode color from the predefined preset. Give your website a brand new look and feel by changing the preset. 
 * **Remember Dark Mode** – Enable the plugin to remember users' choices and automatically enable dark mode for visitors who used it before.
 * **Shortcode Support** - Take advantage of the [wp_dark_mode_switch] shortcode to display the dark mode switch anywhere on your website.
@@ -53,7 +53,7 @@ Check what popular WordPress expert Matt (WPress Doctor) thinks about WP Dark Mo
 * **Device-wise Dark Mode Toggle** - Easily choose where to display the dark mode switch: Desktop, Mobile, or Tablet.
 * **Dark Mode Analytics** - Track how many times site visitors have used dark mode in a certain period from the analytics menu and your WordPress Admin Dashboard.
 
-👁️ [View Demo](https://go.wppool.dev/fuUK) | 🚀  [Get Ultimate](https://wppool.dev/wp-dark-mode-pricing/?utm_source=readme&utm_medium=org_readme&utm_campaign=wp-dark-mode) | 🤝 Join Our Facebook Community(https://cutt.ly/ceCQgvoT)
+👁️ [View Demo](https://go.wppool.dev/fuUK) | 🚀  [Get Ultimate](https://wppool.dev/wp-dark-mode-pricing/?utm_source=readme&utm_medium=org_readme&utm_campaign=wp-dark-mode) | 🤝 [Join Our Facebook Community](https://cutt.ly/ceCQgvoT)
 
 
 === ⚡ GO BEYOND WITH WP DARK MODE ULTIMATE ===
@@ -82,7 +82,7 @@ Check what popular WordPress expert Matt (WPress Doctor) thinks about WP Dark Mo
 * **Choose Dark Mode Behavior** - You can choose between loading dark mode or website content first by selecting these options.
 * **Scheduled Email Reporting on Dark Mode Usage** - Get daily/weekly reports via email on the dark mode analytics of your website.
 
-👁️ [View Demo](https://go.wppool.dev/fuUK) | 🚀  [Get Ultimate](https://wppool.dev/wp-dark-mode-pricing/?utm_source=readme&utm_medium=org_readme&utm_campaign=wp-dark-mode) | 🤝 Join Our Facebook Community(https://cutt.ly/ceCQgvoT)
+👁️ [View Demo](https://go.wppool.dev/fuUK) | 🚀  [Get Ultimate](https://wppool.dev/wp-dark-mode-pricing/?utm_source=readme&utm_medium=org_readme&utm_campaign=wp-dark-mode) | 🤝 [Join Our Facebook Community](https://cutt.ly/ceCQgvoT)
 
 WP Dark Mode works flawlessly across all operating systems including Windows, Android, iOS, and macOS. No additional setups are required. This dark mode plugin intelligently detects device preferences and dynamically delivers a handcrafted, expert-designed dark theme experience for your readers. A quick and easy step to add a dark mode toggle to your website to toggle between dark and light mode anytime you want.
 
@@ -187,10 +187,15 @@ Yes, You can toggle the dark mode/ light mode by keyboard shortcut `(Ctrl + Alt 
 6. Backend Dark Mode
 7. Dark Mode color presets
 
-== Changelog == 
+== Changelog ==
+= 5.2.9 – 8 MAY 2025 =
+* **New:** Added 'Delay' on displaying switches.
+* **New:** Added 'Auto Hide' switches on user inactivity.
+* **Fix:** Fixed the broken UI of Social Share settings.
+* **Fix:** Fixed some switch icons are not visible in Safari Browser.
 
 = 5.2.8 – 21 APR 2025 =
-* **Fix:** Link colors for Automatic Dark Mode is not properly visible.
+* **Fix:** Link colors for Automatic Dark Mode is not properly visible. 
 
 = 5.2.7 – 20 MAR 2025 =
 * **Fix:** Fixed thousands of theme compatibility with WP Dark Mode.
