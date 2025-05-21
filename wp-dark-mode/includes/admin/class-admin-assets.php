@@ -41,6 +41,8 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 
 			// Text-domain.
 			add_action( 'init', array( $this, 'load_textdomain' ) );
+
+			add_action( 'admin_init', array( $this, 'load_classic_editor_scripts' ) );
 		}
 
 
@@ -90,8 +92,9 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 			wp_add_inline_style( 'wp-dark-mode-admin-common', $this->get_inline_css() );
 
 			// Enqueue scripts.
+			$editor_type = get_option( 'classic-editor-replace', 'block' );
 			// If the current page is not edit post page.
-			if ( ! in_array( $hook, [ 'post.php', 'post-new.php' ], true ) ) {
+			if ( 'classic' === $editor_type || ! in_array( $hook, [ 'post.php', 'post-new.php' ], true ) ) {
 				wp_enqueue_script( 'wp-dark-mode-dark-mode', WP_DARK_MODE_ASSETS . 'js/admin-dark-mode.min.js', [], WP_DARK_MODE_VERSION, false );
 			}
 
@@ -164,6 +167,8 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 					'installed_at' => $this->get_option( 'installed_at', null ),
 					'is_multisite' => is_multisite(),
 					'is_elementor_editor' => class_exists( 'Elementor\Plugin' ) && \Elementor\Plugin::$instance->editor->is_edit_mode(),
+					// Detect if the current editor is the classic editor.
+					'is_classic_editor_mode' => $this->is_classic_editor_mode(),
 				),
 
 				'is_excluded' => $this->is_excluded (),
@@ -174,6 +179,18 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 
 			return apply_filters( 'wp_dark_mode_admin_json', $scripts, $hook );
 		}
+
+		/**
+		 *
+		 * Check if the current editor is the classic editor.
+		 *
+		 * @since 5.0.0
+		 * @return bool
+		 */
+		public function is_classic_editor_mode() {
+			return class_exists( 'Classic_Editor' );
+		}
+
 
 		/**
 		 * Get inline CSS.
@@ -287,6 +304,35 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 			}
 
 			return false;
+		}
+
+		/**
+		 * Load classic editor scripts.
+		 *
+		 * @since 5.0.0
+		 */
+		public function load_classic_editor_scripts() {
+			if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
+				return;
+            }
+			if ( get_user_option('rich_editing') !== 'true' ) {
+				return;
+            }
+
+			// Bail if admin_classic_editor is not enabled.
+			if ( ! wp_validate_boolean ( get_option( 'wp_dark_mode_admin_enabled_classic_editor' ) ) ) {
+				return;
+			}
+
+			add_filter('mce_external_plugins', function ( $plugins ) {
+				$plugins['dark_mode_button'] = plugins_url('assets/js/admin-classic-editor.js', WP_DARK_MODE_FILE);
+				return $plugins;
+			});
+
+			add_filter('mce_buttons', function ( $buttons ) {
+				$buttons[] = 'dark_mode_button';
+				return $buttons;
+			});
 		}
 	}
 

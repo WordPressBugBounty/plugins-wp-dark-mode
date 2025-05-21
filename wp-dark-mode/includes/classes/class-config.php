@@ -112,6 +112,10 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 						'type' => 'boolean',
 						'default' => true,
 					),
+					'enabled_classic_editor' => [
+						'type' => 'boolean',
+						'default' => false,
+					],
 				),
 				'floating_switch' => array(
 					'enabled' => array(

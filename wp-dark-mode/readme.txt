@@ -4,7 +4,7 @@ Tags: dark, dark mode, night mode, dark theme, accessibility
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 5.6
-Stable tag: 5.2.9
+Stable tag: 5.2.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,6 +61,8 @@ Check what popular WordPress expert Matt (WPress Doctor) thinks about WP Dark Mo
 * **Schedule Dark Mode** – Schedule a time for enabling dark mode on your website and take full control over your website's appearance.
 * **Access 21 Dark Mode Floating Switch Styles** – Get instant access to 21 stunning dark mode switch styles. Choose your preferred dark mode switch button for the users to toggle the dark mode.
 * **Customize Dark Mode Floating Switch Placement** – Customize the placement of the dark mode switch. You can place it anywhere on your website.
+* **Time Delay Trigger for Floating Switches** – Now you can set a time delay before the dark mode floating switch appears, giving visitors time to explore your site before the toggle shows up.
+* **Auto-Hide Switch with Timeout** – Automatically hide the floating switch after a specified timeout, keeping your UI clean while still offering dark mode accessibility.
 * **Premium Dark Mode Color Presets** – 13 exclusive ready-made dark mode color presets are available to quickly change the dark mode color from the predefined presets.
 * **🔥 Preset Color Customization** - Tailor your dark mode experience to perfection. Choose a preset and customize the color of every element, starting from the body and text to links, input fields, buttons, and even the scrollbar—exactly the way you want.
 * **🔥 Create Custom Color Preset** - Unleash your inner Picasso by creating and customizing your color presets. Dive into a palette of possibilities, shaping colors for every element – from the body to text and scrollbar.
@@ -188,6 +190,11 @@ Yes, You can toggle the dark mode/ light mode by keyboard shortcut `(Ctrl + Alt 
 7. Dark Mode color presets
 
 == Changelog ==
+= 5.2.10 – 21 MAY 2025 =
+* **New:** Added Classic Editor Dark Mode support.
+* **Fix:** Reverted Scrollbar to default style and behavior.
+* **Fix:** 'Color Presets' in settings are broken when Admin Panel Dark Mode is ON.
+
 = 5.2.9 – 8 MAY 2025 =
 * **New:** Added 'Delay' on displaying switches.
 * **New:** Added 'Auto Hide' switches on user inactivity.
