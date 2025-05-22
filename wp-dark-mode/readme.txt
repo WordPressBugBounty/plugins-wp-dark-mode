@@ -1,10 +1,10 @@
-=== WP Dark Mode - WordPress Dark Mode Plugin for Improved Accessibility, Dark Theme, Night Mode, and Social Sharing ===
+=== WP Dark Mode - Dark Mode Plugin for Improved Accessibility, Dark Theme, Night Mode, and Social Sharing ===
 Contributors: wppool, wpdarkmode, azizultex, iamjafran
 Tags: dark, dark mode, night mode, dark theme, accessibility
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 5.6
-Stable tag: 5.2.10
+Stable tag: 5.2.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -108,12 +108,9 @@ If you like WP Dark Mode, then consider checking out our other awesome projects:
 
 * 🔄 **[FlexStock - Stock Sync with Google Sheet for WooCommerce](https://wordpress.org/plugins/stock-sync-with-google-sheet-for-woocommerce/)**  - Auto-sync WooCommerce products from Google Sheets. Flex Stock is an easy, powerful, and simple inventory management system to handle your WooCommerce products.
 
-* 🛒 **[FlexOrder - Order Sync with Google Sheet for WooCommerce](https://wordpress.org/plugins/order-sync-with-google-sheets-for-woocommerce/)**  - Manage WooCommerce orders from Google Sheets. WooCommerce order sync, e-commerce order management, and sales order management with Google Sheets. Try Flex Order now!
-
 * 💬 **[FormyChat](https://wordpress.org/plugins/social-contact-form/)**  - Connect Form to Chat Apps with Contact Form 7 Notifications, WPForms, Gravity Form, Welcome Popup, Multi-agent Live Chat
 
 
-* 🎁 **[EchoRewards](https://wordpress.org/plugins/echo-rewards/)** - With Echo Reward, you can refer a friend for WooCommerce to launch your customer referral program. Echo Rewards Referral Plugin is a WooCommerce referral plugin to boost your sales. Generate coupons, reward customers, and launch the ideal refer-a-friend program for your store.
 
 
 === Installation ===
@@ -190,6 +187,10 @@ Yes, You can toggle the dark mode/ light mode by keyboard shortcut `(Ctrl + Alt 
 7. Dark Mode color presets
 
 == Changelog ==
+
+= 5.2.11 – 22 MAY 2025 =
+* **Improvement:** Updated new banner and improved SEO.
+
 = 5.2.10 – 21 MAY 2025 =
 * **New:** Added Classic Editor Dark Mode support.
 * **Fix:** Reverted Scrollbar to default style and behavior.
