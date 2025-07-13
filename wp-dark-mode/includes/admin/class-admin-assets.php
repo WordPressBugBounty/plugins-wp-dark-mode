@@ -181,7 +181,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 		}
 
 		/**
-		 * 
+		 *
 		 * Check if the current editor is the classic editor.
 		 *
 		 * @since 5.0.0
@@ -190,7 +190,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 		public function is_classic_editor_mode() {
 			return class_exists( 'Classic_Editor' );
 		}
-		
+
 
 		/**
 		 * Get inline CSS.
@@ -312,20 +312,24 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 		 * @since 5.0.0
 		 */
 		public function load_classic_editor_scripts() {
-			if (!current_user_can('edit_posts') && !current_user_can('edit_pages')) return;
-			if (get_user_option('rich_editing') !== 'true') return;
+			if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
+				return;
+            }
+			if ( get_user_option('rich_editing') !== 'true' ) {
+				return;
+            }
 
 			// Bail if admin_classic_editor is not enabled.
 			if ( ! wp_validate_boolean ( get_option( 'wp_dark_mode_admin_enabled_classic_editor' ) ) ) {
 				return;
 			}
 
-			add_filter('mce_external_plugins', function ($plugins) {
+			add_filter('mce_external_plugins', function ( $plugins ) {
 				$plugins['dark_mode_button'] = plugins_url('assets/js/admin-classic-editor.js', WP_DARK_MODE_FILE);
 				return $plugins;
 			});
 
-			add_filter('mce_buttons', function ($buttons) {
+			add_filter('mce_buttons', function ( $buttons ) {
 				$buttons[] = 'dark_mode_button';
 				return $buttons;
 			});
@@ -335,5 +339,3 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 	// Instantiate the class.
 	Assets::init();
 }
-
-

@@ -22,6 +22,9 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 	 */
 	class REST extends \WP_Dark_Mode\Base {
 
+		// Use utility trait.
+		use \WP_Dark_Mode\Traits\Utility;
+
 		// Use options trait.
 		use \WP_Dark_Mode\Traits\Options;
 
@@ -259,10 +262,15 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 		 * @since 5.0.0
 		 */
 		public function get_visitors( $request ) {
+			// Check if premium and analytics are enabled
+			if ( ! \wp_validate_boolean( get_option( 'wp_dark_mode_analytics_enabled' ) ) ) {
+				return rest_ensure_response( [] );
+			}
+
 			$visitor = new \WP_Dark_Mode\Model\Visitor();
 			$visitors = $visitor->get_all();
 
-			// Send response.
+			// Send response
 			return rest_ensure_response( $visitors );
 		}
 

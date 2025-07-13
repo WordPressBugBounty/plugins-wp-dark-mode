@@ -12,8 +12,6 @@
 
 namespace WP_Dark_Mode;
 
-use function PHPSTORM_META\map;
-
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
@@ -117,7 +115,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 					'enabled_classic_editor' => [
 						'type' => 'boolean',
 						'default' => false,
-					]
+					],
 				),
 				'floating_switch' => array(
 					'enabled' => array(

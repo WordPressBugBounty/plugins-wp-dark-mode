@@ -4,7 +4,7 @@ Tags: dark, dark mode, night mode, dark theme, accessibility
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 5.6
-Stable tag: 5.2.11
+Stable tag: 5.2.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -187,6 +187,9 @@ Yes, You can toggle the dark mode/ light mode by keyboard shortcut `(Ctrl + Alt 
 7. Dark Mode color presets
 
 == Changelog ==
+
+= 5.2.12 – 13 JUL 2025 =
+* **Fix:** Offloaded Visitors Table when analytics are not enabled.
 
 = 5.2.11 – 22 MAY 2025 =
 * **Improvement:** Updated new banner and improved SEO.
