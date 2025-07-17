@@ -68,7 +68,6 @@ if ( array_key_exists( 'display', $args) && array_key_exists( 'desktop', $args['
 }
 
 if ( array_key_exists( 'display', $args) && array_key_exists( 'tablet', $args['display'] ) && ! wp_validate_boolean($args['display']['tablet']) ) {
-	error_log( 'no mobile' );
 	$classes .= ' wp-dark-mode-hide-tablet';
 }
 

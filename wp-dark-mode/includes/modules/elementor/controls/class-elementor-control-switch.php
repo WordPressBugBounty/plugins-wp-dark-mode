@@ -80,7 +80,7 @@ class DarkModeSwitch extends \Elementor\Base_Data_Control {
 	public function content_template() {
 		$control_uid = $this->get_control_uid( '{{value}}' );
 
-		if ( ! $this->is_ultimate() && $control_uid > 3 ) {
+		if ( ! $this->is_ultimate() && $control_uid > 3 && 23 != $control_uid ) { // phpcs:ignore
 			$control_uid = '1';
 		}
 
@@ -91,9 +91,9 @@ class DarkModeSwitch extends \Elementor\Base_Data_Control {
 			<div class="_wp-dark-mode-elementor-switches">
 				<# _.each( data.options, function( switchId ) { #>
 					<div class="_wp-dark-mode-elementor-switches-item elementor-control-input-wrapper 
-					<# if ( switchId > 3 && !data.is_ultimate ) { #> wp-dark-mode-locked <# } #>">
+					<# if ( switchId > 3 && switchId != 23 && !data.is_ultimate ) { #> wp-dark-mode-locked <# } #>">
 						<input id="{{ data.name }}-{{ switchId }}" type="radio" name="{{ data.name }}" data-setting="{{ data.name }}" value="{{ switchId }}"
-						<# if ( switchId > 3 && !data.is_ultimate ) { #> disabled <# } #>
+						<# if ( switchId > 3 && switchId != 23 && !data.is_ultimate ) { #> disabled <# } #>
 						<# if ( switchId == data.controlValue ) { #> checked="checked" <# } #> />
 						<label for="{{ data.name }}-{{ switchId }}" title="Style {{ switchId }}">
 							<img src="{{ data.assets_url }}/switch-{{ switchId }}.svg" alt="Style {{ switchId }}">

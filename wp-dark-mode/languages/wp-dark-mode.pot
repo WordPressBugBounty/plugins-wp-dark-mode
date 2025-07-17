@@ -1,15 +1,15 @@
-# Copyright (C) 2024 WPPOOL
+# Copyright (C) 2025 WPPOOL
 # This file is distributed under the GPL3.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Dark Mode 5.2.0\n"
+"Project-Id-Version: WP Dark Mode 5.2.12\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-dark-mode\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-13T04:55:43+00:00\n"
+"POT-Creation-Date: 2025-07-17T05:46:48+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: wp-dark-mode\n"
@@ -75,24 +75,24 @@ msgstr ""
 msgid "Upgrade Now"
 msgstr ""
 
-#: includes/admin/class-admin-rest.php:142
-#: includes/admin/class-admin-rest.php:182
+#: includes/admin/class-admin-rest.php:145
+#: includes/admin/class-admin-rest.php:185
 msgid "No settings found."
 msgstr ""
 
-#: includes/admin/class-admin-rest.php:190
+#: includes/admin/class-admin-rest.php:193
 msgid "Settings saved successfully."
 msgstr ""
 
-#: includes/admin/class-admin-rest.php:205
+#: includes/admin/class-admin-rest.php:208
 msgid "Reset not confirmed."
 msgstr ""
 
-#: includes/admin/class-admin-rest.php:215
+#: includes/admin/class-admin-rest.php:218
 msgid "Settings reset successfully."
 msgstr ""
 
-#: includes/admin/class-admin-rest.php:233
+#: includes/admin/class-admin-rest.php:236
 msgid "No notice found."
 msgstr ""
 
@@ -231,7 +231,7 @@ msgid "%s Active Installations"
 msgstr ""
 
 #: includes/admin/class-recommended-plugins.php:508
-#: languages/wp-dark-mode.php:178
+#: languages/wp-dark-mode.php:177
 #: templates/admin/recommended-plugins.php:439
 msgid "Are you sure?"
 msgstr ""
@@ -241,11 +241,11 @@ msgstr ""
 msgid "If you hide the recommended plugins page from your menu, it won't appear there again. Are you sure you'd like to do it?"
 msgstr ""
 
-#: includes/models/class-visitor.php:91
+#: includes/models/class-visitor.php:97
 msgid "Failed to insert visitor data."
 msgstr ""
 
-#: includes/models/class-visitor.php:112
+#: includes/models/class-visitor.php:118
 msgid "Failed to update visitor data."
 msgstr ""
 
@@ -320,7 +320,7 @@ msgid "Social Share"
 msgstr ""
 
 #: includes/modules/social-share/class-social-share.php:598
-msgid "Invalid nonce"
+msgid "Invalid security key"
 msgstr ""
 
 #: includes/modules/social-share/class-social-share.php:603
@@ -339,35 +339,39 @@ msgstr ""
 msgid "Something went wrong"
 msgstr ""
 
-#: includes/wppool/class-plugin.php:308
+#: includes/wppool/class-plugin.php:328
 msgid "Deal Ends In"
 msgstr ""
 
-#: includes/wppool/class-plugin.php:313
-#: includes/wppool/class-plugin.php:322
-#: includes/wppool/class-plugin.php:331
-#: includes/wppool/class-plugin.php:340
+#: includes/wppool/class-plugin.php:333
+#: includes/wppool/class-plugin.php:342
+#: includes/wppool/class-plugin.php:351
+#: includes/wppool/class-plugin.php:360
 msgid "00"
 msgstr ""
 
-#: includes/wppool/class-plugin.php:316
+#: includes/wppool/class-plugin.php:336
 msgid "Days"
 msgstr ""
 
-#: includes/wppool/class-plugin.php:325
+#: includes/wppool/class-plugin.php:345
 msgid "Hours"
 msgstr ""
 
-#: includes/wppool/class-plugin.php:334
+#: includes/wppool/class-plugin.php:354
 msgid "Minutes"
 msgstr ""
 
-#: includes/wppool/class-plugin.php:343
+#: includes/wppool/class-plugin.php:363
 msgid "Seconds"
 msgstr ""
 
-#: includes/wppool/class-plugin.php:351
+#: includes/wppool/class-plugin.php:370
 msgid "Upgrade to Pro"
+msgstr ""
+
+#: includes/wppool/class-plugin.php:374
+msgid "Try a free demo"
 msgstr ""
 
 #: languages/wp-dark-mode.php:3
@@ -548,7 +552,7 @@ msgid "Dark Mode Analytics"
 msgstr ""
 
 #: languages/wp-dark-mode.php:48
-msgid "Enable Dark Mode Analytics to show how much users use teh dark mode each day"
+msgid "Enable dark mode analytics to track how many times site visitors have used dark mode in a certain period."
 msgstr ""
 
 #: languages/wp-dark-mode.php:49
@@ -884,379 +888,379 @@ msgid "Choose how you want to use Dark Mode"
 msgstr ""
 
 #: languages/wp-dark-mode.php:132
-msgid "New"
-msgstr ""
-
-#: languages/wp-dark-mode.php:133
 msgid "Start Time"
 msgstr ""
 
-#: languages/wp-dark-mode.php:134
+#: languages/wp-dark-mode.php:133
 msgid "To"
 msgstr ""
 
-#: languages/wp-dark-mode.php:135
+#: languages/wp-dark-mode.php:134
 msgid "End Time"
 msgstr ""
 
-#: languages/wp-dark-mode.php:136
+#: languages/wp-dark-mode.php:135
 msgid "Start time and end time cannot be same."
 msgstr ""
 
-#: languages/wp-dark-mode.php:137
+#: languages/wp-dark-mode.php:136
 msgid "Image Replacement"
 msgstr ""
 
-#: languages/wp-dark-mode.php:138
+#: languages/wp-dark-mode.php:137
 msgid "Image Behavior"
 msgstr ""
 
-#: languages/wp-dark-mode.php:139
+#: languages/wp-dark-mode.php:138
 msgid "Image Behavior When Dark Mode Is On"
 msgstr ""
 
-#: languages/wp-dark-mode.php:140
+#: languages/wp-dark-mode.php:139
 msgid "Settings to change image appearance on dark mode"
 msgstr ""
 
-#: languages/wp-dark-mode.php:141
+#: languages/wp-dark-mode.php:140
 msgid "Low Brightness Image"
 msgstr ""
 
-#: languages/wp-dark-mode.php:142
+#: languages/wp-dark-mode.php:141
 msgid "Enable to set the brightness level of the images on dark mode"
 msgstr ""
 
-#: languages/wp-dark-mode.php:143
+#: languages/wp-dark-mode.php:142
 msgid "Brightness level"
 msgstr ""
 
-#: languages/wp-dark-mode.php:144
+#: languages/wp-dark-mode.php:143
 msgid "Exclude Low Brightness on specific images"
 msgstr ""
 
-#: languages/wp-dark-mode.php:145
+#: languages/wp-dark-mode.php:144
 msgid "Enter image URL"
 msgstr ""
 
-#: languages/wp-dark-mode.php:146
+#: languages/wp-dark-mode.php:145
 msgid "No Image"
 msgstr ""
 
-#: languages/wp-dark-mode.php:147
+#: languages/wp-dark-mode.php:146
 msgid "Grayscale Image"
 msgstr ""
 
-#: languages/wp-dark-mode.php:148
+#: languages/wp-dark-mode.php:147
 msgid "Enable to set the grayscale level of the images on dark mode"
 msgstr ""
 
-#: languages/wp-dark-mode.php:149
+#: languages/wp-dark-mode.php:148
 msgid "Grayscale level"
 msgstr ""
 
-#: languages/wp-dark-mode.php:150
+#: languages/wp-dark-mode.php:149
 msgid "Exclude Low Grayscale Images "
 msgstr ""
 
-#: languages/wp-dark-mode.php:151
+#: languages/wp-dark-mode.php:150
 msgid "Delete this image group?"
 msgstr ""
 
-#: languages/wp-dark-mode.php:152
+#: languages/wp-dark-mode.php:151
 msgid "Are you sure you want to delete this image group? This action is permanent, and you can't undo it"
 msgstr ""
 
-#: languages/wp-dark-mode.php:153
+#: languages/wp-dark-mode.php:152
 msgid "Replace specific images when dark mode is enabled"
 msgstr ""
 
-#: languages/wp-dark-mode.php:154
+#: languages/wp-dark-mode.php:153
 msgid "No Images Added"
 msgstr ""
 
-#: languages/wp-dark-mode.php:155
+#: languages/wp-dark-mode.php:154
 msgid "Add images to replace them in dark mode"
 msgstr ""
 
-#: languages/wp-dark-mode.php:156
+#: languages/wp-dark-mode.php:155
 msgid "Replaced Images"
 msgstr ""
 
-#: languages/wp-dark-mode.php:157
+#: languages/wp-dark-mode.php:156
 msgid "The following added images will be replaced when dark mode is enabled"
 msgstr ""
 
-#: languages/wp-dark-mode.php:158
+#: languages/wp-dark-mode.php:157
 msgid "Light Mode Image : "
 msgstr ""
 
-#: languages/wp-dark-mode.php:159
+#: languages/wp-dark-mode.php:158
 msgid "Dark Mode Image"
 msgstr ""
 
-#: languages/wp-dark-mode.php:160
+#: languages/wp-dark-mode.php:159
 msgid "Mode Image"
 msgstr ""
 
-#: languages/wp-dark-mode.php:161
+#: languages/wp-dark-mode.php:160
 msgid "Browse"
 msgstr ""
 
-#: languages/wp-dark-mode.php:162
+#: languages/wp-dark-mode.php:161
 msgid "What's New"
 msgstr ""
 
-#: languages/wp-dark-mode.php:163
+#: languages/wp-dark-mode.php:162
 msgid "Help"
 msgstr ""
 
-#: languages/wp-dark-mode.php:164
+#: languages/wp-dark-mode.php:163
 msgid "Upgrade"
 msgstr ""
 
-#: languages/wp-dark-mode.php:165
+#: languages/wp-dark-mode.php:164
 msgid "Compose new email with"
 msgstr ""
 
-#: languages/wp-dark-mode.php:166
+#: languages/wp-dark-mode.php:165
 msgid "Gmail in browser"
 msgstr ""
 
-#: languages/wp-dark-mode.php:167
+#: languages/wp-dark-mode.php:166
 msgid "Outlook in browser"
 msgstr ""
 
-#: languages/wp-dark-mode.php:168
+#: languages/wp-dark-mode.php:167
 msgid "Yahoo in browser"
 msgstr ""
 
-#: languages/wp-dark-mode.php:169
+#: languages/wp-dark-mode.php:168
 msgid "Default app or browser"
 msgstr ""
 
-#: languages/wp-dark-mode.php:170
+#: languages/wp-dark-mode.php:169
 msgid "Menu switches won’t be visible anymore"
 msgstr ""
 
-#: languages/wp-dark-mode.php:171
+#: languages/wp-dark-mode.php:170
 msgid "If you disable this feature, the darkmode switch will not be visible in your website's menu or navigation bar. Are you confirm to disable?"
 msgstr ""
 
-#: languages/wp-dark-mode.php:172
+#: languages/wp-dark-mode.php:171
 msgid "To access this feature, first you have to enable the “Frontend Dark Mode” feature from the Control settings"
 msgstr ""
 
-#: languages/wp-dark-mode.php:173
+#: languages/wp-dark-mode.php:172
 msgid "Display Switch in Menu"
 msgstr ""
 
-#: languages/wp-dark-mode.php:174
+#: languages/wp-dark-mode.php:173
 msgid "Display the darkmode switch in your website menu."
 msgstr ""
 
-#: languages/wp-dark-mode.php:175
+#: languages/wp-dark-mode.php:174
 msgid "Add Dark Mode switch to Menus from WordPress dashboard"
 msgstr ""
 
-#: languages/wp-dark-mode.php:176
+#: languages/wp-dark-mode.php:175
 msgid "Drag & drop the Darkmode Switcher to any of your menus from the Menu option under Appearance settings in WordPress dashboard"
 msgstr ""
 
-#: languages/wp-dark-mode.php:177
+#: languages/wp-dark-mode.php:176
 msgid "Go to Menu Settings"
 msgstr ""
 
-#: languages/wp-dark-mode.php:179
+#: languages/wp-dark-mode.php:178
 msgid "Enabling this feature may delay WP Dark Mode to be applied on the frontend. Enable this feature only if you are facing issues with server-side caching."
 msgstr ""
 
-#: languages/wp-dark-mode.php:180
+#: languages/wp-dark-mode.php:179
 msgid "Enable"
 msgstr ""
 
-#: languages/wp-dark-mode.php:181
+#: languages/wp-dark-mode.php:180
 msgid "Choose Dark Mode behavior to enhance the performance"
 msgstr ""
 
-#: languages/wp-dark-mode.php:182
+#: languages/wp-dark-mode.php:181
 msgid "Other Performance Settings"
 msgstr ""
 
-#: languages/wp-dark-mode.php:183
+#: languages/wp-dark-mode.php:182
 msgid "Track Dynamic Content"
 msgstr ""
 
-#: languages/wp-dark-mode.php:184
+#: languages/wp-dark-mode.php:183
 msgid "Please turn on this feature only if you have any Ajax Loaded dynamic content like ajax product filters, ajax page loader, ajax image loaders/sliders, lazy loaded images etc."
 msgstr ""
 
-#: languages/wp-dark-mode.php:185
+#: languages/wp-dark-mode.php:184
 msgid "Load Scripts in Footer"
 msgstr ""
 
-#: languages/wp-dark-mode.php:186
+#: languages/wp-dark-mode.php:185
 msgid "Enable this feature to improve page load performance and reduce render-blocking"
 msgstr ""
 
-#: languages/wp-dark-mode.php:187
+#: languages/wp-dark-mode.php:186
 msgid "Exclude WP Dark Mode from Caching"
 msgstr ""
 
-#: languages/wp-dark-mode.php:188
+#: languages/wp-dark-mode.php:187
 msgid "Enable this feature to exclude WP Dark Mode from server-side caching technology like Lightspeed Cache, WPRocket etc."
 msgstr ""
 
-#: languages/wp-dark-mode.php:189
+#: languages/wp-dark-mode.php:188
 msgid "Preset Color Customization"
 msgstr ""
 
-#: languages/wp-dark-mode.php:190
+#: languages/wp-dark-mode.php:189
 msgid "Customize the selected dark mode preset color in your way"
 msgstr ""
 
-#: languages/wp-dark-mode.php:191
+#: languages/wp-dark-mode.php:190
 msgid "You already have a preset named"
 msgstr ""
 
-#: languages/wp-dark-mode.php:192
+#: languages/wp-dark-mode.php:191
 msgid "Body Background Color"
 msgstr ""
 
-#: languages/wp-dark-mode.php:193
+#: languages/wp-dark-mode.php:192
 msgid "Secondary Background Color"
 msgstr ""
 
-#: languages/wp-dark-mode.php:194
+#: languages/wp-dark-mode.php:193
 msgid "Text Color"
 msgstr ""
 
-#: languages/wp-dark-mode.php:195
+#: languages/wp-dark-mode.php:194
 msgid "Link Color"
 msgstr ""
 
-#: languages/wp-dark-mode.php:196
+#: languages/wp-dark-mode.php:195
 msgid "Link Hover Color"
 msgstr ""
 
-#: languages/wp-dark-mode.php:197
+#: languages/wp-dark-mode.php:196
 msgid "Background Color"
 msgstr ""
 
-#: languages/wp-dark-mode.php:198
+#: languages/wp-dark-mode.php:197
 msgid "Input Text Color"
 msgstr ""
 
-#: languages/wp-dark-mode.php:199
+#: languages/wp-dark-mode.php:198
 msgid "Placeholder Color"
 msgstr ""
 
-#: languages/wp-dark-mode.php:200
+#: languages/wp-dark-mode.php:199
 msgid "Button Text Color"
 msgstr ""
 
-#: languages/wp-dark-mode.php:201
+#: languages/wp-dark-mode.php:200
 msgid "Button Hover Text Color"
 msgstr ""
 
-#: languages/wp-dark-mode.php:202
+#: languages/wp-dark-mode.php:201
 msgid "Button Background Color"
 msgstr ""
 
-#: languages/wp-dark-mode.php:203
+#: languages/wp-dark-mode.php:202
 msgid "Button Hover Background Color"
 msgstr ""
 
-#: languages/wp-dark-mode.php:204
+#: languages/wp-dark-mode.php:203
 msgid "Button Border Color"
 msgstr ""
 
-#: languages/wp-dark-mode.php:205
+#: languages/wp-dark-mode.php:204
 msgid "Scrollbar Customization"
 msgstr ""
 
-#: languages/wp-dark-mode.php:206
+#: languages/wp-dark-mode.php:205
 msgid "Customize the scrollbar of your website in dark mode"
 msgstr ""
 
-#: languages/wp-dark-mode.php:207
+#: languages/wp-dark-mode.php:206
 msgid "Enable Dark Mode on Scrollbar"
 msgstr ""
 
-#: languages/wp-dark-mode.php:208
+#: languages/wp-dark-mode.php:207
 msgid "Enable this option to customize your scrollbar while toggling to dark mode"
 msgstr ""
 
-#: languages/wp-dark-mode.php:209
+#: languages/wp-dark-mode.php:208
 msgid "Track Background Color"
 msgstr ""
 
-#: languages/wp-dark-mode.php:210
+#: languages/wp-dark-mode.php:209
 msgid "Thumb Background Color"
 msgstr ""
 
-#: languages/wp-dark-mode.php:211
+#: languages/wp-dark-mode.php:210
 msgid "Select a switch from below and a shortcode will be generated"
 msgstr ""
 
-#: languages/wp-dark-mode.php:212
+#: languages/wp-dark-mode.php:211
 msgid "Select Switch Style"
 msgstr ""
 
-#: languages/wp-dark-mode.php:213
+#: languages/wp-dark-mode.php:212
 msgid "Floating Switch"
 msgstr ""
 
-#: languages/wp-dark-mode.php:214
+#: languages/wp-dark-mode.php:213
 msgid "Menu Switch"
 msgstr ""
 
-#: languages/wp-dark-mode.php:215
+#: languages/wp-dark-mode.php:214
 msgid "Content Switch"
 msgstr ""
 
-#: languages/wp-dark-mode.php:216
+#: languages/wp-dark-mode.php:215
 msgid "Video Replacement"
 msgstr ""
 
-#: languages/wp-dark-mode.php:217
+#: languages/wp-dark-mode.php:216
 msgid "Video Behavior"
 msgstr ""
 
-#: languages/wp-dark-mode.php:218
+#: languages/wp-dark-mode.php:217
 msgid "Video Behavior When Dark Mode Is On"
 msgstr ""
 
-#: languages/wp-dark-mode.php:219
+#: languages/wp-dark-mode.php:218
 msgid "Settings to change video appearance on dark mode"
 msgstr ""
 
-#: languages/wp-dark-mode.php:220
+#: languages/wp-dark-mode.php:219
 msgid "Low Brightness Video"
 msgstr ""
 
-#: languages/wp-dark-mode.php:221
+#: languages/wp-dark-mode.php:220
 msgid "Enable to set the brightness level of the videos on dark mode"
 msgstr ""
 
-#: languages/wp-dark-mode.php:222
+#: languages/wp-dark-mode.php:221
 msgid "Exclude Low Brightness on specific videos"
 msgstr ""
 
-#: languages/wp-dark-mode.php:223
+#: languages/wp-dark-mode.php:222
 msgid "Enter video URL"
 msgstr ""
 
-#: languages/wp-dark-mode.php:224
+#: languages/wp-dark-mode.php:223
 msgid "No Video"
 msgstr ""
 
-#: languages/wp-dark-mode.php:225
+#: languages/wp-dark-mode.php:224
 msgid "Grayscale Video"
 msgstr ""
 
-#: languages/wp-dark-mode.php:226
+#: languages/wp-dark-mode.php:225
 msgid "Enable to set the grayscale level of the videos on dark mode"
+msgstr ""
+
+#: languages/wp-dark-mode.php:226
+msgid "New"
 msgstr ""
 
 #: languages/wp-dark-mode.php:227
@@ -1361,10 +1365,6 @@ msgstr ""
 
 #: templates/admin/social-share/channels.php:107
 msgid "Reorder your social channels. You can edit the channel label and device visibility for each. Drag channels to change their order."
-msgstr ""
-
-#: templates/admin/social-share/channels.php:179
-msgid "Drop here"
 msgstr ""
 
 #: templates/admin/social-share/customization.php:18
@@ -1497,12 +1497,12 @@ msgstr ""
 msgid "Set the number of channels that you want to show on your website. The rest will be shown after clicking on the 'More' button."
 msgstr ""
 
-#: templates/admin/social-share/preview.php:21
+#: templates/admin/social-share/preview.php:22
 msgid "Preview"
 msgstr ""
 
 #: templates/admin/upgrade-popup.php:53
-msgid "Deals Sweeter than Halloween Candy!"
+msgid "Black Friday & Cyber Monday"
 msgstr ""
 
 #: templates/admin/upgrade-popup.php:53
@@ -1510,7 +1510,7 @@ msgid "Unlock all the features"
 msgstr ""
 
 #: templates/admin/upgrade-popup.php:56
-msgid "Halloween"
+msgid "Flash Sale"
 msgstr ""
 
 #: templates/admin/upgrade-popup.php:56
@@ -1534,7 +1534,7 @@ msgid "SECONDS"
 msgstr ""
 
 #: templates/admin/upgrade-popup.php:79
-msgid "Grab Your Treat!"
+msgid "Claim 50% Discount"
 msgstr ""
 
 #: templates/frontend/social-share.php:206

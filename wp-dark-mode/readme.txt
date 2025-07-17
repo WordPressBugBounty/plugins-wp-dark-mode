@@ -4,7 +4,7 @@ Tags: dark, dark mode, night mode, dark theme, accessibility
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 5.6
-Stable tag: 5.2.12
+Stable tag: 5.2.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,7 +100,6 @@ But in mid 2023, I switched to Dracula because of its color compatibility. Howev
 
 -by @sharukhrakin
 
-
 === 🔥 More Awesome Plugins ===
 If you like WP Dark Mode, then consider checking out our other awesome projects:
 
@@ -109,8 +108,6 @@ If you like WP Dark Mode, then consider checking out our other awesome projects:
 * 🔄 **[FlexStock - Stock Sync with Google Sheet for WooCommerce](https://wordpress.org/plugins/stock-sync-with-google-sheet-for-woocommerce/)**  - Auto-sync WooCommerce products from Google Sheets. Flex Stock is an easy, powerful, and simple inventory management system to handle your WooCommerce products.
 
 * 💬 **[FormyChat](https://wordpress.org/plugins/social-contact-form/)**  - Connect Form to Chat Apps with Contact Form 7 Notifications, WPForms, Gravity Form, Welcome Popup, Multi-agent Live Chat
-
-
 
 
 === Installation ===
@@ -187,6 +184,10 @@ Yes, You can toggle the dark mode/ light mode by keyboard shortcut `(Ctrl + Alt 
 7. Dark Mode color presets
 
 == Changelog ==
+
+= 5.2.13 – 17 JUL 2025 =
+* **New:** Introduced Brand New Liquid Glass Dark Mode Switch (inspired by iOS 26 beta 3).
+* **Fix:** Fixed 'Some icons are broken in admin panel'.
 
 = 5.2.12 – 13 JUL 2025 =
 * **Fix:** Offloaded Visitors Table when analytics are not enabled.

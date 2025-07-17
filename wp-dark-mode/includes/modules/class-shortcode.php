@@ -71,7 +71,7 @@ if ( ! class_exists(__NAMESPACE__ . 'Shortcode') ) {
 			$icon_dark  = isset($atts['icon_dark']) ? sanitize_text_field(wp_unslash($atts['icon_dark'])) : '';
 
 			// Reset the style if ultimate is not active.
-			if ( ! $this->is_ultimate() && $style > 3 ) {
+			if ( ! $this->is_ultimate() && $style > 3 && 23 != $style ) { // phpcs:ignore
 				$style = 1;
 			}
 
