@@ -4,7 +4,7 @@ Tags: dark, dark mode, night mode, dark theme, accessibility
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 5.6
-Stable tag: 5.2.13
+Stable tag: 5.2.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,7 +31,7 @@ Check what popular WordPress expert Matt (WPress Doctor) thinks about WP Dark Mo
 👁️ [View Demo](https://go.wppool.dev/fuUK) | 🚀  [Get Ultimate](https://wppool.dev/wp-dark-mode-pricing/?utm_source=readme&utm_medium=org_readme&utm_campaign=wp-dark-mode) |  🤝 [Join Our Facebook Community](https://cutt.ly/ceCQgvoT)
 
 
-=== 🔝 WP DARK MODE FEATURES ===
+== 🔝 WP DARK MODE FEATURES ==
 
 * **Floating Dark Mode Switch** – Display a dark mode floating switch in the footer of your website. The dark mode switch lets your site visitors easily toggle between dark mode and light mode.
 * **Default Dark Mode** - Make dark mode the default mode of the website. Users will see the dark mode first after entering your website.
@@ -42,9 +42,6 @@ Check what popular WordPress expert Matt (WPress Doctor) thinks about WP Dark Mo
 * **Dark Mode Color Presets** – 2 exclusive dark mode color presets are available to quickly change the dark mode color from the predefined preset. Give your website a brand new look and feel by changing the preset. 
 * **Remember Dark Mode** – Enable the plugin to remember users' choices and automatically enable dark mode for visitors who used it before.
 * **Shortcode Support** - Take advantage of the [wp_dark_mode_switch] shortcode to display the dark mode switch anywhere on your website.
-* **Themes Compatibility** – WP Dark Mode is compatible with the most popular WordPress themes including Astra, Avada, Betheme, The7, Flatsome, BuddyBoss, Divi, OceanWP, and many more. [Check the full list of compatible themes](https://wppool.dev/dark-mode-compatibility/).
-* **Popular Page Builder Compatibility** - Experience compatibility with Divi Builder, WP Bakery, Visual Composer, Beaver Builder, Oxygen Builder, and Elementor.
-* **Revolution Slider Compatible** - This plugin is compatible with the revolution slider.
 * **Low Image Brightness** - Decrease the brightness and contrast of images in the dark mode.
 * **Accessibility Features** - Toggle dark mode by using a keyboard shortcut (Ctrl + Alt + D) or using a URL/domain parameter.
 * **Dark Mode Toggle Animation** - Choose the animation effect between dark/white mode among numerous options including Fade In, Pulse, Flip, and many more.
@@ -56,7 +53,7 @@ Check what popular WordPress expert Matt (WPress Doctor) thinks about WP Dark Mo
 👁️ [View Demo](https://go.wppool.dev/fuUK) | 🚀  [Get Ultimate](https://wppool.dev/wp-dark-mode-pricing/?utm_source=readme&utm_medium=org_readme&utm_campaign=wp-dark-mode) | 🤝 [Join Our Facebook Community](https://cutt.ly/ceCQgvoT)
 
 
-=== ⚡ GO BEYOND WITH WP DARK MODE ULTIMATE ===
+== ⚡ GO BEYOND WITH WP DARK MODE ULTIMATE ==
 
 * **Schedule Dark Mode** – Schedule a time for enabling dark mode on your website and take full control over your website's appearance.
 * **Access 21 Dark Mode Floating Switch Styles** – Get instant access to 21 stunning dark mode switch styles. Choose your preferred dark mode switch button for the users to toggle the dark mode.
@@ -64,15 +61,15 @@ Check what popular WordPress expert Matt (WPress Doctor) thinks about WP Dark Mo
 * **Time Delay Trigger for Floating Switches** – Now you can set a time delay before the dark mode floating switch appears, giving visitors time to explore your site before the toggle shows up.
 * **Auto-Hide Switch with Timeout** – Automatically hide the floating switch after a specified timeout, keeping your UI clean while still offering dark mode accessibility.
 * **Premium Dark Mode Color Presets** – 13 exclusive ready-made dark mode color presets are available to quickly change the dark mode color from the predefined presets.
-* **🔥 Preset Color Customization** - Tailor your dark mode experience to perfection. Choose a preset and customize the color of every element, starting from the body and text to links, input fields, buttons, and even the scrollbar—exactly the way you want.
-* **🔥 Create Custom Color Preset** - Unleash your inner Picasso by creating and customizing your color presets. Dive into a palette of possibilities, shaping colors for every element – from the body to text and scrollbar.
+* **Preset Color Customization** - Tailor your dark mode experience to perfection. Choose a preset and customize the color of every element, starting from the body and text to links, input fields, buttons, and even the scrollbar—exactly the way you want.
+* **Create Custom Color Preset** - Unleash your inner Picasso by creating and customizing your color presets. Dive into a palette of possibilities, shaping colors for every element – from the body to text and scrollbar.
 * **Automatic Dark Mode Based on Sunset** - Automatically enable dark mode based on your visitor's time.
 * **Custom CSS Support** – With custom CSS you unleash the perfect dark mode version of your website. Customize specific sections/elements exactly how you want in dark mode.
-* **🔥 Multiple Switch Options** - Toggle between different dark mode switch options. Whether you need a menu switch, a floating switch, or a content switch for your posts/page, the power is on your end. Get a distinct switch style for every section.
+* **Multiple Switch Options** - Toggle between different dark mode switch options. Whether you need a menu switch, a floating switch, or a content switch for your posts/page, the power is on your end. Get a distinct switch style for every section.
 * **Custom Switch Support with Call-to-Action Customization** – Upload a custom switch of your own choice and customize call-to-action text on your dark mode switch.
 * **Dark Mode-Based Image Replacement** – Replace light-mode images with the different images you want in the dark mode. 
 * **Dark Mode-Based Video Replacement** - If your website has videos, you can replace them with something more fitting for dark mode. 
-* **🔥 Adjust Brightness Level & Apply Grayscale Effect** - Adjust your images and video's brightness level while dark mode is enabled to get an immersive content viewing experience. You can also add a grayscale effect to your images/videos which comes with many health benefits including better sleep and reduced eye strain.
+* **Adjust Brightness Level & Apply Grayscale Effect** - Adjust your images and video's brightness level while dark mode is enabled to get an immersive content viewing experience. You can also add a grayscale effect to your images/videos which comes with many health benefits including better sleep and reduced eye strain.
 * **Exclude Dark Mode on Certain Pages/Elements** – Exclude specific pages/elements from changing into dark mode.
 * **Include Dark Mode on Selected Posts & Pages** - Exclude all the pages and posts on your website from dark mode except the specific ones (where you want dark mode).
 * **Exclude Post Tags & Categories** - Exclude all the post tags from dark mode. Keep only the specific tags whitelisted for dark mode.
@@ -86,31 +83,111 @@ Check what popular WordPress expert Matt (WPress Doctor) thinks about WP Dark Mo
 
 👁️ [View Demo](https://go.wppool.dev/fuUK) | 🚀  [Get Ultimate](https://wppool.dev/wp-dark-mode-pricing/?utm_source=readme&utm_medium=org_readme&utm_campaign=wp-dark-mode) | 🤝 [Join Our Facebook Community](https://cutt.ly/ceCQgvoT)
 
+
+### 😍 WHAT OUR CUSTOMERS SAY ABOUT WP DARK MODE!
+
+> ⭐⭐⭐⭐⭐
+[` 💙 Best dark mode plugin currently available!`](https://wordpress.org/support/topic/best-dark-mode-plugin-currently-available/)
+
+> *I’ve always been a busy fan of dark mode and have tried diff plugins over the years including WP Dark Mode, Darklups, Dracula Dark Mode, DarkMySite, Darklooks, Darkify, Dusky Dark Mode, and bla blah. I started using WP Dark Mode back in 2021 and really loved how it worked on my site. I even tried custom code snippets – it was really fun!
+But in mid 2023, I switched to Dracula because of its color compatibility. However, after WP Dark Mode’s recent updates and revamp, I decided to give it another try – and I’ve fallen in love with it all over again! The latest version really takes things up a notch and works perfectly with my site. Good work WP Dark Mode team.*
+**- by @sharukhrakin**
+
+== 🤔 Why Choose WP Dark Mode? ==
+
+WP Dark Mode is the **#1 WordPress Dark Mode Plugin** trusted by **200,000+ websites** worldwide. It instantly adds a dark theme toggle for both frontend and WordPress admin, improving **accessibility, user experience, and SEO performance.**
+
+Recent research shows:
+
+- **81.9%** of Android users use dark mode on their phones and apps.
+- **82.7%** of users enable dark mode at the operating system level.
+- **79.7%** of students prefer dark mode on their phones, and 61.7% want it on e-learning platforms.
+- **64.6%** of users expect websites to automatically support dark mode switching.
+- **55–70%** adoption among iOS users, depending on device and region.
+
+With WP Dark Mode, your site is ready for this growing demand — offering seamless switching, stunning presets, accessibility tools, and analytics that keep your users engaged longer.
+
+== 🔨 Page Builder Compatibility ==
+
+WP Dark Mode works with all popular page builders, making it easy to add dark mode anywhere on your site:
+
+- Gutenberg Block Editor
+- Elementor Page Builder
+- Divi Builder
+- Beaver Builder
+- Oxygen Builder
+- SiteOrigin
+- CornerStone
+- Themify Builder
+- MotoPress
+- LayersWP
+- WPBakery Page Builder
+- Spectra
+- Visual Composer
+- ...and more. [Check the full list of compatible page builders](https://wppool.dev/dark-mode-compatibility/).
+
+Whether you build with Gutenberg, Elementor, or advanced builders, WP Dark Mode integrates flawlessly.
+
+== 🎨 Theme Compatibility ==
+
+WP Dark Mode is optimized to work with thousands of WordPress themes out of the box, including the most popular ones:
+
+- Astra
+- Divi
+- Hello Elementor
+- Neve
+- Avada
+- Kadence
+- GeneratePress
+- OceanWP
+- Avada
+- Blocksy
+- Betheme
+- The7
+- Flatsome Theme
+- BuddyBoss
+- Hestia
+- Inspiro
+- Spacious
+- Responsive
+- Customizr
+- ColorMag
+- Phlox
+- Photograph
+- ...and more. [Check the full list of compatible themes](https://wppool.dev/dark-mode-compatibility/).
+
+No matter which theme you use, WP Dark Mode ensures a smooth, lightweight, and performance-friendly dark mode experience.
+
+== ↔️ Slider Compatibility ==
+
+WP Dark Mode is fully compatible with the most popular WordPress slider plugins:
+
+* Revolution Slider
+* Smart Slider 3  
+* Soliloquy Slider
+* …and more. [Check the full list of compatible sliders](https://wppool.dev/dark-mode-compatibility/).
+
 WP Dark Mode works flawlessly across all operating systems including Windows, Android, iOS, and macOS. No additional setups are required. This dark mode plugin intelligently detects device preferences and dynamically delivers a handcrafted, expert-designed dark theme experience for your readers. A quick and easy step to add a dark mode toggle to your website to toggle between dark and light mode anytime you want.
 
 Just activate dark mode on your device, and browse the website to experience a magically transformed dark mode of your website. WP Dark Mode supports all major operating systems including iOS, Android, macOS, or Windows 10. WordPress dark mode is now super easy!
 
+== 🔥 More Awesome Plugins ==
+If you like WP Dark Mode, then consider checking out our other awesome plugins:
 
-😍 WHAT OUR CUSTOMERS SAY ABOUT **WP DARK MODE**!
+* 🟢 **[Google Sheets to WP Table](https://wordpress.org/plugins/sheets-to-wp-table-live-sync/)**:
+Try FlexTable - Sheets To WP Table Live Sync | Google Sheets allows you to input data on your Google sheet and show the same data on WordPress as a table effortlessly. Try Flex Table now!
 
-``Best dark mode plugin currently available!``
+* 🔄 **[Manage WooCommerce Inventory from Google Sheets](https://wordpress.org/plugins/stock-sync-with-google-sheet-for-woocommerce/)**:
+FlexStock - Stock Sync with Google Sheet for WooCommerce | Auto-sync WooCommerce products from Google Sheets. Flex Stock is an easy, powerful, and simple inventory management system to handle your WooCommerce products.
 
-> *I’ve always been a busy fan of dark mode and have tried diff plugins over the years including WP Dark Mode, Darklups, Dracula Dark Mode, DarkMySite, Darklooks, and bla blah. I started using WP Dark Mode back in 2021 and really loved how it worked on my site. I even tried custom code snippets – it was really fun!
-But in mid 2023, I switched to Dracula because of its color compatibility. However, after WP Dark Mode’s recent updates and revamp, I decided to give it another try – and I’ve fallen in love with it all over again! The latest version really takes things up a notch and works perfectly with my site. Good work WP Dark Mode team.*
+* 🛒 **[Manage Order with Google Sheets](https://wordpress.org/plugins/order-sync-with-google-sheets-for-woocommerce/)**:
+Try FlexOrder - Bulk Order Sync with Google Sheet for WooCommerce | Manage WooCommerce orders from Google Sheets. WooCommerce order sync, e-commerce order management, and sales order management with Google Sheets. Try Flex Order now!
 
--by @sharukhrakin
-
-=== 🔥 More Awesome Plugins ===
-If you like WP Dark Mode, then consider checking out our other awesome projects:
-
-* 🟢 **[FlexTable - Sheets To WP Table Live Sync](https://wordpress.org/plugins/sheets-to-wp-table-live-sync/)** - Google Sheets allows you to input data on your Google sheet and show the same data on WordPress as a table effortlessly. Try Flex Table now!
-
-* 🔄 **[FlexStock - Stock Sync with Google Sheet for WooCommerce](https://wordpress.org/plugins/stock-sync-with-google-sheet-for-woocommerce/)**  - Auto-sync WooCommerce products from Google Sheets. Flex Stock is an easy, powerful, and simple inventory management system to handle your WooCommerce products.
-
-* 💬 **[FormyChat](https://wordpress.org/plugins/social-contact-form/)**  - Connect Form to Chat Apps with Contact Form 7 Notifications, WPForms, Gravity Form, Welcome Popup, Multi-agent Live Chat
+* 💬 **[Form to Chat](https://wordpress.org/plugins/social-contact-form/)**:
+Try FormyChat | Connect Form to Chat Apps with Contact Form 7, WPForms, Gravity Form | Welcome Popup & Multi-agent Live Chat
 
 
-=== Installation ===
+== Installation ==
 1. After activating the plugin by default your website will turn into a dark theme for your users if the Operating System of the users sets into a dark theme.
 2. You can use the show/hide dark mode switch in many different ways like Gutenberg block, Elementor widget, or Shortcode. Please refer to the FAQ section to learn more about how to use it.
 3. If you want to disable the OS-aware dark mode functionality, navigate to your Admin Dashboard > Settings > WP Dark Mode and turn off the “Enable OS-aware Dark Mode” switch button.
@@ -184,6 +261,12 @@ Yes, You can toggle the dark mode/ light mode by keyboard shortcut `(Ctrl + Alt 
 7. Dark Mode color presets
 
 == Changelog ==
+
+= 5.2.14 – 05 OCT 2025 =
+* **New:** Introduced New ‘Sky’ Switch for nature lovers.
+* **Fix:** Dark Mode images inside closed Elementor Toggle not switching.
+* **Fix:** The “Liquid Glass” switch is not available for Menu Switch.
+* **Improvement:** Enhanced “Liquid Glass” switch design.
 
 = 5.2.13 – 17 JUL 2025 =
 * **New:** Introduced Brand New Liquid Glass Dark Mode Switch (inspired by iOS 26 beta 3).
