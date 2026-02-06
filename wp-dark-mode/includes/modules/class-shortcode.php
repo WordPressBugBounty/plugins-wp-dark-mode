@@ -76,10 +76,11 @@ if ( ! class_exists(__NAMESPACE__ . 'Shortcode') ) {
 			}
 
 			return wp_sprintf(
-				'<div class="wp-dark-mode-switch wp-dark-mode-ignore %s" tabindex="0" 
+				'<div class="wp-dark-mode-switch wp-dark-mode-ignore %s" tabindex="0" role="button" aria-label="%s" aria-pressed="false"
 				data-style="%s" data-size="%s" data-text-light="%s" data-text-dark="%s" data-icon-light="%s" data-icon-dark="%s"
 				></div>',
 				esc_attr($classes),
+				esc_attr__('Dark Mode Toggle', 'wp-dark-mode'),
 				esc_attr($style),
 				esc_attr($size),
 				esc_attr($text_light),

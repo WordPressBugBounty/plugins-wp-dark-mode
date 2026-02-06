@@ -251,6 +251,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Install' ) ) {
 
 				// Redirect to settings page.
 				wp_safe_redirect( admin_url( 'admin.php?page=wp-dark-mode-get-started' ) );
+				// phpcs:ignore
 				exit;
 			}
 		}

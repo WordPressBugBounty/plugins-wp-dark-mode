@@ -146,6 +146,10 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 						'type' => 'number',
 						'default' => 5,
 					),
+					'enabled_login_pages' => array(
+						'type' => 'boolean',
+						'default' => false,
+					),
 					'style' => array(
 						'type' => 'number',
 						'default' => 1,
@@ -303,11 +307,25 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 						'default' => 1,
 					),
 				),
+				'custom_triggers' => [
+					'enabled' => [
+						'type' => 'boolean',
+						'default' => false,
+						'label' => 'Enable Custom Triggers',
+						'description' => 'Allow custom elements to toggle dark mode',
+					],
+					'triggers' => [
+						'type' => 'array',
+						'default' => [],
+						'label' => 'Custom Triggers List',
+						'description' => 'List of custom trigger configurations',
+					],
+				],
 				'color' => array(
 					'mode' => array(
 						'type' => 'string',
 						'options' => array( 'automatic', 'presets', 'custom' ),
-						'default' => 'automatic',
+						'default' => 'presets',
 					),
 
 					'presets' => [
@@ -317,7 +335,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 
 					'preset_id' => array(
 						'type' => 'number',
-						'default' => null,
+						'default' => 1,
 					),
 					'filter_brightness' => array(
 						'type' => 'number',
@@ -582,6 +600,24 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 		public static function predefined_presets() {
 			$presets = [
 				[
+					'name' => 'Sweet Dark',
+					'bg' => '#11131F',
+					'text' => '#F8FAFC',
+					'link' => '#04E2FF',
+					'link_hover' => '#98F3FF',
+					'input_bg' => '#45425F',
+					'input_text' => '#FFFFFF',
+					'input_placeholder' => '#6B7399',
+					'button_text' => '#F8FAFC',
+					'button_hover_text' => '#F3F5F7',
+					'button_bg' => '#2E89FF',
+					'button_hover_bg' => '#77B2FF',
+					'button_border' => '#2E89FF',
+					'enable_scrollbar' => true,
+					'scrollbar_track' => '#1D2033',
+					'scrollbar_thumb' => '#2E334D',
+				],
+				[
 					'name' => 'Gold',
 					'bg' => '#000',
 					'text' => '#dfdedb',
@@ -616,6 +652,42 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 					'enable_scrollbar' => false,
 					'scrollbar_track' => '#1B2836',
 					'scrollbar_thumb' => '#fff',
+				],
+				[
+					'name' => 'Tailwind',
+					'bg' => '#111827',
+					'text' => '#F8FAFC',
+					'link' => '#06B6D4',
+					'link_hover' => '#7EE5F6',
+					'input_bg' => '#1E2133',
+					'input_text' => '#FFFFFF',
+					'input_placeholder' => '#A8AFBA',
+					'button_text' => '#F8FAFC',
+					'button_hover_text' => '#F3F5F7',
+					'button_bg' => '#6366F1',
+					'button_hover_bg' => '#8688FF',
+					'button_border' => '#6E71FF',
+					'enable_scrollbar' => false,
+					'scrollbar_track' => '#111827',
+					'scrollbar_thumb' => '#374151',
+				],
+				[
+					'name' => 'Midnight Bloom',
+					'bg' => '#141438',
+					'text' => '#F8FAFC',
+					'link' => '#908DFF',
+					'link_hover' => '#C1C0FF',
+					'input_bg' => '#43415A',
+					'input_text' => '#FFFFFF',
+					'input_placeholder' => '#A9A7B7',
+					'button_text' => '#141438',
+					'button_hover_text' => '#33336F',
+					'button_bg' => '#908DFF',
+					'button_hover_bg' => '#B0AEFF',
+					'button_border' => '#908DFF',
+					'enable_scrollbar' => false,
+					'scrollbar_track' => '#212244',
+					'scrollbar_thumb' => '#16173A',
 				],
 				[
 					'name' => 'Fuchsia',

@@ -8,6 +8,7 @@
  */
 
 // Exit if accessed directly.
+// phpcs:ignore
 defined( 'ABSPATH' ) || exit();
 
 global $wpdb;
@@ -127,6 +128,8 @@ echo wp_sprintf('_social-share-container _align-%s',
 		<div class="_channels wp-dark-mode-ignore">
 		<!-- Share Icons  -->
 		<?php
+
+		error_log(print_r($visible_channels,true));
 		if ( $visible_channels && count( $visible_channels ) > 0 ) {
 			foreach ( $visible_channels as $channel ) {
 				?>

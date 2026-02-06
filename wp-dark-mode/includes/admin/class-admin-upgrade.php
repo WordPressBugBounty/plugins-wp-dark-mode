@@ -35,10 +35,30 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 
 			// Bail, if the version is already upgraded.
 			if ( version_compare( '5.0.0', $upgraded_version, '<=' ) ) {
+				// For users already on 5.0.0+, only run version-specific upgrades.
+				add_action( 'admin_init', [ $this, 'run_version_specific_upgrades' ] );
 				return;
 			}
 
-			add_action( 'admin_init', [ $this, 'run_upgrade' ] );
+			// For users below 5.0.0, run full upgrade first (priority 10), then version-specific upgrades (priority 20).
+			add_action( 'admin_init', [ $this, 'run_upgrade' ], 10 );
+			add_action( 'admin_init', [ $this, 'run_version_specific_upgrades' ], 20 );
+		}
+
+		/**
+		 * Run version-specific upgrades
+		 *
+		 * @since 5.2.19
+		 */
+		public function run_version_specific_upgrades() {
+			// Use separate option for preset sync to avoid conflicts with main upgrade version.
+			$preset_sync_version = get_option( 'wp_dark_mode_preset_sync_version', '0.0.0' );
+
+			// Sync predefined presets for version 5.2.20 and above.
+			if ( version_compare( $preset_sync_version, '5.2.20', '<' ) ) {
+				$this->sync_predefined_presets();
+				update_option( 'wp_dark_mode_preset_sync_version', WP_DARK_MODE_VERSION );
+			}
 		}
 
 		/**
@@ -95,68 +115,67 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 			/**
 			 * One to one pair update.
 			 */
+			$old_option_sets = [
+				'wp_dark_mode_general' => [
+					'enable_frontend' => 'frontend_enabled',
+					'enable_backend' => 'admin_enabled',
+					'enable_block_editor' => 'admin_enabled_block_editor',
+				],
+				'wp_dark_mode_advanced' => [
+					'start_at' => 'frontend_time_starts',
+					'end_at' => 'frontend_time_ends',
+				],
+				'wp_dark_mode_includes_excludes' => [
+					'includes' => 'excludes_elements_includes',
+					'excludes' => 'excludes_elements',
+				],
+				'wp_dark_mode_switch' => [
+					'show_switcher' => 'floating_switch_enabled',
+					'switch_style' => 'floating_switch_style',
+					'switcher_size' => 'floating_switch_size',
+					'switcher_scale' => 'floating_switch_size_custom',
+					'switcher_position' => 'floating_switch_position',
+					'enable_cta' => 'floating_switch_enabled_cta',
+					'cta_text' => 'floating_switch_cta_text',
+					'cta_text_color' => 'floating_switch_cta_color',
+					'cta_bg_color' => 'floating_switch_cta_background',
+					'enable_menu_switch' => 'menu_switch_enabled',
+					'custom_switch_icon' => 'floating_switch_enabled_custom_icons',
+					'switch_icon_light' => 'floating_switch_icon_light',
+					'switch_icon_dark' => 'floating_switch_icon_dark',
+					'custom_switch_text' => 'floating_switch_enabled_custom_texts',
+					'switch_text_light' => 'floating_switch_text_light',
+					'switch_text_dark' => 'floating_switch_text_dark',
+					'attention_effect' => 'floating_switch_attention_effect ',
+					'show_above_post' => 'content_switch_enabled_top_of_posts',
+					'show_above_page' => 'content_switch_enabled_top_of_pages',
+				],
+				'wp_dark_mode_custom_css' => [
+					'custom_css' => 'frontend_custom_css',
+				],
+				'wp_dark_mode_accessibility' => [
+					'font_size_toggle' => 'typography_enabled',
+					'font_size' => 'typography_font_size',
+					'custom_font_size' => 'typography_font_size_custom',
+					'keyboard_shortcut' => 'accessibility_enabled_keyboard_shortcut',
+					'url_parameter' => 'accessibility_enabled_url_param',
+					'dynamic_content_mode' => 'performance_track_dynamic_content',
+				],
+				'wp_dark_mode_animation' => [
+					'toggle_animation' => 'animation_enabled',
+					'animation' => 'animation_name',
+				],
+				'wp_dark_mode_analytics_reporting' => [
+					'enable_analytics' => 'analytics_enabled',
+					'dashboard_widget' => 'analytics_enabled_dashboard_widget',
+					'email_reporting' => 'analytics_enabled_email_reporting',
+					'reporting_frequency' => 'analytics_email_reporting_frequency',
+					'reporting_email' => 'analytics_email_reporting_address',
+					'reporting_email_subject' => 'analytics_email_reporting_subject',
+				],
+			];
 
-			 $old_option_sets = [
-				 'wp_dark_mode_general' => [
-					 'enable_frontend' => 'frontend_enabled',
-					 'enable_backend' => 'admin_enabled',
-					 'enable_block_editor' => 'admin_enabled_block_editor',
-				 ],
-				 'wp_dark_mode_advanced' => [
-					 'start_at' => 'frontend_time_starts',
-					 'end_at' => 'frontend_time_ends',
-				 ],
-				 'wp_dark_mode_includes_excludes' => [
-					 'includes' => 'excludes_elements_includes',
-					 'excludes' => 'excludes_elements',
-				 ],
-				 'wp_dark_mode_switch' => [
-					 'show_switcher' => 'floating_switch_enabled',
-					 'switch_style' => 'floating_switch_style',
-					 'switcher_size' => 'floating_switch_size',
-					 'switcher_scale' => 'floating_switch_size_custom',
-					 'switcher_position' => 'floating_switch_position',
-					 'enable_cta' => 'floating_switch_enabled_cta',
-					 'cta_text' => 'floating_switch_cta_text',
-					 'cta_text_color' => 'floating_switch_cta_color',
-					 'cta_bg_color' => 'floating_switch_cta_background',
-					 'enable_menu_switch' => 'menu_switch_enabled',
-					 'custom_switch_icon' => 'floating_switch_enabled_custom_icons',
-					 'switch_icon_light' => 'floating_switch_icon_light',
-					 'switch_icon_dark' => 'floating_switch_icon_dark',
-					 'custom_switch_text' => 'floating_switch_enabled_custom_texts',
-					 'switch_text_light' => 'floating_switch_text_light',
-					 'switch_text_dark' => 'floating_switch_text_dark',
-					 'attention_effect' => 'floating_switch_attention_effect ',
-					 'show_above_post' => 'content_switch_enabled_top_of_posts',
-					 'show_above_page' => 'content_switch_enabled_top_of_pages',
-				 ],
-				 'wp_dark_mode_custom_css' => [
-					 'custom_css' => 'frontend_custom_css',
-				 ],
-				 'wp_dark_mode_accessibility' => [
-					 'font_size_toggle' => 'typography_enabled',
-					 'font_size' => 'typography_font_size',
-					 'custom_font_size' => 'typography_font_size_custom',
-					 'keyboard_shortcut' => 'accessibility_enabled_keyboard_shortcut',
-					 'url_parameter' => 'accessibility_enabled_url_param',
-					 'dynamic_content_mode' => 'performance_track_dynamic_content',
-				 ],
-				 'wp_dark_mode_animation' => [
-					 'toggle_animation' => 'animation_enabled',
-					 'animation' => 'animation_name',
-				 ],
-				 'wp_dark_mode_analytics_reporting' => [
-					 'enable_analytics' => 'analytics_enabled',
-					 'dashboard_widget' => 'analytics_enabled_dashboard_widget',
-					 'email_reporting' => 'analytics_enabled_email_reporting',
-					 'reporting_frequency' => 'analytics_email_reporting_frequency',
-					 'reporting_email' => 'analytics_email_reporting_address',
-					 'reporting_email_subject' => 'analytics_email_reporting_subject',
-				 ],
-			 ];
-
-			 return apply_filters( 'wp_dark_mode_old_option_sets', $old_option_sets );
+			return apply_filters( 'wp_dark_mode_old_option_sets', $old_option_sets );
 		}
 
 		/**
@@ -622,6 +641,62 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 		public function upgrade_notices() {
 			$install = \WP_Dark_Mode\Admin\Install::get_instance();
 			$install->set_notices();
+		}
+
+		/**
+		 * Sync predefined presets with database
+		 *
+		 * Ensures all users have the latest predefined presets from code.
+		 * This function automatically handles any new themes added to predefined_presets().
+		 * Preserves user's selected preset and custom presets.
+		 *
+		 * @since 5.2.19
+		 */
+		public function sync_predefined_presets() {
+			// Check if color_presets option exists in database.
+			$saved_presets = get_option( 'wp_dark_mode_color_presets', false );
+
+			// Bail if no presets are saved in database (fresh install).
+			if ( false === $saved_presets ) {
+				return;
+			}
+
+			// Get the currently selected preset ID.
+			$current_preset_id = get_option( 'wp_dark_mode_color_preset_id', null );
+
+			// Get the name of the currently selected preset (if any).
+			$selected_preset_name = null;
+			if ( ! is_null( $current_preset_id ) && isset( $saved_presets[ $current_preset_id - 1 ] ) ) {
+				$selected_preset_name = $saved_presets[ $current_preset_id - 1 ]['name'];
+			}
+
+			// Get the latest predefined presets from code.
+			$predefined_presets = \WP_Dark_Mode\Config::predefined_presets();
+
+			// Ensure saved_presets is an array.
+			if ( ! is_array( $saved_presets ) ) {
+				$saved_presets = [];
+			}
+
+			// Extract custom presets (those after the predefined ones).
+			$custom_presets = array_slice( $saved_presets, count( $predefined_presets ) );
+
+			// Merge latest predefined presets with custom presets.
+			$updated_presets = array_merge( $predefined_presets, $custom_presets );
+
+			// Update the database with the merged presets.
+			update_option( 'wp_dark_mode_color_presets', $updated_presets );
+
+			// Find and update the preset_id to match the previously selected preset by name.
+			if ( ! is_null( $selected_preset_name ) ) {
+				foreach ( $updated_presets as $index => $preset ) {
+					if ( isset( $preset['name'] ) && $preset['name'] === $selected_preset_name ) {
+						// Update preset_id to the new position (index + 1).
+						update_option( 'wp_dark_mode_color_preset_id', $index + 1 );
+						break;
+					}
+				}
+			}
 		}
 	}
 

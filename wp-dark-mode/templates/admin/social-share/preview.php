@@ -9,6 +9,7 @@
  */
 
 // Exit if accessed directly.
+// phpcs:ignore
 defined('ABSPATH') || exit();
 ?>
 <div x-show="options.enable === true" class="_preview-section w-full p-4 rounded-sm transition duration-75 relative">

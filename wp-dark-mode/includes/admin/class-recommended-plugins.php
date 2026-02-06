@@ -571,6 +571,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Recommended_Plugins' ) ) {
 
 				// Redirect to the plugins page.
 				wp_safe_redirect( admin_url( 'admin.php?page=wp-dark-mode' ) );
+				// phpcs:ignore
 				exit;
 			}
 		}

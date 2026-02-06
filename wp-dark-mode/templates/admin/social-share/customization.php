@@ -8,6 +8,7 @@
  */
 
 // Exit if accessed directly.
+// phpcs:ignore
 defined( 'ABSPATH' ) || exit();
 ?> <section class="w-full max-md p-3  max-w-md" x-show="isTab('customization')" x-transition:enter.opacity.40>
 	<div class="transition duration-150" :class="{'opacity-40 pointer-events-none' : !options.enable}">

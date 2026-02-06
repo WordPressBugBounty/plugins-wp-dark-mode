@@ -60,13 +60,15 @@
 	<!-- <rule ref="Universal.Arrays.DisallowLongArraySyntax">  -->
 	<rule ref="Universal"> 
 		<exclude name="Universal.Arrays.DisallowShortArraySyntax" />
-        <exclude name="Universal.ControlStructures.DisallowLonelyIf.Found" />
-        <exclude name="Universal.Classes.RequireFinalClass.NonFinalClassFound" />
-        <exclude name="Universal.ControlStructures.IfElseDeclaration.NoNewLine" />
-        <exclude name="Universal.ControlStructures.DisallowAlternativeSyntax.FoundIfWithInlineHTML" />
-        <exclude name="Universal.Namespaces.EnforceCurlyBraceSyntax.Forbidden" />
-        <exclude name="Universal.Files.SeparateFunctionsFromOO.Mixed" />
-        <exclude name="Universal.UseStatements.DisallowUseClass.FoundWithoutAlias" />
+		<exclude name="Universal.ControlStructures.DisallowLonelyIf.Found" />
+		<exclude name="Universal.Classes.RequireFinalClass.NonFinalClassFound" />
+		<exclude name="Universal.ControlStructures.IfElseDeclaration.NoNewLine" />
+		<exclude name="Universal.ControlStructures.DisallowAlternativeSyntax.FoundIfWithInlineHTML" />
+		<exclude name="Universal.Namespaces.EnforceCurlyBraceSyntax.Forbidden" />
+		<exclude name="Universal.Files.SeparateFunctionsFromOO.Mixed" />
+		<exclude name="Universal.UseStatements.DisallowUseClass.FoundWithoutAlias" />
+		<exclude name="Universal.PHP.RequireExitDieParentheses.Missing" />
+		<exclude name="Universal.PHP.DisallowExitDieParentheses.Found" />
 	</rule>
 	<rule ref="Generic.Functions.FunctionCallArgumentSpacing"> <!-- whitespace in function arguements  -->
 		<exclude

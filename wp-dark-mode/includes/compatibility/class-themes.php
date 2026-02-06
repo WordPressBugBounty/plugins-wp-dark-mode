@@ -9,7 +9,8 @@
 namespace WP_Dark_Mode\Compatibility;
 
 // Exit if accessed directly.
-defined( 'ABSPATH' ) || exit;
+// phpcs:ignore
+defined( 'ABSPATH' ) || exit();
 
 /**
  * WP Dark Mode Theme Supported Themes

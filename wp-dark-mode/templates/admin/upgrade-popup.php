@@ -6,7 +6,8 @@
  * @package WP Dark Mode
  * @since 1.0
  */
-defined( 'ABSPATH' ) || exit;
+// phpcs:ignore
+defined( 'ABSPATH' ) || exit();
 
 
 // Count down time.
@@ -18,8 +19,8 @@ if ( empty( $countdown_timer ) || $countdown_timer < time() ) {
 	set_transient( 'wp_dark_mode_promo_countdown_timer', $countdown_timer, 14 * HOUR_IN_SECONDS );
 }
 
-$campaign_starts = strtotime( '2024-11-21 16:00:00' );
-$campaign_ends = strtotime( '2024-12-04 16:00:00' );
+$campaign_starts = strtotime( '2025-11-17 00:00:00' );
+$campaign_ends = strtotime( '2025-12-04 23:59:59' );
 
 $is_campaign = $campaign_ends > time() && $campaign_starts < time();
 
@@ -76,7 +77,7 @@ $class = 'wp-dark-mode-promo-campaign';
 			</div>
 		</div>
 
-		<a class="wpdm-popup-button" href="https://go.wppool.dev/LaSV" target="_blank"><?php echo $is_campaign ? esc_html__('Claim 50% Discount', 'wp-dark-mode') : wp_sprintf( 'Claim %s%s Discount', esc_html( $data['discount'] ), '%' ); ?></a>
+		<a class="wpdm-popup-button" href="<?php echo esc_url( $is_campaign ? 'https://lnk.wppool.dev/9nBcs15' : 'https://go.wppool.dev/LaSV' ); ?>" target="_blank"><?php echo $is_campaign ? esc_html__('Claim 50% Discount', 'wp-dark-mode') : wp_sprintf( 'Claim %s%s Discount', esc_html( $data['discount'] ), '%' ); ?></a>
 
 		<a class="wpdm-popup-demo-link" href="https://go.wppool.dev/bjxy" target="_blank">Try a FREE demo</a>
 	</div>

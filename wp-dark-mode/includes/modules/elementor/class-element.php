@@ -11,6 +11,7 @@
 namespace WP_Dark_Mode\Module\Elementor;
 
 // Exit if directly called.
+// phpcs:ignore
 defined( 'ABSPATH' ) || exit();
 
 // Check class is already exists.

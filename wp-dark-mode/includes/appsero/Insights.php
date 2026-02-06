@@ -475,6 +475,7 @@ class Insights {
             $this->optin();
 
             wp_safe_redirect(remove_query_arg($this->client->slug . '_tracker_optin'));
+            // phpcs:ignore
             exit;
         }
 
@@ -482,6 +483,7 @@ class Insights {
             $this->optout();
 
             wp_safe_redirect(remove_query_arg($this->client->slug . '_tracker_optout'));
+            // phpcs:ignore
             exit;
         }
     }

@@ -7,6 +7,7 @@
  */
 
 // Exit if accessed directly.
+// phpcs:ignore
 defined( 'ABSPATH' ) || exit();
 ?>
 <div id="wpdm-social-share-loader" class="absolute left-0 top-0 w-full h-full z-50 bg-white text-slate-600 p-4">

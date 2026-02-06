@@ -9,6 +9,7 @@
 namespace WP_Dark_Mode\Module\Elementor\Controls;
 
 // if direct access than exit the file.
+// phpcs:ignore
 defined( 'ABSPATH' ) || exit();
 
 /**
