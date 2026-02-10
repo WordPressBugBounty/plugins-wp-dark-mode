@@ -4,7 +4,7 @@ Tags: dark mode, dark, night mode, dark theme, accessibility
 Requires at least: 5.0  
 Tested up to: 6.9  
 Requires PHP: 5.6  
-Stable tag: 5.3.1 
+Stable tag: 5.3.2 
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -240,6 +240,9 @@ Yes, You can toggle modes by keyboard shortcut `(Ctrl + Alt + D)`.
 
 
 == Changelog ==
+
+= 5.3.2 – 10 FEB 2026 =
+* **Fix:** Fixed minor issues and maintenance update.
 
 = 5.3.1 – 26 JAN 2026 =
 * **Improvement:** Fixed a compatibility issue with the Site Reviews plugin where star ratings and text colors were not displaying correctly in Dark Mode without a page refresh.
