@@ -75,12 +75,20 @@ if ( ! class_exists(__NAMESPACE__ . 'Shortcode') ) {
 				$style = 1;
 			}
 
+			// Accessibility attributes.
+			$is_complex = in_array( $style, range( 14, 19 ) );
+			$role = $is_complex ? 'group' : 'switch';
+			$aria_checked = $is_complex ? '' : 'aria-checked="false"';
+			$aria_label = $is_complex ? __('Dark Mode Settings', 'wp-dark-mode') : __('Dark Mode Toggle', 'wp-dark-mode');
+
 			return wp_sprintf(
-				'<div class="wp-dark-mode-switch wp-dark-mode-ignore %s" tabindex="0" role="button" aria-label="%s" aria-pressed="false"
+				'<div class="wp-dark-mode-switch wp-dark-mode-ignore %s" tabindex="0" role="%s" aria-label="%s" %s
 				data-style="%s" data-size="%s" data-text-light="%s" data-text-dark="%s" data-icon-light="%s" data-icon-dark="%s"
 				></div>',
 				esc_attr($classes),
-				esc_attr__('Dark Mode Toggle', 'wp-dark-mode'),
+				esc_attr($role),
+				esc_attr($aria_label),
+				$aria_checked,
 				esc_attr($style),
 				esc_attr($size),
 				esc_attr($text_light),
