@@ -4,7 +4,7 @@ Tags: dark mode, dark, night mode, dark theme, accessibility
 Requires at least: 5.0  
 Tested up to: 6.9  
 Requires PHP: 5.6  
-Stable tag: 5.3.3 
+Stable tag: 5.3.4 
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -240,6 +240,10 @@ Yes, You can toggle modes by keyboard shortcut `(Ctrl + Alt + D)`.
 
 
 == Changelog ==
+ 
+= 5.3.4 – 01 APR 2026 =
+* **Improvement:** Added multilingual support with native translations
+* **Fix:** Dark mode support added for media library and preview loading screen in admin
 
 = 5.3.3 – 16 FEB 2026 =
 * **Fix:** Compatible with screen readers (Verified ARIA support).
