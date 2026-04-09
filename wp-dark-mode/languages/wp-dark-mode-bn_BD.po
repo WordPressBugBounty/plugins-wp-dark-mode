@@ -3711,3 +3711,12 @@ msgstr "নভে"
 #: includes/admin/class-strings.php:831
 msgid "Dec"
 msgstr "ডিসে"
+
+#: includes/admin/class-strings.php:836
+msgid "No results found"
+msgstr "কোনো ফলাফল পাওয়া যায়নি"
+
+
+#: includes/admin/class-strings.php:837
+msgid "No results found for \"{search}\""
+msgstr "\"{search}\" এর জন্য কোনো ফলাফল পাওয়া যায়নি"

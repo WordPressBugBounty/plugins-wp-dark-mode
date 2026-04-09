@@ -3730,3 +3730,12 @@ msgstr "Nov"
 #: includes/admin/class-strings.php:831
 msgid "Dec"
 msgstr "Dic"
+
+#: includes/admin/class-strings.php:836
+msgid "No results found"
+msgstr "Nessun risultato trovato"
+
+
+#: includes/admin/class-strings.php:837
+msgid "No results found for \"{search}\""
+msgstr "Nessun risultato trovato per \"{search}\""

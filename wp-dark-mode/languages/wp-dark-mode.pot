@@ -3313,3 +3313,17 @@ msgstr ""
 msgid "Share via:"
 msgstr ""
 
+#: includes/admin/class-strings.php:836
+msgid "No results found"
+msgstr ""
+
+#: includes/admin/class-strings.php:837
+msgid "No results found for \"{search}\""
+msgstr ""
+
+#: includes/admin/class-strings.php:838
+msgid "Enter your selected posts"
+msgstr ""
+
+
+

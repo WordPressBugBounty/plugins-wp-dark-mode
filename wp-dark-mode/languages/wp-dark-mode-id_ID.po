@@ -3677,3 +3677,12 @@ msgstr "Nov"
 #: includes/admin/class-strings.php:831
 msgid "Dec"
 msgstr "Des"
+
+#: includes/admin/class-strings.php:836
+msgid "No results found"
+msgstr "Hasil tidak ditemukan"
+
+
+#: includes/admin/class-strings.php:837
+msgid "No results found for \"{search}\""
+msgstr "Hasil tidak ditemukan untuk \"{search}\""

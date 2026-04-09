@@ -831,6 +831,11 @@ class Strings {
 				'oct'                                     => __( 'Oct', 'wp-dark-mode' ),
 				'nov'                                     => __( 'Nov', 'wp-dark-mode' ),
 				'dec'                                     => __( 'Dec', 'wp-dark-mode' ),
+
+				// MultiSelect component strings.
+				'no_result_found'                         => __( 'No results found', 'wp-dark-mode' ),
+				'no_result_found_for'                     => __( 'No results found for "{search}"', 'wp-dark-mode' ),
+				'enter_your_selected_posts'               => __( 'Enter your selected posts', 'wp-dark-mode' ),
 			)
 		);
 

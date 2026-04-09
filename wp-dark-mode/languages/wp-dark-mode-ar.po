@@ -3623,3 +3623,12 @@ msgstr "نوفمبر"
 #: includes/admin/class-strings.php:831
 msgid "Dec"
 msgstr "ديسمبر"
+
+#: includes/admin/class-strings.php:836
+msgid "No results found"
+msgstr "لا توجد نتائج"
+
+
+#: includes/admin/class-strings.php:837
+msgid "No results found for \"{search}\""
+msgstr "لا توجد نتائج لـ \"{search}\""

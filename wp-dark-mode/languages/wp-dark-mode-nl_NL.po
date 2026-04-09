@@ -3685,3 +3685,12 @@ msgstr "Nov"
 #: includes/admin/class-strings.php:831
 msgid "Dec"
 msgstr "Dec"
+
+#: includes/admin/class-strings.php:836
+msgid "No results found"
+msgstr "Geen resultaten gevonden"
+
+
+#: includes/admin/class-strings.php:837
+msgid "No results found for \"{search}\""
+msgstr "Geen resultaten gevonden voor \"{search}\""

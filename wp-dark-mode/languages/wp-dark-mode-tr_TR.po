@@ -3701,3 +3701,12 @@ msgstr "Kas"
 #: includes/admin/class-strings.php:831
 msgid "Dec"
 msgstr "Ara"
+
+#: includes/admin/class-strings.php:836
+msgid "No results found"
+msgstr "Sonuç bulunamadı"
+
+
+#: includes/admin/class-strings.php:837
+msgid "No results found for \"{search}\""
+msgstr "\"{search}\" için sonuç bulunamadı"

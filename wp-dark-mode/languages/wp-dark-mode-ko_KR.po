@@ -3523,3 +3523,12 @@ msgstr "11월"
 #: includes/admin/class-strings.php:831
 msgid "Dec"
 msgstr "12월"
+
+#: includes/admin/class-strings.php:836
+msgid "No results found"
+msgstr "검색 결과가 없습니다"
+
+
+#: includes/admin/class-strings.php:837
+msgid "No results found for \"{search}\""
+msgstr "\"{search}\"에 대한 검색 결과가 없습니다"

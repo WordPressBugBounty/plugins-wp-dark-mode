@@ -3661,3 +3661,12 @@ msgstr "नवं"
 #: includes/admin/class-strings.php:831
 msgid "Dec"
 msgstr "दिसं"
+
+#: includes/admin/class-strings.php:836
+msgid "No results found"
+msgstr "कोई परिणाम नहीं मिले"
+
+
+#: includes/admin/class-strings.php:837
+msgid "No results found for \"{search}\""
+msgstr "\"{search}\" के लिए कोई परिणाम नहीं मिले"
