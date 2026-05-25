@@ -2,9 +2,9 @@
 Contributors: wppool, wpdarkmode, azizultex, iamjafran, shahreyar46  
 Tags: dark mode, dark, night mode, dark theme, accessibility  
 Requires at least: 5.0  
-Tested up to: 6.9  
+Tested up to: 7.0  
 Requires PHP: 5.6  
-Stable tag: 5.3.5 
+Stable tag: 5.3.6 
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -241,6 +241,10 @@ Yes, You can toggle modes by keyboard shortcut `(Ctrl + Alt + D)`.
 
 == Changelog ==
  
+= 5.3.6 – 25 MAY 2026 =
+* **Improvement:** Improved compatibility with Gutenberg block editor
+* **Compatibility:** Compatible with WordPress 7.0
+
 = 5.3.5 – 09 APR 2026 =
 * **Fix:** “Exclude” feature broken in the previous version has been fixed
 * **Fix:** Minor bug fixes and enhancements
