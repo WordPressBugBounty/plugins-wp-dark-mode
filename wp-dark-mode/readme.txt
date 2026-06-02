@@ -4,7 +4,7 @@ Tags: dark mode, dark, night mode, dark theme, accessibility
 Requires at least: 5.0  
 Tested up to: 7.0  
 Requires PHP: 5.6  
-Stable tag: 5.3.6 
+Stable tag: 5.3.7
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -240,10 +240,15 @@ Yes, You can toggle modes by keyboard shortcut `(Ctrl + Alt + D)`.
 
 
 == Changelog ==
- 
+
+= 5.3.7 – 02 JUN 2026 =
+* **Fix:** Admin bar Light/Dark Mode switcher compatibility with Classic Editor and TinyMCE Advanced.
+* **Fix:** TinyMCE editor background now responds correctly to admin bar Light/Dark Mode switching when the Classic Editor Dark Mode button is disabled.
+* **Improvement:** Improved compatibility with Classic Editor and TinyMCE Advanced's "Replace Block Editor" setting.
+
 = 5.3.6 – 25 MAY 2026 =
 * **Improvement:** Improved compatibility with Gutenberg block editor
-* **Compatibility:** Compatible with WordPress 7.0
+* **Improvement:** Compatible with WordPress 7.0
 
 = 5.3.5 – 09 APR 2026 =
 * **Fix:** “Exclude” feature broken in the previous version has been fixed

@@ -79,10 +79,17 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 			wp_add_inline_style( 'wp-dark-mode-admin-common', $this->get_inline_css() );
 
 			// Enqueue scripts.
-			$editor_type = get_option( 'classic-editor-replace', 'block' );
-			// If the current page is not edit post page.
-			if ( 'classic' === $editor_type || ! in_array( $hook, [ 'post.php', 'post-new.php' ], true ) ) {
-				wp_enqueue_script( 'wp-dark-mode-dark-mode', WP_DARK_MODE_ASSETS . 'js/admin-dark-mode.min.js', [], WP_DARK_MODE_VERSION, false );
+			// Load admin-dark-mode.min.js everywhere except Gutenberg post editor pages.
+			// Detect classic editor mode via class existence (Classic Editor plugin) or option (TinyMCE Advanced).
+			$is_classic_editor_active = class_exists( 'Classic_Editor' );
+			if ( ! $is_classic_editor_active ) {
+				$tadv_admin_settings      = get_option( 'tadv_admin_settings', array() );
+				$tadv_admin_options       = ! empty( $tadv_admin_settings['options'] ) ? explode( ',', $tadv_admin_settings['options'] ) : array();
+				$is_classic_editor_active = in_array( 'replace_block_editor', $tadv_admin_options, true );
+			}
+			$is_gutenberg_post_page = in_array( $hook, array( 'post.php', 'post-new.php' ), true ) && ! $is_classic_editor_active;
+			if ( ! $is_gutenberg_post_page ) {
+				wp_enqueue_script( 'wp-dark-mode-dark-mode', WP_DARK_MODE_ASSETS . 'js/admin-dark-mode.min.js', array(), WP_DARK_MODE_VERSION, false );
 			}
 
 			wp_enqueue_script( 'wp-dark-mode-common', WP_DARK_MODE_ASSETS . 'js/admin-common.min.js', [ 'wp-i18n' ], WP_DARK_MODE_VERSION, true );
