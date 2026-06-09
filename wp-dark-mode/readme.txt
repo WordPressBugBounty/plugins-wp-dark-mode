@@ -4,7 +4,7 @@ Tags: dark mode, dark, night mode, dark theme, accessibility
 Requires at least: 5.0  
 Tested up to: 7.0  
 Requires PHP: 5.6  
-Stable tag: 5.3.7
+Stable tag: 5.3.8
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -240,6 +240,9 @@ Yes, You can toggle modes by keyboard shortcut `(Ctrl + Alt + D)`.
 
 
 == Changelog ==
+
+= 5.3.8 – 09 JUN 2026 =
+* **Fix:** Resolved a dark mode issue in TinyMCE Classic Editor when Hestia's Local Fonts Hosting option is enabled.
 
 = 5.3.7 – 02 JUN 2026 =
 * **Fix:** Admin bar Light/Dark Mode switcher compatibility with Classic Editor and TinyMCE Advanced.

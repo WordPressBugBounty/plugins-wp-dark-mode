@@ -26,7 +26,9 @@
 
     const buildDarkCSS = () => {
         const c = getActiveThemeColors();
-        return `body { background-color: ${c.bg}; color: ${c.text}; } a { color: ${c.link}; }`;
+        // Fix: Hestia local fonts hosting injects a corrupted CSS file (HTML error page) that sets
+        // html { background: #fff } inside the TinyMCE iframe. Override html bg alongside body.
+        return `html, body { background-color: ${c.bg}; } body { color: ${c.text}; } a { color: ${c.link}; }`;
     };
     const STYLE_ID = 'wp-dark-mode-classic-editor-style';
 
