@@ -19,8 +19,8 @@ if ( empty( $countdown_timer ) || $countdown_timer < time() ) {
 	set_transient( 'wp_dark_mode_promo_countdown_timer', $countdown_timer, 14 * HOUR_IN_SECONDS );
 }
 
-$campaign_starts = strtotime( '2025-11-17 00:00:00' );
-$campaign_ends = strtotime( '2025-12-04 23:59:59' );
+$campaign_starts = strtotime( '2026-06-24 17:00:00' );
+$campaign_ends = strtotime( '2026-07-14 23:59:59' );
 
 $is_campaign = $campaign_ends > time() && $campaign_starts < time();
 
@@ -43,10 +43,10 @@ $class = 'wp-dark-mode-promo-campaign';
 
 		<?php
 		echo wp_sprintf( '<h3 class="promo-title">%s</h3>',
-		$is_campaign ? esc_html__('Black Friday & Cyber Monday', 'wp-dark-mode') : esc_html__( 'Unlock all the features', 'wp-dark-mode' ) );
+		$is_campaign ? esc_html__('SUMMER SALE ☀️', 'wp-dark-mode') : esc_html__( 'Unlock all the features', 'wp-dark-mode' ) );
 
 		echo wp_sprintf( '<div class="discount"> <span class="discount-special">%s</span> <span class="discount-text">%s</span></div>',
-			$is_campaign ? esc_html__( 'Flash Sale', 'wp-dark-mode' ) : esc_html__( 'SPECIAL', 'wp-dark-mode' ),
+			$is_campaign ? esc_html__( 'UP TO', 'wp-dark-mode' ) : esc_html__( 'SPECIAL', 'wp-dark-mode' ),
 			/* translators: 1: discount amount, 2: percent sign */
 			wp_sprintf( esc_html__( '%1$s%2$s OFF', 'wp-dark-mode' ), esc_html( $data['discount'] ), '%' )
 		);
@@ -71,7 +71,7 @@ $class = 'wp-dark-mode-promo-campaign';
 			</div>
 		</div>
 
-		<a class="wpdm-popup-button" href="<?php echo esc_url( $is_campaign ? 'https://lnk.wppool.dev/9nBcs15' : 'https://go.wppool.dev/LaSV' ); ?>" target="_blank"><?php echo $is_campaign ? esc_html__('Claim 50% Discount', 'wp-dark-mode') : /* translators: 1: discount amount, 2: percent sign */ wp_sprintf( esc_html__( 'Claim %1$s%2$s Discount', 'wp-dark-mode' ), esc_html( $data['discount'] ), '%' ); ?></a>
+		<a class="wpdm-popup-button" href="<?php echo esc_url( $is_campaign ? 'https://lnk.wppool.dev/AAGukuk' : 'https://go.wppool.dev/LaSV' ); ?>" target="_blank"><?php echo $is_campaign ? esc_html__( 'Save Now 💰', 'wp-dark-mode' ) : /* translators: 1: discount amount, 2: percent sign */ wp_sprintf( esc_html__( 'Claim %1$s%2$s Discount', 'wp-dark-mode' ), esc_html( $data['discount'] ), '%' ); ?></a>
 
 		<a class="wpdm-popup-demo-link" href="https://go.wppool.dev/bjxy" target="_blank"><?php esc_html_e( 'Try a FREE demo', 'wp-dark-mode' ); ?></a>
 	</div>
@@ -137,6 +137,11 @@ $class = 'wp-dark-mode-promo-campaign';
 		.wp-dark-mode-promo-inner .discount {
 			position: relative;
 			margin: 45px 0 15px;
+		}
+
+		.wp-dark-mode-promo-inner .wpdm-popup-button {
+			font-size: 18px;
+			padding: 10px 20px;
 		}
 	</style>
 

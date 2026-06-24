@@ -11,3 +11,9 @@ docs
 package.json
 package-lock.json
 wadit.config.js
+phpcs.xml
+includes/admin/compare_keys.js
+includes/admin/deduplicate.js
+includes/admin/deduplicated_array.txt
+includes/admin/find_duplicates.js
+includes/admin/sync_strings.js
