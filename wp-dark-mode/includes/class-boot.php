@@ -163,6 +163,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Boot' ) ) {
 			require_once WP_DARK_MODE_INCLUDES . '/modules/social-share/class-social-share.php';
 			require_once WP_DARK_MODE_INCLUDES . '/modules/gutenberg/class-block.php';
 			require_once WP_DARK_MODE_INCLUDES . '/modules/elementor/class-element.php';
+			require_once WP_DARK_MODE_INCLUDES . '/modules/wpbakery/class-element.php';
 		}
 
 		/**

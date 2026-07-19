@@ -4,7 +4,7 @@ Tags: dark mode, dark, night mode, dark theme, accessibility
 Requires at least: 5.0  
 Tested up to: 7.0  
 Requires PHP: 5.6  
-Stable tag: 5.3.9
+Stable tag: 5.3.10
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -240,6 +240,9 @@ Yes, You can toggle modes by keyboard shortcut `(Ctrl + Alt + D)`.
 
 
 == Changelog ==
+
+= 5.3.10 – 19 JUL 2026 =
+* **New:** Introduced a dedicated WPBakery Page Builder element for the Dark Mode Switch, providing a native drag-and-drop experience similar to the existing Elementor widget and Gutenberg block.
 
 = 5.3.9 – 24 JUN 2026 =
 * **Fix:** Improved compatibility with Hostinger AI admin pages.
