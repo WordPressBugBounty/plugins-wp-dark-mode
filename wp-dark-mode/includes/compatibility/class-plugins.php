@@ -13,7 +13,7 @@ namespace WP_Dark_Mode\Compatibility;
 //phpcs:ignore
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'Plugins' ) ) {
+if ( ! class_exists( __NAMESPACE__ . '\\Wp_Dark_Plugins' ) ) {
 
 	/**
 	 * Plugin Compatibility Handler
@@ -21,7 +21,7 @@ if ( ! class_exists( 'Plugins' ) ) {
 	 * Only loaded when plugins requiring PHP logic are active.
 	 * CSS-only compatibility is handled automatically via SCSS files.
 	 */
-	class Plugins extends \WP_Dark_Mode\Base {
+	class Wp_Dark_Plugins extends \WP_Dark_Mode\Wp_Dark_Base {
 
 		/**
 		 * This class is intentionally minimal.

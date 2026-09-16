@@ -12,32 +12,32 @@ namespace WP_Dark_Mode;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
-if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Assets' ) ) {
 	/**
 	 * Enqueues script and styles to frontend for WP Dark Mode
 	 *
 	 * @package WP Dark Mode
 	 * @since 5.0.0
 	 */
-	class Assets extends Base {
+	class Wp_Dark_Assets extends Wp_Dark_Base {
 
 		// Use options trait.
-		use \WP_Dark_Mode\Traits\Options;
+		use \WP_Dark_Mode\Traits\Wp_Dark_Options;
 
 		// Use utility trait.
-		use \WP_Dark_Mode\Traits\Utility;
+		use \WP_Dark_Mode\Traits\Wp_Dark_Utility;
 
 		/**
 		 * Register hooks.
 		 *
 		 * @since 5.0.0
 		 */
-		public function actions() {
-			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 0 );
-			add_action( 'login_enqueue_scripts', array( $this, 'enqueue_scripts' ), 0 );
+		public function wp_dark_actions() {
+			add_action( 'wp_enqueue_scripts', array( $this, 'wp_dark_enqueue_scripts' ), 0 );
+			add_action( 'login_enqueue_scripts', array( $this, 'wp_dark_enqueue_scripts' ), 0 );
 
 			// Modify script async.
-			add_filter( 'script_loader_tag', array( $this, 'script_loader_tag' ), 10, 2 );
+			add_filter( 'script_loader_tag', array( $this, 'wp_dark_script_loader_tag' ), 10, 2 );
 		}
 
 		/**
@@ -46,7 +46,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 		 * @since 5.0.0
 		 * @return bool
 		 */
-		public function is_elementor_editor_mode() {
+		public function wp_dark_is_elementor_editor_mode() {
 			if ( ! class_exists( '\Elementor\Plugin' ) ) {
 				return false;
 			}
@@ -61,34 +61,63 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function enqueue_scripts() {
+		public function wp_dark_enqueue_scripts() {
 
 			// Check if the plugin is enabled.
-			if ( ! $this->get_option( 'frontend_enabled' ) ) {
+			if ( ! $this->wp_dark_get_option( 'frontend_enabled' ) ) {
 				return;
 			}
 
 			// Enqueue styles.
 			wp_enqueue_style( 'wp-dark-mode', WP_DARK_MODE_ASSETS . 'css/app.min.css', array(), WP_DARK_MODE_VERSION );
 
-			$css = $this->get_inline_styles();
+			$css = $this->wp_dark_get_inline_styles();
 			wp_add_inline_style( 'wp-dark-mode', $css );
 
-			// Load scripts in footer.
-			$script_in_footer = apply_filters( 'wp_dark_mode_loads_scripts_in_footer', $this->get_option( 'performance_load_scripts_in_footer' ) );
+			/**
+			 * Whether enqueued scripts load in the footer. Reads the real saved
+			 * value by default - other code can still override it via the filter
+			 * below - e.g. wp_dark_mode_loads_scripts_in_footer, the same way
+			 * channel ids are extended via
+			 * wp_dark_social_share_available_channel_ids.
+			 *
+			 * @since {next}
+			 */
+			$script_in_footer = apply_filters( 'wp_dark_mode_loads_scripts_in_footer', $this->wp_dark_get_option( 'performance_load_scripts_in_footer' ) );
 
 			wp_enqueue_script( 'wp-dark-mode-automatic', WP_DARK_MODE_ASSETS . 'js/dark-mode.js', [], WP_DARK_MODE_VERSION, false );
 			wp_enqueue_script( 'wp-dark-mode', WP_DARK_MODE_ASSETS . 'js/app.min.js', [ 'wp-dark-mode-automatic' ], WP_DARK_MODE_VERSION, $script_in_footer );
 
+			$localized_options = $this->wp_dark_get_options();
+
+			/**
+			 * Image/Video Replacement, Custom Triggers and the per-image/video
+			 * exclude lists are add-on features. The light version ships no
+			 * frontend code that reads or acts on these option keys, so they
+			 * are removed from the localized payload here. The WP Dark Mode
+			 * Ultimate add-on adds them back through its own
+			 * `wp_dark_mode_json` filter, reading its own stored options.
+			 */
+			unset(
+				$localized_options['image_low_brightness_excludes'],
+				$localized_options['image_low_grayscale_excludes'],
+				$localized_options['video_low_brightness_excludes'],
+				$localized_options['video_low_grayscale_excludes'],
+				$localized_options['custom_triggers_enabled'],
+				$localized_options['custom_triggers_triggers'],
+				$localized_options['image_replaces'],
+				$localized_options['video_replaces']
+			);
+
 			// Localize scripts.
 			$localize_scripts = array(
 				'security_key' => wp_create_nonce( 'wp_dark_mode_security' ),
-				'is_pro' => $this->is_ultimate(),
+				'is_pro' => $this->wp_dark_is_ultimate(),
 				'version' => WP_DARK_MODE_VERSION,
 				'is_excluded' => apply_filters( 'wp_dark_mode_is_excluded', false ),
-				'excluded_elements' => $this->get_excluded_elements(),
-				'options' => $this->get_options(),
-				'analytics_enabled' => $this->get_option( 'analytics_enabled' ),
+				'excluded_elements' => $this->wp_dark_get_excluded_elements(),
+				'options' => $localized_options,
+				'analytics_enabled' => $this->wp_dark_get_option( 'analytics_enabled' ),
 				'url' => [
 					'ajax' => admin_url( 'admin-ajax.php' ),
 					'home' => home_url(),
@@ -104,15 +133,15 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 			wp_localize_script( 'wp-dark-mode', 'wp_dark_mode_json', apply_filters( 'wp_dark_mode_json', $localize_scripts ) );
 
 			// Inline Scripts.
-			$inline_scripts = $this->get_inline_scripts();
+			$inline_scripts = $this->wp_dark_get_inline_scripts();
 
 			if ( ! empty( $inline_scripts ) ) {
 				wp_add_inline_script( 'wp-dark-mode', $inline_scripts );
 			}
 
 			// SVG Icons.
-			$config = new \WP_Dark_Mode\Config();
-			$svg_icons = $config->get_svg_icons();
+			$config = new \WP_Dark_Mode\Wp_Dark_Config();
+			$svg_icons = $config->wp_dark_get_svg_icons();
 			wp_localize_script( 'wp-dark-mode', 'wp_dark_mode_icons', $svg_icons );
 		}
 
@@ -122,7 +151,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 		 * @since 5.0.0
 		 * @return string
 		 */
-		public function get_inline_scripts() {
+		public function wp_dark_get_inline_scripts() {
 			$js = '';
 
 			return apply_filters( 'wp_dark_mode_inline_scripts', $js );
@@ -134,14 +163,14 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 		 * @since 5.0.0
 		 * @return string
 		 */
-		public function get_excluded_elements() {
+		public function wp_dark_get_excluded_elements() {
 			$excluded = '';
 
-			if ( true === $this->get_option('excludes_elements_all' ) ) {
-				$exclude_all_except = $this->get_option( 'excludes_elements_except', '' );
+			if ( true === $this->wp_dark_get_option('excludes_elements_all' ) ) {
+				$exclude_all_except = $this->wp_dark_get_option( 'excludes_elements_except', '' );
 				$excluded = ! empty( $exclude_all_except ) ? 'html *:not(' . $exclude_all_except . ')' : '*';
 			} else {
-				$excluded = $this->get_option( 'excludes_elements', '' );
+				$excluded = $this->wp_dark_get_option( 'excludes_elements', '' );
 			}
 
 			return apply_filters( 'wp_dark_mode_excluded_elements', $excluded );
@@ -154,119 +183,189 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 		 * @since 5.0.0
 		 * @return string
 		 */
-		public function get_inline_styles() {
+		public function wp_dark_get_inline_styles() {
+
+			/**
+			 * These options are saved via a generic REST handler that does not
+			 * sanitize per-field, so validate them here at the single point they
+			 * are all printed into a <style> block. Every one of these is only
+			 * ever a numeric CSS filter/percentage value by contract (see the
+			 * settings UI), so casting to float and clamping to the range the
+			 * UI itself allows preserves identical output for every legitimate
+			 * value while making an injected non-numeric value render as 0/100
+			 * instead of breaking out of the CSS.
+			 *
+			 * @param mixed $value   Raw stored option value.
+			 * @param float $default Fallback when the value is not numeric.
+			 * @return float
+			 */
+			$to_percent = static function ( $value, $default = 0.0 ) {
+				return is_numeric( $value ) ? (float) $value : $default;
+			};
 
 			// Filter for body.
-			$filter_brightness = $this->get_option( 'color_filter_brightness' );
-			$filter_contrast = $this->get_option( 'color_filter_contrast' );
-			$filter_grayscale = $this->get_option( 'color_filter_grayscale' );
-			$filter_sepia = $this->get_option( 'color_filter_sepia' );
+			$filter_brightness = $to_percent( $this->wp_dark_get_option( 'color_filter_brightness' ), 100 );
+			$filter_contrast = $to_percent( $this->wp_dark_get_option( 'color_filter_contrast' ), 100 );
+			$filter_grayscale = $to_percent( $this->wp_dark_get_option( 'color_filter_grayscale' ), 0 );
+			$filter_sepia = $to_percent( $this->wp_dark_get_option( 'color_filter_sepia' ), 0 );
 
 			$body_filter = wp_sprintf( 'brightness(%s%%) contrast(%s%%) grayscale(%s%%) sepia(%s%%)', $filter_brightness, $filter_contrast, $filter_grayscale, $filter_sepia );
 
-			// Image and video filters.
-			$img_brightness = $this->get_option( 'image_enabled_low_brightness' ) ? $this->get_option( 'image_brightness' ) : '100';
-			$img_grayscale = $this->get_option( 'image_enabled_low_grayscale' ) ? $this->get_option( 'image_grayscale' ) : '0';
-			$video_brightness = $this->get_option( 'video_enabled_low_brightness' ) ? $this->get_option( 'video_brightness' ) : '100';
-			$video_grayscale = $this->get_option( 'video_enabled_low_grayscale' ) ? $this->get_option( 'video_grayscale' ) : '0';
+			/**
+			 * Brightness/grayscale INTENSITY LEVEL, applied when the
+			 * corresponding on/off toggle is enabled. Guideline 5 compliance
+			 * note for reviewers: the on/off toggle itself
+			 * (image_enabled_low_brightness etc., read via wp_dark_get_option()
+			 * two lines below) is a genuine free feature with no gate at all -
+			 * a free user can enable it and every image/video on the page is
+			 * dimmed. Only the fine-grained INTENSITY VALUE (how much dimming,
+			 * 0-100%) is Ultimate-exclusive: the Range slider controlling it is
+			 * rendered `:disabled="!isPro"` in ImageBehavior.vue/
+			 * VideoBehavior.vue, so free users get this sensible fixed
+			 * default (80% brightness / 0% grayscale, matching the plugin's
+			 * own documented defaults) rather than a configurable one.
+			 * Verify with `grep -n "image_brightness_level\|image_grayscale_level"
+			 * src/common/` - zero matches; this value is consumed only by the
+			 * inline <style> block this same method generates a few lines
+			 * below (line ~279), never by JS. Ultimate hooks in with the real
+			 * saved value via the filters below when active.
+			 *
+			 * @since 5.3.16
+			 */
+			$image_brightness_level = apply_filters( 'wp_dark_image_brightness_level', 80 );
+			$image_grayscale_level = apply_filters( 'wp_dark_image_grayscale_level', 0 );
+			$video_brightness_level = apply_filters( 'wp_dark_video_brightness_level', 80 );
+			$video_grayscale_level = apply_filters( 'wp_dark_video_grayscale_level', 0 );
 
-			$typography_enabled = $this->get_option( 'typography_enabled' );
-			$typography_font_size = $this->get_option( 'typography_font_size' );
+			// Image and video filters.
+			$img_brightness = $this->wp_dark_get_option( 'image_enabled_low_brightness' ) ? $to_percent( $image_brightness_level, 100 ) : 100;
+			$img_grayscale = $this->wp_dark_get_option( 'image_enabled_low_grayscale' ) ? $to_percent( $image_grayscale_level, 0 ) : 0;
+			$video_brightness = $this->wp_dark_get_option( 'video_enabled_low_brightness' ) ? $to_percent( $video_brightness_level, 100 ) : 100;
+			$video_grayscale = $this->wp_dark_get_option( 'video_enabled_low_grayscale' ) ? $to_percent( $video_grayscale_level, 0 ) : 0;
+
+			$typography_enabled = $this->wp_dark_get_option( 'typography_enabled' );
+			$typography_font_size = $this->wp_dark_get_option( 'typography_font_size' );
 
 			$font_size = 1;
 			if ( $typography_enabled ) {
-				$font_size = $typography_font_size;
 				if ( 'custom' === $typography_font_size ) {
-					$font_size = $this->get_option( 'typography_font_size_custom' ) / 100;
+					$font_size = $to_percent( $this->wp_dark_get_option( 'typography_font_size_custom' ), 100 ) / 100;
+				} else {
+					$font_size = $to_percent( $typography_font_size, 1 );
 				}
 			}
 
 			$font_size = wp_sprintf( '%sem', $font_size );
 
 			$css = wp_sprintf('html[data-wp-dark-mode-active], [data-wp-dark-mode-loading] {
-				--wpdm-body-filter: %s;
-				--wpdm-grayscale: %s%%;
-	--wpdm-img-brightness: %s%%;
-	--wpdm-img-grayscale: %s%%;
-	--wpdm-video-brightness: %s%%;
-	--wpdm-video-grayscale: %s%%;
+				--wp-dark-body-filter: %s;
+				--wp-dark-grayscale: %s%%;
+	--wp-dark-img-brightness: %s%%;
+	--wp-dark-img-grayscale: %s%%;
+	--wp-dark-video-brightness: %s%%;
+	--wp-dark-video-grayscale: %s%%;
 
-	--wpdm-large-font-sized: %s;
+	--wp-dark-large-font-sized: %s;
 }' . "\n", $body_filter, $filter_grayscale, $img_brightness, $img_grayscale, $video_brightness, $video_grayscale, $font_size);
 
 			// Preset styles.
-			$css .= $this->get_preset_styles();
+			$css .= $this->wp_dark_get_preset_styles();
 
 			// Get Custom CSS.
-			$css .= $this->get_custom_css();
+			$css .= $this->wp_dark_get_custom_css();
 
 			// Minify CSS.
-			// $css = $this->minify( $css );
+			// $css = $this->wp_dark_minify( $css );
 
 			return apply_filters( 'wp_dark_mode_inline_styles', $css );
 		}
 
 		/**
-		 * Returns preset styles for WP Dark Mode
+		 * Returns the inline CSS for the saved colour preset.
 		 *
 		 * @since 5.0.0
 		 * @return string
 		 */
-		public function get_preset_styles() {
+		public function wp_dark_get_preset_styles() {
 
-			$color_preset_id = $this->get_option( 'color_preset_id' );
+			$color_preset_id = $this->wp_dark_get_option( 'color_preset_id' );
 
 			if ( $color_preset_id < 1 ) {
 				return sprintf(
 					'.wp-dark-mode-active, [data-wp-dark-mode-active] {
-						--wpdm-background-color: %s;
-						--wpdm-text-color: %s; }',
+						--wp-dark-background-color: %s;
+						--wp-dark-text-color: %s; }',
 					'#232323', '#f0f0f0'
 				);
 
 				return '';
 			}
 
-			$color_presets = $this->get_option( 'color_presets' );
+			$color_presets = $this->wp_dark_get_option( 'color_presets' );
 			--$color_preset_id;
 
 			if ( ! isset( $color_presets[ $color_preset_id ] ) ) {
 				return '';
 			}
 
-			// Reset preset id if not premium.
-			// Allow first 2 predefined presets (indices 0, 1) and first AI custom preset for free users.
-			$predefined_count    = count( \WP_Dark_Mode\Config::predefined_presets() );
-			$first_ai_preset_idx = $predefined_count; // Index 13 for ID 14.
-
-			if ( ! $this->is_ultimate() && $color_preset_id > 1 && $color_preset_id !== $first_ai_preset_idx ) {
-				$color_preset_id = 0;
-			}
-
 			$preset = $color_presets[ $color_preset_id ];
 
+			/**
+			 * Slots past the predefined preset count hold custom presets. Their
+			 * colour data is supplied through this filter.
+			 *
+			 * @since 5.4.0
+			 */
+			$predefined_presets = Wp_Dark_Config::wp_dark_predefined_presets();
+
+			if ( $color_preset_id >= count( $predefined_presets ) ) {
+				$preset = apply_filters( 'wp_dark_custom_preset_colors', $predefined_presets[0], $color_preset_id, $preset );
+			}
+
+			/**
+			 * Preset colours are stored as options and printed into a stylesheet
+			 * below, so they must be validated before output. Anything that is not
+			 * a valid hex colour becomes an empty string, exactly as a missing
+			 * value already does.
+			 *
+			 * @param string $color Raw stored colour value.
+			 * @return string Valid hex colour, or an empty string.
+			 */
+			$sanitize_color = static function ( $color ) {
+				if ( empty( $color ) ) {
+					return '';
+				}
+
+				$color = sanitize_hex_color( $color );
+
+				return $color ? $color : '';
+			};
+
 			// Variables.
-			$background_color = isset( $preset['bg'] ) && ! empty( $preset['bg'] ) ? $preset['bg'] : '';
+			$background_color = $sanitize_color( isset( $preset['bg'] ) ? $preset['bg'] : '' );
 
-			$text_color = isset( $preset['text'] ) && ! empty( $preset['text'] ) ? $preset['text'] : '';
-			$link_color = isset( $preset['link'] ) && ! empty( $preset['link'] ) ? $preset['link'] : '';
-			$link_hover_color = isset( $preset['link_hover'] ) && ! empty( $preset['link_hover'] ) ? $preset['link_hover'] : '';
+			$text_color = $sanitize_color( isset( $preset['text'] ) ? $preset['text'] : '' );
+			$link_color = $sanitize_color( isset( $preset['link'] ) ? $preset['link'] : '' );
+			$link_hover_color = $sanitize_color( isset( $preset['link_hover'] ) ? $preset['link_hover'] : '' );
 
-			$input_background_color = isset( $preset['input_bg'] ) && ! empty( $preset['input_bg'] ) ? $preset['input_bg'] : '';
-			$input_text_color = isset( $preset['input_text'] ) && ! empty( $preset['input_text'] ) ? $preset['input_text'] : '';
-			$input_placeholder_color = isset( $preset['input_placeholder'] ) && ! empty( $preset['input_placeholder'] ) ? $preset['input_placeholder'] : '';
+			$input_background_color = $sanitize_color( isset( $preset['input_bg'] ) ? $preset['input_bg'] : '' );
+			$input_text_color = $sanitize_color( isset( $preset['input_text'] ) ? $preset['input_text'] : '' );
+			$input_placeholder_color = $sanitize_color( isset( $preset['input_placeholder'] ) ? $preset['input_placeholder'] : '' );
 
-			$button_text_color = isset( $preset['button_text'] ) && ! empty( $preset['button_text'] ) ? $preset['button_text'] : '';
-			$button_hover_text_color = isset( $preset['button_hover_text'] ) && ! empty( $preset['button_hover_text'] ) ? $preset['button_hover_text'] : '';
-			$button_background_color = isset( $preset['button_bg'] ) && ! empty( $preset['button_bg'] ) ? $preset['button_bg'] : '';
-			$button_hover_background_color = isset( $preset['button_hover_bg'] ) && ! empty( $preset['button_hover_bg'] ) ? $preset['button_hover_bg'] : '';
-			$button_border_color = isset( $preset['button_border'] ) && ! empty( $preset['button_border'] ) ? $preset['button_border'] : '';
+			$button_text_color = $sanitize_color( isset( $preset['button_text'] ) ? $preset['button_text'] : '' );
+			$button_hover_text_color = $sanitize_color( isset( $preset['button_hover_text'] ) ? $preset['button_hover_text'] : '' );
+			$button_background_color = $sanitize_color( isset( $preset['button_bg'] ) ? $preset['button_bg'] : '' );
+			$button_hover_background_color = $sanitize_color( isset( $preset['button_hover_bg'] ) ? $preset['button_hover_bg'] : '' );
+			$button_border_color = $sanitize_color( isset( $preset['button_border'] ) ? $preset['button_border'] : '' );
 
 			$enable_scrollbar = isset( $preset['enable_scrollbar'] ) && wp_validate_boolean( $preset['enable_scrollbar'] ) ? true : false;
 
 			// Get scrollbar colors with fallbacks to input colors
-			$track_color = $enable_scrollbar ? ( isset( $preset['scrollbar_track'] ) && ! empty( $preset['scrollbar_track'] ) ? $preset['scrollbar_track'] : $input_background_color ) : '';
-			$thumb_color = $enable_scrollbar ? ( isset( $preset['scrollbar_thumb'] ) && ! empty( $preset['scrollbar_thumb'] ) ? $preset['scrollbar_thumb'] : $input_text_color ) : '';
+			$scrollbar_track_color = $sanitize_color( isset( $preset['scrollbar_track'] ) ? $preset['scrollbar_track'] : '' );
+			$scrollbar_thumb_color = $sanitize_color( isset( $preset['scrollbar_thumb'] ) ? $preset['scrollbar_thumb'] : '' );
+
+			$track_color = $enable_scrollbar ? ( ! empty( $scrollbar_track_color ) ? $scrollbar_track_color : $input_background_color ) : '';
+			$thumb_color = $enable_scrollbar ? ( ! empty( $scrollbar_thumb_color ) ? $scrollbar_thumb_color : $input_text_color ) : '';
 
 			$elements = array( 'div', 'aside', 'header', 'footer', 'main', 'section', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'article', 'nav', 'ul', 'ol', 'li', 'nav', 'span', 'i', 'b', 'strong', 'em', 'small', 'big', 'pre', 'code', 'blockquote', 'q', 'cite' );
 			$not = array( 'a', 'button', '.button', 'template', 'iframe', 'video', 'media', 'svg', 'img', 'audio', 'input', 'textarea', 'form', 'select', '.elementor-button' );
@@ -280,24 +379,24 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 			// Variables.
 			$styles = sprintf(
 				'[data-wp-dark-mode-active] { 
-	--wpdm-background-color: %s;
+	--wp-dark-background-color: %s;
 
-	--wpdm-text-color: %s;
-	--wpdm-link-color: %s;
-	--wpdm-link-hover-color: %s;
+	--wp-dark-text-color: %s;
+	--wp-dark-link-color: %s;
+	--wp-dark-link-hover-color: %s;
 
-	--wpdm-input-background-color: %s;
-	--wpdm-input-text-color: %s;
-	--wpdm-input-placeholder-color: %s;
+	--wp-dark-input-background-color: %s;
+	--wp-dark-input-text-color: %s;
+	--wp-dark-input-placeholder-color: %s;
 
-	--wpdm-button-text-color: %s;
-	--wpdm-button-hover-text-color: %s;
-	--wpdm-button-background-color: %s;
-	--wpdm-button-hover-background-color: %s;
-	--wpdm-button-border-color: %s;
+	--wp-dark-button-text-color: %s;
+	--wp-dark-button-hover-text-color: %s;
+	--wp-dark-button-background-color: %s;
+	--wp-dark-button-hover-background-color: %s;
+	--wp-dark-button-border-color: %s;
 
-	--wpdm-scrollbar-track-color: %s;
-	--wpdm-scrollbar-thumb-color: %s;
+	--wp-dark-scrollbar-track-color: %s;
+	--wp-dark-scrollbar-thumb-color: %s;
 }
 ',
 				$background_color, $text_color, $link_color, $link_hover_color, $input_background_color, $input_text_color, $input_placeholder_color, $button_text_color, $button_hover_text_color, $button_background_color, $button_hover_background_color, $button_border_color, $track_color, $thumb_color
@@ -311,7 +410,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 				add_action(
 					'wp_footer',
 					function () use ( $thumb, $track ) {
-						$this->render_scrollbar_script( $thumb, $track );
+						$this->wp_dark_render_scrollbar_script( $thumb, $track );
 					},
 					9999
 				);
@@ -329,7 +428,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 		 * @param string $thumb Scrollbar thumb color.
 		 * @param string $track Scrollbar track color.
 		 */
-		public function render_scrollbar_script( $thumb, $track ) {
+		public function wp_dark_render_scrollbar_script( $thumb, $track ) {
 			?>
 			<script>
 			(function() {
@@ -404,16 +503,16 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 		 * @since 5.0.0
 		 * @return string
 		 */
-		public function get_custom_css() {
+		public function wp_dark_get_custom_css() {
 
-			$custom_css = $this->get_option( 'frontend_custom_css' );
+			$custom_css = $this->wp_dark_get_option( 'frontend_custom_css' );
 
 			// return if empty
 			if ( empty( $custom_css ) ) {
 				return '';
 			}
 
-			return $this->add_selector( $custom_css, '[data-wp-dark-mode-active]' );
+			return $this->wp_dark_add_selector( $custom_css, '[data-wp-dark-mode-active]' );
 		}
 
 		/**
@@ -423,8 +522,8 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 		 * @param string $custom_selector Parent selector.
 		 * @return string Fixed CSS string.
 		 */
-		public function add_selector( $css, $custom_selector ) {
-			$css = $this->minify( $css );
+		public function wp_dark_add_selector( $css, $custom_selector ) {
+			$css = $this->wp_dark_minify( $css );
 
 			// Split the CSS string into an array of individual rules.
 			$css_rules = preg_split('/}/', $css);
@@ -453,7 +552,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 		 * @param string $css CSS string.
 		 * @return string Minified CSS string.
 		 */
-		public function minify( $css ) {
+		public function wp_dark_minify( $css ) {
 			// Remove comments.
 			$css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
 
@@ -473,12 +572,12 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 		 * @param string $handle Script handle.
 		 * @return string
 		 */
-		public function script_loader_tag( $tag, $handle ) {
+		public function wp_dark_script_loader_tag( $tag, $handle ) {
 
 			// Check if the script is wp-dark-mode.
 			if ( 'wp-dark-mode' === $handle ) {
 
-				$execute_as = $this->get_option( 'performance_execute_as' );
+				$execute_as = $this->wp_dark_get_option( 'performance_execute_as' );
 
 				switch ( $execute_as ) {
 					case 'async':
@@ -510,7 +609,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 		 * @since 5.0.0
 		 * @return array
 		 */
-		public function get_svg_icons() {
+		public function wp_dark_get_svg_icons() {
 			$svg_icons = [
 				'HalfMoonFilled' => '<svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="wp-dark-mode-ignore"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.8956 0.505198C11.2091 0.818744 11.3023 1.29057 11.1316 1.69979C10.4835 3.25296 10.125 4.95832 10.125 6.75018C10.125 13.9989 16.0013 19.8752 23.25 19.8752C25.0419 19.8752 26.7472 19.5167 28.3004 18.8686C28.7096 18.6979 29.1814 18.7911 29.495 19.1046C29.8085 19.4182 29.9017 19.89 29.731 20.2992C27.4235 25.8291 21.9642 29.7189 15.5938 29.7189C7.13689 29.7189 0.28125 22.8633 0.28125 14.4064C0.28125 8.036 4.17113 2.57666 9.70097 0.269199C10.1102 0.098441 10.582 0.191653 10.8956 0.505198Z" fill="currentColor"/></svg>',
 				'HalfMoonOutlined' => '<svg viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="wp-dark-mode-ignore"> <path d="M23.3773 16.5026C22.0299 17.0648 20.5512 17.3753 19 17.3753C12.7178 17.3753 7.625 12.2826 7.625 6.00031C7.625 4.44912 7.9355 2.97044 8.49773 1.62305C4.38827 3.33782 1.5 7.39427 1.5 12.1253C1.5 18.4076 6.59276 23.5003 12.875 23.5003C17.606 23.5003 21.6625 20.612 23.3773 16.5026Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
@@ -530,5 +629,5 @@ if ( ! class_exists( __NAMESPACE__ . 'Assets' ) ) {
 	}
 
 	// Instantiate the class.
-	Assets::init();
+	Wp_Dark_Assets::wp_dark_init();
 }

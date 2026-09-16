@@ -8,20 +8,22 @@
  * @package WPPOOL_PLUGIN
  */
 
-// Exit if accessed directly.
-// phpcs:ignore
-defined( 'ABSPATH' ) || exit();
+namespace WP_DARK;
+
+	// Exit if accessed directly.
+	// phpcs:ignore
+	defined( 'ABSPATH' ) || exit();
 
 /**
  * Plugin Class
  */
-if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
+if ( ! class_exists( __NAMESPACE__ . '\Wp_Dark_Plugin' ) ) {
 	/**
 	 * Handles all the WPPOOL Plugin related functionalities, promotions, etc.
 	 *
 	 * @version 3.0.0
 	 */
-	class WPPOOL_Plugin {
+	class Wp_Dark_Plugin {
 		/**
 		 * Contains instance of Plugin.
 		 *
@@ -36,7 +38,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 * @since 3.0.0
 		 * @return self
 		 */
-		public static function get_instance() {
+		public static function wp_dark_get_instance() {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new self();
 			}
@@ -204,8 +206,8 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 *
 		 * @return array
 		 */
-		public function get_plugins() {
-			return apply_filters( 'wppool_plugins', $this->plugins );
+		public function wp_dark_get_plugins() {
+			return apply_filters( 'wp_dark_plugins', $this->plugins );
 		}
 
 		/**
@@ -213,8 +215,8 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 *
 		 * @return mixed
 		 */
-		public function get_current_plugin() {
-			$plugins = $this->get_plugins();
+		public function wp_dark_get_current_plugin() {
+			$plugins = $this->wp_dark_get_plugins();
 
 			return isset( $plugins[ $this->plugin_id ] ) ? $plugins[ $this->plugin_id ] : null;
 		}
@@ -232,8 +234,8 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 *
 		 * @return array
 		 */
-		public function get_tags() {
-			return apply_filters( 'wppool_tags', array_merge( $this->tags, $this->custom_tags ) );
+		public function wp_dark_get_tags() {
+			return apply_filters( 'wp_dark_tags', array_merge( $this->tags, $this->custom_tags ) );
 		}
 		/**
 		 * Temporarily stores custom lists.
@@ -247,8 +249,8 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 *
 		 * @return array
 		 */
-		public function get_list_id() {
-			$plugin = $this->get_current_plugin();
+		public function wp_dark_get_list_id() {
+			$plugin = $this->wp_dark_get_current_plugin();
 
 			if ( ! $plugin ) {
 				return $this->custom_lists;
@@ -267,7 +269,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 			$product_slug = 'wp_dark_mode',
 			$user_data = []
 		) {
-			$this->plugin_id = $this->slugify( $product_slug );
+			$this->plugin_id = $this->wp_dark_slugify( $product_slug );
 			$this->user_data = is_array( $user_data ) ? $user_data : [];
 		}
 
@@ -277,7 +279,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 * @param  string $string The plugin_id.
 		 * @return string
 		 */
-		public function slugify( $string = '' ) {
+		public function wp_dark_slugify( $string = '' ) {
 			$string = sanitize_title( $string );
 			$string = str_replace( '-', '_', $string );
 
@@ -289,15 +291,15 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 *
 		 * @return void
 		 */
-		public static function init_plugin_sdk() {
+		public static function wp_dark_init_plugin_sdk() {
 			$instance = new self();
 
-			add_action( 'admin_enqueue_scripts', [ $instance, 'enqueue_scripts' ] );
-			add_action( 'admin_footer', [ $instance, 'load_popup_template' ] );
+			add_action( 'admin_enqueue_scripts', [ $instance, 'wp_dark_enqueue_scripts' ] );
+			add_action( 'admin_footer', [ $instance, 'wp_dark_load_popup_template' ] );
 
 			// Elementor support for popup.
-			add_action( 'elementor/editor/after_enqueue_scripts', [ $instance, 'enqueue_scripts' ] );
-			add_action( 'elementor/editor/header', [ $instance, 'load_popup_template' ] );
+			add_action( 'elementor/editor/after_enqueue_scripts', [ $instance, 'wp_dark_enqueue_scripts' ] );
+			add_action( 'elementor/editor/header', [ $instance, 'wp_dark_load_popup_template' ] );
 		}
 
 		/**
@@ -305,8 +307,8 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 *
 		 * @return string
 		 */
-		public function get_image_url() {
-			return apply_filters( 'wppool_popup_image', ( file_exists( __DIR__ . '/background-image.png' ) ? plugin_dir_url( __FILE__ ) . '/background-image.png' : '' ), $this->plugin_id );
+		public function wp_dark_get_image_url() {
+			return apply_filters( 'wp_dark_popup_image', ( file_exists( __DIR__ . '/background-image.png' ) ? plugin_dir_url( __FILE__ ) . '/background-image.png' : '' ), $this->plugin_id );
 		}
 
 		/**
@@ -314,21 +316,21 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 *
 		 * @return void
 		 */
-		public function load_popup_template() {
+		public function wp_dark_load_popup_template() {
 			?>
-			<div class="_wppool-popup" id="_wppool-popup" style="display: none;" data-plugin="wp_dark_mode" tabindex="1">
-				<div class="_wppool-popup-overlay"></div>
-				<div class="_wppool-popup-modal">
+			<div class="_wp-dark-popup" id="_wp-dark-popup" style="display: none;" data-plugin="wp_dark_mode" tabindex="1">
+				<div class="_wp-dark-popup-overlay"></div>
+				<div class="_wp-dark-popup-modal">
 					<!-- close  -->
-					<div class="_wppool-popup-modal-close"> &times; </div>
+					<div class="_wp-dark-popup-modal-close"> &times; </div>
 					<!-- content section  -->
-					<div class="_wppool-popup-modal-footer">
+					<div class="_wp-dark-popup-modal-footer">
 						<!-- countdown  -->
-						<div class="_wppool-popup-countdown" style="display: none">
-							<span class="_wppool-popup-countdown-text">
+						<div class="_wp-dark-popup-countdown" style="display: none">
+							<span class="_wp-dark-popup-countdown-text">
 								<?php echo esc_html__( 'Deal Ends In', 'wp-dark-mode' ); ?>
 							</span>
-							<div class="_wppool-popup-countdown-time">
+							<div class="_wp-dark-popup-countdown-time">
 								<div>
 									<span data-counter="days">
 										<?php echo esc_html__( '00', 'wp-dark-mode' ); ?>
@@ -367,11 +369,11 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 							</div>
 						</div>
 						<!-- button  -->
-						<a class="_wppool-popup-button">
+						<a class="_wp-dark-popup-button">
 							<?php echo esc_html__( 'Upgrade to Pro', 'wp-dark-mode' ); ?>
 						</a>
 
-						<a target="_blank" class="_wppool-popup-demo-link" href="">
+						<a target="_blank" class="_wp-dark-popup-demo-link" href="">
 							<?php echo esc_html__( 'Try a free demo', 'wp-dark-mode' ); ?>
 						</a>
 					</div>
@@ -385,17 +387,17 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 *
 		 * @return string
 		 */
-		public function get_inline_scripts() {
+		public function wp_dark_get_inline_scripts() {
 			return '(function() {
 
-				if (typeof(WPPOOL) !== "undefined") {
+				if (typeof(WP_DARK) !== "undefined") {
 					return;
 				}
 
-				const $container = jQuery("#_wppool-popup");
+				const $container = jQuery("#_wp-dark-popup");
 		
 				// class Popup 
-				class Popup {
+				class Wp_Dark_Popup {
 					/**
 					 * Plugin ID
 					 *
@@ -425,7 +427,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 					 * @param {string} event
 					 * @param {function} callback
 					 */
-					on(event, callback) {
+					wp_dark_on(event, callback) {
 						if (typeof(this.events[event]) === "undefined") {
 							this.events[event] = [];
 						}
@@ -439,7 +441,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 					 * @param {string} event
 					 * @param {array} args
 					 */
-					trigger(event, args = []) {
+					wp_dark_trigger(event, args = []) {
 						if (typeof(this.events[event]) !== "undefined") {
 							this.events[event].forEach(callback => {
 								callback.apply(this, args);
@@ -452,39 +454,39 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 					 *
 					 * @return {void}
 					 */
-					registerEvents() {
+					wp_dark_register_events() {
 						// close container on click overlay 
-						jQuery(document).on("click", `[data-plugin="${this.name}"] ._wppool-popup-overlay`, (event) => {
+						jQuery(document).on("click", `[data-plugin="${this.name}"] ._wp-dark-popup-overlay`, (event) => {
 							event.preventDefault();
 							event.stopPropagation();
 		
-							this.trigger("overlayClick", [event, this.data]);
+							this.wp_dark_trigger("overlayClick", [event, this.wp_dark_data]);
 							this.hide();
 						});
 		
 						// close container on click close button
-						jQuery(document).on("click", `[data-plugin="${this.name}"] ._wppool-popup-modal-close`, (event) => {
+						jQuery(document).on("click", `[data-plugin="${this.name}"] ._wp-dark-popup-modal-close`, (event) => {
 							event.preventDefault();
 							event.stopPropagation();
 		
-							this.trigger("closeClick", [event, this.data]);
+							this.wp_dark_trigger("closeClick", [event, this.wp_dark_data]);
 							this.hide();
 						});
 		
 						// on click on button 
-						jQuery(document).on("click", `[data-plugin="${this.name}"] ._wppool-popup-button`, (event) => {
+						jQuery(document).on("click", `[data-plugin="${this.name}"] ._wp-dark-popup-button`, (event) => {
 		
 							event.preventDefault();
 							event.stopPropagation();
 		
 							// trigger event close
-							this.trigger("buttonClick", [this.data]);
+							this.wp_dark_trigger("buttonClick", [this.wp_dark_data]);
 		
 							// close modal 
 							this.hide();
 		
 							// navigate to data.button_link if button url is not empty 
-							let url = this.data.button_link || null;
+							let url = this.wp_dark_data.button_link || null;
 		
 							// check the url is valid 
 							if (url && url.length > 0) {
@@ -495,10 +497,10 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 						});
 		
 						// on click on modal 
-						jQuery(document).on("click", `[data-plugin="${this.name}"] ._wppool-popup-modal`, (event) => {
+						jQuery(document).on("click", `[data-plugin="${this.name}"] ._wp-dark-popup-modal`, (event) => {
 							event.stopPropagation();
 		
-							this.trigger("click", [this.data]);
+							this.wp_dark_trigger("click", [this.wp_dark_data]);
 						});
 		
 						// close on esc key 
@@ -515,11 +517,11 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 					 *
 					 * @return {void}
 					 */
-					destroyEvents() {
-						jQuery(document).off("click", `[data-plugin="${this.name}"] ._wppool-popup-overlay`);
-						jQuery(document).off("click", `[data-plugin="${this.name}"] ._wppool-popup-modal-close`);
-						jQuery(document).off("click", `[data-plugin="${this.name}"] ._wppool-popup-button`);
-						jQuery(document).off("click", `[data-plugin="${this.name}"] ._wppool-popup-modal`);
+					wp_dark_destroy_events() {
+						jQuery(document).off("click", `[data-plugin="${this.name}"] ._wp-dark-popup-overlay`);
+						jQuery(document).off("click", `[data-plugin="${this.name}"] ._wp-dark-popup-modal-close`);
+						jQuery(document).off("click", `[data-plugin="${this.name}"] ._wp-dark-popup-button`);
+						jQuery(document).off("click", `[data-plugin="${this.name}"] ._wp-dark-popup-modal`);
 						jQuery(document).off("keyup");
 					}
 		
@@ -529,7 +531,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 					 * @param {string} str
 					 * @return {string}
 					 */
-					toSlug(str) {
+					wp_dark_to_slug(str) {
 						return str.toLowerCase().replace(/ /g, "_").replace(/[^\w-]+/g, "");
 					}
 		
@@ -538,8 +540,8 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 					 * 
 					 * @return {object}
 					 */
-					get data() {
-						const plugin_data = this.name in WPPOOL_Plugins.plugins ? WPPOOL_Plugins.plugins[ this.name ] : null;
+					get wp_dark_data() {
+						const plugin_data = this.name in WP_DARK_Plugins.plugins ? WP_DARK_Plugins.plugins[ this.name ] : null;
 		
 						plugin_data.name = this.name || null;
 		
@@ -563,22 +565,22 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 					 *
 					 * @return {void}
 					 */
-					show() {
-						if (!this.data) return;
-						this.setPopupData(this.data);
-						this.registerEvents();
+					wp_dark_show() {
+						if (!this.wp_dark_data) return;
+						this.wp_dark_set_popup_data(this.wp_dark_data);
+						this.wp_dark_register_events();
 
 						// Init counter 
-						if(this.data.to) {
-							$container.find("._wppool-popup-countdown").show(0);
-							this.initCounter(this.data.to);
+						if(this.wp_dark_data.to) {
+							$container.find("._wp-dark-popup-countdown").show(0);
+							this.wp_dark_init_counter(this.wp_dark_data.to);
 						}
 		
 						// Show container
 						$container.fadeIn(100);
 		
 						// trigger event 
-						this.trigger("show", [this.data]);
+						this.wp_dark_trigger("show", [this.wp_dark_data]);
 					}
 		
 					/**
@@ -586,12 +588,12 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 					 *
 					 * @return {void}
 					 */
-					hide() {
+					wp_dark_hide() {
 						$container.fadeOut(100);
 						// trigger event close
-						this.trigger("hide", [this.data]);
+						this.wp_dark_trigger("hide", [this.wp_dark_data]);
 		
-						this.destroyEvents();
+						this.wp_dark_destroy_events();
 					}
 		
 					/**
@@ -599,7 +601,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 					 *
 					 * @return {Boolean} true if client is online
 					 */
-					get isOnline() {
+					get wp_dark_is_online() {
 						return window.navigator.onLine;
 					}
 		
@@ -608,29 +610,29 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 					 *
 					 * @param {object} data
 					 */
-					setPopupData(data) {
+					wp_dark_set_popup_data(data) {
 		
 						// Change background image if found.
-						if ( "background_image" in data && data.background_image && data.background_image.length && this.isOnline) {
+						if ( "background_image" in data && data.background_image && data.background_image.length && this.wp_dark_is_online) {
 							// Change background image.
-							$container.find("._wppool-popup-modal").css({
+							$container.find("._wp-dark-popup-modal").css({
 								"background-image": `url(${data.background_image || ""})`
 							});
 		
 							// Check if the image url is valid image url online.
-							const fallback_image_url = "' . esc_url( $this->get_image_url() ) . '";
+							const fallback_image_url = "' . esc_url( $this->wp_dark_get_image_url() ) . '";
 		
 							if (data.background_image && data.background_image.length > 0) {
 								// check if the image url is valid image url online                     
 								fetch(data.background_image).then(response => {
 									if (!response.ok) {
-										$container.find("._wppool-popup-modal").css({
+										$container.find("._wp-dark-popup-modal").css({
 											"background-image": `url(${fallback_image_url})`
 										});
 									}
 								}).catch(error => {
 									// set default image 
-									$container.find("._wppool-popup-modal").css({
+									$container.find("._wp-dark-popup-modal").css({
 										"background-image": `url(${fallback_image_url})`
 									});
 								});
@@ -638,26 +640,26 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 						}
 		
 						// set button text 
-						$container.find("._wppool-popup-button").text(data.button_text || "GET NOW");
+						$container.find("._wp-dark-popup-button").text(data.button_text || "GET NOW");
 		
 						// set button link
-						$container.find("._wppool-popup-button").attr("href", data.button_link || "");
+						$container.find("._wp-dark-popup-button").attr("href", data.button_link || "");
 
 						if ( data.button_link ) {
-							$container.find("._wppool-popup-button").attr("target", "_blank");
+							$container.find("._wp-dark-popup-button").attr("target", "_blank");
 						}
 
 						if ( data.demo_link ) {
-							$container.find("._wppool-popup-demo-link").show();
-							$container.find("._wppool-popup-demo-link").text(data.demo_text || "Try a FREE demo");
-							$container.find("._wppool-popup-demo-link").attr("href", data.demo_link || "");
+							$container.find("._wp-dark-popup-demo-link").show();
+							$container.find("._wp-dark-popup-demo-link").text(data.demo_text || "Try a FREE demo");
+							$container.find("._wp-dark-popup-demo-link").attr("href", data.demo_link || "");
 						} else {
-						 $container.find("._wppool-popup-demo-link").hide()
+						 $container.find("._wp-dark-popup-demo-link").hide()
 						}
 		
 						// set popup color
-						$container.find("._wppool-popup-modal").css({
-							"--wppool-popup-color": data.color || "#FF631A"
+						$container.find("._wp-dark-popup-modal").css({
+							"--wp-dark-popup-color": data.color || "#FF631A"
 						});
 		
 						// set data plugin 
@@ -671,8 +673,8 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 					 * Update Counter 
 					 * @param {string} time  
 					 */
-					updateCounter(seconds) {
-						const $counter = $container.find("._wppool-popup-countdown-time");
+					wp_dark_update_counter(seconds) {
+						const $counter = $container.find("._wp-dark-popup-countdown-time");
 						const $days = $counter.find("[data-counter=\"days\"]");
 						const $hours = $counter.find("[data-counter=\"hours\"]");
 						const $minutes = $counter.find("[data-counter=\"minutes\"]");
@@ -694,7 +696,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 					/**
 					 * initCounter
 					 */
-					initCounter(last_date) {
+					wp_dark_init_counter(last_date) {
 						const countdown = () => {
 		
 							// system time 
@@ -712,7 +714,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 								return false;
 							}
 		
-							this.updateCounter(seconds);
+							this.wp_dark_update_counter(seconds);
 		
 							return true;
 						}
@@ -720,10 +722,10 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 						let result = countdown();
 		
 						if (result) {
-							this.trigger("countdownStart", [this.data]);
+							this.wp_dark_trigger("countdownStart", [this.wp_dark_data]);
 						} else {
-							this.trigger("countdownFinish", [this.data]);
-							$container.find("._wppool-popup-countdown").hide(0);
+							this.wp_dark_trigger("countdownFinish", [this.wp_dark_data]);
+							$container.find("._wp-dark-popup-countdown").hide(0);
 						}
 		
 						// update counter every 1 second 
@@ -733,8 +735,8 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		
 							if (!result) {
 								clearInterval(counter);
-								this.trigger("counter_end", [this.data]);
-								$container.find("._wppool-popup-countdown").hide(0);
+								this.wp_dark_trigger("counter_end", [this.wp_dark_data]);
+								$container.find("._wp-dark-popup-countdown").hide(0);
 							}
 		
 						}, 1000);
@@ -749,8 +751,8 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 					 */
 				}
 		
-				// Big Object Theory for WPPOOL
-				var WPPOOL = {
+				// Plugin API global.
+				var WP_DARK = {
 		
 					/**
 					 * Plugin 
@@ -758,7 +760,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 					 */
 					Popup: function(name = "") {
 						if (name) {
-							return new Popup(name);
+							return new Wp_Dark_Popup(name);
 						}
 		
 						return false;
@@ -776,7 +778,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 					 * Debug log
 					 */
 					Log: function() {
-						if (typeof(WPPOOL_Plugins) === "undefined" || WPPOOL_Plugins.debug != 1) return;
+						if (typeof(WP_DARK_Plugins) === "undefined" || WP_DARK_Plugins.debug != 1) return;
 		
 						let args = Array.from(arguments);
 						console.log(
@@ -787,9 +789,9 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 					}
 				}
 		
-				// make WPPOOL global 
-		
-				window.WPPOOL = WPPOOL;
+				// Make the plugin API global.
+				
+				window.WP_DARK = WP_DARK;
 		
 			})(jQuery)';
 		}
@@ -799,18 +801,18 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 *
 		 * @return string
 		 */
-		public function get_inline_styles() {
+		public function wp_dark_get_inline_styles() {
 			$css =
 				':root {
-				--wppool-popup-color: #FF631A;
+				--wp-dark-popup-color: #FF631A;
 			}
 		
-			._wppool-popup * {
+			._wp-dark-popup * {
 				all: initial;
 				font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;
 			}
 		
-			._wppool-popup {
+			._wp-dark-popup {
 				position: fixed;
 				width: 100%;
 				height: 100%;
@@ -825,7 +827,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 				z-index: 99999999 !important;
 			}
 		
-			._wppool-popup-overlay {
+			._wp-dark-popup-overlay {
 				position: absolute;
 				top: 0;
 				left: 0;
@@ -834,13 +836,13 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 				background: rgba(0, 0, 0, 0.2);
 			}
 		
-			._wppool-popup-modal {
+			._wp-dark-popup-modal {
 				width: 600px;
 				max-width: 600px !important;
 				height: 600px;
 				max-height: 600px !important;
 				color: white;
-				background: #222 url(' . esc_url( $this->get_image_url() ) . ') no-repeat center center;
+				background: #222 url(' . esc_url( $this->wp_dark_get_image_url() ) . ') no-repeat center center;
 				background-position: center;
 				background-size: cover;
 				background-repeat: no-repeat;
@@ -854,13 +856,13 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 				box-shadow: 0 0 10px 0 rgb(0 0 0 / 50%);
 			}
 
-			._wppool-popup-modal-close {
+			._wp-dark-popup-modal-close {
 				position: absolute;
 				top: 5px;
 				right: 10px;
 				font-size: 50px;
 				cursor: pointer;
-				color: var(--wppool-popup-color);
+				color: var(--wp-dark-popup-color);
 				transition: .3s;
 				display: flex;
 				justify-content: center;
@@ -872,11 +874,11 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 				opacity: .5;
 			}
 
-			._wppool-popup-modal-close:hover {
+			._wp-dark-popup-modal-close:hover {
 				opacity: 1;
 			}
 
-			._wppool-popup-modal-footer {
+			._wp-dark-popup-modal-footer {
 				width: 100%;
 				height: 225px;
 				max-height: 225px !important;
@@ -887,7 +889,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 				padding: 15px 0;
 			}
 
-			._wppool-popup-countdown {
+			._wp-dark-popup-countdown {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
@@ -895,7 +897,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 				gap: 10px;
 			}
 
-			._wppool-popup-countdown-text {
+			._wp-dark-popup-countdown-text {
 				font-size: 14px;
 				font-weight: 600;
 				color: white;
@@ -903,14 +905,14 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 				line-height: 1.4;
 			}
 
-			._wppool-popup-countdown-time {
+			._wp-dark-popup-countdown-time {
 				display: flex;
 				align-items: center;
 				justify-content: space-evenly;
 				gap: 15px;
 			}
 
-			._wppool-popup-countdown-time>div {
+			._wp-dark-popup-countdown-time>div {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
@@ -918,13 +920,13 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 				gap: 8px;
 			}
 
-			._wppool-popup-countdown-time>div>span {
+			._wp-dark-popup-countdown-time>div>span {
 				font-size: 20px;
 				font-weight: 600;
 				color: white;
 			}
 
-			._wppool-popup-countdown-time>div>span:nth-child(1) {
+			._wp-dark-popup-countdown-time>div>span:nth-child(1) {
 				border: 2px solid rgba(255, 255, 255, 0.6);
 				height: 60px;
 				width: 56px;
@@ -935,21 +937,21 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 				border-radius: 5px;
 			}
 
-			._wppool-popup-countdown-time>div>span:nth-child(2) {
+			._wp-dark-popup-countdown-time>div>span:nth-child(2) {
 				font-size: 12px;
 				font-weight: 500;
 				color: rgb(255, 255, 255 / .8);
 			}
 
-			._wppool-popup-countdown-time>span {
+			._wp-dark-popup-countdown-time>span {
 				font-size: 50px;
 				color: white;
 				margin-top: -25px;
 			}
 
-			._wppool-popup-button {
+			._wp-dark-popup-button {
 				height: 60px;
-				background: var(--wppool-popup-color);
+				background: var(--wp-dark-popup-color);
 				color: #222;
 				font-size: 18px;
 				font-weight: 600;
@@ -968,7 +970,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 				position: relative;
 			}
 
-			._wppool-popup-button:after {
+			._wp-dark-popup-button:after {
 				content: "";
 				position: absolute;
 				top: 0;
@@ -979,33 +981,33 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 				transition: .3s;
 			}
 
-			._wppool-popup-button:hover {
+			._wp-dark-popup-button:hover {
 				color: white;
 			}
 
-			._wppool-popup-button:hover:after {
+			._wp-dark-popup-button:hover:after {
 				width: 100%;
 			}
 
 			@media (max-width: 576px) {
-				._wppool-popup-countdown {
+				._wp-dark-popup-countdown {
 					transform: scale(.99);
 				}
 			}
-			._wppool-popup-demo-link {
+			._wp-dark-popup-demo-link {
 				color: #ddd;
 				transition: .2s ease-in-out;
 				cursor: pointer;
 				text-decoration: none;
 				padding-bottom: 10px;
 			}
-			._wppool-popup-demo-link:hover {
+			._wp-dark-popup-demo-link:hover {
 				color: #ddd;
 				opacity: .9;
 			}
 			';
 
-			return apply_filters( 'wppool_inline_styles', $css );
+			return apply_filters( 'wp_dark_inline_styles', $css );
 		}
 
 		/**
@@ -1013,24 +1015,24 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 *
 		 * @return void
 		 */
-		public function enqueue_scripts() {
-			wp_register_script( 'wppool-plugins', '', [], time(), true );
+		public function wp_dark_enqueue_scripts() {
+			wp_register_script( 'wp-dark-plugins', '', [], time(), true );
 
 			// Localize script.
-			wp_localize_script( 'wppool-plugins', 'WPPOOL_Plugins', [
-				'plugins' => $this->get_plugins(),
+			wp_localize_script( 'wp-dark-plugins', 'WP_DARK_Plugins', [
+				'plugins' => $this->wp_dark_get_plugins(),
 				'debug' => defined( 'WP_DEBUG' ) && WP_DEBUG,
 			] );
 
-			wp_enqueue_script( 'wppool-plugins' );
+			wp_enqueue_script( 'wp-dark-plugins' );
 
 			// Enqueue inline scripts.
-			wp_add_inline_script( 'wppool-plugins', $this->get_inline_scripts() );
+			wp_add_inline_script( 'wp-dark-plugins', $this->wp_dark_get_inline_scripts() );
 
 			// Enqueue inline styles.
-			wp_register_style( 'wppool-plugins', '', [], time() );
-			wp_enqueue_style( 'wppool-plugins' );
-			wp_add_inline_style( 'wppool-plugins', $this->get_inline_styles() );
+			wp_register_style( 'wp-dark-plugins', '', [], time() );
+			wp_enqueue_style( 'wp-dark-plugins' );
+			wp_add_inline_style( 'wp-dark-plugins', $this->wp_dark_get_inline_styles() );
 		}
 
 		/**
@@ -1038,13 +1040,13 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 *
 		 * @return void
 		 */
-		public function listen_appsero() {
+		public function wp_dark_listen_appsero() {
 			$hook_name =
 				str_replace( '_', '-', $this->plugin_id ) . '_tracker_optin';
 
 			add_action(
 				$hook_name,
-				[ $this, 'plugin_tracker_optin_callback' ],
+				[ $this, 'wp_dark_plugin_tracker_optin_callback' ],
 				10,
 				1
 			);
@@ -1055,8 +1057,8 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 *
 		 * @return void
 		 */
-		public function appsero() {
-			$this->listen_appsero();
+		public function wp_dark_appsero() {
+			$this->wp_dark_listen_appsero();
 		}
 
 		/**
@@ -1065,7 +1067,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 * @param array $data The data.
 		 * @return void
 		 */
-		public function plugin_tracker_optin_callback( $data = [] ) {
+		public function wp_dark_plugin_tracker_optin_callback( $data = [] ) {
 			$this->user_data = [
 				'email' => $data['admin_email'],
 				'first_name' => $data['first_name'],
@@ -1073,7 +1075,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 			];
 
 			// Subscribe to CRM.
-			$this->subscribe();
+			$this->wp_dark_subscribe();
 		}
 
 		/**
@@ -1083,7 +1085,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 * @param int|array $tag_id The tag IDs.
 		 * @return self
 		 */
-		public function set_tag( $tag_id = null ) {
+		public function wp_dark_set_tag( $tag_id = null ) {
 			if ( $tag_id ) {
 				$this->custom_tags = array_merge(
 					$this->custom_tags,
@@ -1100,7 +1102,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 * @param int|array $list_id The list IDs.
 		 * @return self
 		 */
-		public function set_list( $list_id = null ) {
+		public function wp_dark_set_list( $list_id = null ) {
 			if ( $list_id ) {
 				$this->custom_lists = array_merge(
 					$this->custom_lists,
@@ -1117,7 +1119,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 * @param int|array $tag_id The tag IDs.
 		 * @return self
 		 */
-		public function remove_tag( $tag_id = null ) {
+		public function wp_dark_remove_tag( $tag_id = null ) {
 			if ( $tag_id ) {
 				$this->custom_tags = array_diff(
 					$this->custom_tags,
@@ -1134,7 +1136,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 * @param  int|array $list_id The list id.
 		 * @return self
 		 */
-		public function remove_list( $list_id = null ) {
+		public function wp_dark_remove_list( $list_id = null ) {
 			if ( $list_id ) {
 				$this->custom_lists = array_diff(
 					$this->custom_lists,
@@ -1151,8 +1153,8 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 * @param string $tag The tag.
 		 * @return array
 		 */
-		public function get_tag_id( $tag = '' ) {
-			$tags = $this->get_tags();
+		public function wp_dark_get_tag_id( $tag = '' ) {
+			$tags = $this->wp_dark_get_tags();
 
 			return isset( $tags[ $tag ] ) ? $tags[ $tag ] : [];
 		}
@@ -1162,8 +1164,8 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 *
 		 * @return array
 		 */
-		public function get_current_list_id() {
-			$plugin = $this->get_current_plugin();
+		public function wp_dark_get_current_list_id() {
+			$plugin = $this->wp_dark_get_current_plugin();
 
 			return $plugin ? $plugin['list_id'] : [];
 		}
@@ -1176,7 +1178,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 * @throws \Exception If email is not valid.
 		 * @return mixed
 		 */
-		protected function sent_to_fluent_server( $data = [] ) {
+		protected function wp_dark_sent_to_fluent_server( $data = [] ) {
 			// Check if email isset and email is valid.
 			if ( ! isset( $data['email'] ) || ! is_email( $data['email'] ) ) {
 				throw new \Exception( 'Email is not valid' );
@@ -1209,13 +1211,13 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 * @param string $tag The tag.
 		 * @return mixed
 		 */
-		public function subscribe( $tag = 'free' ) {
+		public function wp_dark_subscribe( $tag = 'free' ) {
 			$data = array_merge( $this->user_data, [
-				'tags' => [ $this->get_tag_id( $tag ) ],
-				'lists' => $this->get_list_id(),
+				'tags' => [ $this->wp_dark_get_tag_id( $tag ) ],
+				'lists' => $this->wp_dark_get_list_id(),
 			] );
 
-			return $this->sent_to_fluent_server( $data );
+			return $this->wp_dark_sent_to_fluent_server( $data );
 		}
 
 		/**
@@ -1224,12 +1226,12 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 *
 		 * @return array
 		 */
-		public function unsubscribe_plugin() {
+		public function wp_dark_unsubscribe_plugin() {
 			$data = array_merge( $this->user_data, [
-				'remove_lists' => $this->get_list_id(),
+				'remove_lists' => $this->wp_dark_get_list_id(),
 			] );
 
-			return $this->sent_to_fluent_server( $data );
+			return $this->wp_dark_sent_to_fluent_server( $data );
 		}
 
 		/**
@@ -1239,12 +1241,12 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 * @param string $tag The tag name.
 		 * @return array
 		 */
-		public function unsubscribe_tag( $tag = 'free' ) {
+		public function wp_dark_unsubscribe_tag( $tag = 'free' ) {
 			$data = array_merge( $this->user_data, [
-				'remove_tags' => $this->get_tag_id( $tag ),
+				'remove_tags' => $this->wp_dark_get_tag_id( $tag ),
 			] );
 
-			return $this->sent_to_fluent_server( $data );
+			return $this->wp_dark_sent_to_fluent_server( $data );
 		}
 
 		/**
@@ -1252,10 +1254,10 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 *
 		 * @return array
 		 */
-		public function unsubscribe() {
+		public function wp_dark_unsubscribe() {
 			$data = array_merge( $this->user_data, [ 'status' => 'unsubscribed' ] );
 
-			return $this->sent_to_fluent_server( $data );
+			return $this->wp_dark_sent_to_fluent_server( $data );
 		}
 
 		/**
@@ -1263,7 +1265,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 *
 		 * @return string
 		 */
-		public function get_plugin_image() {
+		public function wp_dark_get_plugin_image() {
 			return plugin_dir_url( __FILE__ ) . 'background-image.png';
 		}
 
@@ -1274,18 +1276,18 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 * @param string $image_url The image url.
 		 * @return self
 		 */
-		public static function init( $plugin_id = 'wp_dark_mode', $image_url = null ) {
+		public static function wp_dark_init( $plugin_id = 'wp_dark_mode', $image_url = null ) {
 			$instance = new self( $plugin_id );
 
 			// Add plugin image.
-			add_filter( 'wppool_plugins', function ( $plugins ) use ( $instance, $image_url ) {
-				$plugins[ $instance->plugin_id ]['background_image'] = isset( $image_url ) ? $image_url : $instance->get_plugin_image();
+			add_filter( 'wp_dark_plugins', function ( $plugins ) use ( $instance, $image_url ) {
+				$plugins[ $instance->plugin_id ]['background_image'] = isset( $image_url ) ? $image_url : $instance->wp_dark_get_plugin_image();
 
 				return $plugins;
 			} );
 
 			// Trigger appsero.
-			$instance->appsero();
+			$instance->wp_dark_appsero();
 
 			return $instance;
 		}
@@ -1298,7 +1300,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 		 * @param string $from Start from. Default is now.
 		 * @return mixed
 		 */
-		public function set_campaign( $image_url = null, $to = null, $from = null ) {
+		public function wp_dark_set_campaign( $image_url = null, $to = null, $from = null ) {
 			// Bailout if image url is not valid.
 			if ( ! $image_url ) {
 				return $this;
@@ -1318,7 +1320,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 			}
 
 			// Modify the plugin data.
-			add_filter( 'wppool_plugins', function ( $plugins ) use ( $image_url, $to, $from ) {
+			add_filter( 'wp_dark_plugins', function ( $plugins ) use ( $image_url, $to, $from ) {
 
 				$plugins[ $this->plugin_id ]['background_image'] = $image_url;
 				$plugins[ $this->plugin_id ]['from'] = $from;
@@ -1334,17 +1336,7 @@ if ( ! class_exists( 'WPPOOL_Plugin' ) ) {
 	add_filter( 'appsero_is_local', '__return_false' );
 
 	// Instantiate the class after plugins loaded.
-	add_action( 'plugins_loaded', [ '\WPPOOL_Plugin', 'init_plugin_sdk' ] );
+	add_action( 'plugins_loaded', [ __NAMESPACE__ . '\Wp_Dark_Plugin', 'wp_dark_init_plugin_sdk' ] );
+} // End if ( ! class_exists( __NAMESPACE__ . '\Wp_Dark_Plugin' ) ).
 
-	/**
-	 * If WPPOOL_Plugin function does not exists.
-	 *
-	 * @param string $plugin_id The plugin id.
-	 * @param string $image_url The image url.
-	 * @return mixed
-	 */
-	function wppool_plugin_init( $plugin_id = 'wp_dark_mode', $image_url = null ) {
-		return WPPOOL_Plugin::init( $plugin_id, $image_url );
-	}
-}
 

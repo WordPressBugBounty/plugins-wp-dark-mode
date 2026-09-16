@@ -1,6 +1,6 @@
 <?php
 /**
- * Compatibility Class for WP Dark Mode
+ * Wp_Dark_Compatibility Class for WP Dark Mode
  *
  * @package WP_Dark_Mode
  */
@@ -19,18 +19,18 @@ require_once WP_DARK_MODE_INCLUDES . 'compatibility/class-themes.php';
 defined( 'ABSPATH' ) || exit();
 
 
-if ( ! class_exists( 'Compatibility' ) ) {
+if ( ! class_exists( __NAMESPACE__ . '\\Wp_Dark_Compatibility' ) ) {
 	/**
-	 * Compatibility Class for WP Dark Mode
+	 * Wp_Dark_Compatibility Class for WP Dark Mode
 	 */
-	class Compatibility extends \WP_Dark_Mode\Base {
+	class Wp_Dark_Compatibility extends \WP_Dark_Mode\Wp_Dark_Base {
 
 		/**
 		 * Return the slug of the theme.
 		 *
 		 * @return string
 		 */
-		public function get_theme_slug() {
+		public function wp_dark_get_theme_slug() {
 			// Return site theme.
 			return wp_get_theme()->get_stylesheet();
 		}
@@ -40,40 +40,40 @@ if ( ! class_exists( 'Compatibility' ) ) {
 		 *
 		 * @return string
 		 */
-		public function get_supported_theme() {
+		public function wp_dark_get_supported_theme() {
 
-			$themes_object = \WP_DARK_MODE\Compatibility\Themes::get_instance();
+			$themes_object = \WP_Dark_Mode\Compatibility\Wp_Dark_Themes::wp_dark_get_instance();
 
 			$themes = [
-				'twentytwenty'      => [ $themes_object, 'twentytwenty' ],
-				'twentytwentyone'   => [ $themes_object, 'twentytwentyone' ],
-				'twentytwentytwo'   => [ $themes_object, 'twentytwentytwo' ],
-				'twentytwentythree' => [ $themes_object, 'twentytwentythree' ],
-				'twentytwentyfour'  => [ $themes_object, 'twentytwentyfour' ],
-				'astra'             => [ $themes_object, 'astra' ],
-				'generatepress'     => [ $themes_object, 'generatepress' ],
-				'oceanwp'           => [ $themes_object, 'oceanwp' ],
-				'neve'              => [ $themes_object, 'neve' ],
-				'hello-elementor'   => [ $themes_object, 'hello_elementor' ],
-				'storefront'        => [ $themes_object, 'storefront' ],
-				'flatsome'          => [ $themes_object, 'flatsome' ],
-				'avada'             => [ $themes_object, 'avada' ],
-				'enfold'            => [ $themes_object, 'enfold' ],
-				'divi'              => [ $themes_object, 'divi' ],
+				'twentytwenty'      => [ $themes_object, 'wp_dark_theme_twentytwenty' ],
+				'twentytwentyone'   => [ $themes_object, 'wp_dark_theme_twentytwentyone' ],
+				'twentytwentytwo'   => [ $themes_object, 'wp_dark_theme_twentytwentytwo' ],
+				'twentytwentythree' => [ $themes_object, 'wp_dark_theme_twentytwentythree' ],
+				'twentytwentyfour'  => [ $themes_object, 'wp_dark_theme_twentytwentyfour' ],
+				'astra'             => [ $themes_object, 'wp_dark_theme_astra' ],
+				'generatepress'     => [ $themes_object, 'wp_dark_theme_generatepress' ],
+				'oceanwp'           => [ $themes_object, 'wp_dark_theme_oceanwp' ],
+				'neve'              => [ $themes_object, 'wp_dark_theme_neve' ],
+				'hello-elementor'   => [ $themes_object, 'wp_dark_theme_hello_elementor' ],
+				'storefront'        => [ $themes_object, 'wp_dark_theme_storefront' ],
+				'flatsome'          => [ $themes_object, 'wp_dark_theme_flatsome' ],
+				'avada'             => [ $themes_object, 'wp_dark_theme_avada' ],
+				'enfold'            => [ $themes_object, 'wp_dark_theme_enfold' ],
+				'divi'              => [ $themes_object, 'wp_dark_theme_divi' ],
 				// Additional popular themes.
-				'betheme'           => [ $themes_object, 'betheme' ],
-				'beonepage'         => [ $themes_object, 'beonepage' ],
-				'newspaper'         => [ $themes_object, 'newspaper' ],
-				'jupiter'           => [ $themes_object, 'jupiter' ],
-				'soledad'           => [ $themes_object, 'soledad' ],
-				'salient'           => [ $themes_object, 'salient' ],
-				'uncode'            => [ $themes_object, 'uncode' ],
-				'bridge'            => [ $themes_object, 'bridge' ],
-				'x'                 => [ $themes_object, 'x' ],
-				'sahifa'            => [ $themes_object, 'sahifa' ],
-				'the7'              => [ $themes_object, 'the7' ],
-				'spectra-one'       => [ $themes_object, 'spectra_one' ],
-				'virtue'            => [ $themes_object, 'virtue' ],
+				'betheme'           => [ $themes_object, 'wp_dark_theme_betheme' ],
+				'beonepage'         => [ $themes_object, 'wp_dark_theme_beonepage' ],
+				'newspaper'         => [ $themes_object, 'wp_dark_theme_newspaper' ],
+				'jupiter'           => [ $themes_object, 'wp_dark_theme_jupiter' ],
+				'soledad'           => [ $themes_object, 'wp_dark_theme_soledad' ],
+				'salient'           => [ $themes_object, 'wp_dark_theme_salient' ],
+				'uncode'            => [ $themes_object, 'wp_dark_theme_uncode' ],
+				'bridge'            => [ $themes_object, 'wp_dark_theme_bridge' ],
+				'x'                 => [ $themes_object, 'wp_dark_theme_x' ],
+				'sahifa'            => [ $themes_object, 'wp_dark_theme_sahifa' ],
+				'the7'              => [ $themes_object, 'wp_dark_theme_the7' ],
+				'spectra-one'       => [ $themes_object, 'wp_dark_theme_spectra_one' ],
+				'virtue'            => [ $themes_object, 'wp_dark_theme_virtue' ],
 			];
 
 			return apply_filters( 'wp_dark_mode_supported_themes', $themes );
@@ -84,9 +84,9 @@ if ( ! class_exists( 'Compatibility' ) ) {
 		 *
 		 * @return bool
 		 */
-		public function is_theme_supported() {
-			$theme = $this->get_theme_slug();
-			$themes = $this->get_supported_theme();
+		public function wp_dark_is_theme_supported() {
+			$theme = $this->wp_dark_get_theme_slug();
+			$themes = $this->wp_dark_get_supported_theme();
 
 			return isset( $themes[ $theme ] );
 		}
@@ -96,9 +96,9 @@ if ( ! class_exists( 'Compatibility' ) ) {
 		 *
 		 * @return array
 		 */
-		public function get_theme() {
-			$theme = $this->get_theme_slug();
-			$themes = $this->get_supported_theme();
+		public function wp_dark_get_theme() {
+			$theme = $this->wp_dark_get_theme_slug();
+			$themes = $this->wp_dark_get_supported_theme();
 
 			return $themes[ $theme ];
 		}
@@ -125,7 +125,7 @@ if ( ! class_exists( 'Compatibility' ) ) {
 		 * @since 1.0.0
 		 * @return array Array of supported plugins requiring PHP logic
 		 */
-		public function get_supported_plugins() {
+		public function wp_dark_get_supported_plugins() {
 			$plugins = [
 				// Add plugins that need PHP logic here
 				// Format: 'plugin-slug' => [ $plugins_object, 'method_name' ]
@@ -138,11 +138,11 @@ if ( ! class_exists( 'Compatibility' ) ) {
 
 			// Only load the Plugins class if we have plugins that need PHP logic.
 			if ( ! empty( $plugins ) ) {
-				if ( ! class_exists( '\WP_Dark_Mode\Compatibility\Plugins' ) ) {
+				if ( ! class_exists( '\WP_Dark_Mode\Compatibility\Wp_Dark_Plugins' ) ) {
 					require_once WP_DARK_MODE_INCLUDES . 'compatibility/class-plugins.php';
 				}
 
-				$plugins_object = \WP_Dark_Mode\Compatibility\Plugins::get_instance();
+				$plugins_object = \WP_Dark_Mode\Compatibility\Wp_Dark_Plugins::wp_dark_get_instance();
 
 				// Uncomment and modify as needed:
 				// $plugins['woocommerce'] = [ $plugins_object, 'woocommerce' ];
@@ -157,8 +157,8 @@ if ( ! class_exists( 'Compatibility' ) ) {
 		 * @param string $plugin_slug Plugin slug to check
 		 * @return bool
 		 */
-		public function is_plugin_supported( $plugin_slug ) {
-			$plugins = $this->get_supported_plugins();
+		public function wp_dark_is_plugin_supported( $plugin_slug ) {
+			$plugins = $this->wp_dark_get_supported_plugins();
 			return isset( $plugins[ $plugin_slug ] );
 		}
 
@@ -169,9 +169,9 @@ if ( ! class_exists( 'Compatibility' ) ) {
 		 * @param string $plugin_slug Plugin slug to check
 		 * @return bool
 		 */
-		public function is_plugin_active( $plugin_slug ) {
+		public function wp_dark_is_plugin_active( $plugin_slug ) {
 			// This method is for future plugins that need PHP logic
-			// CSS-only plugins are handled directly in handle_plugin_compatibility().
+			// CSS-only plugins are handled directly in wp_dark_handle_plugin_compatibility().
 
 			switch ( $plugin_slug ) {
 				// Future plugins that need PHP logic:
@@ -189,8 +189,8 @@ if ( ! class_exists( 'Compatibility' ) ) {
 		 * @param string $plugin_slug Plugin slug
 		 * @return array|null
 		 */
-		public function get_plugin( $plugin_slug ) {
-			$plugins = $this->get_supported_plugins();
+		public function wp_dark_get_plugin( $plugin_slug ) {
+			$plugins = $this->wp_dark_get_supported_plugins();
 			return isset( $plugins[ $plugin_slug ] ) ? $plugins[ $plugin_slug ] : null;
 		}
 
@@ -200,14 +200,14 @@ if ( ! class_exists( 'Compatibility' ) ) {
 		 *
 		 * @return void
 		 */
-		public function actions() {
+		public function wp_dark_actions() {
 
 			// Get theme slug.
-			$theme_slug = $this->get_theme_slug();
+			$theme_slug = $this->wp_dark_get_theme_slug();
 
 			// Theme actions built-in.
-			if ( $this->is_theme_supported() ) {
-				$theme = $this->get_theme();
+			if ( $this->wp_dark_is_theme_supported() ) {
+				$theme = $this->wp_dark_get_theme();
 
 				// If method exists, call it.
 				if ( method_exists( $theme[0], $theme[1] ) ) {
@@ -221,14 +221,14 @@ if ( ! class_exists( 'Compatibility' ) ) {
 
 			// Enqueue styles if file exists.
 			if ( file_exists( WP_DARK_MODE_PATH . 'assets/css/themes/' . $theme_slug . '.css' ) ) {
-				add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_theme_styles' ], 9999 );
+				add_action( 'wp_enqueue_scripts', [ $this, 'wp_dark_enqueue_theme_styles' ], 9999 );
 			}
 
 			// Do action.
 			do_action( 'wp_dark_mode_theme_supports', $theme_slug );
 
 			// Handle plugin compatibility
-			$this->handle_plugin_compatibility();
+			$this->wp_dark_handle_plugin_compatibility();
 		}
 
 		/**
@@ -237,7 +237,7 @@ if ( ! class_exists( 'Compatibility' ) ) {
 		 *
 		 * @return void
 		 */
-		private function handle_plugin_compatibility() {
+		private function wp_dark_handle_plugin_compatibility() {
 			// Define plugins that need compatibility CSS.
 			$css_plugins = [
 				'site-reviews' => 'GeminiLabs\SiteReviews\Application',
@@ -252,7 +252,7 @@ if ( ! class_exists( 'Compatibility' ) ) {
 						add_action(
 							'wp_enqueue_scripts',
 							function () use ( $plugin_slug ) {
-								$this->enqueue_plugin_styles( $plugin_slug );
+								$this->wp_dark_enqueue_plugin_styles( $plugin_slug );
 							},
 							9999
 						);
@@ -261,9 +261,9 @@ if ( ! class_exists( 'Compatibility' ) ) {
 			}
 
 			// Handle plugins that need PHP logic (from get_supported_plugins).
-			$supported_plugins = $this->get_supported_plugins();
+			$supported_plugins = $this->wp_dark_get_supported_plugins();
 			foreach ( $supported_plugins as $plugin_slug => $plugin_callback ) {
-				if ( $this->is_plugin_active( $plugin_slug ) ) {
+				if ( $this->wp_dark_is_plugin_active( $plugin_slug ) ) {
 					if ( method_exists( $plugin_callback[0], $plugin_callback[1] ) ) {
 						try {
 							call_user_func( $plugin_callback );
@@ -283,9 +283,9 @@ if ( ! class_exists( 'Compatibility' ) ) {
 		 *
 		 * @return void
 		 */
-		public function enqueue_theme_styles() {
+		public function wp_dark_enqueue_theme_styles() {
 			// Get theme.
-			$theme_slug = $this->get_theme_slug();
+			$theme_slug = $this->wp_dark_get_theme_slug();
 
 			// Enqueue styles.
 			wp_enqueue_style( 'wp-dark-mode-theme-' . $theme_slug, ( WP_DARK_MODE_ASSETS . 'css/themes/' . $theme_slug . '.css' ), [], WP_DARK_MODE_VERSION );
@@ -297,12 +297,12 @@ if ( ! class_exists( 'Compatibility' ) ) {
 		 * @param string $plugin_slug Plugin slug
 		 * @return void
 		 */
-		public function enqueue_plugin_styles( $plugin_slug ) {
+		public function wp_dark_enqueue_plugin_styles( $plugin_slug ) {
 			// Enqueue styles.
 			wp_enqueue_style( 'wp-dark-mode-plugin-' . $plugin_slug, ( WP_DARK_MODE_ASSETS . 'css/plugins/' . $plugin_slug . '.css' ), [], WP_DARK_MODE_VERSION );
 		}
 	}
 
 	// Initialize the class.
-	Compatibility::init();
+	Wp_Dark_Compatibility::wp_dark_init();
 }

@@ -12,25 +12,25 @@ namespace WP_Dark_Mode\Admin;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
-if ( ! class_exists( __NAMESPACE__ . 'Switches' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Admin_Switches' ) ) {
 	/**
 	 * WP Dark Mode Admin Switches
 	 *
 	 * @package WP Dark Mode
 	 * @since 5.0.0
 	 */
-	class Switches extends \WP_Dark_Mode\Base {
+	class Wp_Dark_Admin_Switches extends \WP_Dark_Mode\Wp_Dark_Base {
 
 		// Use option trait.
-		use \WP_Dark_Mode\Traits\Options;
+		use \WP_Dark_Mode\Traits\Wp_Dark_Options;
 
 		/**
 		 * Adds action hooks
 		 *
 		 * @since 5.0.0
 		 */
-		public function actions() {
-			add_action( 'admin_bar_menu', [ $this, 'render_admin_switcher_menu' ], 100 );
+		public function wp_dark_actions() {
+			add_action( 'admin_bar_menu', [ $this, 'wp_dark_render_admin_switcher_menu' ], 100 );
 		}
 
 		/**
@@ -39,7 +39,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Switches' ) ) {
 		 * @since 5.0.0
 		 * @param object $wp_admin_bar
 		 */
-		public function render_admin_switcher_menu( $wp_admin_bar ) {
+		public function wp_dark_render_admin_switcher_menu( $wp_admin_bar ) {
 			// Bailout, if not admin.
 			if ( ! is_admin() ) {
 				return;
@@ -50,7 +50,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Switches' ) ) {
 				return;
 			}
 
-			$enabled = $this->get_option( 'admin_enabled' );
+			$enabled = $this->wp_dark_get_option( 'admin_enabled' );
 
 			$activated = apply_filters( 'wp_dark_mode_admin_activated', false );
 
@@ -77,5 +77,5 @@ if ( ! class_exists( __NAMESPACE__ . 'Switches' ) ) {
 	}
 
 	// Instantiate the class.
-	Switches::init();
+	Wp_Dark_Admin_Switches::wp_dark_init();
 }

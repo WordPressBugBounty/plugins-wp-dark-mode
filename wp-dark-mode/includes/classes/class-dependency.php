@@ -12,7 +12,7 @@ namespace WP_Dark_Mode;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
-if ( ! class_exists( __NAMESPACE__ . 'Dependency' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Dependency' ) ) {
 
 	/**
 	 * Checks all the dependencies for WP Dark Mode
@@ -20,7 +20,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Dependency' ) ) {
 	 * @package WP Dark Mode
 	 * @since 5.0.0
 	 */
-	class Dependency extends Base {
+	class Wp_Dark_Dependency extends Wp_Dark_Base {
 
 		/**
 		 * Minimum PHP version required
@@ -61,7 +61,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Dependency' ) ) {
 		 * @since 5.0.0
 		 * @return bool
 		 */
-		public function is_php_compatible() {
+		public function wp_dark_is_php_compatible() {
 			// Check if PHP version is compatible.
 			return ! version_compare( PHP_VERSION, $this->minimum_php_version, '<' );
 		}
@@ -72,7 +72,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Dependency' ) ) {
 		 * @since 5.0.0
 		 * @return bool
 		 */
-		public function is_wp_compatible() {
+		public function wp_dark_is_wp_compatible() {
 			// Check if WordPress version is compatible.
 			return ! version_compare( get_bloginfo( 'version' ), $this->minimum_wp_version, '<' );
 		}
@@ -83,7 +83,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Dependency' ) ) {
 		 * @since 5.0.0
 		 * @return bool
 		 */
-		public function is_wp_dark_mode_ultimate_installed() {
+		public function wp_dark_is_wp_dark_mode_ultimate_installed() {
 			// Check if WP Dark Mode Free plugin is installed.
 			return file_exists( WP_PLUGIN_DIR . '/' . $this->wp_dark_mode_ultimate_file );
 		}
@@ -94,7 +94,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Dependency' ) ) {
 		 * @since 5.0.0
 		 * @return bool
 		 */
-		public function is_wp_dark_mode_ultimate_active() {
+		public function wp_dark_is_wp_dark_mode_ultimate_active() {
 			// Check if WP Dark Mode Free plugin is active.
 			return is_plugin_active( $this->wp_dark_mode_ultimate_file );
 		}
@@ -105,7 +105,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Dependency' ) ) {
 		 * @since 5.0.0
 		 * @return bool
 		 */
-		public function is_wp_dark_mode_ultimate_compatible() {
+		public function wp_dark_is_wp_dark_mode_ultimate_compatible() {
 			// Check if WP Dark Mode Free plugin version is compatible.
 			return ! version_compare( get_plugin_data( WP_PLUGIN_DIR . '/' . $this->wp_dark_mode_ultimate_file )['Version'], $this->minimum_wp_dark_mode_ultimate_version, '<' );
 		}
@@ -116,8 +116,8 @@ if ( ! class_exists( __NAMESPACE__ . 'Dependency' ) ) {
 		 * @since 5.0.0
 		 * @return bool
 		 */
-		public function is_compatible() {
-			return $this->is_php_compatible() && $this->is_wp_compatible();
+		public function wp_dark_is_compatible() {
+			return $this->wp_dark_is_php_compatible() && $this->wp_dark_is_wp_compatible();
 		}
 
 		/**
@@ -132,7 +132,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Dependency' ) ) {
 		  * @since 5.0.0
 		  * @return bool
 		  */
-		public function is_wc_installed() {
+		public function wp_dark_is_wc_installed() {
 			return file_exists( WP_PLUGIN_DIR . '/woocommerce/woocommerce.php' );
 		}
 
@@ -142,7 +142,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Dependency' ) ) {
 		 * @since 5.0.0
 		 * @return bool
 		 */
-		public function is_wc_active() {
+		public function wp_dark_is_wc_active() {
 			return class_exists( 'WooCommerce' ) && is_plugin_active( 'woocommerce/woocommerce.php' );
 		}
 
@@ -152,7 +152,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Dependency' ) ) {
 		 * @since 5.0.0
 		 * @return bool
 		 */
-		public function is_elementor_installed() {
+		public function wp_dark_is_elementor_installed() {
 			return file_exists( WP_PLUGIN_DIR . '/elementor/elementor.php' );
 		}
 
@@ -162,7 +162,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Dependency' ) ) {
 		 * @since 5.0.0
 		 * @return bool
 		 */
-		public function is_elementor_active() {
+		public function wp_dark_is_elementor_active() {
 			return class_exists( 'Elementor\Plugin' ) && is_plugin_active( 'elementor/elementor.php' );
 		}
 	}

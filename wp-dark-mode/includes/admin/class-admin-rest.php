@@ -13,29 +13,29 @@ namespace WP_Dark_Mode\Admin;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
-if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Rest' ) ) {
 	/**
 	 * Handles API requests for WP Dark Mode admin Settings.
 	 *
 	 * @package WP Dark Mode
 	 * @since 5.0.0
 	 */
-	class REST extends \WP_Dark_Mode\Base {
+	class Wp_Dark_Rest extends \WP_Dark_Mode\Wp_Dark_Base {
 
 		// Use utility trait.
-		use \WP_Dark_Mode\Traits\Utility;
+		use \WP_Dark_Mode\Traits\Wp_Dark_Utility;
 
 		// Use options trait.
-		use \WP_Dark_Mode\Traits\Options;
+		use \WP_Dark_Mode\Traits\Wp_Dark_Options;
 
 		/**
 		 * Register ajax actions
 		 *
 		 * @since 5.0.0
 		 */
-		public function actions() {
+		public function wp_dark_actions() {
 			// Add REST API endpoints.
-			$this->register_rest_routes();
+			$this->wp_dark_register_rest_routes();
 		}
 
 		/**
@@ -43,7 +43,7 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function register_rest_routes() {
+		public function wp_dark_register_rest_routes() {
 
 			// Get settings.
 			register_rest_route(
@@ -51,8 +51,8 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 				'/settings',
 				array(
 					'methods' => 'GET',
-					'callback' => array( $this, 'get_settings' ),
-					'permission_callback' => array( $this, 'permissions_callback' ),
+					'callback' => array( $this, 'wp_dark_get_settings' ),
+					'permission_callback' => array( $this, 'wp_dark_permissions_callback' ),
 				)
 			);
 
@@ -62,14 +62,14 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 				'/settings',
 				array(
 					'methods' => 'PUT',
-					'callback' => array( $this, 'update_settings' ),
+					'callback' => array( $this, 'wp_dark_update_settings' ),
 					'args' => array(
 						'options' => array(
 							'required' => false,
 							'type' => 'object',
 						),
 					),
-					'permission_callback' => array( $this, 'permissions_callback' ),
+					'permission_callback' => array( $this, 'wp_dark_permissions_callback' ),
 				)
 			);
 
@@ -79,8 +79,8 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 				'/settings',
 				array(
 					'methods' => 'DELETE',
-					'callback' => array( $this, 'reset_settings' ),
-					'permission_callback' => array( $this, 'permissions_callback' ),
+					'callback' => array( $this, 'wp_dark_reset_settings' ),
+					'permission_callback' => array( $this, 'wp_dark_permissions_callback' ),
 				)
 			);
 
@@ -90,8 +90,21 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 				'/notice',
 				array(
 					'methods' => 'POST',
-					'callback' => array( $this, 'update_notice' ),
-					'permission_callback' => array( $this, 'permissions_callback' ),
+					'callback' => array( $this, 'wp_dark_update_notice' ),
+					'permission_callback' => array( $this, 'wp_dark_permissions_callback' ),
+					'args' => array(
+						'notice' => array(
+							'required' => true,
+							'type' => 'string',
+							'enum' => array( 'rating', 'affiliate', 'upgrade' ),
+						),
+						'remind' => array(
+							'required' => false,
+							'validate_callback' => function ( $value ) {
+								return 'never' === $value || is_numeric( $value );
+							},
+						),
+					),
 				)
 			);
 
@@ -101,8 +114,8 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 				'/visitors',
 				array(
 					'methods' => 'GET',
-					'callback' => array( $this, 'get_visitors' ),
-					'permission_callback' => array( $this, 'permissions_callback' ),
+					'callback' => array( $this, 'wp_dark_get_visitors' ),
+					'permission_callback' => array( $this, 'wp_dark_permissions_callback' ),
 				)
 			);
 
@@ -112,8 +125,8 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 				'/contents',
 				array(
 					'methods' => 'GET',
-					'callback' => array( $this, 'get_contents' ),
-					'permission_callback' => array( $this, 'permissions_callback' ),
+					'callback' => array( $this, 'wp_dark_get_contents' ),
+					'permission_callback' => array( $this, 'wp_dark_permissions_callback' ),
 				)
 			);
 		}
@@ -125,8 +138,7 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 		 * @since 5.0.0
 		 * @return bool
 		 */
-		public function permissions_callback() {
-			// return true;
+		public function wp_dark_permissions_callback() {
 			return current_user_can( 'manage_options' );
 		}
 
@@ -135,8 +147,8 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function get_settings( $request ) {
-			$settings = $this->get_default_formatted_options();
+		public function wp_dark_get_settings( $request ) {
+			$settings = $this->wp_dark_get_default_formatted_options();
 
 			// Bail if no settings.
 			if ( empty( $settings ) ) {
@@ -166,17 +178,17 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function update_settings( $request ) {
+		public function wp_dark_update_settings( $request ) {
 
-			$option_keys = $this->get_default_formatted_options();
+			$option_keys = $this->wp_dark_get_default_formatted_options();
 			$updates = [];
 
 			foreach ( $option_keys as $key => $value ) {
 				if ( $request->has_param( $key ) ) {
 
-					$option_value = $request->get_param( $key );
-					$this->set_option( $key, $request->get_param( $key ), true );
-					$updates[ $key ] = $request->get_param( $key );
+					$option_value = $this->wp_dark_sanitize_option_value( $key, $request->get_param( $key ) );
+					$this->wp_dark_set_option( $key, $option_value, true );
+					$updates[ $key ] = $option_value;
 				}
 			}
 
@@ -201,7 +213,7 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function reset_settings( $request ) {
+		public function wp_dark_reset_settings( $request ) {
 
 			// Third step security check for reset.
 			if ( ! $request->has_param( 'confirm_reset' ) || 'yes' !== $request->get_param( 'confirm_reset' ) ) {
@@ -212,7 +224,7 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 			}
 
 			// Reset settings.
-			$this->set_default_options();
+			$this->wp_dark_set_default_options();
 
 			// Send response.
 			return rest_ensure_response( [
@@ -227,9 +239,9 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function update_notice( $request ) {
+		public function wp_dark_update_notice( $request ) {
 
-			$notice = $request->get_param( 'notice' );
+			$notice = sanitize_key( $request->get_param( 'notice' ) );
 
 			// Bail if no notice.
 			if ( empty( $notice ) ) {
@@ -239,7 +251,28 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 				] );
 			}
 
-			$remind = $request->has_param( 'remind' ) ? $request->get_param( 'remind' ) : 'never';
+			/**
+			 * Only the plugin's own notices may be toggled. The notice name is
+			 * interpolated into an option/transient name below, so an unvalidated
+			 * value would allow arbitrary plugin-namespaced options to be written
+			 * or deleted.
+			 */
+			$allowed_notices = array( 'rating', 'affiliate', 'upgrade' );
+
+			if ( ! in_array( $notice, $allowed_notices, true ) ) {
+				return rest_ensure_response( [
+					'success' => false,
+					'message' => __( 'Invalid notice.', 'wp-dark-mode' ),
+				] );
+			}
+
+			$remind_raw = $request->has_param( 'remind' ) ? $request->get_param( 'remind' ) : 'never';
+			$remind     = 'never' === $remind_raw ? 'never' : absint( $remind_raw );
+
+			// Treat a non-positive reminder interval as "never" so the expiry is always valid.
+			if ( 'never' !== $remind && $remind < 1 ) {
+				$remind = 'never';
+			}
 
 			if ( 'never' === $remind ) {
 				// delete transient.
@@ -263,14 +296,14 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function get_visitors( $request ) {
+		public function wp_dark_get_visitors( $request ) {
 			// Check if premium and analytics are enabled.
-			if ( ! \wp_validate_boolean( $this->get_option( 'analytics_enabled' ) ) ) {
+			if ( ! \wp_validate_boolean( $this->wp_dark_get_option( 'analytics_enabled' ) ) ) {
 				return rest_ensure_response( [] );
 			}
 
-			$visitor = new \WP_Dark_Mode\Model\Visitor();
-			$visitors = $visitor->get_all();
+			$visitor = new \WP_Dark_Mode\Model\Wp_Dark_Visitor();
+			$visitors = $visitor->wp_dark_get_all();
 
 			// Send response.
 			return rest_ensure_response( $visitors );
@@ -281,14 +314,14 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function get_contents( $request ) {
+		public function wp_dark_get_contents( $request ) {
 			$contents = [
-				'post_types' => $this->get_post_types(),
-				'posts' => $this->get_posts(),
-				'taxonomies' => $this->get_taxonomies(),
-				'terms' => $this->get_terms(),
-				'products' => $this->get_products(),
-				'product_categories' => $this->get_product_categories(),
+				'post_types' => $this->wp_dark_get_post_types(),
+				'posts' => $this->wp_dark_get_posts(),
+				'taxonomies' => $this->wp_dark_get_taxonomies(),
+				'terms' => $this->wp_dark_get_terms(),
+				'products' => $this->wp_dark_get_products(),
+				'product_categories' => $this->wp_dark_get_product_categories(),
 			];
 
 			// Send response.
@@ -305,7 +338,7 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 		 * @since 5.0.0
 		 * @return array
 		 */
-		public function get_post_types() {
+		public function wp_dark_get_post_types() {
 			$post_types = get_post_types( array(
 				'public' => true,
 				'show_ui' => true,
@@ -329,7 +362,7 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 		 * @since 5.0.0
 		 * @return array
 		 */
-		public function get_posts() {
+		public function wp_dark_get_posts() {
 
 			global $wpdb;
 
@@ -353,7 +386,7 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 		 * @since 5.0.0
 		 * @return array
 		 */
-		public function get_taxonomies() {
+		public function wp_dark_get_taxonomies() {
 			$taxonomies = get_taxonomies( array(
 				'public' => true,
 				'show_ui' => true,
@@ -375,8 +408,8 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 		 * @since 5.0.0
 		 * @return array
 		 */
-		public function get_terms() {
-			$taxonomies = $this->get_taxonomies();
+		public function wp_dark_get_terms() {
+			$taxonomies = $this->wp_dark_get_taxonomies();
 
 			$terms = array();
 
@@ -402,7 +435,7 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 		 * @since 5.0.0
 		 * @return array
 		 */
-		public function get_products() {
+		public function wp_dark_get_products() {
 			$products = array();
 
 			if ( ! class_exists( 'WooCommerce' ) ) {
@@ -427,7 +460,7 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 		 * @since 5.0.0
 		 * @return array
 		 */
-		public function get_product_categories() {
+		public function wp_dark_get_product_categories() {
 			$product_categories = array();
 
 			if ( ! class_exists( 'WooCommerce' ) ) {
@@ -453,5 +486,5 @@ if ( ! class_exists( __NAMESPACE__ . 'REST' ) ) {
 	}
 
 	// Instantiate the class.
-	REST::init();
+	Wp_Dark_Rest::wp_dark_init();
 }

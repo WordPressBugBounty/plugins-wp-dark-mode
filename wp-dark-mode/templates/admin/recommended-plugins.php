@@ -108,7 +108,7 @@ $recommended_plugins_slug = [
  * @param string $slug Plugin slug.
  * @return object|bool
  */
-function callback_recommended_plugin( $slug ) {
+function wp_dark_callback_recommended_plugin( $slug ) {
 	$args = [
 		'slug'   => $slug,
 		'fields' => [

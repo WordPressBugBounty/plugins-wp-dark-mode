@@ -1,6 +1,6 @@
 <?php
 /**
- * Base abstract class for WP Dark Mode
+ * Wp_Dark_Base abstract class for WP Dark Mode
  *
  * @package WP Dark Mode
  * @since 5.0.0
@@ -12,14 +12,14 @@ namespace WP_Dark_Mode;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
-if ( ! class_exists( __NAMESPACE__ . 'Base' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Base' ) ) {
 	/**
 	 * Enqueues script and styles to frontend for WP Dark Mode
 	 *
 	 * @package WP Dark Mode
 	 * @since 5.0.0
 	 */
-	abstract class Base {
+	abstract class Wp_Dark_Base {
 
 		/**
 		 * The instance of the class
@@ -35,7 +35,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Base' ) ) {
 		 * @since 5.0.0
 		 * @return object
 		 */
-		public static function get_instance() {
+		public static function wp_dark_get_instance() {
 			$class_name = get_called_class();
 
 			if ( ! isset( self::$instances[ $class_name ] ) ) {
@@ -51,11 +51,11 @@ if ( ! class_exists( __NAMESPACE__ . 'Base' ) ) {
 		 * @since 5.0.0
 		 * @return void
 		 */
-		public static function init() {
-			$instance = static::get_instance();
+		public static function wp_dark_init() {
+			$instance = static::wp_dark_get_instance();
 
-			$instance->actions();
-			$instance->filters();
+			$instance->wp_dark_actions();
+			$instance->wp_dark_filters();
 		}
 		/**
 		 * Adds the actions
@@ -63,7 +63,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Base' ) ) {
 		 * @since 5.0.0
 		 * @return void
 		 */
-		public function actions() {}
+		public function wp_dark_actions() {}
 
 		/**
 		 * Adds the filters
@@ -71,6 +71,6 @@ if ( ! class_exists( __NAMESPACE__ . 'Base' ) ) {
 		 * @since 5.0.0
 		 * @return void
 		 */
-		public function filters() {}
+		public function wp_dark_filters() {}
 	}
 }

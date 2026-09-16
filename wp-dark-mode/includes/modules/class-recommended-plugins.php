@@ -12,34 +12,34 @@ namespace WP_Dark_Mode;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
-if ( ! class_exists( __NAMESPACE__ . 'Shortcode' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Shortcode_Recommended_Dup' ) ) {
 	/**
 	 * Registers the shortcode for WP Dark Mode
 	 *
 	 * @package WP Dark Mode
 	 * @since 5.0.0
 	 */
-	class Shortcode extends Base {
+	class Wp_Dark_Shortcode_Recommended_Dup extends Wp_Dark_Base {
 		/**
 		 * Registers the hook
 		 *
 		 * @since 5.0.0
 		 */
-		public function hooks() {
-			add_shortcode( 'WP_Dark_Mode', array( $this, 'render_shortcode' ) );
+		public function wp_dark_hooks() {
+			add_shortcode( 'WP_Dark_Mode', array( $this, 'wp_dark_render_shortcode' ) );
 
 			// Added for backwards compatibility.
-			add_shortcode( 'wp-dark-mode', array( $this, 'render_shortcode' ) );
+			add_shortcode( 'wp-dark-mode', array( $this, 'wp_dark_render_shortcode' ) );
 		}
 
 		/**
 		 * Renders the shortcode
 		 *
 		 * @since 5.0.0
-		 * @param array $atts Shortcode attributes.
+		 * @param array $atts Wp_Dark_Shortcode_Recommended_Dup attributes.
 		 * @return string
 		 */
-		public function render_shortcode( $atts ) {
+		public function wp_dark_render_shortcode( $atts ) {
 			$atts = shortcode_atts(
 				array(
 					'style' => 1,
@@ -57,5 +57,5 @@ if ( ! class_exists( __NAMESPACE__ . 'Shortcode' ) ) {
 	}
 
 	// Instantiate the class.
-	Shortcode::init();
+	Wp_Dark_Shortcode_Recommended_Dup::wp_dark_init();
 }

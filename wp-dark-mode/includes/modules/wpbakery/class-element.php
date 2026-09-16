@@ -15,17 +15,17 @@ namespace WP_Dark_Mode\Module\WPBakery;
 defined( 'ABSPATH' ) || exit();
 
 // Check class is already exists.
-if ( ! class_exists( 'Element' ) ) {
+if ( ! class_exists( 'Wp_Dark_Element' ) ) {
 	/**
 	 * Loads WPBakery Page Builder integration for WP Dark Mode.
 	 *
 	 * @version 1.0.0
 	 * @package WP Dark Mode
 	 */
-	class Element extends \WP_Dark_Mode\Base {
+	class Wp_Dark_Element extends \WP_Dark_Mode\Wp_Dark_Base {
 
 		// Use trait.
-		use \WP_Dark_Mode\Traits\Utility;
+		use \WP_Dark_Mode\Traits\Wp_Dark_Utility;
 
 		/**
 		 * Actions.
@@ -33,22 +33,22 @@ if ( ! class_exists( 'Element' ) ) {
 		 * @return void
 		 * @version 1.0.0
 		 */
-		public function actions() {
+		public function wp_dark_actions() {
 			// Bail if WPBakery isn't active.
-			if ( ! $this->is_wpbakery_active() ) {
+			if ( ! $this->wp_dark_is_wpbakery_active() ) {
 				return;
 			}
 
-			add_action( 'vc_before_init', array( $this, 'register_param' ) );
-			add_action( 'vc_before_init', array( $this, 'register_element' ) );
-			add_action( 'vc_backend_editor_enqueue_js_css', array( $this, 'enqueue_scripts' ) );
-			add_action( 'vc_frontend_editor_enqueue_js_css', array( $this, 'enqueue_scripts' ) );
+			add_action( 'vc_before_init', array( $this, 'wp_dark_register_param' ) );
+			add_action( 'vc_before_init', array( $this, 'wp_dark_register_element' ) );
+			add_action( 'vc_backend_editor_enqueue_js_css', array( $this, 'wp_dark_enqueue_scripts' ) );
+			add_action( 'vc_frontend_editor_enqueue_js_css', array( $this, 'wp_dark_enqueue_scripts' ) );
 
 			// WPBakery's frontend/inline editor (`vc_action=vc_inline`) renders the page inside an
 			// iframe pointed at the real frontend URL, so `vc_frontend_editor_enqueue_js_css` (which
 			// fires in the parent admin document) never reaches that iframe. Enqueue our canvas
 			// script there too, only when actually in that inline-editable context.
-			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_inline_editor_scripts' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'wp_dark_enqueue_inline_editor_scripts' ) );
 		}
 
 		/**
@@ -57,12 +57,12 @@ if ( ! class_exists( 'Element' ) ) {
 		 * @return void
 		 * @version 1.0.0
 		 */
-		public function enqueue_inline_editor_scripts() {
+		public function wp_dark_enqueue_inline_editor_scripts() {
 			if ( ! function_exists( 'vc_is_inline' ) || ! vc_is_inline() ) {
 				return;
 			}
 
-			$this->enqueue_scripts();
+			$this->wp_dark_enqueue_scripts();
 		}
 
 		/**
@@ -71,7 +71,7 @@ if ( ! class_exists( 'Element' ) ) {
 		 * @return bool
 		 * @version 1.0.0
 		 */
-		public function is_wpbakery_active() {
+		public function wp_dark_is_wpbakery_active() {
 			return function_exists( 'vc_map' ) && defined( 'WPB_VC_VERSION' );
 		}
 
@@ -81,9 +81,9 @@ if ( ! class_exists( 'Element' ) ) {
 		 * @return void
 		 * @version 1.0.0
 		 */
-		public function register_param() {
+		public function wp_dark_register_param() {
 			include_once __DIR__ . '/params/class-wpbakery-param-switch.php';
-			vc_add_shortcode_param( 'wp_dark_mode_switch', array( '\WP_Dark_Mode\Module\WPBakery\Params\SwitchStyle', 'render' ) );
+			vc_add_shortcode_param( 'wp_dark_mode_switch', array( '\WP_Dark_Mode\Module\WPBakery\Params\Wp_Dark_Switch_Style', 'wp_dark_render' ) );
 		}
 
 		/**
@@ -92,7 +92,7 @@ if ( ! class_exists( 'Element' ) ) {
 		 * @return void
 		 * @version 1.0.0
 		 */
-		public function register_element() {
+		public function wp_dark_register_element() {
 			include_once __DIR__ . '/widgets/class-wpbakery-widget.php';
 
 			vc_map(
@@ -102,7 +102,7 @@ if ( ! class_exists( 'Element' ) ) {
 					'description'     => __( 'Add a toggle so visitors can switch between light and dark mode', 'wp-dark-mode' ),
 					'category'        => __( 'WP Dark Mode', 'wp-dark-mode' ),
 					'icon'            => plugin_dir_url( WP_DARK_MODE_FILE ) . 'includes/modules/wpbakery/assets/icon.svg',
-					'php_class_name'  => '\WP_Dark_Mode\Module\WPBakery\Widgets\DarkModeElement',
+					'php_class_name'  => '\WP_Dark_Mode\Module\WPBakery\Widgets\Wp_Dark_Dark_Mode_Element',
 					'params'          => array(
 						array(
 							'type'        => 'wp_dark_mode_switch',
@@ -142,7 +142,7 @@ if ( ! class_exists( 'Element' ) ) {
 		 * @return void
 		 * @version 1.0.0
 		 */
-		public function enqueue_scripts() {
+		public function wp_dark_enqueue_scripts() {
 			wp_enqueue_style( 'wp-dark-mode-admin-common', WP_DARK_MODE_ASSETS . 'css/admin-common.css', array(), WP_DARK_MODE_VERSION );
 
 			wp_enqueue_script(
@@ -166,31 +166,9 @@ if ( ! class_exists( 'Element' ) ) {
 					'switchAssetsUrl' => WP_DARK_MODE_ASSETS . 'images/switches/',
 				)
 			);
-
-			// WPBakery's own modal/panel overlays use z-index values well above the promo
-			// popup's default (9999), so clicking a locked style inside the WPBakery settings
-			// modal (classic backend editor, or the frontend/inline editor's parent admin
-			// document) shows the popup underneath the modal instead of on top of it. Print this
-			// unconditionally alongside our script (not only when this module itself renders the
-			// popup) since another active module (e.g. Elementor, if also active) may be the one
-			// that actually prints the popup markup on this same page load.
-			?>
-			<style>
-				.wp-dark-mode-promo {
-					z-index: 1000012 !important;
-				}
-			</style>
-			<?php
-
-			// Bail, if ultimate version is active — no upgrade popup needed.
-			if ( $this->is_ultimate() ) {
-				return;
-			}
-
-			require_once WP_DARK_MODE_TEMPLATE . 'admin/upgrade-popup.php';
 		}
 	}
 
 	// Instantiate the class.
-	Element::init();
+	Wp_Dark_Element::wp_dark_init();
 }

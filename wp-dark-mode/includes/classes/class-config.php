@@ -15,14 +15,14 @@ namespace WP_Dark_Mode;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
-if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Config' ) ) {
 	/**
 	 * Contains all the configuration related tasks for WP Dark Mode
 	 *
 	 * @package WP Dark Mode
 	 * @since 5.0.0
 	 */
-	class Config {
+	class Wp_Dark_Config {
 
 		/**
 		 * Instance of the class
@@ -38,9 +38,9 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 		 * @since 5.0.0
 		 * @return object
 		 */
-		public static function get_instance() {
+		public static function wp_dark_get_instance() {
 			if ( ! isset( self::$instance ) ) {
-				self::$instance = new Config();
+				self::$instance = new Wp_Dark_Config();
 			}
 
 			return self::$instance;
@@ -53,7 +53,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 		 * @since 5.0.0
 		 * @var array
 		 */
-		public static function get_default_options() {
+		public static function wp_dark_get_default_options() {
 			$options = [
 				'frontend' => [
 					'enabled' => [
@@ -330,7 +330,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 
 					'presets' => [
 						'type' => 'array',
-						'default' => self::predefined_presets(),
+						'default' => self::wp_dark_predefined_presets(),
 					],
 
 					'preset_id' => array(
@@ -597,7 +597,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 		 * @since 5.0.0
 		 * @return array
 		 */
-		public static function predefined_presets() {
+		public static function wp_dark_predefined_presets() {
 			$presets = [
 				[
 					'slug' => 'sweet_dark',
@@ -915,7 +915,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Config' ) ) {
 		 * @since 5.0.0
 		 * @return array
 		 */
-		public function get_svg_icons() {
+		public function wp_dark_get_svg_icons() {
 			$svg_icons = [
 				'HalfMoonFilled' => '<svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="wp-dark-mode-ignore"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.8956 0.505198C11.2091 0.818744 11.3023 1.29057 11.1316 1.69979C10.4835 3.25296 10.125 4.95832 10.125 6.75018C10.125 13.9989 16.0013 19.8752 23.25 19.8752C25.0419 19.8752 26.7472 19.5167 28.3004 18.8686C28.7096 18.6979 29.1814 18.7911 29.495 19.1046C29.8085 19.4182 29.9017 19.89 29.731 20.2992C27.4235 25.8291 21.9642 29.7189 15.5938 29.7189C7.13689 29.7189 0.28125 22.8633 0.28125 14.4064C0.28125 8.036 4.17113 2.57666 9.70097 0.269199C10.1102 0.098441 10.582 0.191653 10.8956 0.505198Z" fill="currentColor"/></svg>',
 				'HalfMoonOutlined' => '<svg viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="wp-dark-mode-ignore"> <path d="M23.3773 16.5026C22.0299 17.0648 20.5512 17.3753 19 17.3753C12.7178 17.3753 7.625 12.2826 7.625 6.00031C7.625 4.44912 7.9355 2.97044 8.49773 1.62305C4.38827 3.33782 1.5 7.39427 1.5 12.1253C1.5 18.4076 6.59276 23.5003 12.875 23.5003C17.606 23.5003 21.6625 20.612 23.3773 16.5026Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',

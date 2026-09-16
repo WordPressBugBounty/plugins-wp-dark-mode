@@ -262,7 +262,7 @@ msgstr "Voeg video's toe om ze te vervangen in dark mode"
 msgid ""
 "Navigate to the Widget option in the WordPress dashboard under Appearance "
 "menu. Select the menu where you want to display dark mode switch and click "
-"on the ‘+’ button and type <span class=\"text-[#374151]\"> Dark Mode "
+"on the â€˜+â€™ button and type <span class=\"text-[#374151]\"> Dark Mode "
 "Switch</span> in the widget searchbox"
 msgstr ""
 "Navigeer naar de optie Widget in het WordPress-dashboard onder het menu "
@@ -312,7 +312,7 @@ msgstr "Affiliateprogramma"
 
 #: includes/admin/class-strings.php:45
 msgid ""
-"Hey! Enjoying the WP Dark Mode plugin? 😍 Join our <a "
+"Hey! Enjoying the WP Dark Mode plugin? ðŸ˜ Join our <a "
 "href=\"https://go.wppool.dev/zfrO\" target=\"_blank\" "
 "class=\"text-[#7C3AED] font-semibold\">Influencer Program</a> to make money "
 "from your social media content. You can also check our <a "
@@ -320,7 +320,7 @@ msgid ""
 "class=\"text-[#7C3AED] font-semibold no-underline\">Affiliate Program</a> "
 "to get a <strong>25% commission</strong> on every sale!"
 msgstr ""
-"Hey! Geniet je van de WP Dark Mode plugin? 😍 Word lid van ons <a "
+"Hey! Geniet je van de WP Dark Mode plugin? ðŸ˜ Word lid van ons <a "
 "href=\"https://go.wppool.dev/zfrO\" target=\"_blank\" "
 "class=\"text-[#7C3AED] font-semibold\">Influencer-programma</a> om geld te "
 "verdienen met je social media content. Je kunt ook ons <a "
@@ -353,8 +353,8 @@ msgid "Configure AI model settings for theme generation"
 msgstr "Configureer AI-modelinstellingen for themageneratie"
 
 #: includes/admin/class-strings.php:51
-msgid "⚡ AI Preset Generator"
-msgstr "⚡ AI-instellingen-generator"
+msgid "âš¡ AI Preset Generator"
+msgstr "âš¡ AI-instellingen-generator"
 
 #: includes/admin/class-strings.php:52
 msgid "Let AI instantly generate a smart dark mode theme preset for you."
@@ -644,7 +644,7 @@ msgstr "Gekopieerd naar klembord!"
 
 #: includes/admin/class-strings.php:131
 msgid "Copy Email"
-msgstr "E-mail kopiëren"
+msgstr "E-mail kopiÃ«ren"
 
 #: includes/admin/class-strings.php:132
 msgid "Copy email address to your clipboard"
@@ -652,7 +652,7 @@ msgstr "Kopieer e-mailadres naar je klembord"
 
 #: includes/admin/class-strings.php:133
 msgid "Copy Shortcode"
-msgstr "Shortcode kopiëren"
+msgstr "Shortcode kopiÃ«ren"
 
 #: includes/admin/class-strings.php:134
 msgid "Create a custom color palette first!"
@@ -1101,7 +1101,7 @@ msgstr "Eindtijd"
 
 #: includes/admin/class-strings.php:240, includes/admin/class-strings.php:569
 msgid "Enter your selected categories and tags"
-msgstr "Voer je geselecteerde categorieën en tags in"
+msgstr "Voer je geselecteerde categorieÃ«n en tags in"
 
 #: includes/admin/class-strings.php:241, includes/admin/class-strings.php:247
 msgid "Enter HTML element selectors"
@@ -1133,7 +1133,7 @@ msgstr "Voer de video-URL in"
 
 #: includes/admin/class-strings.php:249, includes/admin/class-strings.php:645
 msgid "Enter your selected WooCommerce categories"
-msgstr "Voer je geselecteerde WooCommerce-categorieën in"
+msgstr "Voer je geselecteerde WooCommerce-categorieÃ«n in"
 
 #: includes/admin/class-strings.php:250, includes/admin/class-strings.php:650
 msgid "Enter your selected WooCommerce products"
@@ -1197,7 +1197,7 @@ msgstr "Pagina's/berichten uitsluiten"
 
 #: includes/admin/class-strings.php:267
 msgid "Exclude dark mode on specific WordPress post type and taxonomy"
-msgstr "Dark mode uitsluiten op specifieke WordPress-berichttypen en taxonomieën"
+msgstr "Dark mode uitsluiten op specifieke WordPress-berichttypen en taxonomieÃ«n"
 
 #: includes/admin/class-strings.php:268, includes/admin/class-strings.php:271
 msgid ""
@@ -1225,11 +1225,11 @@ msgstr "Configureer uitsluitingsinstellingen voor pagina's, berichten en element
 
 #: includes/admin/class-strings.php:274
 msgid "Exclude Taxonomies"
-msgstr "Taxonomieën uitsluiten"
+msgstr "TaxonomieÃ«n uitsluiten"
 
 #: includes/admin/class-strings.php:275, includes/admin/class-strings.php:568
 msgid "Include the categories and tags that you want to exclude from the dark mode."
-msgstr "Voeg de categorieën en tags toe die je wilt uitsluiten van dark mode."
+msgstr "Voeg de categorieÃ«n en tags toe die je wilt uitsluiten van dark mode."
 
 #: includes/admin/class-strings.php:276, includes/admin/class-strings.php:277
 msgid "Exclude Taxonomy Type:"
@@ -1237,17 +1237,17 @@ msgstr "Taxonomietype uitsluiten:"
 
 #: includes/admin/class-strings.php:278
 msgid "Exclude WC Categories"
-msgstr "WC-categorieën uitsluiten"
+msgstr "WC-categorieÃ«n uitsluiten"
 
 #: includes/admin/class-strings.php:279, includes/admin/class-strings.php:644
 msgid "Add categories to exclude the dark mode from the WooCommerce categories."
 msgstr ""
-"Voeg categorieën toe om de donkere modus uit te sluiten van de "
-"WooCommerce-categorieën."
+"Voeg categorieÃ«n toe om de donkere modus uit te sluiten van de "
+"WooCommerce-categorieÃ«n."
 
 #: includes/admin/class-strings.php:280, includes/admin/class-strings.php:448
 msgid "Dark Mode will only work on the selected WooCommerce categories."
-msgstr "Dark mode werkt alleen op de geselecteerde WooCommerce-categorieën."
+msgstr "Dark mode werkt alleen op de geselecteerde WooCommerce-categorieÃ«n."
 
 #: includes/admin/class-strings.php:281
 msgid "Exclude WC Products"
@@ -1257,7 +1257,7 @@ msgstr "WC-producten uitsluiten"
 msgid "Add products to exclude the dark mode from the WooCommerce categories."
 msgstr ""
 "Voeg producten toe om de donkere modus uit te sluiten van de "
-"WooCommerce-categorieën."
+"WooCommerce-categorieÃ«n."
 
 #: includes/admin/class-strings.php:283, includes/admin/class-strings.php:449
 msgid "Dark Mode will only work on the selected WooCommerce products."
@@ -1269,7 +1269,7 @@ msgstr "WooCommerce uitsluiten"
 
 #: includes/admin/class-strings.php:285
 msgid "Exclude dark mode on WooCommerce products and categories"
-msgstr "Dark mode uitsluiten op WooCommerce-producten en -categorieën"
+msgstr "Dark mode uitsluiten op WooCommerce-producten en -categorieÃ«n"
 
 #: includes/admin/class-strings.php:286, includes/admin/class-strings.php:287
 msgid "Explore Accessibility Switches"
@@ -1477,7 +1477,7 @@ msgstr "Neem contact op"
 
 #: includes/admin/class-strings.php:339
 msgid "Get all popular dark mode resources in one place."
-msgstr "Alle populaire dark mode-bronnen op één plek."
+msgstr "Alle populaire dark mode-bronnen op Ã©Ã©n plek."
 
 #: includes/admin/class-strings.php:340
 msgid "Tutorial, Docs, Support & Community"
@@ -1540,10 +1540,10 @@ msgstr ""
 "standaard blok-editor."
 
 #: includes/admin/class-strings.php:354
-msgid "Go to Post/Page edit screen and and click on the ‘+’ icon to add new block"
+msgid "Go to Post/Page edit screen and and click on the â€˜+â€™ icon to add new block"
 msgstr ""
-"Yazı/Sayfa düzenleme ekranına gidin ve yeni blok eklemek için '+' simgesine "
-"tıklayın"
+"YazÄ±/Sayfa dÃ¼zenleme ekranÄ±na gidin ve yeni blok eklemek iÃ§in '+' simgesine "
+"tÄ±klayÄ±n"
 
 #: includes/admin/class-strings.php:355
 msgid ""
@@ -1559,7 +1559,7 @@ msgstr "Zoek naar het Dark Mode Switch-blok in de Gutenberg-blokkenlijst"
 
 #: includes/admin/class-strings.php:357
 msgid ""
-"Type “dark mode switch” in the block list search box and the Dark Mode "
+"Type â€œdark mode switchâ€ in the block list search box and the Dark Mode "
 "Switch block will appear. Click on the block to select it"
 msgstr ""
 "Typ \"dark mode switch\" in het zoekvak voor blokken en het Dark Mode "
@@ -1678,7 +1678,7 @@ msgstr "Toch importeren"
 #: includes/admin/class-strings.php:385
 msgid "Import settings from JSON file which is exported through WP Dark Mode."
 msgstr ""
-"Importeer instellingen uit een JSON-bestand dat is geëxporteerd via WP Dark "
+"Importeer instellingen uit een JSON-bestand dat is geÃ«xporteerd via WP Dark "
 "Mode."
 
 #: includes/admin/class-strings.php:386
@@ -1687,7 +1687,7 @@ msgstr "Instellingen importeren"
 
 #: includes/admin/class-strings.php:387
 msgid "Settings imported successfully."
-msgstr "Instellingen succesvol geïmporteerd."
+msgstr "Instellingen succesvol geÃ¯mporteerd."
 
 #: includes/admin/class-strings.php:388
 msgid "In all new ways"
@@ -1830,7 +1830,7 @@ msgstr "Menuschakelaar"
 #: includes/admin/class-strings.php:422
 msgid ""
 "The Menu Switch is <strong>currently unavailable</strong>. To access this "
-"feature, first you have to enable the “Frontend Dark Mode” feature from the "
+"feature, first you have to enable the â€œFrontend Dark Modeâ€ feature from the "
 "Control settings"
 msgstr ""
 "De menuschakelaar is <strong>momenteel niet beschikbaar</strong>. Om "
@@ -1838,7 +1838,7 @@ msgstr ""
 "Dark Mode\" inschakelen in de instellingen."
 
 #: includes/admin/class-strings.php:423
-msgid "Menu switches won’t be visible anymore"
+msgid "Menu switches wonâ€™t be visible anymore"
 msgstr "Menuscheschakelaars zullen niet langer zichtbaar zijn"
 
 #: includes/admin/class-strings.php:424
@@ -1927,7 +1927,7 @@ msgstr "Niet gevonden"
 
 #: includes/admin/class-strings.php:446
 msgid "Ok"
-msgstr "Oké"
+msgstr "OkÃ©"
 
 #: includes/admin/class-strings.php:450
 msgid "Open Docs"
@@ -2083,7 +2083,7 @@ msgid "Where can I find the tutorials about using the plugin?"
 msgstr "Waar kan ik de handleidingen over het gebruik van de plugin vinden?"
 
 #: includes/admin/class-strings.php:490
-msgid "I want a refund for my purchase of the plugin. What’s the procedure?"
+msgid "I want a refund for my purchase of the plugin. Whatâ€™s the procedure?"
 msgstr "Ik wil mijn aankoop van de plugin terugbetaald krijgen. Wat is de procedure?"
 
 #: includes/admin/class-strings.php:491
@@ -2433,7 +2433,7 @@ msgstr "Handleiding"
 
 #: includes/admin/class-strings.php:591
 msgid ""
-"Here is a small full video tutorial for you incase you don’t like to go "
+"Here is a small full video tutorial for you incase you donâ€™t like to go "
 "through all the textual instruction"
 msgstr ""
 "Hier is een korte volledige videohandleiding voor als je liever geen "
@@ -2464,7 +2464,7 @@ msgstr "Typografiefuncties zijn alleen beschikbaar voor"
 #: includes/admin/class-strings.php:599
 msgid ""
 "Typography option is disabled in Accessibility Settings. Text scaling "
-"feature won’t work."
+"feature wonâ€™t work."
 msgstr ""
 "De typografie-optie is uitgeschakeld in de toegankelijkheidsinstellingen. "
 "De functie voor tekstschaling werkt niet."
@@ -2476,10 +2476,10 @@ msgstr "ULTIMATE"
 #: includes/admin/class-strings.php:602
 msgid ""
 "Advanced dark mode customizations are available in <span "
-"class=\"font-semibold\">WP Dark Mode Ultimate</span> 😍"
+"class=\"font-semibold\">WP Dark Mode Ultimate</span> ðŸ˜"
 msgstr ""
 "Geavanceerde dark mode-aanpassingen zijn beschikbaar in <span "
-"class=\"font-semibold\">WP Dark Mode Ultimate</span> 😍"
+"class=\"font-semibold\">WP Dark Mode Ultimate</span> ðŸ˜"
 
 #: includes/admin/class-strings.php:603
 msgid "ULTIMATE PLAN"
@@ -2488,7 +2488,7 @@ msgstr "ULTIEM PLAN"
 #: includes/admin/class-strings.php:604
 msgid ""
 "The Floating Switch is <strong>currently unavailable</strong>. To access "
-"this feature, first you have to enable the “Frontend Dark Mode” feature "
+"this feature, first you have to enable the â€œFrontend Dark Modeâ€ feature "
 "from the Control settings"
 msgstr ""
 "De zwevende schakelaar is <strong>momenteel niet beschikbaar</strong>. Om "
@@ -2580,8 +2580,8 @@ msgid "Please upload a valid file."
 msgstr "Upload een geldig bestand."
 
 #: includes/admin/class-strings.php:625
-msgid "Seems like <strong>WP Dark Mode</strong> is bringing you value 🥳"
-msgstr "Het lijkt erop dat <strong>WP Dark Mode</strong> je waarde biedt 🥳"
+msgid "Seems like <strong>WP Dark Mode</strong> is bringing you value ðŸ¥³"
+msgstr "Het lijkt erop dat <strong>WP Dark Mode</strong> je waarde biedt ðŸ¥³"
 
 #: includes/admin/class-strings.php:626
 msgid ""
@@ -2657,7 +2657,7 @@ msgstr "WooCommerce is niet actief"
 
 #: includes/admin/class-strings.php:648, includes/admin/class-strings.php:655
 msgid "WooCommerce is not installed"
-msgstr "WooCommerce is niet geïnstalleerd"
+msgstr "WooCommerce is niet geÃ¯nstalleerd"
 
 #: includes/admin/class-strings.php:651
 msgid "What is WP Dark Mode?"
@@ -2868,7 +2868,7 @@ msgid "Button Label"
 msgstr "Knoplabel"
 
 #: includes/admin/class-strings.php:721
-msgid "Button labels can display your channel’s name and share count."
+msgid "Button labels can display your channelâ€™s name and share count."
 msgstr "Knoplabels kunnen de naam van je kanaal en het aantal shares weergeven."
 
 #: includes/admin/class-strings.php:722
@@ -3006,7 +3006,7 @@ msgstr "Veelgestelde vragen"
 
 #: includes/admin/class-strings.php:751
 msgid "official documentation"
-msgstr "officiële documentatie"
+msgstr "officiÃ«le documentatie"
 
 #: includes/admin/class-strings.php:752
 msgid "and"

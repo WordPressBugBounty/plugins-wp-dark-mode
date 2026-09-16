@@ -11,6 +11,8 @@
 
 namespace WP_Dark_Mode\Admin;
 
+defined( 'ABSPATH' ) || exit( 1 );
+
 /**
  * Strings class to handle admin strings.
  *
@@ -20,7 +22,7 @@ namespace WP_Dark_Mode\Admin;
  * @license  GPL3 https://www.gnu.org/licenses/gpl-3.0.html
  * @link     https://wppool.dev/wp-dark-mode
  */
-class Strings {
+class Wp_Dark_Strings {
 
 	/**
 	 * Get the string value for specific key.
@@ -29,7 +31,7 @@ class Strings {
 	 *
 	 * @return array|mixed
 	 */
-	public static function get( $key = null ) {
+	public static function wp_dark_get( $key = null ) {
 		$strings = apply_filters(
 			'wp_dark_mode_admin_strings',
 			array(
@@ -70,7 +72,7 @@ class Strings {
 				'add_to_menus_title'                      => __( 'Add Dark Mode switch to Menus from WordPress dashboard', 'wp-dark-mode' ),
 				'add_triggers_hints'                      => __( 'Add custom triggers to toggle dark mode', 'wp-dark-mode' ),
 				'add_videos_hints'                        => __( 'Add videos to replace them in dark mode', 'wp-dark-mode' ),
-				'add_widget_desc'                         => __( 'Navigate to the Widget option in the WordPress dashboard under Appearance menu. Select the menu where you want to display dark mode switch and click on the ‘+’ button and type <span class="text-[#374151]"> Dark Mode Switch</span> in the widget searchbox', 'wp-dark-mode' ),
+				'add_widget_desc'                         => __( 'Navigate to the Widget option in the WordPress dashboard under Appearance menu. Select the menu where you want to display dark mode switch and click on the â€˜+â€™ button and type <span class="text-[#374151]"> Dark Mode Switch</span> in the widget searchbox', 'wp-dark-mode' ),
 				'add_widget_step'                         => __( 'Add the WP Dark Mode widget to the menu', 'wp-dark-mode' ),
 				'add_widget_to_menu'                      => __( 'Add Dark Mode switch to Menus from WordPress dashboard', 'wp-dark-mode' ),
 				'adjust_typo'                             => __( 'Adjust Typography for Dark Mode', 'wp-dark-mode' ),
@@ -82,13 +84,13 @@ class Strings {
 				'admin_panel_dark_mode'                   => __( 'Admin Panel Dark Mode', 'wp-dark-mode' ),
 				'advanced'                                => __( 'Advanced', 'wp-dark-mode' ),
 				'affiliate_program'                       => __( 'Affiliate Program', 'wp-dark-mode' ),
-				'affiliate_text'                          => __( 'Hey! Enjoying the WP Dark Mode plugin? 😍 Join our <a href="https://go.wppool.dev/zfrO" target="_blank" class="text-[#7C3AED] font-semibold">Influencer Program</a> to make money from your social media content. You can also check our <a href="https://go.wppool.dev/Tfej" target="_blank" class="text-[#7C3AED] font-semibold no-underline">Affiliate Program</a> to get a <strong>25% commission</strong> on every sale!', 'wp-dark-mode' ),
+				'affiliate_text'                          => __( 'Hey! Enjoying the WP Dark Mode plugin? ðŸ˜ Join our <a href="https://go.wppool.dev/zfrO" target="_blank" class="text-[#7C3AED] font-semibold">Influencer Program</a> to make money from your social media content. You can also check our <a href="https://go.wppool.dev/Tfej" target="_blank" class="text-[#7C3AED] font-semibold no-underline">Affiliate Program</a> to get a <strong>25% commission</strong> on every sale!', 'wp-dark-mode' ),
 				'ai_custom_preset'                        => __( 'AI Custom Preset', 'wp-dark-mode' ),
 				'ai_gen_desc'                             => __( 'Let AI generate your stunning dark mode themes in seconds. Preview, compare, and apply the one you love.', 'wp-dark-mode' ),
 				'ai_gen_title'                            => __( 'Create Your Dark Mode with AI', 'wp-dark-mode' ),
 				'ai_model'                                => __( 'AI Model', 'wp-dark-mode' ),
 				'ai_model_desc'                           => __( 'Configure AI model settings for theme generation', 'wp-dark-mode' ),
-				'ai_preset_generator'                     => __( '⚡ AI Preset Generator', 'wp-dark-mode' ),
+				'ai_preset_generator'                     => __( 'âš¡ AI Preset Generator', 'wp-dark-mode' ),
 				'ai_preset_generator_desc'                => __( 'Let AI instantly generate a smart dark mode theme preset for you.', 'wp-dark-mode' ),
 				'ai_preset_generator_title'               => __( 'AI Preset Generator', 'wp-dark-mode' ),
 				'ai_preset_saved'                         => __( 'AI Preset saved successfully!', 'wp-dark-mode' ),
@@ -390,10 +392,10 @@ class Strings {
 				'grayscale_video'                         => __( 'Grayscale Video', 'wp-dark-mode' ),
 				'gutenberg'                               => __( 'Gutenberg', 'wp-dark-mode' ),
 				'gutenberg_hints'                         => __( 'Get step-by-step instructions on using WP Dark Mode with the default block editor.', 'wp-dark-mode' ),
-				'gutenberg_step1'                         => __( 'Go to Post/Page edit screen and and click on the ‘+’ icon to add new block', 'wp-dark-mode' ),
+				'gutenberg_step1'                         => __( 'Go to Post/Page edit screen and and click on the â€˜+â€™ icon to add new block', 'wp-dark-mode' ),
 				'gutenberg_step1_desc'                    => __( 'Navigate to a Post and Page edit screen and click on the + icon to add a new gutenberg block', 'wp-dark-mode' ),
 				'gutenberg_step2'                         => __( 'Search for Dark Mode Switch block in the Gutenberg block list', 'wp-dark-mode' ),
-				'gutenberg_step2_desc'                    => __( 'Type “dark mode switch” in the block list search box and the Dark Mode Switch block will appear. Click on the block to select it', 'wp-dark-mode' ),
+				'gutenberg_step2_desc'                    => __( 'Type â€œdark mode switchâ€ in the block list search box and the Dark Mode Switch block will appear. Click on the block to select it', 'wp-dark-mode' ),
 				'gutenberg_step3'                         => __( 'Choose button style from block settings', 'wp-dark-mode' ),
 				'gutenberg_step3_desc'                    => __( 'Choose the button style you would like to use from the Switch Style menu on the right side and you are done!', 'wp-dark-mode' ),
 				'gutenberg_title'                         => __( 'Use WP Dark Mode with Gutenberg', 'wp-dark-mode' ),
@@ -457,8 +459,8 @@ class Strings {
 				'medium'                                  => __( 'Medium', 'wp-dark-mode' ),
 				'menu_switch'                             => __( 'Menu Switch', 'wp-dark-mode' ),
 				'menu_switch_tab'                         => __( 'Menu Switch', 'wp-dark-mode' ),
-				'menu_switch_unavailable_msg'             => __( 'The Menu Switch is <strong>currently unavailable</strong>. To access this feature, first you have to enable the “Frontend Dark Mode” feature from the Control settings', 'wp-dark-mode' ),
-				'menu_visibility_title'                   => __( 'Menu switches won’t be visible anymore', 'wp-dark-mode' ),
+				'menu_switch_unavailable_msg'             => __( 'The Menu Switch is <strong>currently unavailable</strong>. To access this feature, first you have to enable the â€œFrontend Dark Modeâ€ feature from the Control settings', 'wp-dark-mode' ),
+				'menu_visibility_title'                   => __( 'Menu switches wonâ€™t be visible anymore', 'wp-dark-mode' ),
 				'min'                                     => __( 'min', 'wp-dark-mode' ),
 				'mobile'                                  => __( 'Mobile', 'wp-dark-mode' ),
 				'mode_image'                              => __( 'Mode Image', 'wp-dark-mode' ),
@@ -525,7 +527,7 @@ class Strings {
 				'q6'                                      => __( 'Can I change the image for dark mode using this plugin?', 'wp-dark-mode' ),
 				'q7'                                      => __( 'How can I prevent any specific elements, sections, or from turning into dark?', 'wp-dark-mode' ),
 				'q8'                                      => __( 'Where can I find the tutorials about using the plugin?', 'wp-dark-mode' ),
-				'q9'                                      => __( 'I want a refund for my purchase of the plugin. What’s the procedure?', 'wp-dark-mode' ),
+				'q9'                                      => __( 'I want a refund for my purchase of the plugin. Whatâ€™s the procedure?', 'wp-dark-mode' ),
 				'rate_us'                                 => __( 'Please Rate Us:', 'wp-dark-mode' ),
 				'recommended'                             => __( 'Recommended', 'wp-dark-mode' ),
 				'recommended_plugins'                     => __( 'Recommended Plugins', 'wp-dark-mode' ),
@@ -626,7 +628,7 @@ class Strings {
 				'triggers_hints_desc'                     => __( 'The following triggers will toggle dark mode when clicked', 'wp-dark-mode' ),
 				'try_live_demo'                           => __( 'Try Live Demo', 'wp-dark-mode' ),
 				'tutorial'                                => __( 'Tutorial', 'wp-dark-mode' ),
-				'tutorial_description'                    => __( 'Here is a small full video tutorial for you incase you don’t like to go through all the textual instruction', 'wp-dark-mode' ),
+				'tutorial_description'                    => __( 'Here is a small full video tutorial for you incase you donâ€™t like to go through all the textual instruction', 'wp-dark-mode' ),
 				'tutorial_hints'                          => __( 'Check the WP Dark Mode playlist to become an expert dark mode user.', 'wp-dark-mode' ),
 				'typo_available_msg'                      => __( 'Typography features are only available for <strong>Accessibility Switches</strong>', 'wp-dark-mode' ),
 				'typo_hints'                              => __( 'Enable to get seamless readability by font adaptation during dark-light mode toggling.', 'wp-dark-mode' ),
@@ -634,12 +636,12 @@ class Strings {
 				'typography_alert_msg'                    => __( 'Typography features are only available for', 'wp-dark-mode' ),
 				'typography_disable_desc'                 => __( 'Disabling typography settings will not make the text size increase automatically when text toggle is pressed on accessibility switches', 'wp-dark-mode' ),
 				'typography_disable_title'                => __( 'Do you want to disable Typography settings?', 'wp-dark-mode' ),
-				'typography_disabled_msg'                 => __( 'Typography option is disabled in Accessibility Settings. Text scaling feature won’t work.', 'wp-dark-mode' ),
+				'typography_disabled_msg'                 => __( 'Typography option is disabled in Accessibility Settings. Text scaling feature wonâ€™t work.', 'wp-dark-mode' ),
 				'typography_settings'                     => __( 'Typography Settings', 'wp-dark-mode' ),
 				'ultimate'                                => __( 'ULTIMATE', 'wp-dark-mode' ),
-				'ultimate_features'                       => __( 'Advanced dark mode customizations are available in <span class="font-semibold">WP Dark Mode Ultimate</span> 😍', 'wp-dark-mode' ),
+				'ultimate_features'                       => __( 'Advanced dark mode customizations are available in <span class="font-semibold">WP Dark Mode Ultimate</span> ðŸ˜', 'wp-dark-mode' ),
 				'ultimate_plan'                           => __( 'ULTIMATE PLAN', 'wp-dark-mode' ),
-				'unavailable_msg'                         => __( 'The Floating Switch is <strong>currently unavailable</strong>. To access this feature, first you have to enable the “Frontend Dark Mode” feature from the Control settings', 'wp-dark-mode' ),
+				'unavailable_msg'                         => __( 'The Floating Switch is <strong>currently unavailable</strong>. To access this feature, first you have to enable the â€œFrontend Dark Modeâ€ feature from the Control settings', 'wp-dark-mode' ),
 				'undo_msg'                                => __( 'This action cannot be undone.', 'wp-dark-mode' ),
 				'unsure_upgrade'                          => __( 'Not sure about upgrading to Ultimate yet?', 'wp-dark-mode' ),
 				'unsure_upgrade_desc'                     => __( 'If you are having a second thought about upgrading, you can explore all the premium features on our demo website. Feel free to try every feature before making the decision.', 'wp-dark-mode' ),
@@ -660,7 +662,7 @@ class Strings {
 				'url_parameter_usage_hints'               => __( 'Use', 'wp-dark-mode' ),
 				'url_usage_hints'                         => __( 'Use %1$s?darkmode to enable dark mode and %2$s?lightmode to enable light mode', 'wp-dark-mode' ), // phpcs:ignore
 				'valid_file_msg'                          => __( 'Please upload a valid file.', 'wp-dark-mode' ),
-				'value_text'                              => __( 'Seems like <strong>WP Dark Mode</strong> is bringing you value 🥳', 'wp-dark-mode' ),
+				'value_text'                              => __( 'Seems like <strong>WP Dark Mode</strong> is bringing you value ðŸ¥³', 'wp-dark-mode' ),
 				'version_incompatible'                    => __( 'The version of the file you are trying to import is not compatible with the current version of WP Dark Mode.', 'wp-dark-mode' ),
 				'version_mismatch'                        => __( 'Version Mismatch', 'wp-dark-mode' ),
 				'video_behavior'                          => __( 'Video Behavior', 'wp-dark-mode' ),
@@ -741,7 +743,7 @@ class Strings {
 				'button_size'                             => __( 'Button Size', 'wp-dark-mode' ),
 				'button_size_tooltip'                     => __( 'Choose the default size for your inline button.', 'wp-dark-mode' ),
 				'button_label'                            => __( 'Button Label', 'wp-dark-mode' ),
-				'button_label_tooltip'                    => __( 'Button labels can display your channel’s name and share count.', 'wp-dark-mode' ),
+				'button_label_tooltip'                    => __( 'Button labels can display your channelâ€™s name and share count.', 'wp-dark-mode' ),
 				'hide_buttons_on'                         => __( 'Hide Buttons on', 'wp-dark-mode' ),
 				'hide_buttons_on_tooltip'                 => __( 'Select where you want to hide your inline button.', 'wp-dark-mode' ),
 				'display_buttons_on'                      => __( 'Display Buttons on', 'wp-dark-mode' ),

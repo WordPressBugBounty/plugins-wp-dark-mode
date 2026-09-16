@@ -17,10 +17,10 @@ defined( 'ABSPATH' ) || exit();
  *
  * @version 1.0.0
  */
-class DarkModeSwitch extends \Elementor\Base_Data_Control {
+class Wp_Dark_Dark_Mode_Switch extends \Elementor\Base_Data_Control {
 
 	// Dark Mode Utility.
-	use \WP_Dark_Mode\Traits\Utility;
+	use \WP_Dark_Mode\Traits\Wp_Dark_Utility;
 
 	/**
 	 * Get choose control type.
@@ -41,7 +41,7 @@ class DarkModeSwitch extends \Elementor\Base_Data_Control {
 	 * @since  1.0.0
 	 * @access public
 	 */
-	public function enqueue() {
+	public function wp_dark_enqueue() {
 
 		// Style
 		wp_enqueue_style( 'wp-dark-mode-admin-common', WP_DARK_MODE_ASSETS . '/css/admin-common.css', [], WP_DARK_MODE_VERSION );
@@ -81,20 +81,15 @@ class DarkModeSwitch extends \Elementor\Base_Data_Control {
 	public function content_template() {
 		$control_uid = $this->get_control_uid( '{{value}}' );
 
-		if ( ! $this->is_ultimate() && $control_uid > 3 && 23 != $control_uid ) { // phpcs:ignore
-			$control_uid = '1';
-		}
-
 		?>
+		
 		<div class="elementor-control-field">
 		<label class="elementor-control-title">{{{ data.label }}}</label>
 		<div class="_wp-dark-mode-elementor">
 			<div class="_wp-dark-mode-elementor-switches">
 				<# _.each( data.options, function( switchId ) { #>
-					<div class="_wp-dark-mode-elementor-switches-item elementor-control-input-wrapper 
-					<# if ( switchId > 3 && switchId != 23 && !data.is_ultimate ) { #> wp-dark-mode-locked <# } #>">
+					<div class="_wp-dark-mode-elementor-switches-item elementor-control-input-wrapper">
 						<input id="{{ data.name }}-{{ switchId }}" type="radio" name="{{ data.name }}" data-setting="{{ data.name }}" value="{{ switchId }}"
-						<# if ( switchId > 3 && switchId != 23 && !data.is_ultimate ) { #> disabled <# } #>
 						<# if ( switchId == data.controlValue ) { #> checked="checked" <# } #> />
 						<label for="{{ data.name }}-{{ switchId }}" title="Style {{ switchId }}">
 							<img src="{{ data.assets_url }}/switch-{{ switchId }}.svg" alt="Style {{ switchId }}">
@@ -123,7 +118,7 @@ class DarkModeSwitch extends \Elementor\Base_Data_Control {
 	 *
 	 * @return array Control default settings.
 	 */
-	protected function get_default_settings() {
+	protected function wp_dark_get_default_settings() {
 		return [
 			'options' => [],
 			'toggle' => true,

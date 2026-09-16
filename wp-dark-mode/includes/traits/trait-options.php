@@ -12,14 +12,14 @@ namespace WP_Dark_Mode\Traits;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
-if ( ! trait_exists( __NAMESPACE__ . 'Options' ) ) {
+if ( ! trait_exists( __NAMESPACE__ . 'Wp_Dark_Options' ) ) {
 	/**
 	 * Manages all the options for WP Dark Mode
 	 *
 	 * @package WP Dark Mode
 	 * @since 5.0.0
 	 */
-	trait Options {
+	trait Wp_Dark_Options {
 
 		/**
 		 * Returns the default options for WP Dark Mode
@@ -27,8 +27,8 @@ if ( ! trait_exists( __NAMESPACE__ . 'Options' ) ) {
 		 * @since 5.0.0
 		 * @var array
 		 */
-		final public function get_default_options() {
-			return \WP_Dark_Mode\Config::get_default_options();
+		final public function wp_dark_get_default_options() {
+			return \WP_Dark_Mode\Wp_Dark_Config::wp_dark_get_default_options();
 		}
 
 		/**
@@ -37,11 +37,11 @@ if ( ! trait_exists( __NAMESPACE__ . 'Options' ) ) {
 		 * @since 5.0.0
 		 * @return array
 		 */
-		final public function get_default_formatted_options() {
+		final public function wp_dark_get_default_formatted_options() {
 
 			$defaults = array();
 
-			foreach ( $this->get_default_options() as $item => $subitems ) {
+			foreach ( $this->wp_dark_get_default_options() as $item => $subitems ) {
 				foreach ( $subitems as $subitem => $value ) {
 					$defaults[ wp_sprintf( '%s_%s', $item, $subitem ) ] = $value['default'];
 				}
@@ -58,7 +58,7 @@ if ( ! trait_exists( __NAMESPACE__ . 'Options' ) ) {
 		 * @since 5.0.0
 		 * @return array
 		 */
-		final public function get_options() {
+		final public function wp_dark_get_options() {
 
 			// Return global options.
 			global $wp_dark_mode_options;
@@ -70,7 +70,7 @@ if ( ! trait_exists( __NAMESPACE__ . 'Options' ) ) {
 			// Build options array.
 			$wp_dark_mode_options = array();
 
-			foreach ( $this->get_default_options() as $option_group_name => $option_group ) {
+			foreach ( $this->wp_dark_get_default_options() as $option_group_name => $option_group ) {
 				foreach ( $option_group as $option_name => $option ) {
 					$name  = $option_group_name . '_' . $option_name;
 
@@ -121,8 +121,8 @@ if ( ! trait_exists( __NAMESPACE__ . 'Options' ) ) {
 		 * @param mixed  $default Default value.
 		 * @return mixed
 		 */
-		final public function get_option( $name, $default = null ) {
-			$options = $this->get_options();
+		final public function wp_dark_get_option( $name, $default = null ) {
+			$options = $this->wp_dark_get_options();
 
 			if ( array_key_exists( $name, $options ) ) {
 				return $options[ $name ];
@@ -133,6 +133,66 @@ if ( ! trait_exists( __NAMESPACE__ . 'Options' ) ) {
 		}
 
 		/**
+		 * Sanitizes a raw REST/AJAX input value for one option, by its declared
+		 * type in Config::wp_dark_get_default_options() - mirrors the type-cast switch
+		 * in get_options() above, so a value read back after saving always
+		 * matches the shape every other read site (templates, get_option())
+		 * already assumes.
+		 *
+		 * @since {next}
+		 * @param string $name Flattened option name (e.g. 'frontend_custom_css').
+		 * @param mixed  $value Raw value from the request.
+		 * @return mixed
+		 */
+		final public function wp_dark_sanitize_option_value( $name, $value ) {
+			$type = 'mixed';
+
+			// Flatten once, matching get_default_formatted_options()'s own key shape, to look up this key's type.
+			foreach ( $this->wp_dark_get_default_options() as $group_name => $option_group ) {
+				foreach ( $option_group as $option_name => $option ) {
+					if ( wp_sprintf( '%s_%s', $group_name, $option_name ) === $name ) {
+						$type = isset( $option['type'] ) ? $option['type'] : 'mixed';
+						break 2;
+					}
+				}
+			}
+
+			switch ( $type ) {
+				case 'boolean':
+					return wp_validate_boolean( $value );
+
+				case 'number':
+					return is_numeric( $value ) ? $value + 0 : 0;
+
+				case 'array':
+					return is_array( $value ) ? $this->wp_dark_recursive_sanitize_text( $value ) : [];
+
+				case 'string':
+					return sanitize_text_field( (string) $value );
+
+				default:
+					return is_array( $value ) ? $this->wp_dark_recursive_sanitize_text( $value ) : sanitize_text_field( (string) $value );
+			}
+		}
+
+		/**
+		 * Recursively sanitizes every string leaf of an array, leaving its
+		 * shape intact - used for 'array'-typed options (exclude lists,
+		 * floating switch display positions, custom trigger rules, etc).
+		 *
+		 * @since {next}
+		 * @param array $value Array to sanitize.
+		 * @return array
+		 */
+		final public function wp_dark_recursive_sanitize_text( $value ) {
+			foreach ( $value as $key => $item ) {
+				$value[ $key ] = is_array( $item ) ? $this->wp_dark_recursive_sanitize_text( $item ) : sanitize_text_field( (string) $item );
+			}
+
+			return $value;
+		}
+
+		/**
 		 * Sets the value of a specific option in the database
 		 *
 		 * @since 5.0.0
@@ -140,7 +200,7 @@ if ( ! trait_exists( __NAMESPACE__ . 'Options' ) ) {
 		 * @param mixed  $value Option value.
 		 * @return bool
 		 */
-		final public function set_option( $option, $value = null, $force = false ) {
+		final public function wp_dark_set_option( $option, $value = null, $force = false ) {
 			if ( $force ) {
 				delete_option( wp_sprintf( 'wp_dark_mode_%s', $option ) );
 				$set = add_option( wp_sprintf( 'wp_dark_mode_%s', $option ), $value );
@@ -158,7 +218,7 @@ if ( ! trait_exists( __NAMESPACE__ . 'Options' ) ) {
 		 * @param string $option Option name.
 		 * @return bool
 		 */
-		final public function delete_option( $option ) {
+		final public function wp_dark_delete_option( $option ) {
 			$delete = delete_option( wp_sprintf( 'wp_dark_mode_%s', $option ) );
 			return $delete;
 		}
@@ -170,7 +230,7 @@ if ( ! trait_exists( __NAMESPACE__ . 'Options' ) ) {
 		 * @param string $name Transient name.
 		 * @return mixed
 		 */
-		final public function get_transient( $name, $default = null ) {
+		final public function wp_dark_get_transient( $name, $default = null ) {
 			$value = get_transient( wp_sprintf( 'wp_dark_mode_%s', $name ) );
 
 			if ( null === $value ) {
@@ -189,7 +249,7 @@ if ( ! trait_exists( __NAMESPACE__ . 'Options' ) ) {
 		 * @param int    $expiration Expiration time.
 		 * @return bool
 		 */
-		final public function set_transient( $name, $value, $expiration = 0 ) {
+		final public function wp_dark_set_transient( $name, $value, $expiration = 0 ) {
 			return set_transient( wp_sprintf( 'wp_dark_mode_%s', $name ), $value, $expiration );
 		}
 
@@ -200,7 +260,7 @@ if ( ! trait_exists( __NAMESPACE__ . 'Options' ) ) {
 		 * @param string $name Transient name.
 		 * @return bool
 		 */
-		final public function delete_transient( $name ) {
+		final public function wp_dark_delete_transient( $name ) {
 			return delete_transient( wp_sprintf( 'wp_dark_mode_%s', $name ) );
 		}
 
@@ -213,14 +273,14 @@ if ( ! trait_exists( __NAMESPACE__ . 'Options' ) ) {
 		 * @param mixed  $default Default value.
 		 * @return mixed
 		 */
-		final public function get_value( $name, $default = null ) {
-			$value = $this->get_transient( $name );
+		final public function wp_dark_get_value( $name, $default = null ) {
+			$value = $this->wp_dark_get_transient( $name );
 
 			if ( $value ) {
 				return $value;
 			}
 
-			return $this->get_option( $name, $default );
+			return $this->wp_dark_get_option( $name, $default );
 			;
 		}
 
@@ -232,11 +292,11 @@ if ( ! trait_exists( __NAMESPACE__ . 'Options' ) ) {
 		 * @since 5.0.0
 		 * @return bool
 		 */
-		final public function set_default_options() {
-			$defaults = $this->get_default_formatted_options();
+		final public function wp_dark_set_default_options() {
+			$defaults = $this->wp_dark_get_default_formatted_options();
 
 			foreach ( $defaults as $key => $value ) {
-				$this->set_option( $key, $value );
+				$this->wp_dark_set_option( $key, $value );
 			}
 
 			// After reset.

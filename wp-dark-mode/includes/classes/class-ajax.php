@@ -13,29 +13,29 @@ namespace WP_Dark_Mode;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
-if ( ! class_exists( __NAMESPACE__ . 'Ajax' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Ajax' ) ) {
 	/**
 	 * Handles ajax requests for WP Dark Mode
 	 *
 	 * @package WP Dark Mode
 	 * @since 5.0.0
 	 */
-	class Ajax extends \WP_Dark_Mode\Base {
+	class Wp_Dark_Ajax extends \WP_Dark_Mode\Wp_Dark_Base {
 
 		// Use options trait.
-		use \WP_Dark_Mode\Traits\Options;
+		use \WP_Dark_Mode\Traits\Wp_Dark_Options;
 
 		// Utility trait.
-		use \WP_Dark_Mode\Traits\Utility;
+		use \WP_Dark_Mode\Traits\Wp_Dark_Utility;
 
 		/**
 		 * Register ajax actions
 		 *
 		 * @since 5.0.0
 		 */
-		public function actions() {
-			add_action( 'wp_ajax_wp_dark_mode_update_visitor', array( $this, 'update_visitor' ) );
-			add_action( 'wp_ajax_nopriv_wp_dark_mode_update_visitor', array( $this, 'update_visitor' ) );
+		public function wp_dark_actions() {
+			add_action( 'wp_ajax_wp_dark_mode_update_visitor', array( $this, 'wp_dark_update_visitor' ) );
+			add_action( 'wp_ajax_nopriv_wp_dark_mode_update_visitor', array( $this, 'wp_dark_update_visitor' ) );
 		}
 
 		/**
@@ -43,7 +43,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Ajax' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function update_visitor() {
+		public function wp_dark_update_visitor() {
 			// Check nonce.
 			check_ajax_referer( 'wp_dark_mode_security', 'security_key' );
 
@@ -54,7 +54,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Ajax' ) ) {
 
 			// Check for rate limiting.
 			$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
-			$rate_limit_key = 'wpdm_visitor_rate_' . md5( $ip );
+			$rate_limit_key = 'wp_dark_visitor_rate_' . md5( $ip );
 			$request_count = get_transient( $rate_limit_key );
 			$max_requests = apply_filters( 'wp_dark_mode_visitor_rate_limit', 10 );
 
@@ -72,10 +72,10 @@ if ( ! class_exists( __NAMESPACE__ . 'Ajax' ) ) {
 
 			if ( $visitor_id && $visitor_id > 0 ) {
 				// Update visitor.
-				$this->update_existing_visitor( $visitor_id );
+				$this->wp_dark_update_existing_visitor( $visitor_id );
 			} else {
 				// Insert visitor.
-				$this->insert_new_visitor();
+				$this->wp_dark_insert_new_visitor();
 			}
 		}
 
@@ -84,7 +84,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Ajax' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function insert_new_visitor() {
+		public function wp_dark_insert_new_visitor() {
 			// Check nonce.
 			check_ajax_referer( 'wp_dark_mode_security', 'security_key' );
 
@@ -94,10 +94,10 @@ if ( ! class_exists( __NAMESPACE__ . 'Ajax' ) ) {
 			$mode = isset( $_POST['mode'] ) ? sanitize_text_field( wp_unslash( $_POST['mode'] ) ) : 'dark';
 			$meta = isset( $_POST['meta'] ) ? sanitize_text_field( wp_unslash( $_POST['meta'] ) ) : '';
 
-			$visitor = new \WP_Dark_Mode\Model\Visitor();
+			$visitor = new \WP_Dark_Mode\Model\Wp_Dark_Visitor();
 
 			try {
-				$visitor_id = $visitor->add( array(
+				$visitor_id = $visitor->wp_dark_add( array(
 					'meta' => $meta,
 					'user_id' => $user_id,
 					'ip' => $ip,
@@ -128,14 +128,14 @@ if ( ! class_exists( __NAMESPACE__ . 'Ajax' ) ) {
 		 * @param int $visitor_id Visitor ID.
 		 * @since 5.0.0
 		 */
-		public function update_existing_visitor( $visitor_id ) {
+		public function wp_dark_update_existing_visitor( $visitor_id ) {
 
 			// Check nonce.
 			check_ajax_referer( 'wp_dark_mode_security', 'security_key' );
 
 			// Validate visitor ownership.
-			$visitor_model    = new \WP_Dark_Mode\Model\Visitor();
-			$existing_visitor = $visitor_model->get_by_id( $visitor_id );
+			$visitor_model    = new \WP_Dark_Mode\Model\Wp_Dark_Visitor();
+			$existing_visitor = $visitor_model->wp_dark_get_by_id( $visitor_id );
 
 			if ( ! $existing_visitor ) {
 				wp_send_json_error( array( 'message' => 'Visitor not found' ) );
@@ -162,10 +162,10 @@ if ( ! class_exists( __NAMESPACE__ . 'Ajax' ) ) {
 
 			$mode = isset( $_POST['mode'] ) ? sanitize_text_field( wp_unslash( $_POST['mode'] ) ) : 'dark';
 
-			$visitor = new \WP_Dark_Mode\Model\Visitor();
+			$visitor = new \WP_Dark_Mode\Model\Wp_Dark_Visitor();
 
 			try {
-				$updated = $visitor->update( array(
+				$updated = $visitor->wp_dark_update( array(
 					'mode' => $mode,
 					'user_id' => is_user_logged_in() ? get_current_user_id() : null,
 				), intval($visitor_id) );
@@ -189,5 +189,5 @@ if ( ! class_exists( __NAMESPACE__ . 'Ajax' ) ) {
 	}
 
 	// Instantiate the class.
-	Ajax::init();
+	Wp_Dark_Ajax::wp_dark_init();
 }

@@ -1,10 +1,10 @@
-=== WP Dark Mode - Improve Accessibility with AI Powered Dark Theme ===  
+=== Dark Mode - Improve Accessibility with AI Powered Dark Theme ===  
 Contributors: wppool, wpdarkmode, azizultex, iamjafran, shahreyar46  
 Tags: dark mode, dark, night mode, dark theme, accessibility  
-Requires at least: 5.0  
+Requires at least: 5.2
 Tested up to: 7.0  
 Requires PHP: 5.6  
-Stable tag: 5.3.10
+Stable tag: 5.3.16
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -24,14 +24,14 @@ Create a dark mode version of your website without any complicated setup. Activa
 * 🎥 **Subscribe on [YouTube](https://www.youtube.com/@WPPOOL)**
 * 👍 **Like Our [Facebook Page](https://www.facebook.com/wppool.dev)**
 
-Check what popular WordPress expert Matt (WPress Doctor) thinks about WP Dark Mode.
+Check what popular WordPress expert Matt (WPress Doctor) thinks about Dark Mode.
 
 [youtube https://www.youtube.com/watch?v=CT8yy2v05tE?rel=0]
 
 👁️ [View Demo](https://go.wppool.dev/fuUK) | 🚀 [Get Ultimate](https://wppool.dev/wp-dark-mode-pricing/?utm_source=readme&utm_medium=org_readme&utm_campaign=wp-dark-mode) | 🤝 [Join Our Facebook Community](https://cutt.ly/ceCQgvoT)
 
 
-== 🔝 WP DARK MODE FEATURES ==
+== 🔝 DARK MODE FEATURES ==
 
 * **Floating Dark Mode Switch** – Display a floating switch in the footer of your website. The switch lets your site visitors easily toggle between different modes.
 * **Default Dark Mode** – Make it the default mode of your website. Users will experience it first after entering your website.
@@ -46,13 +46,13 @@ Check what popular WordPress expert Matt (WPress Doctor) thinks about WP Dark Mo
 * **Accessibility Features** – Toggle your preferred mode by using a keyboard shortcut (Ctrl + Alt + D) or using a URL/domain parameter.
 * **Toggle Animation** – Choose the animation effect between dark/white theme with numerous options including Fade In, Pulse, Flip and many more.
 * **Social Share Buttons** – Social share icons allow your website visitors to share your content with ease. With plenty of cool social media icon templates and share count displays, this plugin supports dedicated social share buttons.
-* **Caching Exclusion Option** – Enable this feature to exclude WP Dark Mode from server-side caching and ensure a seamless mode transition.
+* **Caching Exclusion Option** – Enable this feature to exclude Dark Mode from server-side caching and ensure a seamless mode transition.
 * **Device-wise Toggle** – Easily choose where to display the mode switch: Desktop, Mobile or Tablet.
 * **Dark Mode Analytics** – Track how many times site visitors have used dark theme in a certain period from the analytics menu and your WordPress admin dashboard.
 * **Custom CSS Support** – With custom CSS, you can perfect the best mode version of your website. Customize specific sections/elements exactly how you want.
 
 
-== ⚡ GO BEYOND WITH WP DARK MODE ULTIMATE ==
+== ⚡ GO BEYOND WITH DARK MODE ULTIMATE ==
 
 * **Schedule Dark Mode** – Schedule a time for enabling it on your website and take full control over your website's appearance.
 * **Access 21 Floating Switch Styles** – Get access to 21 beautiful dark mode switch styles. Choose your preferred switch button for the users to toggle.
@@ -82,13 +82,13 @@ Check what popular WordPress expert Matt (WPress Doctor) thinks about WP Dark Mo
 👁️ [View Demo](https://go.wppool.dev/fuUK) | 🚀 [Get Ultimate](https://wppool.dev/wp-dark-mode-pricing/?utm_source=readme&utm_medium=org_readme&utm_campaign=wp-dark-mode) | 🤝 [Join Our Facebook Community](https://cutt.ly/ceCQgvoT)
 
 
-== 🤔 Why Choose WP Dark Mode? ==
+== 🤔 Why Choose Dark Mode? ==
 
 It is used by thousands of WordPress sites to enhance accessibility and reading comfort. It adds a dark theme toggle for both frontend and WordPress admin, improving accessibility and user experience. With increasing device-level dark mode adoption, providing this option can improve the browsing experience for many visitors. The widespread use of dark theme features across mobile and desktop platforms makes this compatibility beneficial for modern websites.
 
 == 🔨 Page Builder Compatibility ==
 
-WP Dark Mode works with popular page builders, including:
+Dark Mode works with popular page builders, including:
 
 * Gutenberg Block Editor  
 * Elementor Page Builder  
@@ -149,7 +149,7 @@ WP Dark Mode is fully compatible with the most popular slider plugins:
 WP Dark Mode works across all operating systems including Windows, Android, iOS and macOS. No additional setups are required. It detects the user’s system theme preference and applies a matching dark theme to the site. You can also enable a toggle to switch between different modes manually.
 
 == 🔥 More Awesome Plugins ==
-If you like WP Dark Mode, then consider checking out our other awesome plugins:
+If you like Dark Mode, then consider checking out our other awesome plugins:
 
 * 🟢 **[Google Sheets to WP Table](https://wordpress.org/plugins/sheets-to-wp-table-live-sync/)**:
 Try FlexTable - Sheets To WP Table Live Sync | Google Sheets allows you to input data on your Google sheet and show the same data on WordPress as a table effortlessly. Try Flex Table now!
@@ -172,7 +172,7 @@ You can also follow our video tutorial:
 
 [youtube https://www.youtube.com/watch?v=L6EmXREa6OA&rel=0]
 
-== Privacy Policy == 
+== Privacy Policy ==
 WP Dark Mode uses [Appsero](https://appsero.com) SDK to collect some telemetry data upon user's confirmation. This helps us to troubleshoot problems faster & make product improvements.
 
 Appsero SDK **does not gather any data by default.** The SDK only starts gathering basic telemetry data **when a user allows it via the admin notice**. We collect the data to ensure a great user experience for all our users.
@@ -182,6 +182,72 @@ Integrating Appsero SDK **DOES NOT IMMEDIATELY** start gathering data, **without
 Learn more about how [Appsero collects and uses this data](https://appsero.com/privacy-policy/).
 
 Additionally read the WPPOOL [privacy policy](https://wppool.dev/privacy-policy/).
+
+== External services ==
+
+This plugin relies on the following third party and external services. Each is described below with what it is used for, what data is sent, and when.
+
+**1. WPPOOL AI Preset Generator (aiware.wppool.dev)**
+
+Used to generate dark mode colour presets from a text description. This service performs the AI colour generation on WPPOOL's servers; it cannot be performed locally by the plugin.
+
+Data sent: only the text prompt an administrator types into the AI Preset Generator, plus a randomly generated per-request identifier. No visitor data, no site content and no personal data are sent. The request is made only at the moment an administrator clicks the generate button in the plugin settings; it never runs on the front end and never runs automatically.
+
+This service is provided by WPPOOL: [terms of service](https://wppool.dev/terms-of-service/), [privacy policy](https://wppool.dev/privacy-policy/).
+
+**2. Headway (cdn.headwayapp.co)**
+
+Used to display the plugin's changelog inside the WordPress admin.
+
+Data sent: loading the widget script causes your browser to contact Headway's CDN, which receives your IP address, browser user agent and the referring page, as with any remotely loaded script. The widget is loaded only on the WP Dark Mode settings screen in the admin area, and never on the front end.
+
+This service is provided by Headway: [terms of use](https://headwayapp.co/terms), [privacy policy](https://headwayapp.co/privacy), [security information](https://headwayapp.co/security).
+
+**3. Appsero (appsero.com, icanhazip.com)**
+
+Used for optional usage telemetry and for licence management of the paid add-on.
+
+Data sent: nothing is sent unless an administrator explicitly opts in via the admin notice. After opt-in, Appsero receives site URL, WordPress and PHP version, active theme and plugin list, and the administrator's email address and name. `icanhazip.com` is contacted to determine the site's public IP address as part of the same opt-in telemetry.
+
+This service is provided by Appsero: [privacy policy](https://appsero.com/privacy-policy/). See also the [icanhazip privacy notice](https://major.io/icanhazip-com-faq/).
+
+**4. WPPOOL contact sync (fluent.wppool.dev)**
+
+Used to subscribe an administrator to product update emails when they opt in to telemetry.
+
+Data sent: the administrator's email address, first name and last name. This request is made only as part of the same explicit opt-in described above. If you do not opt in, no request is made.
+
+This service is provided by WPPOOL: [terms of service](https://wppool.dev/terms-of-service/), [privacy policy](https://wppool.dev/privacy-policy/).
+
+**5. Social sharing networks**
+
+The optional Social Share module renders share buttons. When, and only when, a visitor clicks one of these buttons, their browser opens a share URL on the network they chose: `www.facebook.com` (Facebook and Messenger), `twitter.com` (X/Twitter), `www.linkedin.com` (LinkedIn), `www.google.com` (Google), `plus.google.com` (Google+), `pinterest.com` (Pinterest), `www.tumblr.com` (Tumblr), `reddit.com` (Reddit), `www.stumbleupon.com` (StumbleUpon), `delicious.com` (Delicious), `www.evernote.com` (Evernote), `wordpress.com` (WordPress.com), `getpocket.com` (Pocket), `api.whatsapp.com` (WhatsApp), `telegram.me` (Telegram), `www.instagram.com` (Instagram), `chat.openai.com` (ChatGPT), `grok.com` (Grok), `www.perplexity.ai` (Perplexity) and `claude.ai` (Claude). The module also offers `sms:` and `mailto:` links, which open the visitor's own SMS or email app and do not contact any external server.
+
+Data sent: only the permalink and title (or, for the AI assistant channels ChatGPT/Grok/Perplexity/Claude, a short prompt built from the permalink and title) of the post being shared, as part of that URL. No data is sent to any of these networks until a visitor actively clicks a share button, and each network's own terms and privacy policy then apply.
+
+**6. Webmail compose links (mail.google.com, outlook.office.com, compose.mail.yahoo.com)**
+
+The admin-side "Mail To" helper opens a pre-filled compose window on Gmail, Outlook or Yahoo Mail when an administrator clicks one of these options, so they can email a link from the plugin settings. This only happens when the administrator clicks the option; no data is sent automatically. Each provider's own terms and privacy policy apply to that webmail service.
+
+**7. Embedded video players (youtube.com, player.vimeo.com)**
+
+If a site owner embeds a YouTube or Vimeo video, the plugin adjusts that embed for dark mode. The embed itself is created by WordPress or the site owner, not by this plugin, and those providers' terms apply to the embedded player.
+
+== Build Instructions ==
+
+The JavaScript and CSS shipped in this plugin are generated with build tools. The complete, human-readable source for every generated file is included in the `src/` directory of this plugin, along with the build configuration. `package.json` (npm) and `composer.json` (Composer) are also included at the plugin root, so exact dependency versions can be installed.
+
+Toolchain: [Vite](https://vitejs.dev/), [Vue 3](https://vuejs.org/), [Tailwind CSS](https://tailwindcss.com/) and [Sass](https://sass-lang.com/).
+
+To build from source:
+
+1. Install [Node.js](https://nodejs.org/) 18 or later.
+2. From the plugin directory, run `npm install`
+3. Run `npm run build`
+
+Individual bundles can be rebuilt with the scripts listed in `package.json`. For example, `npm run frontend:js` builds `assets/js/app.min.js` from `src/frontend/main.js` using `src/frontend/vite.config.js`.
+
+Note on `.map` files: this plugin's build tooling can generate `.map` sourcemap files alongside each minified bundle. These are excluded from the packaged plugin via `.distignore` because they are dev-only debug artifacts, not executable code, and they embed literal URL strings copied from bundled third-party libraries' own metadata (for example a state-management library's devtools logo URL) which are never requested by this plugin at runtime. The human-readable source that these bundles are built from is the `src/` directory described above, not the sourcemaps.
 
 == Special Thanks ==
 This plugin includes a modified version of a script from Dark Reader, an open-source browser extension licensed under the MIT license. We thank the Dark Reader team for their contribution to the open-source community. For more information about Dark Reader and their licensing terms, please visit [https://github.com/darkreader/darkreader](https://github.com/darkreader/darkreader).
@@ -230,7 +296,7 @@ Yes, You can toggle modes by keyboard shortcut `(Ctrl + Alt + D)`.
 
 
 == Screenshots ==
-1. WP Dark Mode
+1. Dark Mode
 2. Floating switch styles
 3. Inline Social Share buttons
 4. Dark Mode widgets
@@ -240,6 +306,29 @@ Yes, You can toggle modes by keyboard shortcut `(Ctrl + Alt + D)`.
 
 
 == Changelog ==
+
+= 5.3.16 – 16 SEP 2026 =
+* **Improvement:** Updated plugin banner and icon assets.
+
+= 5.3.15 – 14 SEP 2026 =
+* **Fix:** Activation no longer prints an incompatibility notice directly to output, which could trigger a WordPress "unexpected output" warning and interfere with the post-activation redirect. The notice is now shown through the standard admin notices system on the next page load.
+* **Fix:** Reduced unnecessary database queries on every page load by checking the visitor table's structure only once instead of on every request.
+
+= 5.3.14 – 09 SEP 2026 =
+* **Improvement:** Security enhancement.
+
+= 5.3.13 – 28 AUG 2026 =
+* **Fix:** All switch styles are now fully selectable and functional in every builder integration (Elementor, WPBakery, SiteOrigin, Divi, Themify, Gutenberg), removing UI restrictions that did not match the underlying rendering.
+* **Fix:** All Gutenberg editor canvas themes are now fully selectable.
+
+= 5.3.12 – 24 AUG 2026 =
+* **Improvement:** Security enhancement.
+
+= 5.3.11 – 11 AUG 2026 =
+* **New:** Added native support for the Dark Mode Switch in Divi Builder with a dedicated builder element.
+* **New:** Added native support for the Dark Mode Switch in SiteOrigin Page Builder with a dedicated builder element.
+* **New:** Added native support for the Dark Mode Switch in Themify Builder with a dedicated builder element.
+* **Improvement:** Maintenance and security updates
 
 = 5.3.10 – 19 JUL 2026 =
 * **New:** Introduced a dedicated WPBakery Page Builder element for the Dark Mode Switch, providing a native drag-and-drop experience similar to the existing Elementor widget and Gutenberg block.

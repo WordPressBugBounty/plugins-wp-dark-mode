@@ -13,17 +13,17 @@ namespace WP_Dark_Mode\Admin;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
-if ( ! class_exists( __NAMESPACE__ . 'Recommended_Plugins' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Recommended_Plugins' ) ) {
 	/**
 	 * Recommended plugins
 	 *
 	 * @package WP Dark Mode
 	 * @since 5.0.0
 	 */
-	class Recommended_Plugins extends \WP_Dark_Mode\Base {
+	class Wp_Dark_Recommended_Plugins extends \WP_Dark_Mode\Wp_Dark_Base {
 
 		// Use options trait.
-		use \WP_Dark_Mode\Traits\Options;
+		use \WP_Dark_Mode\Traits\Wp_Dark_Options;
 
 		/**
 		 * Plugin slugs
@@ -71,7 +71,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Recommended_Plugins' ) ) {
 		 * @param string $slug Plugin slug.
 		 * @return object|bool
 		 */
-		public function get_plugin( $slug ) {
+		public function wp_dark_get_plugin( $slug ) {
 			$args = [
 				'slug'   => $slug,
 				'fields' => [
@@ -95,7 +95,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Recommended_Plugins' ) ) {
 		 *
 		 * @return array
 		 */
-		public function get_plugins() {
+		public function wp_dark_get_plugins() {
 			// Get all plugin in a single request.
 			$plugins = get_site_transient( 'wp_dark_mode_recommended_plugins' );
 
@@ -103,7 +103,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Recommended_Plugins' ) ) {
 				$plugins = [];
 
 				foreach ( $this->plugin_slugs as $slug ) {
-					$plugin = $this->get_plugin( $slug );
+					$plugin = $this->wp_dark_get_plugin( $slug );
 
 					if ( $plugin ) {
 						$plugins[] = $plugin;
@@ -119,16 +119,16 @@ if ( ! class_exists( __NAMESPACE__ . 'Recommended_Plugins' ) ) {
 		/**
 		 * Actions needed for the class
 		 */
-		public function actions() {
-			add_action( 'wp_dark_mode_recommended_plugins_page', array( $this, 'render_recommended_plugins_page' ) );
+		public function wp_dark_actions() {
+			add_action( 'wp_dark_mode_recommended_plugins_page', array( $this, 'wp_dark_render_recommended_plugins_page' ) );
 			// Admin init.
-			add_action( 'admin_init', [ $this, 'admin_init' ] );
+			add_action( 'admin_init', [ $this, 'wp_dark_admin_init' ] );
 		}
 
 		/**
 		 * Render recommended plugins page
 		 */
-		public function render_recommended_plugins_page() {
+		public function wp_dark_render_recommended_plugins_page() {
 
 			// Add jQuery UI Dialog.
 			wp_enqueue_style( 'wp-jquery-ui-dialog' );
@@ -139,7 +139,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Recommended_Plugins' ) ) {
 			remove_all_filters( 'plugins_api' );
 
 			// Get the plugins.
-			$plugins = $this->get_plugins();
+			$plugins = $this->wp_dark_get_plugins();
 
 			?>
 
@@ -532,7 +532,6 @@ if ( ! class_exists( __NAMESPACE__ . 'Recommended_Plugins' ) ) {
 									"Hide it": {
 										click: function () {
 											const redirectTo = "<?php echo esc_url( admin_url( 'admin.php' ) ); ?>?hide_wp_dark_mode_recommended_plugins=1&hide_wp_dark_mode_recommended_plugins_nonce=<?php echo esc_attr( wp_create_nonce( 'hide_wp_dark_mode_recommended_plugins_nonce' ) ); ?>";
-											console.log(redirectTo)
 											window.location = redirectTo;
 										},
 										text: 'Hide it',
@@ -558,11 +557,17 @@ if ( ! class_exists( __NAMESPACE__ . 'Recommended_Plugins' ) ) {
 		/**
 		 * Admin init
 		 */
-		public function admin_init() {
+		public function wp_dark_admin_init() {
 			// Hide the recommended plugins page from the menu.
 			if ( isset( $_GET['hide_wp_dark_mode_recommended_plugins'] ) && isset( $_GET['hide_wp_dark_mode_recommended_plugins_nonce'] ) ) {
 				// Verify the nonce.
 				if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['hide_wp_dark_mode_recommended_plugins_nonce'] ) ), 'hide_wp_dark_mode_recommended_plugins_nonce' ) ) {
+					return;
+				}
+
+				// A nonce proves intent, not authority. This writes a site-wide option,
+				// and admin_init runs for every logged-in user who reaches wp-admin.
+				if ( ! current_user_can( 'manage_options' ) ) {
 					return;
 				}
 
@@ -578,5 +583,5 @@ if ( ! class_exists( __NAMESPACE__ . 'Recommended_Plugins' ) ) {
 	}
 
 	// Instantiate the class.
-	Recommended_Plugins::init();
+	Wp_Dark_Recommended_Plugins::wp_dark_init();
 }

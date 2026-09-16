@@ -13,14 +13,14 @@ namespace WP_Dark_Mode\Model;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
-if ( ! class_exists( __NAMESPACE__ . 'Visitor' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Visitor' ) ) {
 	/**
 	 * Model for visitor
 	 *
 	 * @package WP Dark Mode
 	 * @since 5.0.0
 	 */
-	class Visitor extends \WP_Dark_Mode\Base {
+	class Wp_Dark_Visitor extends \WP_Dark_Mode\Wp_Dark_Base {
 
 		/**
 		 * Table name
@@ -31,42 +31,47 @@ if ( ! class_exists( __NAMESPACE__ . 'Visitor' ) ) {
 		public $table_name = 'wpdm_visitors';
 
 		// Actions.
-		public function actions() {
+		public function wp_dark_actions() {
 			// Init database table.
-			add_action( 'init', array( $this, 'init_db_table' ) );
+			add_action( 'init', array( $this, 'wp_dark_init_db_table' ) );
 		}
 
 		/**
 		 * Init database table
 		 *
+		 * Table existence/schema is only checked once (gated by the
+		 * wpdm_visitors_db_version option) instead of on every request, so
+		 * this does not run a SHOW TABLES / SHOW COLUMNS query on every page
+		 * load for every visitor.
+		 *
 		 * @since 5.0.0
 		 * @var array
 		 */
-		public function init_db_table() {
+		public function wp_dark_init_db_table() {
+			$db_version = '2';
+
+			if ( get_option( 'wpdm_visitors_db_version' ) === $db_version ) {
+				return;
+			}
+
 			global $wpdb;
 			$table_name = $wpdb->prefix . $this->table_name;
 
-			// Create table if not exists.
-			if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table_name ) ) !== $table_name ) { // db call ok; no-cache ok.
-				$sql = "CREATE TABLE $table_name (
-					ID int(30) NOT NULL AUTO_INCREMENT,
-					user_id int(11) NULL DEFAULT NULL,
-					meta text NULL DEFAULT NULL,
-					ip varchar(20) NULL DEFAULT NULL,
-					mode varchar(20) NULL DEFAULT NULL,
-					created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-					updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-					PRIMARY KEY  (ID)
-				) " . $wpdb->get_charset_collate();
+			$sql = "CREATE TABLE $table_name (
+				ID int(30) NOT NULL AUTO_INCREMENT,
+				user_id int(11) NULL DEFAULT NULL,
+				meta text NULL DEFAULT NULL,
+				ip varchar(20) NULL DEFAULT NULL,
+				mode varchar(20) NULL DEFAULT NULL,
+				created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+				updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+				PRIMARY KEY  (ID)
+			) " . $wpdb->get_charset_collate();
 
-				require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-				dbDelta( $sql );
-			}
+			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+			dbDelta( $sql );
 
-			// Add updated_at column if not exists.
-			if ( ! $wpdb->get_var( $wpdb->prepare( "SHOW COLUMNS FROM {$wpdb->prefix}wpdm_visitors LIKE %s", 'updated_at' ) ) ) { // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-				$wpdb->query( "ALTER TABLE {$wpdb->prefix}wpdm_visitors ADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" );
-			}
+			update_option( 'wpdm_visitors_db_version', $db_version );
 		}
 
 		/**
@@ -77,7 +82,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Visitor' ) ) {
 		 * @throws \Exception on inserting data.
 		 * @return mixed
 		 */
-		public function add( $data = array() ) {
+		public function wp_dark_add( $data = array() ) {
 
 			$default_data = array(
 				'mode' => 'dark',
@@ -108,7 +113,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Visitor' ) ) {
 		 * @throws \Exception on failed updating data.
 		 * @return bool
 		 */
-		public function update( $data = array(), $id = '' ) {
+		public function wp_dark_update( $data = array(), $id = '' ) {
 			global $wpdb;
 			$table_name = $wpdb->prefix . 'wpdm_visitors';
 
@@ -126,7 +131,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Visitor' ) ) {
 		 *
 		 * @return mixed
 		 */
-		public function get_all() {
+		public function wp_dark_get_all() {
 			global $wpdb;
 
 			$visitors = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}wpdm_visitors WHERE ID >= %d ORDER BY created_at DESC", 0 ) ); // db call ok; no-cache ok.
@@ -162,10 +167,10 @@ if ( ! class_exists( __NAMESPACE__ . 'Visitor' ) ) {
 		/**
 		 * Get visitor by ID
 		 *
-		 * @param int $id Visitor ID.
+		 * @param int $id Wp_Dark_Visitor ID.
 		 * @return object|null
 		 */
-		public function get_by_id( $id ) {
+		public function wp_dark_get_by_id( $id ) {
 			global $wpdb;
 
 			$visitor = $wpdb->get_row(
@@ -184,7 +189,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Visitor' ) ) {
 		 * @param string $ip IP address.
 		 * @return array
 		 */
-		public function get_by_ip( $ip ) {
+		public function wp_dark_get_by_ip( $ip ) {
 			global $wpdb;
 
 			$visitors = $wpdb->get_results(
@@ -199,5 +204,5 @@ if ( ! class_exists( __NAMESPACE__ . 'Visitor' ) ) {
 	}
 
 	// Instantiate the class.
-	Visitor::init();
+	Wp_Dark_Visitor::wp_dark_init();
 }

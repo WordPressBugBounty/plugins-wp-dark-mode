@@ -12,21 +12,21 @@ namespace WP_Dark_Mode\Modules\Gutenberg;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
-if ( ! class_exists( __NAMESPACE__ . 'Block' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Block' ) ) {
 	/**
 	 * Registers the Gutenberg block for WP Dark Mode
 	 *
 	 * @package WP Dark Mode
 	 * @since 5.0.0
 	 */
-	class Block extends \WP_Dark_Mode\Base {
+	class Wp_Dark_Block extends \WP_Dark_Mode\Wp_Dark_Base {
 		/**
 		 * Registers the hook
 		 *
 		 * @since 5.0.0
 		 */
-		public function actions() {
-			add_action( 'init', array( $this, 'register_block' ) );
+		public function wp_dark_actions() {
+			add_action( 'init', array( $this, 'wp_dark_register_block' ) );
 		}
 
 		/**
@@ -34,7 +34,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Block' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function register_block() {
+		public function wp_dark_register_block() {
 			// If block editor is not active, bail.
 			if ( ! function_exists( 'register_block_type' ) ) {
 				return;
@@ -82,5 +82,5 @@ if ( ! class_exists( __NAMESPACE__ . 'Block' ) ) {
 	}
 
 	// Instantiate the class.
-	Block::init();
+	Wp_Dark_Block::wp_dark_init();
 }

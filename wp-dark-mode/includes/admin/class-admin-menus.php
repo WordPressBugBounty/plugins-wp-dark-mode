@@ -12,27 +12,27 @@ namespace WP_Dark_Mode\Admin;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
-if ( ! class_exists( __NAMESPACE__ . 'Menus' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Menus' ) ) {
 	/**
 	 * Admin Menus for WP Dark Mode
 	 *
 	 * @package WP Dark Mode
 	 * @since 5.0.0
 	 */
-	class Menus extends \WP_Dark_Mode\Base {
+	class Wp_Dark_Menus extends \WP_Dark_Mode\Wp_Dark_Base {
 
 		// Use utility trait.
-		use \WP_Dark_Mode\Traits\Utility;
+		use \WP_Dark_Mode\Traits\Wp_Dark_Utility;
 
 		/**
 		 * Adds action hooks
 		 *
 		 * @since 5.0.0
 		 */
-		public function actions() {
-			add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+		public function wp_dark_actions() {
+			add_action( 'admin_menu', array( $this, 'wp_dark_admin_menu' ) );
 			// footer scripts.
-			add_action( 'admin_head', array( $this, 'header_scripts' ) );
+			add_action( 'admin_head', array( $this, 'wp_dark_header_scripts' ) );
 		}
 
 		/**
@@ -40,13 +40,13 @@ if ( ! class_exists( __NAMESPACE__ . 'Menus' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function admin_menu() {
+		public function wp_dark_admin_menu() {
 			add_menu_page(
 				__( 'WP Dark Mode Settings', 'wp-dark-mode' ),
 				__( 'WP Dark Mode', 'wp-dark-mode' ),
 				'manage_options',
 				'wp-dark-mode',
-				array( $this, 'render_settings_page' ),
+				array( $this, 'wp_dark_render_settings_page' ),
 				'dashicons-dashboard',
 				45
 			);
@@ -60,7 +60,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Menus' ) ) {
 				__( 'Settings', 'wp-dark-mode' ),
 				'manage_options',
 				'wp-dark-mode',
-				array( $this, 'render_settings_page' ),
+				array( $this, 'wp_dark_render_settings_page' ),
 				10
 			);
 
@@ -72,7 +72,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Menus' ) ) {
 				__( 'Settings', 'wp-dark-mode' ),
 				'manage_options',
 				'wp-dark-mode-settings',
-				array( $this, 'redirect_to_new_settings_page' ),
+				array( $this, 'wp_dark_redirect_to_new_settings_page' ),
 				10
 			);
 
@@ -83,7 +83,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Menus' ) ) {
 				__( 'Get Started', 'wp-dark-mode' ),
 				'manage_options',
 				'wp-dark-mode-get-started',
-				array( $this, 'render_get_started_page' ),
+				array( $this, 'wp_dark_render_get_started_page' ),
 				19
 			);
 
@@ -94,7 +94,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Menus' ) ) {
 			//  __( 'Social Share', 'wp-dark-mode' ),
 			//  'manage_options',
 			//  'wp-dark-mode#/social-share',
-			//  array( $this, 'render_settings_page' ),
+			//  array( $this, 'wp_dark_render_settings_page' ),
 			//  15
 			// );
 
@@ -108,13 +108,13 @@ if ( ! class_exists( __NAMESPACE__ . 'Menus' ) ) {
 					__( 'Recommended <br /> Plugins', 'wp-dark-mode' ),
 					'manage_options',
 					'wp-dark-mode-recommended-plugins',
-					array( $this, 'render_recommended_plugins_page' ),
+					array( $this, 'wp_dark_render_recommended_plugins_page' ),
 					25
 				);
 			}
 
 			// Upgrade now.
-			if ( ! $this->is_ultimate() ) {
+			if ( ! $this->wp_dark_is_ultimate() ) {
 				add_submenu_page(
 					'wp-dark-mode',
 					__( 'Upgrade Now', 'wp-dark-mode' ),
@@ -141,7 +141,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Menus' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function render_settings_page() {
+		public function wp_dark_render_settings_page() {
 			echo '<div id="wp-dark-mode-admin" class="wp-dark-mode-admin" />';
 		}
 
@@ -150,7 +150,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Menus' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function redirect_to_new_settings_page() {
+		public function wp_dark_redirect_to_new_settings_page() {
 			echo '<script>window.location.href = "' . esc_url( admin_url( 'admin.php?page=wp-dark-mode' ) ) . '";</script>';
 		}
 
@@ -159,7 +159,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Menus' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function render_get_started_page() {
+		public function wp_dark_render_get_started_page() {
 			echo '<div id="wp-dark-mode-get-started" class="wp-dark-mode-admin" />';
 		}
 
@@ -168,7 +168,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Menus' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function render_recommended_plugins_page() {
+		public function wp_dark_render_recommended_plugins_page() {
 			do_action( 'wp_dark_mode_recommended_plugins_page' );
 		}
 
@@ -177,7 +177,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Menus' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function header_scripts() {
+		public function wp_dark_header_scripts() {
 			?>
 			<style>
 				.wp-dark-mode-upgrade-now {
@@ -214,5 +214,5 @@ if ( ! class_exists( __NAMESPACE__ . 'Menus' ) ) {
 	}
 
 	// Instantiate the class.
-	Menus::init();
+	Wp_Dark_Menus::wp_dark_init();
 }

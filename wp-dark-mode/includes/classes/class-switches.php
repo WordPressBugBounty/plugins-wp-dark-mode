@@ -12,30 +12,30 @@ namespace WP_Dark_Mode;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
-if ( ! class_exists( __NAMESPACE__ . 'Switches' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Switches' ) ) {
 	/**
 	 * Controls all the switch actions for WP Dark Mode
 	 *
 	 * @package WP Dark Mode
 	 * @since 5.0.0
 	 */
-	class Switches extends Base {
+	class Wp_Dark_Switches extends Wp_Dark_Base {
 
 		// Use options trait.
-		use \WP_Dark_Mode\Traits\Options;
+		use \WP_Dark_Mode\Traits\Wp_Dark_Options;
 
 		// Use utility trait.
-		use \WP_Dark_Mode\Traits\Utility;
+		use \WP_Dark_Mode\Traits\Wp_Dark_Utility;
 
 		/**
 		 * Actions
 		 *
 		 * @since 5.0.0
 		 */
-		public function actions() {
+		public function wp_dark_actions() {
 			// Add a template in the footer.
-			add_action( 'wp_footer', array( $this, 'load_floating_switch' ), 10 );
-			add_action( 'login_footer', array( $this, 'load_floating_switch' ), 10 );
+			add_action( 'wp_footer', array( $this, 'wp_dark_load_floating_switch' ), 10 );
+			add_action( 'login_footer', array( $this, 'wp_dark_load_floating_switch' ), 10 );
 		}
 
 		/**
@@ -44,19 +44,19 @@ if ( ! class_exists( __NAMESPACE__ . 'Switches' ) ) {
 		 * @since 5.0.0
 		 * @return void
 		 */
-		public function load_floating_switch() {
+		public function wp_dark_load_floating_switch() {
 
 			// Bail, if frontend dark-mode is disabled.
-			if ( ! $this->get_option( 'frontend_enabled' ) ) {
+			if ( ! $this->wp_dark_get_option( 'frontend_enabled' ) ) {
 				return;
 			}
 
 			// Bail, if floating switch is disabled.
-			if ( ! $this->get_option( 'floating_switch_enabled' ) ) {
+			if ( ! $this->wp_dark_get_option( 'floating_switch_enabled' ) ) {
 				return;
 			}
 
-			if ( $this->is_login_page() && ! $this->get_option( 'floating_switch_enabled_login_pages' ) ) {
+			if ( $this->wp_dark_is_login_page() && ! $this->wp_dark_get_option( 'floating_switch_enabled_login_pages' ) ) {
 				return;
 			}
 
@@ -93,10 +93,39 @@ if ( ! class_exists( __NAMESPACE__ . 'Switches' ) ) {
 
 			$args = [];
 			foreach ( $options_keys as $key ) {
-				$args[ $key ] = $this->get_option( 'floating_switch_' . $key );
+				$args[ $key ] = $this->wp_dark_get_option( 'floating_switch_' . $key );
 			}
 
-			$this->render_template( 'frontend/floating-switch', $args );
+			/**
+			 * Only effect names in wp_dark_allowed_attention_effects() apply here - see that
+			 * method's doc comment. Any other value falls back to the first allowed
+			 * effect, so the UI's locked appearance for the remaining effects matches
+			 * what actually renders.
+			 *
+			 * @since {next}
+			 */
+			if ( ! in_array( strtolower( (string) $args['attention_effect'] ), $this->wp_dark_allowed_attention_effects(), true ) ) {
+				$allowed                  = $this->wp_dark_allowed_attention_effects();
+				$args['attention_effect'] = reset( $allowed );
+			}
+
+			$this->wp_dark_render_template( 'frontend/floating-switch', $args );
+		}
+
+		/**
+		 * Names of attention effects that can be applied to the floating switch.
+		 *
+		 * Other code can add more effect names to this list via the
+		 * wp_dark_floating_switch_available_attention_effects filter, the same way
+		 * Social Share's available_channel_ids() is extended.
+		 *
+		 * @since {next}
+		 * @return array
+		 */
+		public function wp_dark_allowed_attention_effects() {
+			$effects = [ 'wobble', 'vibrate' ];
+
+			return apply_filters( 'wp_dark_floating_switch_available_attention_effects', $effects );
 		}
 
 		/**
@@ -105,7 +134,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Switches' ) ) {
 		 * @return bool
 		 * @since 5.1.0
 		 */
-		private function is_login_page() {
+		private function wp_dark_is_login_page() {
 			global $pagenow;
 
 			// WordPress login page (all actions).
@@ -117,5 +146,5 @@ if ( ! class_exists( __NAMESPACE__ . 'Switches' ) ) {
 	}
 
 	// Initialize the class.
-	Switches::init();
+	Wp_Dark_Switches::wp_dark_init();
 }

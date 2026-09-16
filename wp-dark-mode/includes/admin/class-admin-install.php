@@ -12,20 +12,20 @@ namespace WP_Dark_Mode\Admin;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
-if ( ! class_exists( __NAMESPACE__ . 'Install' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Install' ) ) {
 	/**
 	 * Handles all the installation related tasks for WP Dark Mode
 	 *
 	 * @package WP Dark Mode
 	 * @since 5.0.0
 	 */
-	class Install extends \WP_Dark_Mode\Base {
+	class Wp_Dark_Install extends \WP_Dark_Mode\Wp_Dark_Base {
 
 		// Use options trait.
-		use \WP_Dark_Mode\Traits\Options;
+		use \WP_Dark_Mode\Traits\Wp_Dark_Options;
 
 		// Use utility trait.
-		use \WP_Dark_Mode\Traits\Utility;
+		use \WP_Dark_Mode\Traits\Wp_Dark_Utility;
 
 		/**
 		 * Get dependency
@@ -33,8 +33,8 @@ if ( ! class_exists( __NAMESPACE__ . 'Install' ) ) {
 		 * @since 5.0.0
 		 * @return object
 		 */
-		public function get_dependency() {
-			return \WP_Dark_Mode\Dependency::get_instance();
+		public function wp_dark_get_dependency() {
+			return \WP_Dark_Mode\Wp_Dark_Dependency::wp_dark_get_instance();
 		}
 
 		/**
@@ -43,12 +43,12 @@ if ( ! class_exists( __NAMESPACE__ . 'Install' ) ) {
 		 * @since 5.0.0
 		 * @return void
 		 */
-		public function actions() {
+		public function wp_dark_actions() {
 			// Register activation hook.
-			register_activation_hook( WP_DARK_MODE_FILE, array( $this, 'activate' ) );
+			register_activation_hook( WP_DARK_MODE_FILE, array( $this, 'wp_dark_activate' ) );
 
 			// Redirect to get started page on activation.
-			add_action( 'admin_init', array( $this, 'redirect_to_get_started' ) );
+			add_action( 'admin_init', array( $this, 'wp_dark_redirect_to_get_started' ) );
 		}
 
 		/**
@@ -57,10 +57,10 @@ if ( ! class_exists( __NAMESPACE__ . 'Install' ) ) {
 		 * @since 5.0.0
 		 * @return void
 		 */
-		public function filters() {
+		public function wp_dark_filters() {
 
 			// Plugin action links.
-			add_filter( 'plugin_action_links_' . plugin_basename( WP_DARK_MODE_FILE ), array( $this, 'plugin_action_links' ) );
+			add_filter( 'plugin_action_links_' . plugin_basename( WP_DARK_MODE_FILE ), array( $this, 'wp_dark_plugin_action_links' ) );
 		}
 
 		/**
@@ -69,9 +69,9 @@ if ( ! class_exists( __NAMESPACE__ . 'Install' ) ) {
 		 * @since 5.0.0
 		 * @return void
 		 */
-		public function activate() {
+		public function wp_dark_activate() {
 			// Check if plugin is compatible with current versions.
-			if ( ! $this->check_compatibilities() ) {
+			if ( ! $this->wp_dark_check_compatibilities() ) {
 
 				// Deactivate the plugin.
 				deactivate_plugins( WP_DARK_MODE_FILE );
@@ -79,10 +79,10 @@ if ( ! class_exists( __NAMESPACE__ . 'Install' ) ) {
 				return;
 			}
 
-			$this->set_option( 'version', WP_DARK_MODE_VERSION );
+			$this->wp_dark_set_option( 'version', WP_DARK_MODE_VERSION );
 
 			// Set default notices
-			$this->set_notices();
+			$this->wp_dark_set_notices();
 
 			// Remove activation transient.
 			delete_option( 'wp_dark_mode_activated' );
@@ -94,7 +94,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Install' ) ) {
 		 * @since 5.0.0
 		 * @return void
 		 */
-		public function set_notices() {
+		public function wp_dark_set_notices() {
 
 			$notices = [
 				[
@@ -116,16 +116,16 @@ if ( ! class_exists( __NAMESPACE__ . 'Install' ) ) {
 
 			foreach ( $notices as $notice ) {
 
-				if ( $this->get_option( $notice['new'] ) || $this->get_transient( $notice['new'] ) ) {
+				if ( $this->wp_dark_get_option( $notice['new'] ) || $this->wp_dark_get_transient( $notice['new'] ) ) {
 					continue;
 				}
 
-				$old_value = $this->get_option( $notice['old'] );
+				$old_value = $this->wp_dark_get_option( $notice['old'] );
 
 				if ( ! is_null( $old_value ) ) {
-					$this->set_option( $notice['new'], 'off' === $old_value ? 'hide' : 'show' );
+					$this->wp_dark_set_option( $notice['new'], 'off' === $old_value ? 'hide' : 'show' );
 				} else {
-					$this->set_transient( $notice['new'], 'hide', DAY_IN_SECONDS * $notice['days'] );
+					$this->wp_dark_set_transient( $notice['new'], 'hide', DAY_IN_SECONDS * $notice['days'] );
 				}
 			}
 		}
@@ -136,15 +136,17 @@ if ( ! class_exists( __NAMESPACE__ . 'Install' ) ) {
 		 * @since 5.0.0
 		 * @return bool
 		 */
-		public function check_compatibilities() {
+		public function wp_dark_check_compatibilities() {
 
-			$dependency = $this->get_dependency();
+			$dependency = $this->wp_dark_get_dependency();
 
 			// Checks PHP compatibility.
-			if ( ! $dependency->is_php_compatible() ) {
+			if ( ! $dependency->wp_dark_is_php_compatible() ) {
 
-				// Throw an error in the WordPress admin console.
-				$this->print_error(
+				// Store the notice; activation runs before any admin page
+				// renders, so it is printed later on admin_notices instead
+				// of being echoed here (see wp_dark_print_error()).
+				$this->wp_dark_print_error(
 					sprintf(
 						/* translators: %s: PHP version */
 						'WP Dark Mode %1$s requires PHP version %s or greater. Your current PHP version is %s.',
@@ -157,10 +159,10 @@ if ( ! class_exists( __NAMESPACE__ . 'Install' ) ) {
 			}
 
 			// Checks WordPress compatibility.
-			if ( ! $dependency->is_wp_compatible() ) {
+			if ( ! $dependency->wp_dark_is_wp_compatible() ) {
 
-				// Throw an error in the WordPress admin console.
-				$this->print_error(
+				// Store the notice; see the PHP-compatibility branch above.
+				$this->wp_dark_print_error(
 					sprintf(
 						/* translators: %s: WordPress version */
 						'WP Dark Mode %1$s requires WordPress version %s or greater. Your current WordPress version is %s.',
@@ -172,33 +174,25 @@ if ( ! class_exists( __NAMESPACE__ . 'Install' ) ) {
 				return false;
 			}
 
-			// Check if ultimate activated but not compatible.
-			if ( $dependency->is_wp_dark_mode_ultimate_active() && ! $dependency->is_wp_dark_mode_ultimate_compatible() ) {
-				echo '<div class="notice notice-error is-dismissible">';
-				echo '<p>' . sprintf(
-					wp_kses_post( '<strong>WP Dark Mode %s</strong> is not compatible with the installed version of <strong>WP Dark Mode Ultimate</strong>. Please update the <strong>WP Dark Mode Ultimate 4.0.0 or higher</strong> to function properly.' ),
-					esc_html( WP_DARK_MODE_VERSION ),
-					esc_html( $dependency->minimum_wp_dark_mode_ultimate_version )
-				) . '</p>';
-				echo '</div>';
-
-				// Deactivate the ultimate plugin.
-				deactivate_plugins( $dependency->wp_dark_mode_ultimate_file );
-			}
-
 			return true;
 		}
 
 		/**
-		 * Prints an error notice
+		 * Stores an activation-time error to be shown on the next
+		 * admin_notices, instead of echoing it immediately.
+		 *
+		 * Activation-hook callbacks run before WordPress has sent its own
+		 * response for the activation request; any direct output here
+		 * triggers "unexpected output" warnings and can break the
+		 * activation redirect. Deferring the message to admin_notices avoids
+		 * that entirely.
 		 *
 		 * @since 5.0.0
 		 * @param string $message Error message.
 		 * @return void
 		 */
-		public function print_error( $message ) {
-			// Print notice.
-			printf( '<div class="notice notice-error"><p>%s</p></div>', esc_html( $message ) );
+		public function wp_dark_print_error( $message ) {
+			set_transient( 'wp_dark_mode_activation_error', $message, MINUTE_IN_SECONDS * 5 );
 		}
 
 		/**
@@ -208,9 +202,9 @@ if ( ! class_exists( __NAMESPACE__ . 'Install' ) ) {
 		 * @param array $links Plugin action links.
 		 * @return array
 		 */
-		public function plugin_action_links( $links ) {
+		public function wp_dark_plugin_action_links( $links ) {
 			// check if pro version is installed.
-			if ( ! $this->is_ultimate() ) {
+			if ( ! $this->wp_dark_is_ultimate() ) {
 				// Add 'Upgrade' link.
 				array_unshift(
 					$links,
@@ -243,7 +237,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Install' ) ) {
 		 * @since 5.0.0
 		 * @return void
 		 */
-		public function redirect_to_get_started() {
+		public function wp_dark_redirect_to_get_started() {
 			// Check if it is first time activation.
 			if ( ! get_option( 'wp_dark_mode_activated' ) ) {
 				// Set the option.
@@ -258,5 +252,5 @@ if ( ! class_exists( __NAMESPACE__ . 'Install' ) ) {
 	}
 
 	// Instantiate the class.
-	Install::init();
+	Wp_Dark_Install::wp_dark_init();
 }

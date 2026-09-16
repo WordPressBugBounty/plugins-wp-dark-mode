@@ -1,6 +1,6 @@
 <?php
 /**
- * WP Dark Mode Theme Supported Themes
+ * WP Dark Mode Theme Supported Wp_Dark_Themes
  *
  * @package WP_Dark_Mode
  */
@@ -13,22 +13,22 @@ namespace WP_Dark_Mode\Compatibility;
 defined( 'ABSPATH' ) || exit();
 
 /**
- * WP Dark Mode Theme Supported Themes
+ * WP Dark Mode Theme Supported Wp_Dark_Themes
  */
-if ( ! class_exists( 'Themes' ) ) {
+if ( ! class_exists( __NAMESPACE__ . '\\Wp_Dark_Themes' ) ) {
 
 	/**
-	 * WP Dark Mode Theme Supported Themes
+	 * WP Dark Mode Theme Supported Wp_Dark_Themes
 	 */
-	class Themes extends \WP_Dark_Mode\Base {
+	class Wp_Dark_Themes extends \WP_Dark_Mode\Wp_Dark_Base {
 
 		/**
 		 * Add language attribute to html for the theme has custom class.
 		 *
 		 * @return void
 		 */
-		public function _add_attribute() {
-			add_filter( 'language_attributes', array( $this, 'add_wp_dark_mode_attribute' ));
+		public function wp_dark_add_attribute() {
+			add_filter( 'language_attributes', array( $this, 'wp_dark_add_dark_mode_attribute' ));
 		}
 
 		/**
@@ -36,8 +36,8 @@ if ( ! class_exists( 'Themes' ) ) {
 		 *
 		 * @return void
 		 */
-		public function twentytwenty() {
-			$this->_add_attribute();
+		public function wp_dark_theme_twentytwenty() {
+			$this->wp_dark_add_attribute();
 		}
 
 		/**
@@ -45,8 +45,8 @@ if ( ! class_exists( 'Themes' ) ) {
 		 *
 		 * @return void
 		 */
-		public function oceanwp() {
-			$this->_add_attribute();
+		public function wp_dark_theme_oceanwp() {
+			$this->wp_dark_add_attribute();
 		}
 
 		/**
@@ -54,8 +54,8 @@ if ( ! class_exists( 'Themes' ) ) {
 		 *
 		 * @return void
 		 */
-		public function avada() {
-			$this->_add_attribute();
+		public function wp_dark_theme_avada() {
+			$this->wp_dark_add_attribute();
 		}
 
 		/**
@@ -64,9 +64,9 @@ if ( ! class_exists( 'Themes' ) ) {
 		 * @param string $attr
 		 * @return string
 		 */
-		public function add_wp_dark_mode_attribute( $attr ) {
-			$trigger = \WP_Dark_Mode\Triggers::get_instance();
-			$wp_dark_mode_is_preactivated = apply_filters( 'wp_dark_mode_is_preactivated', $trigger->is_preactivated() );
+		public function wp_dark_add_dark_mode_attribute( $attr ) {
+			$trigger = \WP_Dark_Mode\Wp_Dark_Triggers::wp_dark_get_instance();
+			$wp_dark_mode_is_preactivated = apply_filters( 'wp_dark_mode_is_preactivated', $trigger->wp_dark_is_preactivated() );
 			$attr .= $wp_dark_mode_is_preactivated ? ' data-wp-dark-mode' : '';
 			return $attr;
 		}

@@ -19,16 +19,16 @@ defined( 'ABSPATH' ) || exit();
  * @since 3.0.6
  * @package WP_DARK_MODE
  */
-if ( ! class_exists( __NAMESPACE__ . 'DarkModeWidget' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Dark_Mode_Widget' ) ) {
 	/**
 	 * Handles the elementor widget for wp dark mode
 	 *
 	 * @version 1.0.0
 	 */
-	class DarkModeWidget extends \Elementor\Widget_Base {
+	class Wp_Dark_Dark_Mode_Widget extends \Elementor\Widget_Base {
 
 		// Dark Mode Utility.
-		use \WP_Dark_Mode\Traits\Utility;
+		use \WP_Dark_Mode\Traits\Wp_Dark_Utility;
 
 		/**
 		 * Get dark mode switch name
@@ -118,13 +118,12 @@ if ( ! class_exists( __NAMESPACE__ . 'DarkModeWidget' ) ) {
 			$this->add_control(
 				'style', [
 					'type'        => 'wp_dark_mode_switch',
-					'options' => array_merge([ 1, 2, 3, 23, 24, 22, 20, 21 ], range(4, 19)),
+					'options' => \WP_Dark_Mode\Wp_Dark_Shortcode::wp_dark_get_instance()->wp_dark_allowed_switch_styles(),
 					'description' => 'Select the Dark Mode Switch Style',
 					'default'     => 1,
 					'id'          => 'wp-dark-mode-switch',
 					'classes' => 'wp-dark-mode-switch-style-elementor',
 					'assets_url' => WP_DARK_MODE_ASSETS . '/images/switches/',
-					'is_ultimate' => $this->is_ultimate(),
 				]
 			);
 

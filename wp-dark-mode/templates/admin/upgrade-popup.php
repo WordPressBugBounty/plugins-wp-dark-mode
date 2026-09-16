@@ -6,8 +6,43 @@
  * @package WP Dark Mode
  * @since 1.0
  */
+
 // phpcs:ignore
 defined( 'ABSPATH' ) || exit();
+
+// Themify's frontend builder renders its settings panel on the public page, not in wp-admin, so
+// the Themify module captures this template into a string (see TB_Wp_Dark_Dark_Mode_Switch_Module) and
+// hands it to JS for injection instead of printing it here. That call site sets this flag to opt
+// out of both guards below: neither applies to a buffered render. The one-shot global would make
+// the capture come back empty whenever an admin call site had already printed the popup, and the
+// screen gate would reject it outright because a frontend request has no `get_current_screen()`.
+$wp_dark_mode_is_buffered_render = ! empty( $GLOBALS['wp_dark_mode_upgrade_popup_buffered'] );
+
+// This template is output from multiple call sites (the plugin's core admin notices class, which
+// uses a plain `include`, plus each builder module's `require_once`). Because those use different
+// include mechanisms there's no shared dedup between them, so the popup markup could be printed
+// more than once on the same page. Guard with a one-shot global so it renders exactly once
+// regardless of how many call sites fire.
+if ( ! $wp_dark_mode_is_buffered_render ) {
+	if ( ! empty( $GLOBALS['wp_dark_mode_upgrade_popup_rendered'] ) ) {
+		return;
+	}
+	$GLOBALS['wp_dark_mode_upgrade_popup_rendered'] = true;
+
+	// None of the call sites originally checked the current screen, so whichever one fired first
+	// (usually a builder module's `admin_enqueue_scripts` hook, which runs before `admin_footer`)
+	// printed this popup on every wp-admin page, not just the post-editor screens where a locked pro
+	// field can actually be clicked. Gate it here once, so the fix holds regardless of which call
+	// site wins the race.
+	$wp_dark_mode_current_screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	$wp_dark_mode_current_page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
+	$wp_dark_mode_is_own_page  = in_array( $wp_dark_mode_current_page, array( 'wp-dark-mode', 'wp-dark-mode-settings', 'wp-dark-mode-get-started', 'wp-dark-mode-social-share' ), true );
+
+	if ( ( ! $wp_dark_mode_current_screen || 'post' !== $wp_dark_mode_current_screen->base ) && ! $wp_dark_mode_is_own_page ) {
+		return;
+	}
+}
 
 
 // Count down time.
@@ -20,19 +55,35 @@ if ( empty( $countdown_timer ) || $countdown_timer < time() ) {
 }
 
 $campaign_starts = strtotime( '2026-06-24 17:00:00' );
-$campaign_ends = strtotime( '2026-07-14 23:59:59' );
+$campaign_ends   = strtotime( '2026-07-14 23:59:59' );
 
 $is_campaign = $campaign_ends > time() && $campaign_starts < time();
 
 // Formatted data.
-$data = [
+$data = array(
 	'counter_time' => $is_campaign ? $campaign_ends : $countdown_timer,
-	'discount'     => $is_campaign ? 50 : 16,
-];
+	'discount'     => $is_campaign ? 50 : 35,
+);
 
 $class = 'wp-dark-mode-promo-campaign';
 
 ?>
+
+<?php
+/*
+ * Critical hide rule, emitted inline BEFORE the popup markup so it is parsed and applied at
+ * first paint. The same `.hidden` rule also lives in admin-common.css, but that external
+ * stylesheet loads after the browser has already painted this HTML â€” leaving a visible
+ * flash of the unstyled popup for a fraction of a second on page load. Inlining it here (ahead
+ * of the element) closes that gap. `show()`/`hide()` toggle the `hidden` class, so a class-based
+ * rule (not an inline style attribute) is what they can override.
+ */
+?>
+<style>
+	.wp-dark-mode-promo.hidden {
+		display: none !important;
+	}
+</style>
 
 <div class="wp-dark-mode-promo hidden <?php echo ! empty( $class ) ? esc_attr( $class ) : ''; ?>">
 	<div class="wp-dark-mode-promo-inner">
@@ -42,10 +93,13 @@ $class = 'wp-dark-mode-promo-campaign';
 		<img src="<?php echo esc_url( WP_DARK_MODE_ASSETS ) . '/images/gift-box.svg'; ?>" class="promo-img">
 
 		<?php
-		echo wp_sprintf( '<h3 class="promo-title">%s</h3>',
-		$is_campaign ? esc_html__('SUMMER SALE ☀️', 'wp-dark-mode') : esc_html__( 'Unlock all the features', 'wp-dark-mode' ) );
+		echo wp_sprintf(
+			'<h3 class="promo-title">%s</h3>',
+			$is_campaign ? esc_html__( 'SUMMER SALE â˜€ï¸', 'wp-dark-mode' ) : esc_html__( 'Unlock all the features', 'wp-dark-mode' )
+		);
 
-		echo wp_sprintf( '<div class="discount"> <span class="discount-special">%s</span> <span class="discount-text">%s</span></div>',
+		echo wp_sprintf(
+			'<div class="discount"> <span class="discount-special">%s</span> <span class="discount-text">%s</span></div>',
 			$is_campaign ? esc_html__( 'UP TO', 'wp-dark-mode' ) : esc_html__( 'SPECIAL', 'wp-dark-mode' ),
 			/* translators: 1: discount amount, 2: percent sign */
 			wp_sprintf( esc_html__( '%1$s%2$s OFF', 'wp-dark-mode' ), esc_html( $data['discount'] ), '%' )
@@ -71,9 +125,9 @@ $class = 'wp-dark-mode-promo-campaign';
 			</div>
 		</div>
 
-		<a class="wpdm-popup-button" href="<?php echo esc_url( $is_campaign ? 'https://lnk.wppool.dev/AAGukuk' : 'https://go.wppool.dev/LaSV' ); ?>" target="_blank"><?php echo $is_campaign ? esc_html__( 'Save Now 💰', 'wp-dark-mode' ) : /* translators: 1: discount amount, 2: percent sign */ wp_sprintf( esc_html__( 'Claim %1$s%2$s Discount', 'wp-dark-mode' ), esc_html( $data['discount'] ), '%' ); ?></a>
+		<a class="wp-dark-popup-button" href="<?php echo esc_url( $is_campaign ? 'https://lnk.wppool.dev/AAGukuk' : 'https://go.wppool.dev/LaSV' ); ?>" target="_blank"><?php echo $is_campaign ? esc_html__( 'Save Now ðŸ’°', 'wp-dark-mode' ) : /* translators: 1: discount amount, 2: percent sign */ wp_sprintf( esc_html__( 'Claim %1$s%2$s Discount', 'wp-dark-mode' ), esc_html( $data['discount'] ), '%' ); ?></a>
 
-		<a class="wpdm-popup-demo-link" href="https://go.wppool.dev/bjxy" target="_blank"><?php esc_html_e( 'Try a FREE demo', 'wp-dark-mode' ); ?></a>
+		<a class="wp-dark-popup-demo-link" href="https://go.wppool.dev/bjxy" target="_blank"><?php esc_html_e( 'Try a FREE demo', 'wp-dark-mode' ); ?></a>
 	</div>
 
 	<style>
@@ -139,7 +193,8 @@ $class = 'wp-dark-mode-promo-campaign';
 			margin: 45px 0 15px;
 		}
 
-		.wp-dark-mode-promo-inner .wpdm-popup-button {
+		.wp-dark-mode-promo-inner .wp-dark-popup-button {
+			color: #fff !important;
 			font-size: 18px;
 			padding: 10px 20px;
 		}
@@ -160,7 +215,7 @@ $class = 'wp-dark-mode-promo-campaign';
 				return document.querySelector('.wp-dark-mode-promo .close-promo') || null;
 			},
 			startCountdown () {
-				// Use PHP Unix timestamp directly (× 1000 for JS ms).
+				// Use PHP Unix timestamp directly (Ã— 1000 for JS ms).
 				// This avoids timezone parsing bugs from date strings without timezone info.
 				const countDownDate = <?php echo (int) $data['counter_time']; ?> * 1000;
 
@@ -256,10 +311,17 @@ $class = 'wp-dark-mode-promo-campaign';
 			}
 		}
 
-		// Events
-		document.addEventListener('DOMContentLoaded', () => {
+		// Events. When this markup is injected into an already-loaded document (Themify's frontend
+		// builder does exactly that), DOMContentLoaded has long since fired and would never call
+		// events() â€” leaving the close button, outside-click and escape handlers unbound. Bind
+		// immediately in that case instead of waiting for an event that isn't coming.
+		if ('loading' === document.readyState) {
+			document.addEventListener('DOMContentLoaded', () => {
+				window.WPDarkModePromo.events();
+			});
+		} else {
 			window.WPDarkModePromo.events();
-		});
+		}
 	})()
 	</script>
 

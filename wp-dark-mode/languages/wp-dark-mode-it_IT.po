@@ -31,7 +31,7 @@ msgstr "Impostazioni WP Dark Mode"
 
 #: includes/admin/class-admin-menus.php:46, includes/admin/class-admin-notices.php:86, includes/admin/class-strings.php:656, includes/admin/class-strings.php:662
 msgid "WP Dark Mode"
-msgstr "Modalità Scura WP"
+msgstr "ModalitÃ  Scura WP"
 
 #: includes/admin/class-admin-menus.php:82, includes/admin/class-admin-menus.php:83, includes/admin/class-strings.php:665
 msgid "Get Started"
@@ -138,15 +138,15 @@ msgid ""
 "If you hide the recommended plugins page from your menu, it won't appear "
 "there again. Are you sure you'd like to do it?"
 msgstr ""
-"Se nascondi la pagina dei plugin consigliati dal tuo menu, non apparirà più "
-"lì. Sei sicuro di volerlo fare?"
+"Se nascondi la pagina dei plugin consigliati dal tuo menu, non apparirÃ  piÃ¹ "
+"lÃ¬. Sei sicuro di volerlo fare?"
 
 #: includes/admin/class-strings.php:15
 msgid ""
 "Enabling dark mode on your website is easy and simple. <a href=\"\">Learn "
 "how to get started with WP Dark Mode within minutes.</a>"
 msgstr ""
-"Abilitare la modalità scura sul tuo sito web è facile e semplice. <a "
+"Abilitare la modalitÃ  scura sul tuo sito web Ã¨ facile e semplice. <a "
 "href=\"\">Scopri come iniziare con WP Dark Mode in pochi minuti.</a>"
 
 #: includes/admin/class-strings.php:16
@@ -165,16 +165,16 @@ msgid ""
 "Gutenberg and Elementor. You can place the dark mode switch button on any "
 "page or post using these builders."
 msgstr ""
-"Sì, WP Dark Mode è compatibile con i principali page builder, tra cui "
+"SÃ¬, WP Dark Mode Ã¨ compatibile con i principali page builder, tra cui "
 "Gutenberg ed Elementor. Puoi posizionare il pulsante di commutazione della "
-"modalità scura su qualsiasi pagina o post utilizzando questi builder."
+"modalitÃ  scura su qualsiasi pagina o post utilizzando questi builder."
 
 #: includes/admin/class-strings.php:18
 msgid ""
 "Yes, WP Dark Mode has been tested and works seamlessly across modern "
 "browsers such as Safari, Chrome, Firefox, Edge, Opera, Brave, and more."
 msgstr ""
-"Sì, WP Dark Mode è stata testata e funziona perfettamente sui browser "
+"SÃ¬, WP Dark Mode Ã¨ stata testata e funziona perfettamente sui browser "
 "moderni come Safari, Chrome, Firefox, Edge, Opera, Brave e altri."
 
 #: includes/admin/class-strings.php:19
@@ -184,7 +184,7 @@ msgid ""
 msgstr ""
 "Vai su WP Dark Mode > Impostazioni > Personalizzazione > Impostazioni "
 "immagine e carica/seleziona l'immagine che desideri utilizzare per la "
-"modalità scura."
+"modalitÃ  scura."
 
 #: includes/admin/class-strings.php:20
 msgid ""
@@ -194,7 +194,7 @@ msgid ""
 "the elements you want to exclude."
 msgstr ""
 "WP Dark Mode ti consente di escludere elementi o pagine specifici "
-"dall'essere influenzati dalla modalità scura utilizzando i selettori CSS. "
+"dall'essere influenzati dalla modalitÃ  scura utilizzando i selettori CSS. "
 "Vai su WP Dark Mode > Impostazioni > Avanzate > Impostazioni di esclusione "
 "> Elementi HTML e aggiungi i selettori CSS per gli elementi che desideri "
 "escludere."
@@ -208,20 +208,20 @@ msgid ""
 msgstr ""
 "Per rimborsi sul piano premium, contatta direttamente il nostro <a "
 "href=\"http://wppool.dev/contact\" rel=\"nofollow\" target=\"_blank\">team "
-"di assistenza clienti</a>. La procedura si baserà sui termini di servizio "
+"di assistenza clienti</a>. La procedura si baserÃ  sui termini di servizio "
 "in vigore al momento dell'acquisto."
 
 #: includes/admin/class-strings.php:22, src/admin/routes/settings-routes.js:87
 msgid "Accessibility"
-msgstr "Accessibilità"
+msgstr "AccessibilitÃ "
 
 #: includes/admin/class-strings.php:23, src/admin/routes/settings-routes.js:88
 msgid "Make your website more accessible for people with disabilities."
-msgstr "Rendi il tuo sito web più accessibile per le persone con disabilità."
+msgstr "Rendi il tuo sito web piÃ¹ accessibile per le persone con disabilitÃ ."
 
 #: includes/admin/class-strings.php:24
 msgid "Accessibility Switches"
-msgstr "Interruttori di accessibilità"
+msgstr "Interruttori di accessibilitÃ "
 
 #: includes/admin/class-strings.php:25, includes/admin/class-strings.php:643
 msgid "Please active WooCommerce to use this feature."
@@ -233,7 +233,7 @@ msgstr "+ Aggiungi preset di colore personalizzato"
 
 #: includes/admin/class-strings.php:27
 msgid "Add images to replace them in dark mode"
-msgstr "Aggiungi immagini per sostituirle in modalità scura"
+msgstr "Aggiungi immagini per sostituirle in modalitÃ  scura"
 
 #: includes/admin/class-strings.php:28
 msgid "Add New"
@@ -250,27 +250,27 @@ msgstr ""
 #: includes/admin/class-strings.php:30, includes/admin/class-strings.php:35
 msgid "Add Dark Mode switch to Menus from WordPress dashboard"
 msgstr ""
-"Aggiungi l'interruttore della modalità scura ai menu dalla dashboard di "
+"Aggiungi l'interruttore della modalitÃ  scura ai menu dalla dashboard di "
 "WordPress"
 
 #: includes/admin/class-strings.php:31
 msgid "Add custom triggers to toggle dark mode"
-msgstr "Aggiungi trigger personalizzati per attivare la modalità scura"
+msgstr "Aggiungi trigger personalizzati per attivare la modalitÃ  scura"
 
 #: includes/admin/class-strings.php:32
 msgid "Add videos to replace them in dark mode"
-msgstr "Aggiungi video per sostituirli in modalità scura"
+msgstr "Aggiungi video per sostituirli in modalitÃ  scura"
 
 #: includes/admin/class-strings.php:33
 msgid ""
 "Navigate to the Widget option in the WordPress dashboard under Appearance "
 "menu. Select the menu where you want to display dark mode switch and click "
-"on the ‘+’ button and type <span class=\"text-[#374151]\"> Dark Mode "
+"on the â€˜+â€™ button and type <span class=\"text-[#374151]\"> Dark Mode "
 "Switch</span> in the widget searchbox"
 msgstr ""
 "Vai all'opzione Widget nella dashboard di WordPress sotto il menu Aspetto. "
 "Seleziona il menu in cui desideri visualizzare l'interruttore della "
-"modalità scura, fai clic sul pulsante ‘+’ e digita <span "
+"modalitÃ  scura, fai clic sul pulsante â€˜+â€™ e digita <span "
 "class=\"text-[#374151]\"> Dark Mode Switch</span> nella casella di ricerca "
 "del widget"
 
@@ -280,33 +280,33 @@ msgstr "Aggiungi il widget WP Dark Mode al menu"
 
 #: includes/admin/class-strings.php:36, includes/admin/class-strings.php:37
 msgid "Adjust Typography for Dark Mode"
-msgstr "Regola la tipografia per la modalità scura"
+msgstr "Regola la tipografia per la modalitÃ  scura"
 
 #: includes/admin/class-strings.php:38, includes/admin/class-strings.php:594
 msgid ""
 "Enable to get seamless readability by font adaptation during dark-light "
 "mode toggling."
 msgstr ""
-"Abilita per ottenere una leggibilità perfetta tramite l'adattamento del "
-"font durante la commutazione tra modalità scura e chiara."
+"Abilita per ottenere una leggibilitÃ  perfetta tramite l'adattamento del "
+"font durante la commutazione tra modalitÃ  scura e chiara."
 
 #: includes/admin/class-strings.php:39, includes/admin/class-strings.php:228
 msgid "Turn it ON to enable dark mode on the WordPress dashboard"
-msgstr "Attivalo per abilitare la modalità scura sulla dashboard di WordPress"
+msgstr "Attivalo per abilitare la modalitÃ  scura sulla dashboard di WordPress"
 
 #: includes/admin/class-strings.php:40, includes/admin/class-strings.php:227
 msgid "Enable Admin Dashboard Dark Mode"
-msgstr "Abilita la modalità scura della dashboard di amministrazione"
+msgstr "Abilita la modalitÃ  scura della dashboard di amministrazione"
 
 #: includes/admin/class-strings.php:41, src/admin/routes/settings-routes.js:22
 msgid "Settings to Control Dark Mode on your WordPress Admin Panel"
 msgstr ""
-"Impostazioni per controllare la modalità scura sul tuo pannello di "
+"Impostazioni per controllare la modalitÃ  scura sul tuo pannello di "
 "amministrazione di WordPress"
 
 #: includes/admin/class-strings.php:42, src/admin/routes/settings-routes.js:21
 msgid "Admin Panel Dark Mode"
-msgstr "Modalità scura del pannello di amministrazione"
+msgstr "ModalitÃ  scura del pannello di amministrazione"
 
 #: includes/admin/class-strings.php:43, src/admin/routes/settings-routes.js:63
 msgid "Advanced"
@@ -318,7 +318,7 @@ msgstr "Programma di affiliazione"
 
 #: includes/admin/class-strings.php:45
 msgid ""
-"Hey! Enjoying the WP Dark Mode plugin? 😍 Join our <a "
+"Hey! Enjoying the WP Dark Mode plugin? ðŸ˜ Join our <a "
 "href=\"https://go.wppool.dev/zfrO\" target=\"_blank\" "
 "class=\"text-[#7C3AED] font-semibold\">Influencer Program</a> to make money "
 "from your social media content. You can also check our <a "
@@ -326,7 +326,7 @@ msgid ""
 "class=\"text-[#7C3AED] font-semibold no-underline\">Affiliate Program</a> "
 "to get a <strong>25% commission</strong> on every sale!"
 msgstr ""
-"Ehi! Ti piace il plugin WP Dark Mode? 😍 Unisciti al nostro <a "
+"Ehi! Ti piace il plugin WP Dark Mode? ðŸ˜ Unisciti al nostro <a "
 "href=\"https://go.wppool.dev/zfrO\" target=\"_blank\" "
 "class=\"text-[#7C3AED] font-semibold\">Programma Influencer</a> per "
 "guadagnare dai tuoi contenuti sui social media. Puoi anche consultare il "
@@ -343,12 +343,12 @@ msgid ""
 "Let AI generate your stunning dark mode themes in seconds. Preview, "
 "compare, and apply the one you love."
 msgstr ""
-"Lascia che l'IA generi i tuoi fantastici temi in modalità scura in pochi "
+"Lascia che l'IA generi i tuoi fantastici temi in modalitÃ  scura in pochi "
 "secondi. Visualizza l'anteprima, confronta e applica quello che preferisci."
 
 #: includes/admin/class-strings.php:48
 msgid "Create Your Dark Mode with AI"
-msgstr "Crea la tua modalità scura con l'IA"
+msgstr "Crea la tua modalitÃ  scura con l'IA"
 
 #: includes/admin/class-strings.php:49, src/admin/routes/settings-routes.js:125, src/admin/routes/settings-routes.js:131
 msgid "AI Model"
@@ -359,14 +359,14 @@ msgid "Configure AI model settings for theme generation"
 msgstr "Configura le impostazioni del modello IA per la generazione del tema"
 
 #: includes/admin/class-strings.php:51
-msgid "⚡ AI Preset Generator"
-msgstr "⚡ Generatore di preset IA"
+msgid "âš¡ AI Preset Generator"
+msgstr "âš¡ Generatore di preset IA"
 
 #: includes/admin/class-strings.php:52
 msgid "Let AI instantly generate a smart dark mode theme preset for you."
 msgstr ""
 "Lascia che l'IA generi istantaneamente un preset di tema intelligente per "
-"la modalità scura per te."
+"la modalitÃ  scura per te."
 
 #: includes/admin/class-strings.php:53
 msgid "AI Preset Generator"
@@ -378,11 +378,11 @@ msgstr "Preset IA salvato con successo!"
 
 #: includes/admin/class-strings.php:56
 msgid "I already did it"
-msgstr "L'ho già fatto"
+msgstr "L'ho giÃ  fatto"
 
 #: includes/admin/class-strings.php:57
 msgid "You already have a preset named"
-msgstr "Hai già un preset chiamato"
+msgstr "Hai giÃ  un preset chiamato"
 
 #: includes/admin/class-strings.php:58
 msgid "AM"
@@ -397,13 +397,13 @@ msgid ""
 "If you enable this then the chart above will be shown in your admin panel "
 "dashboard"
 msgstr ""
-"Se lo abiliti, il grafico sopra verrà mostrato nella dashboard del tuo "
+"Se lo abiliti, il grafico sopra verrÃ  mostrato nella dashboard del tuo "
 "pannello di amministrazione"
 
 #: includes/admin/class-strings.php:61
 msgid "Display this dark mode usage chart on the WordPress Dashboard"
 msgstr ""
-"Visualizza questo grafico di utilizzo della modalità scura sulla dashboard "
+"Visualizza questo grafico di utilizzo della modalitÃ  scura sulla dashboard "
 "di WordPress"
 
 #: includes/admin/class-strings.php:62, src/admin/routes/settings-routes.js:119
@@ -415,13 +415,13 @@ msgid ""
 "Enable dark mode analytics to track how many times site visitors have used "
 "dark mode in a certain period."
 msgstr ""
-"Abilita le analisi della modalità scura per monitorare quante volte i "
-"visitatori del sito hanno utilizzato la modalità scura in un determinato "
+"Abilita le analisi della modalitÃ  scura per monitorare quante volte i "
+"visitatori del sito hanno utilizzato la modalitÃ  scura in un determinato "
 "periodo."
 
 #: includes/admin/class-strings.php:64, includes/admin/class-strings.php:167
 msgid "Dark Mode Analytics"
-msgstr "Analisi della modalità scura"
+msgstr "Analisi della modalitÃ  scura"
 
 #: includes/admin/class-strings.php:65, includes/admin/class-strings.php:66
 msgid "Analyze my website"
@@ -437,7 +437,7 @@ msgid ""
 "between light and dark modes on your website."
 msgstr ""
 "Abilita questa opzione per scegliere l'animazione di transizione quando "
-"passi dalla modalità chiara a quella scura sul tuo sito web."
+"passi dalla modalitÃ  chiara a quella scura sul tuo sito web."
 
 #: includes/admin/class-strings.php:69, includes/admin/class-strings.php:235
 msgid "Enable Page Transition Animation"
@@ -455,13 +455,13 @@ msgstr "Effetto attenzione interruttore"
 
 #: includes/admin/class-strings.php:73
 msgid "Auto-hide Switch on Idle"
-msgstr "Nascondi automaticamente l'interruttore in caso di inattività"
+msgstr "Nascondi automaticamente l'interruttore in caso di inattivitÃ "
 
 #: includes/admin/class-strings.php:74
 msgid "Enable to automatically hide the floating switch when the user is idle."
 msgstr ""
 "Abilita per nascondere automaticamente l'interruttore mobile quando "
-"l'utente è inattivo."
+"l'utente Ã¨ inattivo."
 
 #: includes/admin/class-strings.php:75
 msgid "Automatic Color"
@@ -469,7 +469,7 @@ msgstr "Colore automatico"
 
 #: includes/admin/class-strings.php:76, includes/admin/class-strings.php:78
 msgid "Adjust the your automatic color for dark mode color scheme"
-msgstr "Regola il tuo colore automatico per lo schema colori della modalità scura"
+msgstr "Regola il tuo colore automatico per lo schema colori della modalitÃ  scura"
 
 #: includes/admin/class-strings.php:77, includes/admin/class-strings.php:79
 msgid "Adjust your automatic color filter"
@@ -485,15 +485,15 @@ msgstr "Sfondo"
 
 #: includes/admin/class-strings.php:82, includes/admin/class-strings.php:85
 msgid "Block Editor Dark Mode"
-msgstr "Modalità scura del Block Editor"
+msgstr "ModalitÃ  scura del Block Editor"
 
 #: includes/admin/class-strings.php:83, includes/admin/class-strings.php:84
 msgid ""
 "Turn it ON to show dark mode switch in the block editor for toggling "
 "between dark and light mode."
 msgstr ""
-"Attivalo per mostrare l'interruttore della modalità scura nell'editor a "
-"blocchi per passare dalla modalità scura a quella chiara."
+"Attivalo per mostrare l'interruttore della modalitÃ  scura nell'editor a "
+"blocchi per passare dalla modalitÃ  scura a quella chiara."
 
 #: includes/admin/class-strings.php:86
 msgid "Body Background Color"
@@ -509,15 +509,15 @@ msgstr "Bordo"
 
 #: includes/admin/class-strings.php:89
 msgid "Brightness"
-msgstr "Luminosità"
+msgstr "LuminositÃ "
 
 #: includes/admin/class-strings.php:90
 msgid "Adjust your preferred dark mode brightness"
-msgstr "Regola la tua luminosità preferita per la modalità scura"
+msgstr "Regola la tua luminositÃ  preferita per la modalitÃ  scura"
 
 #: includes/admin/class-strings.php:91
 msgid "Brightness level"
-msgstr "Livello di luminosità"
+msgstr "Livello di luminositÃ "
 
 #: includes/admin/class-strings.php:92
 msgid "Browse"
@@ -545,7 +545,7 @@ msgstr "Annulla"
 
 #: includes/admin/class-strings.php:98
 msgid "Choose Color Mode"
-msgstr "Scegli la modalità colore"
+msgstr "Scegli la modalitÃ  colore"
 
 #: includes/admin/class-strings.php:99, includes/admin/class-strings.php:100
 msgid "Choose Your Preferred Color Palettes"
@@ -555,19 +555,19 @@ msgstr "Scegli le tue tavolozze di colori preferite"
 msgid "Choose any button, menu link, or icon and make it toggle dark mode."
 msgstr ""
 "Scegli qualsiasi pulsante, link di menu o icona e associali all'attivazione "
-"della modalità scura."
+"della modalitÃ  scura."
 
 #: includes/admin/class-strings.php:102, includes/admin/class-strings.php:105
 msgid "Classic Editor Dark Mode"
-msgstr "Modalità scura del Classic Editor"
+msgstr "ModalitÃ  scura del Classic Editor"
 
 #: includes/admin/class-strings.php:103, includes/admin/class-strings.php:104
 msgid ""
 "Turn it ON to show dark mode switch in the classic editor for toggling "
 "between dark and light mode."
 msgstr ""
-"Attivalo per mostrare l'interruttore della modalità scura nell'editor "
-"classico per passare dalla modalità scura a quella chiara."
+"Attivalo per mostrare l'interruttore della modalitÃ  scura nell'editor "
+"classico per passare dalla modalitÃ  scura a quella chiara."
 
 #: includes/admin/class-strings.php:106, includes/admin/class-strings.php:640
 msgid "Wait! Clear palette previews?"
@@ -583,7 +583,7 @@ msgstr ""
 msgid "Explore your options to get the best dark mode visual experience."
 msgstr ""
 "Esplora le tue opzioni per ottenere la migliore esperienza visiva in "
-"modalità scura."
+"modalitÃ  scura."
 
 #: includes/admin/class-strings.php:109
 msgid "Color Presets"
@@ -591,11 +591,11 @@ msgstr "Preset di colore"
 
 #: includes/admin/class-strings.php:110, includes/admin/class-strings.php:111
 msgid "Choose a color preset for the dark mode color scheme."
-msgstr "Scegli un preset di colore per lo schema colori della modalità scura."
+msgstr "Scegli un preset di colore per lo schema colori della modalitÃ  scura."
 
 #: includes/admin/class-strings.php:112, includes/admin/class-strings.php:168
 msgid "Dark Mode Color Presets"
-msgstr "Preset di colore modalità scura"
+msgstr "Preset di colore modalitÃ  scura"
 
 #: includes/admin/class-strings.php:113, src/admin/routes/settings-routes.js:41
 msgid "Color Settings"
@@ -631,11 +631,11 @@ msgstr "Interruttore contenuti"
 
 #: includes/admin/class-strings.php:122
 msgid "Display dark mode switch at top of all pages"
-msgstr "Visualizza l'interruttore della modalità scura in cima a tutte le pagine"
+msgstr "Visualizza l'interruttore della modalitÃ  scura in cima a tutte le pagine"
 
 #: includes/admin/class-strings.php:123
 msgid "Display dark mode switch at top of all posts"
-msgstr "Visualizza l'interruttore della modalità scura in cima a tutti gli articoli"
+msgstr "Visualizza l'interruttore della modalitÃ  scura in cima a tutti gli articoli"
 
 #: includes/admin/class-strings.php:124, includes/admin/class-strings.php:125
 msgid "Continue to Edit"
@@ -647,7 +647,7 @@ msgstr "Contrasto"
 
 #: includes/admin/class-strings.php:127
 msgid "Adjust your desired dark mode contrast"
-msgstr "Regola il contrasto desiderato per la modalità scura"
+msgstr "Regola il contrasto desiderato per la modalitÃ  scura"
 
 #: includes/admin/class-strings.php:128, src/admin/routes/settings-routes.js:5
 msgid "Controls"
@@ -705,12 +705,12 @@ msgstr "Colore del testo CTA"
 msgid "Enable to add a call-to-action text for the dark mode switch."
 msgstr ""
 "Abilita per aggiungere un testo di call-to-action per l'interruttore della "
-"modalità scura."
+"modalitÃ  scura."
 
 #: includes/admin/class-strings.php:142
 msgid "Add call to action text beside the dark mode button"
 msgstr ""
-"Aggiungi il testo della call to action accanto al pulsante della modalità "
+"Aggiungi il testo della call to action accanto al pulsante della modalitÃ  "
 "scura"
 
 #: includes/admin/class-strings.php:143
@@ -736,16 +736,16 @@ msgstr "CSS personalizzato"
 #: includes/admin/class-strings.php:148, src/admin/routes/settings-routes.js:83
 msgid "Custom CSS code to apply on dark mode or on both mode"
 msgstr ""
-"Codice CSS personalizzato da applicare alla modalità scura o a entrambe le "
-"modalità"
+"Codice CSS personalizzato da applicare alla modalitÃ  scura o a entrambe le "
+"modalitÃ "
 
 #: includes/admin/class-strings.php:149
 msgid ""
 "Add custom CSS for dark mode only. This CSS will only apply when the dark "
 "mode is on. use <code>!important</code> flag on each property"
 msgstr ""
-"Aggiungi CSS personalizzato solo per la modalità scura. Questo CSS verrà "
-"applicato solo quando la modalità scura è attiva."
+"Aggiungi CSS personalizzato solo per la modalitÃ  scura. Questo CSS verrÃ  "
+"applicato solo quando la modalitÃ  scura Ã¨ attiva."
 
 #: includes/admin/class-strings.php:150
 msgid "Enter custom CSS here"
@@ -757,8 +757,8 @@ msgid ""
 "palette. Alternatively, you can switch your mode to either \"Color "
 "Presets\" or \"Automatic Color\" if that better suits your needs."
 msgstr ""
-"Prima di salvare questa modalità, assicurati di aver creato una tavolozza "
-"di colori personalizzata. In alternativa, puoi passare alla modalità "
+"Prima di salvare questa modalitÃ , assicurati di aver creato una tavolozza "
+"di colori personalizzata. In alternativa, puoi passare alla modalitÃ  "
 "\"Preset di colore\" o \"Colore automatico\" se si adatta meglio alle tue "
 "esigenze."
 
@@ -788,7 +788,7 @@ msgstr "Testo dell'interruttore personalizzato"
 
 #: includes/admin/class-strings.php:158
 msgid "Customize the dark mode switch text."
-msgstr "Personalizza il testo dell'interruttore della modalità scura."
+msgstr "Personalizza il testo dell'interruttore della modalitÃ  scura."
 
 #: includes/admin/class-strings.php:159, includes/admin/class-strings.php:160
 msgid "Custom Trigger"
@@ -801,7 +801,7 @@ msgstr "Trigger personalizzati"
 #: includes/admin/class-strings.php:162
 msgid "Allow any element on your site to toggle Dark Mode using CSS selectors."
 msgstr ""
-"Consenti a qualsiasi elemento del tuo sito di attivare la modalità scura "
+"Consenti a qualsiasi elemento del tuo sito di attivare la modalitÃ  scura "
 "utilizzando i selettori CSS."
 
 #: includes/admin/class-strings.php:163
@@ -815,7 +815,7 @@ msgstr "Personalizzazione"
 #: includes/admin/class-strings.php:165
 msgid "Customize the selected dark mode preset color in your way"
 msgstr ""
-"Personalizza il colore del preset della modalità scura selezionata a tuo "
+"Personalizza il colore del preset della modalitÃ  scura selezionata a tuo "
 "piacimento"
 
 #: includes/admin/class-strings.php:44
@@ -824,27 +824,27 @@ msgstr "Scuro"
 
 #: includes/admin/class-strings.php:169
 msgid "Dark Mode CSS"
-msgstr "CSS modalità scura"
+msgstr "CSS modalitÃ  scura"
 
 #: includes/admin/class-strings.php:170
 msgid "Dark Mode Switch Icon"
-msgstr "Icona dell'interruttore modalità scura"
+msgstr "Icona dell'interruttore modalitÃ  scura"
 
 #: includes/admin/class-strings.php:171
 msgid "Dark Mode Image"
-msgstr "Immagine modalità scura"
+msgstr "Immagine modalitÃ  scura"
 
 #: includes/admin/class-strings.php:172
 msgid "Dark Mode Switch Text"
-msgstr "Testo dell'interruttore modalità scura"
+msgstr "Testo dell'interruttore modalitÃ  scura"
 
 #: includes/admin/class-strings.php:173
 msgid "Add custom text for the dark mode switch"
-msgstr "Aggiungi testo personalizzato per l'interruttore della modalità scura"
+msgstr "Aggiungi testo personalizzato per l'interruttore della modalitÃ  scura"
 
 #: includes/admin/class-strings.php:174
 msgid "Dark Mode Video :"
-msgstr "Video modalità scura:"
+msgstr "Video modalitÃ  scura:"
 
 #: includes/admin/class-strings.php:175, includes/admin/class-strings.php:658
 msgid "WP Dark Mode Usage"
@@ -880,7 +880,7 @@ msgstr "Tempo di ritardo"
 #: includes/admin/class-strings.php:181
 msgid "The floating switch will appear after this delay when page loads."
 msgstr ""
-"L'interruttore mobile apparirà dopo questo ritardo al caricamento della "
+"L'interruttore mobile apparirÃ  dopo questo ritardo al caricamento della "
 "pagina."
 
 #: includes/admin/class-strings.php:182
@@ -896,7 +896,7 @@ msgid ""
 "This preset will be permanently deleted. Are you sure you want to confirm "
 "this deletion?"
 msgstr ""
-"Questo preset verrà eliminato in modo permanente. Sei sicuro di voler "
+"Questo preset verrÃ  eliminato in modo permanente. Sei sicuro di voler "
 "confermare l'eliminazione?"
 
 #: includes/admin/class-strings.php:185
@@ -928,9 +928,9 @@ msgid ""
 "Disabling typography settings will not make the text size increase "
 "automatically when text toggle is pressed on accessibility switches"
 msgstr ""
-"La disabilitazione delle impostazioni tipografiche farà sì che la "
+"La disabilitazione delle impostazioni tipografiche farÃ  sÃ¬ che la "
 "dimensione del testo non aumenti automaticamente quando viene premuto "
-"l'interruttore del testo sugli interruttori di accessibilità"
+"l'interruttore del testo sugli interruttori di accessibilitÃ "
 
 #: includes/admin/class-strings.php:192, includes/admin/class-strings.php:598
 msgid "Do you want to disable Typography settings?"
@@ -961,7 +961,7 @@ msgstr "Visualizza grafico sulla dashboard"
 #: includes/admin/class-strings.php:197
 msgid "Display dark mode usage chart on the WordPress dashboard"
 msgstr ""
-"Visualizza il grafico di utilizzo della modalità scura sulla dashboard di "
+"Visualizza il grafico di utilizzo della modalitÃ  scura sulla dashboard di "
 "WordPress"
 
 #: includes/admin/class-strings.php:198
@@ -973,8 +973,8 @@ msgid ""
 "Enable Floating dark mode switch in frontend for toggling between dark and "
 "light mode."
 msgstr ""
-"Abilita l'interruttore mobile della modalità scura nel frontend per passare "
-"dalla modalità scura a quella chiara."
+"Abilita l'interruttore mobile della modalitÃ  scura nel frontend per passare "
+"dalla modalitÃ  scura a quella chiara."
 
 #: includes/admin/class-strings.php:200
 msgid "Display switch on Login/ Register pages"
@@ -985,7 +985,7 @@ msgid ""
 "Enable to show the floating dark-mode switch on WordPress and WooCommerce "
 "login/register screens. Hidden by default to keep the form clean."
 msgstr ""
-"Abilita per mostrare l'interruttore mobile della modalità scura sulle "
+"Abilita per mostrare l'interruttore mobile della modalitÃ  scura sulle "
 "schermate di login/registrazione di WordPress e WooCommerce. Nascosto per "
 "impostazione predefinita per mantenere pulito il modulo."
 
@@ -999,11 +999,11 @@ msgstr "Mostra l'interruttore nel menu"
 
 #: includes/admin/class-strings.php:204
 msgid "Display the darkmode switch in your website menu."
-msgstr "Mostra l'interruttore della modalità scura nel menu del tuo sito."
+msgstr "Mostra l'interruttore della modalitÃ  scura nel menu del tuo sito."
 
 #: includes/admin/class-strings.php:205
 msgid "The switch will be displayed in the selected menus."
-msgstr "L'interruttore verrà visualizzato nei menu selezionati."
+msgstr "L'interruttore verrÃ  visualizzato nei menu selezionati."
 
 #: includes/admin/class-strings.php:206
 msgid "Display Switch at Top of Pages"
@@ -1016,7 +1016,7 @@ msgstr "Visualizza l'interruttore in cima agli articoli"
 #: includes/admin/class-strings.php:208
 msgid "Display Dark Mode switch using WordPress widget"
 msgstr ""
-"Visualizza l'interruttore della modalità scura utilizzando il widget di "
+"Visualizza l'interruttore della modalitÃ  scura utilizzando il widget di "
 "WordPress"
 
 #: includes/admin/class-strings.php:209
@@ -1072,14 +1072,14 @@ msgid ""
 "Navigate to the editing mode of a Post and Page using Elementor and look "
 "for Dark Mode Switch in the widget panel under Basic widgets"
 msgstr ""
-"Vai alla modalità di modifica di un articolo o di una pagina utilizzando "
+"Vai alla modalitÃ  di modifica di un articolo o di una pagina utilizzando "
 "Elementor e cerca Dark Mode Switch nel pannello dei widget sotto i widget "
 "di base"
 
 #: includes/admin/class-strings.php:220
 msgid "Choose button style from widget settings and you are done"
 msgstr ""
-"Scegli lo stile del pulsante dalle impostazioni del widget e il gioco è "
+"Scegli lo stile del pulsante dalle impostazioni del widget e il gioco Ã¨ "
 "fatto"
 
 #: includes/admin/class-strings.php:221
@@ -1088,7 +1088,7 @@ msgid ""
 "and you are done!"
 msgstr ""
 "Seleziona l'interruttore che preferisci dall'elenco nel pannello dei widget "
-"e il gioco è fatto!"
+"e il gioco Ã¨ fatto!"
 
 #: includes/admin/class-strings.php:222
 msgid "Use WP Dark Mode with Elementor"
@@ -1102,7 +1102,7 @@ msgstr "Reportistica via email"
 msgid "Enable this feature to get the dark mode usage summary through email."
 msgstr ""
 "Abilita questa funzione per ricevere il riepilogo dell'utilizzo della "
-"modalità scura via email."
+"modalitÃ  scura via email."
 
 #: includes/admin/class-strings.php:226
 msgid "Enable"
@@ -1114,21 +1114,21 @@ msgstr "Abilita trigger personalizzati"
 
 #: includes/admin/class-strings.php:249
 msgid "Enable Dark Mode on Scrollbar"
-msgstr "Abilita la modalit� oscura sulla barra di scorrimento"
+msgstr "Abilita la modalitï¿½ oscura sulla barra di scorrimento"
 
 #: includes/admin/class-strings.php:232, includes/admin/class-strings.php:233
 msgid "Enable Frontend Dark Mode"
-msgstr "Abilita la modalità scura nel frontend"
+msgstr "Abilita la modalitÃ  scura nel frontend"
 
 #: includes/admin/class-strings.php:234
 msgid "Turn it ON to enable dark mode on the frontend"
-msgstr "Attivalo per abilitare la modalità scura sul frontend"
+msgstr "Attivalo per abilitare la modalitÃ  scura sul frontend"
 
 #: includes/admin/class-strings.php:236, includes/admin/class-strings.php:238, includes/admin/class-strings.php:526, includes/admin/class-strings.php:527
 msgid "Enable this option to customize your scrollbar while toggling to dark mode"
 msgstr ""
 "Abilita questa opzione per personalizzare la tua barra di scorrimento "
-"passando alla modalità scura"
+"passando alla modalitÃ  scura"
 
 #: includes/admin/class-strings.php:239
 msgid "End Time"
@@ -1202,7 +1202,7 @@ msgstr "Escludi elementi"
 
 #: includes/admin/class-strings.php:258, includes/admin/class-strings.php:368
 msgid "Exclude dark mode on HTML tags, CSS class, CSS ids and more"
-msgstr "Escludi la modalità scura su tag HTML, classi CSS, ID CSS e altro"
+msgstr "Escludi la modalitÃ  scura su tag HTML, classi CSS, ID CSS e altro"
 
 #: includes/admin/class-strings.php:259
 msgid ""
@@ -1210,15 +1210,15 @@ msgid ""
 "being affected by dark mode."
 msgstr ""
 "Aggiungi i selettori degli elementi HTML (tag, classi o ID) per escluderli "
-"dall'influenza della modalità scura."
+"dall'influenza della modalitÃ  scura."
 
 #: includes/admin/class-strings.php:262
 msgid "Exclude Low Brightness on specific images"
-msgstr "Escludi la bassa luminosità su immagini specifiche"
+msgstr "Escludi la bassa luminositÃ  su immagini specifiche"
 
 #: includes/admin/class-strings.php:263
 msgid "Exclude Low Brightness on specific videos"
-msgstr "Escludi la bassa luminosità su video specifici"
+msgstr "Escludi la bassa luminositÃ  su video specifici"
 
 #: includes/admin/class-strings.php:264
 msgid "Exclude Low Grayscale Images "
@@ -1235,7 +1235,7 @@ msgstr "Escludi pagine/articoli"
 #: includes/admin/class-strings.php:267
 msgid "Exclude dark mode on specific WordPress post type and taxonomy"
 msgstr ""
-"Escludi la modalità scura su specifici tipi di post e tassonomia di "
+"Escludi la modalitÃ  scura su specifici tipi di post e tassonomia di "
 "WordPress"
 
 #: includes/admin/class-strings.php:268, includes/admin/class-strings.php:271
@@ -1244,11 +1244,11 @@ msgid ""
 "dark mode."
 msgstr ""
 "Aggiungi pagine, articoli e tipi di post personalizzati che desideri "
-"escludere dalla modalità scura."
+"escludere dalla modalitÃ  scura."
 
 #: includes/admin/class-strings.php:269, includes/admin/class-strings.php:447
 msgid "Dark Mode will only work on the selected posts and pages."
-msgstr "La modalità scura funzionerà solo sugli articoli e sulle pagine selezionate."
+msgstr "La modalitÃ  scura funzionerÃ  solo sugli articoli e sulle pagine selezionate."
 
 #: includes/admin/class-strings.php:270
 msgid "Exclude Post Type:"
@@ -1268,7 +1268,7 @@ msgstr "Escludi tassonomie"
 
 #: includes/admin/class-strings.php:275, includes/admin/class-strings.php:568
 msgid "Include the categories and tags that you want to exclude from the dark mode."
-msgstr "Includi le categorie e i tag che desideri escludere dalla modalità scura."
+msgstr "Includi le categorie e i tag che desideri escludere dalla modalitÃ  scura."
 
 #: includes/admin/class-strings.php:276, includes/admin/class-strings.php:277
 msgid "Exclude Taxonomy Type:"
@@ -1281,12 +1281,12 @@ msgstr "Escludi categorie WooCommerce"
 #: includes/admin/class-strings.php:279, includes/admin/class-strings.php:644
 msgid "Add categories to exclude the dark mode from the WooCommerce categories."
 msgstr ""
-"Aggiungi categorie per escludere la modalità scura dalle categorie "
+"Aggiungi categorie per escludere la modalitÃ  scura dalle categorie "
 "WooCommerce."
 
 #: includes/admin/class-strings.php:280, includes/admin/class-strings.php:448
 msgid "Dark Mode will only work on the selected WooCommerce categories."
-msgstr "La modalità scura funzionerà solo sulle categorie WooCommerce selezionate."
+msgstr "La modalitÃ  scura funzionerÃ  solo sulle categorie WooCommerce selezionate."
 
 #: includes/admin/class-strings.php:281
 msgid "Exclude WC Products"
@@ -1295,12 +1295,12 @@ msgstr "Escludi prodotti WooCommerce"
 #: includes/admin/class-strings.php:282, includes/admin/class-strings.php:649
 msgid "Add products to exclude the dark mode from the WooCommerce categories."
 msgstr ""
-"Aggiungi prodotti per escludere la modalità scura dalle categorie "
+"Aggiungi prodotti per escludere la modalitÃ  scura dalle categorie "
 "WooCommerce."
 
 #: includes/admin/class-strings.php:283, includes/admin/class-strings.php:449
 msgid "Dark Mode will only work on the selected WooCommerce products."
-msgstr "La modalità scura funzionerà solo sui prodotti WooCommerce selezionati."
+msgstr "La modalitÃ  scura funzionerÃ  solo sui prodotti WooCommerce selezionati."
 
 #: includes/admin/class-strings.php:284
 msgid "Exclude WooCommerce"
@@ -1308,11 +1308,11 @@ msgstr "Escludi WooCommerce"
 
 #: includes/admin/class-strings.php:285
 msgid "Exclude dark mode on WooCommerce products and categories"
-msgstr "Escludi la modalità scura sui prodotti e le categorie WooCommerce"
+msgstr "Escludi la modalitÃ  scura sui prodotti e le categorie WooCommerce"
 
 #: includes/admin/class-strings.php:286, includes/admin/class-strings.php:287
 msgid "Explore Accessibility Switches"
-msgstr "Esplora gli interruttori di accessibilità"
+msgstr "Esplora gli interruttori di accessibilitÃ "
 
 #: includes/admin/class-strings.php:288
 msgid "Explore now"
@@ -1332,15 +1332,15 @@ msgstr "Esporta impostazioni"
 
 #: includes/admin/class-strings.php:292
 msgid "Default dark mode"
-msgstr "Modalità scura predefinita"
+msgstr "ModalitÃ  scura predefinita"
 
 #: includes/admin/class-strings.php:293
 msgid "Dark mode-based image/video"
-msgstr "Immagini/video basati sulla modalità scura"
+msgstr "Immagini/video basati sulla modalitÃ  scura"
 
 #: includes/admin/class-strings.php:294
 msgid "Dark mode usage analytics"
-msgstr "Analisi di utilizzo della modalità scura"
+msgstr "Analisi di utilizzo della modalitÃ  scura"
 
 #: includes/admin/class-strings.php:295
 msgid "24/7 live chat & VIP support"
@@ -1356,19 +1356,19 @@ msgstr "Widget Elementor"
 
 #: includes/admin/class-strings.php:298
 msgid "Dark mode for WordPress dashboard"
-msgstr "Modalità scura per la dashboard di WordPress"
+msgstr "ModalitÃ  scura per la dashboard di WordPress"
 
 #: includes/admin/class-strings.php:299
 msgid "Time-based dark mode"
-msgstr "Modalità scura basata sull'orario"
+msgstr "ModalitÃ  scura basata sull'orario"
 
 #: includes/admin/class-strings.php:300
 msgid "Access to 19 premium dark mode switches"
-msgstr "Accesso a 19 interruttori premium della modalità scura"
+msgstr "Accesso a 19 interruttori premium della modalitÃ  scura"
 
 #: includes/admin/class-strings.php:301
 msgid "Access to 13 dark mode color scheme"
-msgstr "Accesso a 13 schemi di colori per la modalità scura"
+msgstr "Accesso a 13 schemi di colori per la modalitÃ  scura"
 
 #: includes/admin/class-strings.php:302
 msgid "Manual customization with custom CSS"
@@ -1376,7 +1376,7 @@ msgstr "Personalizzazione manuale con CSS personalizzato"
 
 #: includes/admin/class-strings.php:303
 msgid "Customizable dark mode switch and CTA"
-msgstr "Interruttore della modalità scura e CTA personalizzabili"
+msgstr "Interruttore della modalitÃ  scura e CTA personalizzabili"
 
 #: includes/admin/class-strings.php:304, includes/admin/class-strings.php:669
 msgid "FAQ"
@@ -1384,7 +1384,7 @@ msgstr "FAQ"
 
 #: includes/admin/class-strings.php:305
 msgid "Here are some of the most frequently asked questions about WP Dark Mode"
-msgstr "Ecco alcune delle domande più frequenti su WP Dark Mode"
+msgstr "Ecco alcune delle domande piÃ¹ frequenti su WP Dark Mode"
 
 #: includes/admin/class-strings.php:306
 msgid "Frequently asked questions"
@@ -1399,7 +1399,7 @@ msgid ""
 "Did you know that there is a Facebook community for dark mode users like "
 "you? Feel free to join to be involved in the discussion."
 msgstr ""
-"Sapevi che esiste una community di Facebook per gli utenti della modalità "
+"Sapevi che esiste una community di Facebook per gli utenti della modalitÃ  "
 "scura come te? Sentiti libero di unirti per partecipare alla discussione."
 
 #: includes/admin/class-strings.php:309
@@ -1412,27 +1412,27 @@ msgstr "Supporto dedicato 24/7"
 
 #: includes/admin/class-strings.php:311
 msgid "Exclude pages/posts from dark mode"
-msgstr "Escludi pagine/articoli dalla modalità scura"
+msgstr "Escludi pagine/articoli dalla modalitÃ  scura"
 
 #: includes/admin/class-strings.php:312
 msgid "FEATURE LIST"
-msgstr "ELENCO FUNZIONALITÀ"
+msgstr "ELENCO FUNZIONALITÃ€"
 
 #: includes/admin/class-strings.php:313
 msgid "No Ads! Distraction free usage"
-msgstr "Senza pubblicità! Utilizzo senza distrazioni"
+msgstr "Senza pubblicitÃ ! Utilizzo senza distrazioni"
 
 #: includes/admin/class-strings.php:314
 msgid "13+ dark mode color presets"
-msgstr "Oltre 13 preset di colore per la modalità scura"
+msgstr "Oltre 13 preset di colore per la modalitÃ  scura"
 
 #: includes/admin/class-strings.php:315
 msgid "19+ stunning dark mode switches"
-msgstr "Oltre 19 fantastici interruttori della modalità scura"
+msgstr "Oltre 19 fantastici interruttori della modalitÃ  scura"
 
 #: includes/admin/class-strings.php:316
 msgid "Features"
-msgstr "Funzionalità"
+msgstr "FunzionalitÃ "
 
 #: includes/admin/class-strings.php:317, includes/admin/class-strings.php:323
 msgid "Floating Switch"
@@ -1484,19 +1484,19 @@ msgstr "Gratuito vs Ultimate"
 
 #: includes/admin/class-strings.php:331, src/admin/routes/settings-routes.js:16
 msgid "Frontend Dark Mode"
-msgstr "Modalità scura frontend"
+msgstr "ModalitÃ  scura frontend"
 
 #: includes/admin/class-strings.php:332, src/admin/routes/settings-routes.js:17
 msgid "Settings to Control Dark Mode on your Frontend Website"
-msgstr "Impostazioni per controllare la modalità scura sul tuo sito frontend"
+msgstr "Impostazioni per controllare la modalitÃ  scura sul tuo sito frontend"
 
 #: includes/admin/class-strings.php:333
 msgid "Turn it ON to enable dark mode on the Frontend"
-msgstr "Attivalo per abilitare la modalità scura sul frontend"
+msgstr "Attivalo per abilitare la modalitÃ  scura sul frontend"
 
 #: includes/admin/class-strings.php:334
 msgid "Choose how you want to use Dark Mode"
-msgstr "Scegli come vuoi utilizzare la modalità scura"
+msgstr "Scegli come vuoi utilizzare la modalitÃ  scura"
 
 #: includes/admin/class-strings.php:335
 msgid "Generate My Theme"
@@ -1516,7 +1516,7 @@ msgstr "Mettiti in contatto"
 
 #: includes/admin/class-strings.php:339
 msgid "Get all popular dark mode resources in one place."
-msgstr "Ottieni tutte le risorse popolari sulla modalità scura in un unico posto."
+msgstr "Ottieni tutte le risorse popolari sulla modalitÃ  scura in un unico posto."
 
 #: includes/admin/class-strings.php:340
 msgid "Tutorial, Docs, Support & Community"
@@ -1536,7 +1536,7 @@ msgstr "Gmail nel browser"
 
 #: includes/admin/class-strings.php:344
 msgid "Go to Accessibility settings"
-msgstr "Vai alle impostazioni di accessibilità"
+msgstr "Vai alle impostazioni di accessibilitÃ "
 
 #: includes/admin/class-strings.php:345
 msgid "Go to Menu Settings"
@@ -1552,7 +1552,7 @@ msgstr "Scala di grigi"
 
 #: includes/admin/class-strings.php:348
 msgid "Adjust your preferred dark mode Grayscale"
-msgstr "Regola la tua scala di grigi preferita per la modalità scura"
+msgstr "Regola la tua scala di grigi preferita per la modalitÃ  scura"
 
 #: includes/admin/class-strings.php:349
 msgid "Grayscale Image"
@@ -1579,10 +1579,10 @@ msgstr ""
 "blocchi predefinito."
 
 #: includes/admin/class-strings.php:354
-msgid "Go to Post/Page edit screen and and click on the ‘+’ icon to add new block"
+msgid "Go to Post/Page edit screen and and click on the â€˜+â€™ icon to add new block"
 msgstr ""
 "Vai alla schermata di modifica dell'articolo o della pagina e fai clic "
-"sull'icona ‘+’ per aggiungere un nuovo blocco"
+"sull'icona â€˜+â€™ per aggiungere un nuovo blocco"
 
 #: includes/admin/class-strings.php:355
 msgid ""
@@ -1598,11 +1598,11 @@ msgstr "Cerca il blocco Dark Mode Switch nell'elenco dei blocchi Gutenberg"
 
 #: includes/admin/class-strings.php:357
 msgid ""
-"Type “dark mode switch” in the block list search box and the Dark Mode "
+"Type â€œdark mode switchâ€ in the block list search box and the Dark Mode "
 "Switch block will appear. Click on the block to select it"
 msgstr ""
-"Digita “dark mode switch” nella casella di ricerca dell'elenco dei blocchi "
-"e apparirà il blocco Dark Mode Switch. Fai clic sul blocco per selezionarlo."
+"Digita â€œdark mode switchâ€ nella casella di ricerca dell'elenco dei blocchi "
+"e apparirÃ  il blocco Dark Mode Switch. Fai clic sul blocco per selezionarlo."
 
 #: includes/admin/class-strings.php:358
 msgid "Choose button style from block settings"
@@ -1614,7 +1614,7 @@ msgid ""
 "the right side and you are done!"
 msgstr ""
 "Scegli lo stile del pulsante che desideri utilizzare dal menu Stile "
-"interruttore sul lato destro e il gioco è fatto!"
+"interruttore sul lato destro e il gioco Ã¨ fatto!"
 
 #: includes/admin/class-strings.php:360
 msgid "Use WP Dark Mode with Gutenberg"
@@ -1654,12 +1654,12 @@ msgstr "Elementi HTML"
 
 #: includes/admin/class-strings.php:371
 msgid "Idle Timeout"
-msgstr "Timeout inattività"
+msgstr "Timeout inattivitÃ "
 
 #: includes/admin/class-strings.php:372
 msgid "The floating switch will hide after this period of user inactivity."
 msgstr ""
-"L'interruttore mobile si nasconderà dopo questo periodo di inattività "
+"L'interruttore mobile si nasconderÃ  dopo questo periodo di inattivitÃ  "
 "dell'utente."
 
 #: includes/admin/class-strings.php:373
@@ -1668,27 +1668,27 @@ msgstr "Comportamento immagine"
 
 #: includes/admin/class-strings.php:374
 msgid "Settings to change image appearance on dark mode"
-msgstr "Impostazioni per modificare l'aspetto dell'immagine in modalità scura"
+msgstr "Impostazioni per modificare l'aspetto dell'immagine in modalitÃ  scura"
 
 #: includes/admin/class-strings.php:375
 msgid "Image Behavior When Dark Mode Is On"
-msgstr "Comportamento dell'immagine quando la modalità scura è attiva"
+msgstr "Comportamento dell'immagine quando la modalitÃ  scura Ã¨ attiva"
 
 #: includes/admin/class-strings.php:376
 msgid "Enable to set the brightness level of the images on dark mode"
 msgstr ""
-"Abilita per impostare il livello di luminosità delle immagini in modalità "
+"Abilita per impostare il livello di luminositÃ  delle immagini in modalitÃ  "
 "scura"
 
 #: includes/admin/class-strings.php:377, src/admin/routes/settings-routes.js:78
 msgid "Customize image appearance in Dark Mode"
-msgstr "Personalizza l'aspetto dell'immagine in modalità scura"
+msgstr "Personalizza l'aspetto dell'immagine in modalitÃ  scura"
 
 #: includes/admin/class-strings.php:378
 msgid "Enable to set the grayscale level of the images on dark mode"
 msgstr ""
 "Abilita per impostare il livello di scala di grigi delle immagini in "
-"modalità scura"
+"modalitÃ  scura"
 
 #: includes/admin/class-strings.php:379
 msgid "Image Replacement"
@@ -1696,7 +1696,7 @@ msgstr "Sostituzione immagine"
 
 #: includes/admin/class-strings.php:380
 msgid "Replace specific images when dark mode is enabled"
-msgstr "Sostituisci immagini specifiche quando la modalità scura è abilitata"
+msgstr "Sostituisci immagini specifiche quando la modalitÃ  scura Ã¨ abilitata"
 
 #: includes/admin/class-strings.php:381, src/admin/routes/settings-routes.js:46
 msgid "Image Settings"
@@ -1740,7 +1740,7 @@ msgid ""
 "them in dark mode."
 msgstr ""
 "Aggiungi i selettori degli elementi HTML (tag, classi o ID) per includerli "
-"esplicitamente nella modalità scura."
+"esplicitamente nella modalitÃ  scura."
 
 #: includes/admin/class-strings.php:391
 msgid "Influencer Program"
@@ -1773,12 +1773,12 @@ msgstr "Scorciatoia da tastiera"
 #: includes/admin/class-strings.php:398
 msgid "Enable keyboard shortcut to toggle dark mode Ctrl + Alt + D"
 msgstr ""
-"Abilita la scorciatoia da tastiera per attivare la modalità scura Ctrl + "
+"Abilita la scorciatoia da tastiera per attivare la modalitÃ  scura Ctrl + "
 "Alt + D"
 
 #: includes/admin/class-strings.php:399
 msgid "Toggle Dark Mode using keyboard shortcut."
-msgstr "Attiva la modalità scura utilizzando la scorciatoia da tastiera."
+msgstr "Attiva la modalitÃ  scura utilizzando la scorciatoia da tastiera."
 
 #: includes/admin/class-strings.php:400
 msgid "Large"
@@ -1786,7 +1786,7 @@ msgstr "Grande"
 
 #: includes/admin/class-strings.php:401
 msgid "Learn more"
-msgstr "Scopri di più"
+msgstr "Scopri di piÃ¹"
 
 #: includes/admin/class-strings.php:402, includes/admin/class-strings.php:684, includes/classes/class-config.php:195, includes/modules/elementor/widgets/class-elementor-widget.php:154
 msgid "Left"
@@ -1798,23 +1798,23 @@ msgstr "Chiaro"
 
 #: includes/admin/class-strings.php:404
 msgid "Light Mode Switch Icon"
-msgstr "Icona interruttore modalità chiara"
+msgstr "Icona interruttore modalitÃ  chiara"
 
 #: includes/admin/class-strings.php:405
 msgid "Light Mode Image : "
-msgstr "Immagine modalità chiara: "
+msgstr "Immagine modalitÃ  chiara: "
 
 #: includes/admin/class-strings.php:406
 msgid "Light Mode Switch Text"
-msgstr "Testo interruttore modalità chiara"
+msgstr "Testo interruttore modalitÃ  chiara"
 
 #: includes/admin/class-strings.php:407
 msgid "Add custom text for the light mode switch"
-msgstr "Aggiungi testo personalizzato per l'interruttore della modalità chiara"
+msgstr "Aggiungi testo personalizzato per l'interruttore della modalitÃ  chiara"
 
 #: includes/admin/class-strings.php:408
 msgid "Light Mode Video :"
-msgstr "Video modalità chiara:"
+msgstr "Video modalitÃ  chiara:"
 
 #: includes/admin/class-strings.php:409
 msgid "Link"
@@ -1846,15 +1846,15 @@ msgstr ""
 
 #: includes/admin/class-strings.php:416
 msgid "Low Brightness Image"
-msgstr "Immagine a bassa luminosità"
+msgstr "Immagine a bassa luminositÃ "
 
 #: includes/admin/class-strings.php:417
 msgid "Low Brightness Video"
-msgstr "Video a bassa luminosità"
+msgstr "Video a bassa luminositÃ "
 
 #: includes/admin/class-strings.php:418
 msgid "Choose how you want to connect to us. Select the option convenient for you"
-msgstr "Scegli come vuoi contattarci. Seleziona l'opzione più comoda per te"
+msgstr "Scegli come vuoi contattarci. Seleziona l'opzione piÃ¹ comoda per te"
 
 #: includes/admin/class-strings.php:419
 msgid "Medium"
@@ -1867,16 +1867,16 @@ msgstr "Interruttore del menu"
 #: includes/admin/class-strings.php:422
 msgid ""
 "The Menu Switch is <strong>currently unavailable</strong>. To access this "
-"feature, first you have to enable the “Frontend Dark Mode” feature from the "
+"feature, first you have to enable the â€œFrontend Dark Modeâ€ feature from the "
 "Control settings"
 msgstr ""
-"L'interruttore del menu è <strong>attualmente non disponibile</strong>. Per "
-"accedere a questa funzione, devi prima abilitare la funzione “Frontend Dark "
-"Mode” dalle impostazioni di Controllo."
+"L'interruttore del menu Ã¨ <strong>attualmente non disponibile</strong>. Per "
+"accedere a questa funzione, devi prima abilitare la funzione â€œFrontend Dark "
+"Modeâ€ dalle impostazioni di Controllo."
 
 #: includes/admin/class-strings.php:423
-msgid "Menu switches won’t be visible anymore"
-msgstr "Gli interruttori del menu non saranno più visibili"
+msgid "Menu switches wonâ€™t be visible anymore"
+msgstr "Gli interruttori del menu non saranno piÃ¹ visibili"
 
 #: includes/admin/class-strings.php:424
 msgid "min"
@@ -1888,15 +1888,15 @@ msgstr "Mobile"
 
 #: includes/admin/class-strings.php:426
 msgid "Mode Image"
-msgstr "Immagine modalità"
+msgstr "Immagine modalitÃ "
 
 #: includes/admin/class-strings.php:427
 msgid "Mode Video"
-msgstr "Video modalità"
+msgstr "Video modalitÃ "
 
 #: includes/admin/class-strings.php:428
 msgid "More accessibility features"
-msgstr "Altre funzioni di accessibilità"
+msgstr "Altre funzioni di accessibilitÃ "
 
 #: includes/admin/class-strings.php:45
 msgid "New"
@@ -1912,7 +1912,7 @@ msgstr "No, continua a modificare"
 
 #: includes/admin/class-strings.php:433
 msgid "No custom color presets is created"
-msgstr "Nessun preset di colore personalizzato è stato creato"
+msgstr "Nessun preset di colore personalizzato Ã¨ stato creato"
 
 #: includes/admin/class-strings.php:434
 msgid "No Image"
@@ -1948,11 +1948,11 @@ msgstr "Normale"
 
 #: includes/admin/class-strings.php:442
 msgid "Normal Mode Image"
-msgstr "Immagine modalità normale"
+msgstr "Immagine modalitÃ  normale"
 
 #: includes/admin/class-strings.php:443
 msgid "Normal Mode Video"
-msgstr "Video modalità normale"
+msgstr "Video modalitÃ  normale"
 
 #: includes/admin/class-strings.php:444
 msgid "Normal Switches"
@@ -1972,7 +1972,7 @@ msgstr "Apri la documentazione"
 
 #: includes/admin/class-strings.php:451, includes/admin/class-strings.php:452
 msgid "Other Accessibility Settings"
-msgstr "Altre impostazioni di accessibilità"
+msgstr "Altre impostazioni di accessibilitÃ "
 
 #: includes/admin/class-strings.php:453, includes/admin/class-strings.php:454
 msgid "Other Performance Settings"
@@ -1988,7 +1988,7 @@ msgstr "Outlook nel browser"
 
 #: includes/admin/class-strings.php:457
 msgid "This will override all your current settings."
-msgstr "Questo sovrascriverà tutte le tue impostazioni correnti."
+msgstr "Questo sovrascriverÃ  tutte le tue impostazioni correnti."
 
 #: includes/admin/class-strings.php:458
 msgid "Pages/Posts"
@@ -2008,7 +2008,7 @@ msgstr "Prestazioni"
 
 #: includes/admin/class-strings.php:462, includes/admin/class-strings.php:463
 msgid "Choose Dark Mode behavior to enhance the performance"
-msgstr "Scegli il comportamento della modalità scura per migliorare le prestazioni"
+msgstr "Scegli il comportamento della modalitÃ  scura per migliorare le prestazioni"
 
 #: includes/admin/class-strings.php:464, src/admin/routes/settings-routes.js:73
 msgid "Configure performance settings."
@@ -2031,13 +2031,13 @@ msgid ""
 "You cannot delete this preset as it is currently in use. Please select "
 "another preset or change the \"Color Mode\" before deleting this preset."
 msgstr ""
-"Non puoi eliminare questo preset perché è attualmente in uso. Seleziona un "
-"altro preset o cambia la \"Modalità colore\" prima di eliminare questo "
+"Non puoi eliminare questo preset perchÃ© Ã¨ attualmente in uso. Seleziona un "
+"altro preset o cambia la \"ModalitÃ  colore\" prima di eliminare questo "
 "preset."
 
 #: includes/admin/class-strings.php:469
 msgid "Preset is already in use!"
-msgstr "Il preset è già in uso!"
+msgstr "Il preset Ã¨ giÃ  in uso!"
 
 #: includes/admin/class-strings.php:470
 msgid "Preset name"
@@ -2045,7 +2045,7 @@ msgstr "Nome del preset"
 
 #: includes/admin/class-strings.php:471, includes/admin/class-strings.php:474
 msgid "Preset name is required. Please enter a name for your preset."
-msgstr "Il nome del preset è obbligatorio. Inserisci un nome per il tuo preset."
+msgstr "Il nome del preset Ã¨ obbligatorio. Inserisci un nome per il tuo preset."
 
 #: includes/admin/class-strings.php:472
 msgid "Preset Name"
@@ -2077,7 +2077,7 @@ msgstr "px"
 
 #: includes/admin/class-strings.php:480
 msgid "How to enable dark mode on my website?"
-msgstr "Come posso abilitare la modalità scura sul mio sito web?"
+msgstr "Come posso abilitare la modalitÃ  scura sul mio sito web?"
 
 #: includes/admin/class-strings.php:481
 msgid "How do I activate PRO plan?"
@@ -2089,15 +2089,15 @@ msgstr "Come attivo il piano Ultimate?"
 
 #: includes/admin/class-strings.php:483
 msgid "Can I use it with popular page builders like Gutenberg or Elementor?"
-msgstr "Posso usarlo con i page builder più popolari come Gutenberg o Elementor?"
+msgstr "Posso usarlo con i page builder piÃ¹ popolari come Gutenberg o Elementor?"
 
 #: includes/admin/class-strings.php:484
 msgid "Is WP Dark Mode compatible with my theme?"
-msgstr "WP Dark Mode è compatibile con il mio tema?"
+msgstr "WP Dark Mode Ã¨ compatibile con il mio tema?"
 
 #: includes/admin/class-strings.php:485
 msgid "Is this plugin compatible with all modern browsers?"
-msgstr "Questo plugin è compatibile con tutti i browser moderni?"
+msgstr "Questo plugin Ã¨ compatibile con tutti i browser moderni?"
 
 #: includes/admin/class-strings.php:486
 msgid "Does the WP Dark Mode plugin have any impact on page loading?"
@@ -2105,7 +2105,7 @@ msgstr "Il plugin WP Dark Mode ha un impatto sul caricamento della pagina?"
 
 #: includes/admin/class-strings.php:487
 msgid "Can I change the image for dark mode using this plugin?"
-msgstr "Posso cambiare l'immagine per la modalità scura usando questo plugin?"
+msgstr "Posso cambiare l'immagine per la modalitÃ  scura usando questo plugin?"
 
 #: includes/admin/class-strings.php:488
 msgid ""
@@ -2118,8 +2118,8 @@ msgid "Where can I find the tutorials about using the plugin?"
 msgstr "Dove posso trovare i tutorial sull'utilizzo del plugin?"
 
 #: includes/admin/class-strings.php:490
-msgid "I want a refund for my purchase of the plugin. What’s the procedure?"
-msgstr "Vorrei un rimborso per l'acquisto del plugin. Qual è la procedura?"
+msgid "I want a refund for my purchase of the plugin. Whatâ€™s the procedure?"
+msgstr "Vorrei un rimborso per l'acquisto del plugin. Qual Ã¨ la procedura?"
 
 #: includes/admin/class-strings.php:491
 msgid "Please Rate Us:"
@@ -2160,8 +2160,8 @@ msgstr "Immagini sostituite"
 #: includes/admin/class-strings.php:501
 msgid "The following added images will be replaced when dark mode is enabled"
 msgstr ""
-"Le seguenti immagini aggiunte verranno sostituite quando la modalità scura "
-"è abilitata"
+"Le seguenti immagini aggiunte verranno sostituite quando la modalitÃ  scura "
+"Ã¨ abilitata"
 
 #: includes/admin/class-strings.php:502
 msgid "Replaced Videos"
@@ -2169,7 +2169,7 @@ msgstr "Video sostituiti"
 
 #: includes/admin/class-strings.php:503
 msgid "These videos will be replaced in the dark mode"
-msgstr "Questi video verranno sostituite nella modalità scura"
+msgstr "Questi video verranno sostituite nella modalitÃ  scura"
 
 #: includes/admin/class-strings.php:504, includes/admin/class-strings.php:508
 msgid "Reporting Email"
@@ -2177,7 +2177,7 @@ msgstr "Email per i report"
 
 #: includes/admin/class-strings.php:505
 msgid "Enter the email where the analytics report will be sent."
-msgstr "Inserisci l'email dove verrà inviato il report di analisi."
+msgstr "Inserisci l'email dove verrÃ  inviato il report di analisi."
 
 #: includes/admin/class-strings.php:506, includes/admin/class-strings.php:514
 msgid "Reporting Email Subject"
@@ -2189,7 +2189,7 @@ msgstr "Oggetto dell'email del report di analisi."
 
 #: includes/admin/class-strings.php:509
 msgid "Select the reporting frequency when the email will be send."
-msgstr "Seleziona la frequenza del report con cui l'email verrà inviata."
+msgstr "Seleziona la frequenza del report con cui l'email verrÃ  inviata."
 
 #: includes/admin/class-strings.php:510, includes/admin/class-strings.php:511
 msgid "Reporting Frequency"
@@ -2301,7 +2301,7 @@ msgstr "Seppia"
 
 #: includes/admin/class-strings.php:541
 msgid "Adjust your preferred dark mode Sepia"
-msgstr "Regola il tuo effetto seppia preferito per la modalità scura"
+msgstr "Regola il tuo effetto seppia preferito per la modalitÃ  scura"
 
 #: includes/admin/class-strings.php:543, src/admin/routes/settings-routes.js:92
 msgid "Shortcode"
@@ -2309,11 +2309,11 @@ msgstr "Shortcode"
 
 #: includes/admin/class-strings.php:544
 msgid "Select a switch from below and a shortcode will be generated"
-msgstr "Seleziona un interruttore qui sotto e verrà generato uno shortcode"
+msgstr "Seleziona un interruttore qui sotto e verrÃ  generato uno shortcode"
 
 #: includes/admin/class-strings.php:545, src/admin/routes/settings-routes.js:93
 msgid "Generate shortcodes for dark mode switches"
-msgstr "Genera gli shortcode per gli interruttori della modalità scura"
+msgstr "Genera gli shortcode per gli interruttori della modalitÃ  scura"
 
 #: includes/admin/class-strings.php:546
 msgid "Show Switch after delay"
@@ -2357,7 +2357,7 @@ msgstr "Personalizzazione dell'interruttore"
 
 #: includes/admin/class-strings.php:556, src/admin/routes/settings-routes.js:37
 msgid "Configure the dark mode switch for your website"
-msgstr "Configura l'interruttore della modalità scura per il tuo sito web"
+msgstr "Configura l'interruttore della modalitÃ  scura per il tuo sito web"
 
 #: includes/admin/class-strings.php:557
 msgid "Switch Position"
@@ -2373,11 +2373,11 @@ msgstr "Impostazioni interruttore"
 
 #: includes/admin/class-strings.php:560, includes/admin/class-strings.php:561
 msgid "Switch to Dark Mode"
-msgstr "Passa alla modalità scura"
+msgstr "Passa alla modalitÃ  scura"
 
 #: includes/admin/class-strings.php:562, includes/admin/class-strings.php:563
 msgid "Switch to Light Mode"
-msgstr "Passa alla modalità chiara"
+msgstr "Passa alla modalitÃ  chiara"
 
 #: includes/admin/class-strings.php:564, src/admin/routes/settings-routes.js:97
 msgid "Switch Widget"
@@ -2386,7 +2386,7 @@ msgstr "Widget interruttore"
 #: includes/admin/class-strings.php:565, src/admin/routes/settings-routes.js:98
 msgid "Display dark mode switch using WordPress widget"
 msgstr ""
-"Visualizza l'interruttore della modalità scura tramite il widget di "
+"Visualizza l'interruttore della modalitÃ  scura tramite il widget di "
 "WordPress"
 
 #: includes/admin/class-strings.php:567
@@ -2415,15 +2415,15 @@ msgstr "A"
 
 #: includes/admin/class-strings.php:577
 msgid "to enable dark mode"
-msgstr "per abilitare la modalità scura"
+msgstr "per abilitare la modalitÃ  scura"
 
 #: includes/admin/class-strings.php:578
 msgid "to enable light mode"
-msgstr "per abilitare la modalità chiara"
+msgstr "per abilitare la modalitÃ  chiara"
 
 #: includes/admin/class-strings.php:579
 msgid "Toggle Dark Mode"
-msgstr "Attiva/disattiva modalità scura"
+msgstr "Attiva/disattiva modalitÃ  scura"
 
 #: includes/admin/class-strings.php:580, src/admin/routes/settings-routes.js:138, src/admin/routes/settings-routes.js:146
 msgid "Tools"
@@ -2457,7 +2457,7 @@ msgstr ""
 
 #: includes/admin/class-strings.php:588
 msgid "The following triggers will toggle dark mode when clicked"
-msgstr "I seguenti trigger attiveranno la modalità scura quando vengono cliccati"
+msgstr "I seguenti trigger attiveranno la modalitÃ  scura quando vengono cliccati"
 
 #: includes/admin/class-strings.php:589
 msgid "Try Live Demo"
@@ -2469,7 +2469,7 @@ msgstr "Tutorial"
 
 #: includes/admin/class-strings.php:591
 msgid ""
-"Here is a small full video tutorial for you incase you don’t like to go "
+"Here is a small full video tutorial for you incase you donâ€™t like to go "
 "through all the textual instruction"
 msgstr ""
 "Ecco un breve video tutorial completo per te, nel caso non volessi leggere "
@@ -2479,15 +2479,15 @@ msgstr ""
 msgid "Check the WP Dark Mode playlist to become an expert dark mode user."
 msgstr ""
 "Consulta la playlist di WP Dark Mode per diventare un esperto utente della "
-"modalità scura."
+"modalitÃ  scura."
 
 #: includes/admin/class-strings.php:593
 msgid ""
 "Typography features are only available for <strong>Accessibility "
 "Switches</strong>"
 msgstr ""
-"Le funzionalità tipografiche sono disponibili solo per gli "
-"<strong>Interruttori di accessibilità</strong>"
+"Le funzionalitÃ  tipografiche sono disponibili solo per gli "
+"<strong>Interruttori di accessibilitÃ </strong>"
 
 #: includes/admin/class-strings.php:595, includes/admin/class-strings.php:600
 msgid "Typography Settings"
@@ -2495,15 +2495,15 @@ msgstr "Impostazioni tipografiche"
 
 #: includes/admin/class-strings.php:596
 msgid "Typography features are only available for"
-msgstr "Le funzionalità tipografiche sono disponibili solo per"
+msgstr "Le funzionalitÃ  tipografiche sono disponibili solo per"
 
 #: includes/admin/class-strings.php:599
 msgid ""
 "Typography option is disabled in Accessibility Settings. Text scaling "
-"feature won’t work."
+"feature wonâ€™t work."
 msgstr ""
-"L'opzione tipografia è disabilitata nelle impostazioni di accessibilità. La "
-"funzione di ridimensionamento del testo non funzionerà."
+"L'opzione tipografia Ã¨ disabilitata nelle impostazioni di accessibilitÃ . La "
+"funzione di ridimensionamento del testo non funzionerÃ ."
 
 #: includes/admin/class-strings.php:601
 msgid "ULTIMATE"
@@ -2512,10 +2512,10 @@ msgstr "ULTIMATE"
 #: includes/admin/class-strings.php:602
 msgid ""
 "Advanced dark mode customizations are available in <span "
-"class=\"font-semibold\">WP Dark Mode Ultimate</span> 😍"
+"class=\"font-semibold\">WP Dark Mode Ultimate</span> ðŸ˜"
 msgstr ""
-"Le personalizzazioni avanzate della modalità scura sono disponibili in "
-"<span class=\"font-semibold\">WP Dark Mode Ultimate</span> 😍"
+"Le personalizzazioni avanzate della modalitÃ  scura sono disponibili in "
+"<span class=\"font-semibold\">WP Dark Mode Ultimate</span> ðŸ˜"
 
 #: includes/admin/class-strings.php:603
 msgid "ULTIMATE PLAN"
@@ -2524,16 +2524,16 @@ msgstr "PIANO ULTIMATE"
 #: includes/admin/class-strings.php:604
 msgid ""
 "The Floating Switch is <strong>currently unavailable</strong>. To access "
-"this feature, first you have to enable the “Frontend Dark Mode” feature "
+"this feature, first you have to enable the â€œFrontend Dark Modeâ€ feature "
 "from the Control settings"
 msgstr ""
-"L'interruttore mobile è <strong>attualmente non disponibile</strong>. Per "
-"accedere a questa funzione, devi prima abilitare la funzione “Frontend Dark "
-"Mode” dalle impostazioni di Controllo."
+"L'interruttore mobile Ã¨ <strong>attualmente non disponibile</strong>. Per "
+"accedere a questa funzione, devi prima abilitare la funzione â€œFrontend Dark "
+"Modeâ€ dalle impostazioni di Controllo."
 
 #: includes/admin/class-strings.php:605
 msgid "This action cannot be undone."
-msgstr "Questa azione non può essere annullata."
+msgstr "Questa azione non puÃ² essere annullata."
 
 #: includes/admin/class-strings.php:606
 msgid "Not sure about upgrading to Ultimate yet?"
@@ -2545,7 +2545,7 @@ msgid ""
 "premium features on our demo website. Feel free to try every feature before "
 "making the decision."
 msgstr ""
-"Se hai dei dubbi sull'aggiornamento, puoi esplorare tutte le funzionalità "
+"Se hai dei dubbi sull'aggiornamento, puoi esplorare tutte le funzionalitÃ  "
 "premium sul nostro sito demo. Sentiti libero di provare ogni funzione prima "
 "di decidere."
 
@@ -2562,12 +2562,12 @@ msgid ""
 "Click update and you are done! The switch will now be visible in the menu "
 "where you placed."
 msgstr ""
-"Fai clic su aggiorna e il gioco è fatto! L'interruttore sarà ora visibile "
+"Fai clic su aggiorna e il gioco Ã¨ fatto! L'interruttore sarÃ  ora visibile "
 "nel menu in cui l'hai inserito."
 
 #: includes/admin/class-strings.php:612, includes/admin/class-strings.php:613
 msgid "Click update and you are done!"
-msgstr "Fai clic su aggiorna e il gioco è fatto!"
+msgstr "Fai clic su aggiorna e il gioco Ã¨ fatto!"
 
 #: includes/admin/class-strings.php:614
 msgid "Upgrade"
@@ -2575,7 +2575,7 @@ msgstr "Aggiorna"
 
 #: includes/admin/class-strings.php:615
 msgid "Upgrade All Features"
-msgstr "Aggiorna tutte le funzionalità"
+msgstr "Aggiorna tutte le funzionalitÃ "
 
 #: includes/admin/class-strings.php:616
 msgid "Upgrade to ultimate to get access to reports"
@@ -2595,11 +2595,11 @@ msgstr "Parametro URL"
 
 #: includes/admin/class-strings.php:620
 msgid "Enable/Disable the dark mode using URL/domain parameter"
-msgstr "Abilita/disabilita la modalità scura usando il parametro URL/dominio"
+msgstr "Abilita/disabilita la modalitÃ  scura usando il parametro URL/dominio"
 
 #: includes/admin/class-strings.php:621
 msgid "Toggle Dark Mode using URL parameter."
-msgstr "Attiva la modalità scura tramite parametro URL."
+msgstr "Attiva la modalitÃ  scura tramite parametro URL."
 
 #: includes/admin/class-strings.php:622
 msgid "Use"
@@ -2608,23 +2608,23 @@ msgstr "Usa"
 #: includes/admin/class-strings.php:623
 msgid "Use %s?darkmode to enable dark mode and %s?lightmode to enable light mode"
 msgstr ""
-"Usa %s?darkmode per abilitare la modalità scura e %s?lightmode per "
-"abilitare la modalità chiara"
+"Usa %s?darkmode per abilitare la modalitÃ  scura e %s?lightmode per "
+"abilitare la modalitÃ  chiara"
 
 #: includes/admin/class-strings.php:624
 msgid "Please upload a valid file."
 msgstr "Per favore, carica un file valido."
 
 #: includes/admin/class-strings.php:625
-msgid "Seems like <strong>WP Dark Mode</strong> is bringing you value 🥳"
-msgstr "Sembra che <strong>WP Dark Mode</strong> ti stia portando valore 🥳"
+msgid "Seems like <strong>WP Dark Mode</strong> is bringing you value ðŸ¥³"
+msgstr "Sembra che <strong>WP Dark Mode</strong> ti stia portando valore ðŸ¥³"
 
 #: includes/admin/class-strings.php:626
 msgid ""
 "The version of the file you are trying to import is not compatible with the "
 "current version of WP Dark Mode."
 msgstr ""
-"La versione del file che stai cercando di importare non è compatibile con "
+"La versione del file che stai cercando di importare non Ã¨ compatibile con "
 "la versione attuale di WP Dark Mode."
 
 #: includes/admin/class-strings.php:627
@@ -2637,24 +2637,24 @@ msgstr "Comportamento video"
 
 #: includes/admin/class-strings.php:629
 msgid "Settings to change video appearance on dark mode"
-msgstr "Impostazioni per modificare l'aspetto del video in modalità scura"
+msgstr "Impostazioni per modificare l'aspetto del video in modalitÃ  scura"
 
 #: includes/admin/class-strings.php:630
 msgid "Video Behavior When Dark Mode Is On"
-msgstr "Comportamento del video quando la modalità scura è attiva"
+msgstr "Comportamento del video quando la modalitÃ  scura Ã¨ attiva"
 
 #: includes/admin/class-strings.php:631
 msgid "Enable to set the brightness level of the videos on dark mode"
-msgstr "Abilita per impostare il livello di luminosità dei video in modalità scura"
+msgstr "Abilita per impostare il livello di luminositÃ  dei video in modalitÃ  scura"
 
 #: includes/admin/class-strings.php:632, src/admin/routes/settings-routes.js:52
 msgid "Customize video appearance in Dark Mode"
-msgstr "Personalizza l'aspetto del video in modalità scura"
+msgstr "Personalizza l'aspetto del video in modalitÃ  scura"
 
 #: includes/admin/class-strings.php:633
 msgid "Enable to set the grayscale level of the videos on dark mode"
 msgstr ""
-"Abilita per impostare il livello di scala di grigi dei video in modalità "
+"Abilita per impostare il livello di scala di grigi dei video in modalitÃ  "
 "scura"
 
 #: includes/admin/class-strings.php:634
@@ -2663,7 +2663,7 @@ msgstr "Sostituzione video"
 
 #: includes/admin/class-strings.php:635
 msgid "Replace specific videos when dark mode is enabled"
-msgstr "Sostituisci video specifici quando la modalità scura è abilitata"
+msgstr "Sostituisci video specifici quando la modalitÃ  scura Ã¨ abilitata"
 
 #: includes/admin/class-strings.php:636, src/admin/routes/settings-routes.js:51
 msgid "Video Settings"
@@ -2680,7 +2680,7 @@ msgstr "URL video"
 #: includes/admin/class-strings.php:639
 msgid "View Dark Mode Usages inside WordPress Dashboard"
 msgstr ""
-"Visualizza l'utilizzo della modalità scura all'interno della dashboard di "
+"Visualizza l'utilizzo della modalitÃ  scura all'interno della dashboard di "
 "WordPress"
 
 #: includes/admin/class-strings.php:641
@@ -2693,15 +2693,15 @@ msgstr "Guarda i video"
 
 #: includes/admin/class-strings.php:647, includes/admin/class-strings.php:654
 msgid "WooCommerce is not active"
-msgstr "WooCommerce non è attivo"
+msgstr "WooCommerce non Ã¨ attivo"
 
 #: includes/admin/class-strings.php:648, includes/admin/class-strings.php:655
 msgid "WooCommerce is not installed"
-msgstr "WooCommerce non è installato"
+msgstr "WooCommerce non Ã¨ installato"
 
 #: includes/admin/class-strings.php:651
 msgid "What is WP Dark Mode?"
-msgstr "Cos'è WP Dark Mode?"
+msgstr "Cos'Ã¨ WP Dark Mode?"
 
 #: includes/admin/class-strings.php:653
 msgid "WooCommerce"
@@ -2721,11 +2721,11 @@ msgstr "Yahoo nel browser"
 
 #: includes/admin/class-strings.php:661
 msgid "Yes, discard changes"
-msgstr "Sì, scarta le modifiche"
+msgstr "SÃ¬, scarta le modifiche"
 
 #: includes/admin/class-strings.php:663
 msgid "Welcome to the #1 dark mode plugin for WordPress. Let's get started!"
-msgstr "Benvenuto nel plugin n°1 per la modalità oscura di WordPress. Iniziamo!"
+msgstr "Benvenuto nel plugin nÂ°1 per la modalitÃ  oscura di WordPress. Iniziamo!"
 
 #: includes/admin/class-strings.php:671
 msgid "You might be looking for"
@@ -2736,7 +2736,7 @@ msgid ""
 "Our support team is here 24/7 to answer your queries and resolve your "
 "issues. Don't hesitate to reach out to us!"
 msgstr ""
-"Il nostro team di supporto è disponibile 24/7 per rispondere alle tue "
+"Il nostro team di supporto Ã¨ disponibile 24/7 per rispondere alle tue "
 "domande e risolvere i tuoi problemi. Non esitare a contattarci!"
 
 #: includes/admin/class-strings.php:673
@@ -2870,7 +2870,7 @@ msgstr ""
 
 #: includes/admin/class-strings.php:711
 msgid "Sharing is Caring: "
-msgstr "Condividere è un gesto d'amore: "
+msgstr "Condividere Ã¨ un gesto d'amore: "
 
 #: includes/admin/class-strings.php:712
 msgid "Button Position"
@@ -2909,7 +2909,7 @@ msgid "Button Label"
 msgstr "Etichetta del pulsante"
 
 #: includes/admin/class-strings.php:721
-msgid "Button labels can display your channel’s name and share count."
+msgid "Button labels can display your channelâ€™s name and share count."
 msgstr ""
 "Le etichette dei pulsanti possono visualizzare il nome del canale e il "
 "numero di condivisioni."
@@ -2928,7 +2928,7 @@ msgstr "Visualizza pulsanti su"
 
 #: includes/admin/class-strings.php:725
 msgid "Choose where the inline button will appear on your website."
-msgstr "Scegli dove apparirà il pulsante inline sul tuo sito web."
+msgstr "Scegli dove apparirÃ  il pulsante inline sul tuo sito web."
 
 #: includes/admin/class-strings.php:726
 msgid "Button Spacing"
@@ -2947,8 +2947,8 @@ msgid ""
 "Enable total share counter. It will show how many times your content is "
 "shared via enabled channels."
 msgstr ""
-"Abilita il contatore di condivisioni totali. Mostrerà quante volte il tuo "
-"contenuto è stato condiviso tramite i canali abilitati."
+"Abilita il contatore di condivisioni totali. MostrerÃ  quante volte il tuo "
+"contenuto Ã¨ stato condiviso tramite i canali abilitati."
 
 #: includes/admin/class-strings.php:730
 msgid "Minimum Share Count"
@@ -2971,7 +2971,7 @@ msgid ""
 "This is the maximum number of click count on a social channel you want to "
 "show your visitors"
 msgstr ""
-"Questo è il numero massimo di click su un canale social che desideri "
+"Questo Ã¨ il numero massimo di click su un canale social che desideri "
 "mostrare ai visitatori"
 
 #: includes/admin/class-strings.php:734
@@ -2996,7 +2996,7 @@ msgstr "Mostra meno canali"
 
 #: includes/admin/class-strings.php:738
 msgid "See more channels"
-msgstr "Mostra più canali"
+msgstr "Mostra piÃ¹ canali"
 
 #: includes/admin/class-strings.php:739
 msgid "Unlock all channels"
@@ -3012,7 +3012,7 @@ msgid ""
 "visibility for each. Drag channels to change their order."
 msgstr ""
 "Riordina i tuoi canali social. Puoi modificare l'etichetta del canale e la "
-"visibilità del dispositivo per ognuno. Trascina i canali per cambiarne "
+"visibilitÃ  del dispositivo per ognuno. Trascina i canali per cambiarne "
 "l'ordine."
 
 #: includes/admin/class-strings.php:742
@@ -3076,12 +3076,12 @@ msgid ""
 "directly. The procedure will be based on the terms of service in effect at "
 "the time of purchase."
 msgstr ""
-"direttamente. La procedura si baserà sui termini di servizio in vigore al "
+"direttamente. La procedura si baserÃ  sui termini di servizio in vigore al "
 "momento dell'acquisto."
 
 #: includes/admin/class-strings.php:758
 msgid "Enabling dark mode on your website is easy and simple."
-msgstr "Abilitare la modalità scura sul tuo sito web è facile e semplice."
+msgstr "Abilitare la modalitÃ  scura sul tuo sito web Ã¨ facile e semplice."
 
 #: includes/admin/class-strings.php:759
 msgid "Learn how to get started with WP Dark Mode within minutes."
@@ -3089,29 +3089,29 @@ msgstr "Scopri come iniziare con WP Dark Mode in pochi minuti."
 
 #: includes/classes/class-config.php:68
 msgid "Default Light Mode"
-msgstr "Modalità Chiaro Predefinita"
+msgstr "ModalitÃ  Chiaro Predefinita"
 
 #: includes/classes/class-config.php:69
 msgid ""
 "Enable this setting if you want light mode as the default mode of your "
 "site. Visitors will find the website in light mode first."
 msgstr ""
-"Attiva questa impostazione se desideri la modalità chiara come modalità "
+"Attiva questa impostazione se desideri la modalitÃ  chiara come modalitÃ  "
 "predefinita per il tuo sito. I visitatori troveranno inizialmente il sito "
-"in modalità chiara."
+"in modalitÃ  chiara."
 
 #: includes/classes/class-config.php:72
 msgid "Default Dark Mode"
-msgstr "Modalità Scuro Predefinita"
+msgstr "ModalitÃ  Scuro Predefinita"
 
 #: includes/classes/class-config.php:73
 msgid ""
 "Enable this setting if you want dark mode as the default mode of your site. "
 "Visitors will find the website in dark mode first."
 msgstr ""
-"Attiva questa impostazione se desideri la modalità oscura come modalità "
+"Attiva questa impostazione se desideri la modalitÃ  oscura come modalitÃ  "
 "predefinita per il tuo sito. I visitatori troveranno inizialmente il sito "
-"in modalità oscura."
+"in modalitÃ  oscura."
 
 #: includes/classes/class-config.php:76
 msgid "Use system settings"
@@ -3120,27 +3120,27 @@ msgstr "Usa impostazioni di sistema"
 #: includes/classes/class-config.php:77
 msgid "Dark mode will be enabled/disabled depending on the user's device settings."
 msgstr ""
-"La modalità oscura sarà attivata o disattivata a seconda delle impostazioni "
+"La modalitÃ  oscura sarÃ  attivata o disattivata a seconda delle impostazioni "
 "del dispositivo dell'utente."
 
 #: includes/classes/class-config.php:80
 msgid "Time based dark mode"
-msgstr "Modalità scuro basata sull'ora"
+msgstr "ModalitÃ  scuro basata sull'ora"
 
 #: includes/classes/class-config.php:81
 msgid "Automatically enable dark mode based on user's given time."
 msgstr ""
-"Attiva automaticamente la modalità oscura in base all'ora impostata "
+"Attiva automaticamente la modalitÃ  oscura in base all'ora impostata "
 "dall'utente."
 
 #: includes/classes/class-config.php:84
 msgid "Sunset Mode"
-msgstr "Modalità Tramonto"
+msgstr "ModalitÃ  Tramonto"
 
 #: includes/classes/class-config.php:85
 msgid "Automatically enable dark mode at sunset based on the user's location."
 msgstr ""
-"Attiva automaticamente la modalità oscura al tramonto in base alla "
+"Attiva automaticamente la modalitÃ  oscura al tramonto in base alla "
 "posizione dell'utente."
 
 #: includes/classes/class-config.php:162
@@ -3197,11 +3197,11 @@ msgstr "Lampeggia"
 
 #: includes/classes/class-config.php:255
 msgid "Enable Dark Mode"
-msgstr "Abilita Modalità Scuro"
+msgstr "Abilita ModalitÃ  Scuro"
 
 #: includes/classes/class-config.php:315
 msgid "Allow custom elements to toggle dark mode"
-msgstr "Consenti elementi personalizzati per attivare modalità scuro"
+msgstr "Consenti elementi personalizzati per attivare modalitÃ  scuro"
 
 #: includes/classes/class-config.php:320
 msgid "Custom Triggers List"
@@ -3241,11 +3241,11 @@ msgstr "Scorri Destra"
 
 #: includes/classes/class-config.php:432
 msgid "Slide Down"
-msgstr "Scorri Giù"
+msgstr "Scorri GiÃ¹"
 
 #: includes/classes/class-config.php:450
 msgid "Best Dark Mode Performance"
-msgstr "Migliori Prestazioni Modalità Scuro"
+msgstr "Migliori Prestazioni ModalitÃ  Scuro"
 
 #: includes/classes/class-config.php:451
 msgid ""
@@ -3254,11 +3254,11 @@ msgid ""
 "you."
 msgstr ""
 "Gli script verranno caricati prima del parsing della pagina. Scegli questa "
-"opzione quando la modalità oscura è la priorità."
+"opzione quando la modalitÃ  oscura Ã¨ la prioritÃ ."
 
 #: includes/classes/class-config.php:454
 msgid "Balanced Performance for My Website and Dark Mode"
-msgstr "Prestazioni Bilanciate per Sito e Modalità Scuro"
+msgstr "Prestazioni Bilanciate per Sito e ModalitÃ  Scuro"
 
 #: includes/classes/class-config.php:455
 msgid ""
@@ -3280,7 +3280,7 @@ msgid ""
 "your focus is on optimizing your website's performance over the WP Dark "
 "Mode."
 msgstr ""
-"Lo script verrà recuperato asincronamente. Scegli se vuoi ottimizzare le "
+"Lo script verrÃ  recuperato asincronamente. Scegli se vuoi ottimizzare le "
 "prestazioni web generali."
 
 #: includes/classes/class-config.php:571
@@ -3321,15 +3321,15 @@ msgstr "Impossibile aggiornare i dati del visitatore."
 
 #: includes/modules/class-shortcode.php:82
 msgid "Dark Mode Settings"
-msgstr "Impostazioni modalità scura"
+msgstr "Impostazioni modalitÃ  scura"
 
 #: includes/modules/class-shortcode.php:82, src/gutenberg/block/index.js:36
 msgid "Dark Mode Toggle"
-msgstr "Attivazione modalità scura"
+msgstr "Attivazione modalitÃ  scura"
 
 #: includes/modules/elementor/widgets/class-elementor-widget.php:50, includes/modules/elementor/widgets/class-elementor-widget.php:104, src/gutenberg/block/index.js:9
 msgid "Dark Mode Switch"
-msgstr "Interruttore modalità scura"
+msgstr "Interruttore modalitÃ  scura"
 
 #: includes/modules/elementor/widgets/class-elementor-widget.php:113, src/gutenberg/block/DarkModeSwitchEditor.js:29
 msgid "Switch Style"
@@ -3365,7 +3365,7 @@ msgstr "Allineamento"
 
 #: includes/modules/social-share/class-social-share.php:462
 msgid "Social Share - WP Dark Mode"
-msgstr "Condivisione Social - Modalità Scura WP"
+msgstr "Condivisione Social - ModalitÃ  Scura WP"
 
 #: includes/modules/social-share/class-social-share.php:641
 msgid "Invalid security key"
@@ -3385,7 +3385,7 @@ msgstr "Canale non valido"
 
 #: includes/modules/social-share/class-social-share.php:868
 msgid "Something went wrong"
-msgstr "Qualcosa è andato storto"
+msgstr "Qualcosa Ã¨ andato storto"
 
 #: includes/wppool/class-plugin.php:329
 msgid "Deal Ends In"
@@ -3421,7 +3421,7 @@ msgstr "Black Friday e Cyber Monday"
 
 #: templates/admin/upgrade-popup.php:54
 msgid "Unlock all the features"
-msgstr "Sblocca tutte le funzionalità"
+msgstr "Sblocca tutte le funzionalitÃ "
 
 #: templates/admin/upgrade-popup.php:57
 msgid "Flash Sale"
@@ -3457,7 +3457,7 @@ msgstr "Condividi tramite:"
 
 #: includes/admin/class-strings.php:763
 msgid "What's New"
-msgstr "Cosa c'è di nuovo?"
+msgstr "Cosa c'Ã¨ di nuovo?"
 
 #: templates/admin/upgrade-popup.php:82
 msgid "Try a FREE demo"
@@ -3553,7 +3553,7 @@ msgstr "L'anno scorso"
 
 #: includes/admin/class-strings.php:787
 msgid "Dark Mode Users"
-msgstr "Utenti in modalità oscura"
+msgstr "Utenti in modalitÃ  oscura"
 
 #: includes/admin/class-strings.php:788
 msgid "Total Visitors"

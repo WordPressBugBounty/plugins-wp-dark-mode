@@ -12,13 +12,13 @@ namespace WP_Dark_Mode\Module\WPBakery\Widgets;
 // phpcs:ignore
 defined( 'ABSPATH' ) || exit();
 
-if ( ! class_exists( __NAMESPACE__ . 'DarkModeElement' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Dark_Mode_Element' ) ) {
 	/**
 	 * Renders the Dark Mode Switch element output for WPBakery Page Builder.
 	 *
 	 * @version 1.0.0
 	 */
-	class DarkModeElement extends \WPBakeryShortCode {
+	class Wp_Dark_Dark_Mode_Element extends \WPBakeryShortCode {
 
 		/**
 		 * Renders the shortcode output using the shared core renderer.
@@ -29,7 +29,7 @@ if ( ! class_exists( __NAMESPACE__ . 'DarkModeElement' ) ) {
 		 * @version 1.0.0
 		 */
 		public function content( $atts, $content = null ) {
-			return $this->render_switch( $atts );
+			return $this->wp_dark_render_switch( $atts );
 		}
 
 		/**
@@ -39,7 +39,7 @@ if ( ! class_exists( __NAMESPACE__ . 'DarkModeElement' ) ) {
 		 * @return string
 		 * @version 1.0.0
 		 */
-		protected function render_switch( $atts ) {
+		protected function wp_dark_render_switch( $atts ) {
 			$atts = shortcode_atts(
 				array(
 					'style'   => 1,

@@ -12,7 +12,7 @@ namespace WP_Dark_Mode;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
-if ( ! class_exists( __NAMESPACE__ . '\Boot' ) ) {
+if ( ! class_exists( __NAMESPACE__ . '\Wp_Dark_Boot' ) ) {
 
 	/**
 	 * Loads everything for WP Dark Mode to be functional
@@ -20,7 +20,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Boot' ) ) {
 	 * @package WP Dark Mode
 	 * @since 5.0.0
 	 */
-	class Boot {
+	class Wp_Dark_Boot {
 
 		/**
 		 * Singleton instance
@@ -36,10 +36,10 @@ if ( ! class_exists( __NAMESPACE__ . '\Boot' ) ) {
 		 * @since 5.0.0
 		 * @return mixed
 		 */
-		public static function instance() {
+		public static function wp_dark_instance() {
 			// Create an instance if not exists, returns only one instance throughout the request.
-			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Boot ) ) {
-				self::$instance = new Boot();
+			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Wp_Dark_Boot ) ) {
+				self::$instance = new Wp_Dark_Boot();
 			}
 
 			return self::$instance;
@@ -51,7 +51,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Boot' ) ) {
 		 * @since 5.0.0
 		 * @return void
 		 */
-		public function define_constants() {
+		public function wp_dark_define_constants() {
 			define( 'WP_DARK_MODE_PATH', plugin_dir_path( WP_DARK_MODE_FILE ) );
 			define( 'WP_DARK_MODE_INCLUDES', WP_DARK_MODE_PATH . 'includes/' );
 			define( 'WP_DARK_MODE_TEMPLATE', WP_DARK_MODE_PATH . 'templates/' );
@@ -68,7 +68,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Boot' ) ) {
 		 * @since 5.0.0
 		 * @return bool
 		 */
-		public function is_dark_mode_enabled() {
+		public function wp_dark_is_dark_mode_enabled() {
 			return wp_validate_boolean( get_option( 'wp_dark_mode_enabled', true ) );
 		}
 		/**
@@ -77,13 +77,13 @@ if ( ! class_exists( __NAMESPACE__ . '\Boot' ) ) {
 		 * @since 5.0.0
 		 * @return void
 		 */
-		public function load_files() {
-			$this->load_common_files();
-			$this->load_modules();
-			$this->load_admin_files();
+		public function wp_dark_load_files() {
+			$this->wp_dark_load_common_files();
+			$this->wp_dark_load_modules();
+			$this->wp_dark_load_admin_files();
 
-			if ( $this->is_dark_mode_enabled() ) {
-				$this->load_public_files();
+			if ( $this->wp_dark_is_dark_mode_enabled() ) {
+				$this->wp_dark_load_public_files();
 			}
 		}
 
@@ -93,7 +93,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Boot' ) ) {
 		 * @since 5.0.0
 		 * @return void
 		 */
-		public function load_common_files() {
+		public function wp_dark_load_common_files() {
 			require_once WP_DARK_MODE_INCLUDES . '/classes/class-config.php';
 			require_once WP_DARK_MODE_INCLUDES . '/traits/trait-options.php';
 			require_once WP_DARK_MODE_INCLUDES . '/traits/trait-utility.php';
@@ -104,7 +104,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Boot' ) ) {
 			require_once WP_DARK_MODE_INCLUDES . '/models/class-visitor.php';
 
 			// REST Init.
-			add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
+			add_action( 'rest_api_init', array( $this, 'wp_dark_register_rest_routes' ) );
 		}
 
 		/**
@@ -113,7 +113,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Boot' ) ) {
 		 * @since 5.0.0
 		 * @return void
 		 */
-		public function load_public_files() {
+		public function wp_dark_load_public_files() {
 			require_once WP_DARK_MODE_INCLUDES . '/classes/class-assets.php';
 			require_once WP_DARK_MODE_INCLUDES . '/classes/class-triggers.php';
 			require_once WP_DARK_MODE_INCLUDES . '/classes/class-extended.php';
@@ -130,7 +130,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Boot' ) ) {
 		 * @since 5.0.0
 		 * @return void
 		 */
-		public function load_admin_files() {
+		public function wp_dark_load_admin_files() {
 
 			if ( ! is_admin() ) {
 				return;
@@ -144,6 +144,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Boot' ) ) {
 			require_once WP_DARK_MODE_INCLUDES . '/admin/class-admin-switches.php';
 
 			require_once WP_DARK_MODE_INCLUDES . '/wppool/class-plugin.php';
+			require_once WP_DARK_MODE_INCLUDES . '/wppool/class-plugin-bridge.php';
 			require_once WP_DARK_MODE_INCLUDES . '/admin/class-admin-notices.php';
 			require_once WP_DARK_MODE_INCLUDES . '/admin/class-recommended-plugins.php';
 
@@ -157,13 +158,16 @@ if ( ! class_exists( __NAMESPACE__ . '\Boot' ) ) {
 		 * @since 5.0.0
 		 * @return void
 		 */
-		public function load_modules() {
+		public function wp_dark_load_modules() {
 			// Shortcode.
 			require_once WP_DARK_MODE_INCLUDES . '/modules/class-shortcode.php';
 			require_once WP_DARK_MODE_INCLUDES . '/modules/social-share/class-social-share.php';
 			require_once WP_DARK_MODE_INCLUDES . '/modules/gutenberg/class-block.php';
 			require_once WP_DARK_MODE_INCLUDES . '/modules/elementor/class-element.php';
 			require_once WP_DARK_MODE_INCLUDES . '/modules/wpbakery/class-element.php';
+			require_once WP_DARK_MODE_INCLUDES . '/modules/siteorigin/class-element.php';
+			require_once WP_DARK_MODE_INCLUDES . '/modules/themify/class-element.php';
+			require_once WP_DARK_MODE_INCLUDES . '/modules/divi/class-element.php';
 		}
 
 		/**
@@ -172,27 +176,14 @@ if ( ! class_exists( __NAMESPACE__ . '\Boot' ) ) {
 		 * @since 5.0.0
 		 * @return void
 		 */
-		public static function start() {
-			$boot = self::instance();
+		public static function wp_dark_start() {
+			$boot = self::wp_dark_instance();
 			// Register hooks.
-			$boot->define_constants();
-			$boot->load_files();
-
-			// Load textdomain early enough for both frontend and admin.
-			add_action( 'init', array( $boot, 'load_textdomain' ), 1 );
+			$boot->wp_dark_define_constants();
+			$boot->wp_dark_load_files();
 
 			// Fires after the plugin is loaded.
 			do_action( 'wp_dark_mode_loaded' );
-		}
-
-		/**
-		 * Loads the plugin textdomain.
-		 *
-		 * @since 5.0.0
-		 * @return void
-		 */
-		public function load_textdomain() {
-			load_plugin_textdomain( 'wp-dark-mode', false, dirname( plugin_basename( WP_DARK_MODE_FILE ) ) . '/languages/' );
 		}
 
 		/**
@@ -200,11 +191,11 @@ if ( ! class_exists( __NAMESPACE__ . '\Boot' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function register_rest_routes() {
+		public function wp_dark_register_rest_routes() {
 			require_once WP_DARK_MODE_INCLUDES . '/admin/class-admin-rest.php';
 		}
 	}
 
 	// Start the plugin.
-	Boot::start();
+	Wp_Dark_Boot::wp_dark_start();
 }

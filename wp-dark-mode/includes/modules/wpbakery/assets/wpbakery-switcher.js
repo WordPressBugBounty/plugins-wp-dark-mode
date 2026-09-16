@@ -42,19 +42,6 @@
 	// catch that gap without depending on exact timing.
 	[ 100, 300, 800, 1500 ].forEach( ( delay ) => setTimeout( () => scan( document ), delay ) );
 
-	document.addEventListener( 'click', ( e ) => {
-		const wrapper = e.target.closest( '.wp-dark-mode-wpbakery-switch-field' );
-		if ( ! wrapper ) {
-			return;
-		}
-
-		const lockedItem = e.target.closest( '.elementor-control-input-wrapper.wp-dark-mode-locked' );
-		if ( lockedItem ) {
-			e.preventDefault();
-			window.WPDarkModePromo && window.WPDarkModePromo.show();
-		}
-	} );
-
 	document.addEventListener( 'change', ( e ) => {
 		const radio = e.target.closest( '.wp-dark-mode-wpbakery-switch-field input[type="radio"]' );
 		if ( ! radio || ! radio.checked ) {

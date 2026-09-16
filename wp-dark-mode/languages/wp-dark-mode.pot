@@ -286,7 +286,7 @@ msgid "Add videos to replace them in dark mode"
 msgstr ""
 
 #: includes/admin/class-strings.php:52
-msgid "Navigate to the Widget option in the WordPress dashboard under Appearance menu. Select the menu where you want to display dark mode switch and click on the ‘+’ button and type <span class=\"text-[#374151]\"> Dark Mode Switch</span> in the widget searchbox"
+msgid "Navigate to the Widget option in the WordPress dashboard under Appearance menu. Select the menu where you want to display dark mode switch and click on the â€˜+â€™ button and type <span class=\"text-[#374151]\"> Dark Mode Switch</span> in the widget searchbox"
 msgstr ""
 
 #: includes/admin/class-strings.php:53
@@ -326,7 +326,7 @@ msgid "Affiliate Program"
 msgstr ""
 
 #: includes/admin/class-strings.php:64
-msgid "Hey! Enjoying the WP Dark Mode plugin? 😍 Join our <a href=\"https://go.wppool.dev/zfrO\" target=\"_blank\" class=\"text-[#7C3AED] font-semibold\">Influencer Program</a> to make money from your social media content. You can also check our <a href=\"https://go.wppool.dev/Tfej\" target=\"_blank\" class=\"text-[#7C3AED] font-semibold no-underline\">Affiliate Program</a> to get a <strong>25% commission</strong> on every sale!"
+msgid "Hey! Enjoying the WP Dark Mode plugin? ðŸ˜ Join our <a href=\"https://go.wppool.dev/zfrO\" target=\"_blank\" class=\"text-[#7C3AED] font-semibold\">Influencer Program</a> to make money from your social media content. You can also check our <a href=\"https://go.wppool.dev/Tfej\" target=\"_blank\" class=\"text-[#7C3AED] font-semibold no-underline\">Affiliate Program</a> to get a <strong>25% commission</strong> on every sale!"
 msgstr ""
 
 #: includes/admin/class-strings.php:65
@@ -350,7 +350,7 @@ msgid "Configure AI model settings for theme generation"
 msgstr ""
 
 #: includes/admin/class-strings.php:70
-msgid "⚡ AI Preset Generator"
+msgid "âš¡ AI Preset Generator"
 msgstr ""
 
 #: includes/admin/class-strings.php:71
@@ -1422,7 +1422,7 @@ msgid "Get step-by-step instructions on using WP Dark Mode with the default bloc
 msgstr ""
 
 #: includes/admin/class-strings.php:373
-msgid "Go to Post/Page edit screen and and click on the ‘+’ icon to add new block"
+msgid "Go to Post/Page edit screen and and click on the â€˜+â€™ icon to add new block"
 msgstr ""
 
 #: includes/admin/class-strings.php:374
@@ -1434,7 +1434,7 @@ msgid "Search for Dark Mode Switch block in the Gutenberg block list"
 msgstr ""
 
 #: includes/admin/class-strings.php:376
-msgid "Type “dark mode switch” in the block list search box and the Dark Mode Switch block will appear. Click on the block to select it"
+msgid "Type â€œdark mode switchâ€ in the block list search box and the Dark Mode Switch block will appear. Click on the block to select it"
 msgstr ""
 
 #: includes/admin/class-strings.php:377
@@ -1670,11 +1670,11 @@ msgid "Menu Switch"
 msgstr ""
 
 #: includes/admin/class-strings.php:441
-msgid "The Menu Switch is <strong>currently unavailable</strong>. To access this feature, first you have to enable the “Frontend Dark Mode” feature from the Control settings"
+msgid "The Menu Switch is <strong>currently unavailable</strong>. To access this feature, first you have to enable the â€œFrontend Dark Modeâ€ feature from the Control settings"
 msgstr ""
 
 #: includes/admin/class-strings.php:442
-msgid "Menu switches won’t be visible anymore"
+msgid "Menu switches wonâ€™t be visible anymore"
 msgstr ""
 
 #: includes/admin/class-strings.php:443
@@ -1906,7 +1906,7 @@ msgid "Where can I find the tutorials about using the plugin?"
 msgstr ""
 
 #: includes/admin/class-strings.php:509
-msgid "I want a refund for my purchase of the plugin. What’s the procedure?"
+msgid "I want a refund for my purchase of the plugin. Whatâ€™s the procedure?"
 msgstr ""
 
 #: includes/admin/class-strings.php:510
@@ -2234,7 +2234,7 @@ msgid "Tutorial"
 msgstr ""
 
 #: includes/admin/class-strings.php:610
-msgid "Here is a small full video tutorial for you incase you don’t like to go through all the textual instruction"
+msgid "Here is a small full video tutorial for you incase you donâ€™t like to go through all the textual instruction"
 msgstr ""
 
 #: includes/admin/class-strings.php:611
@@ -2254,7 +2254,7 @@ msgid "Typography features are only available for"
 msgstr ""
 
 #: includes/admin/class-strings.php:618
-msgid "Typography option is disabled in Accessibility Settings. Text scaling feature won’t work."
+msgid "Typography option is disabled in Accessibility Settings. Text scaling feature wonâ€™t work."
 msgstr ""
 
 #: includes/admin/class-strings.php:620
@@ -2262,7 +2262,7 @@ msgid "ULTIMATE"
 msgstr ""
 
 #: includes/admin/class-strings.php:621
-msgid "Advanced dark mode customizations are available in <span class=\"font-semibold\">WP Dark Mode Ultimate</span> 😍"
+msgid "Advanced dark mode customizations are available in <span class=\"font-semibold\">WP Dark Mode Ultimate</span> ðŸ˜"
 msgstr ""
 
 #: includes/admin/class-strings.php:622
@@ -2270,7 +2270,7 @@ msgid "ULTIMATE PLAN"
 msgstr ""
 
 #: includes/admin/class-strings.php:623
-msgid "The Floating Switch is <strong>currently unavailable</strong>. To access this feature, first you have to enable the “Frontend Dark Mode” feature from the Control settings"
+msgid "The Floating Switch is <strong>currently unavailable</strong>. To access this feature, first you have to enable the â€œFrontend Dark Modeâ€ feature from the Control settings"
 msgstr ""
 
 #: includes/admin/class-strings.php:624
@@ -2346,7 +2346,7 @@ msgid "Please upload a valid file."
 msgstr ""
 
 #: includes/admin/class-strings.php:644
-msgid "Seems like <strong>WP Dark Mode</strong> is bringing you value 🥳"
+msgid "Seems like <strong>WP Dark Mode</strong> is bringing you value ðŸ¥³"
 msgstr ""
 
 #: includes/admin/class-strings.php:645
@@ -2614,7 +2614,7 @@ msgid "Button Label"
 msgstr ""
 
 #: includes/admin/class-strings.php:740
-msgid "Button labels can display your channel’s name and share count."
+msgid "Button labels can display your channelâ€™s name and share count."
 msgstr ""
 
 #: includes/admin/class-strings.php:741

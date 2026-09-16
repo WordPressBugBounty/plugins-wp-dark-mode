@@ -13,19 +13,19 @@ namespace WP_Dark_Mode;
 // phpcs:ignore
 defined( 'ABSPATH' ) || exit();
 
-if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Social_Share' ) ) {
 
 	/**
-	 * Class SocialShare
+	 * Class Wp_Dark_Social_Share
 	 * Contains all the functionalities for social share module of WP Dark Mode.
 	 *
 	 * @package WPDarkMode\Module
 	 * @since 2.3.5
 	 */
-	class SocialShare extends \WP_Dark_Mode\Base {
+	class Wp_Dark_Social_Share extends \WP_Dark_Mode\Wp_Dark_Base {
 
 		// Use traits.
-		use \WP_Dark_Mode\Traits\Utility;
+		use \WP_Dark_Mode\Traits\Wp_Dark_Utility;
 
 		/**
 		 * Registers action hooks for social share module of WP Dark Mode.
@@ -33,23 +33,23 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 * @since 2.3.5
 		 * @return void
 		 */
-		public function actions() {
+		public function wp_dark_actions() {
 			// Activation.
-			add_action( 'wp_dark_mode_loaded', [ $this, 'initialize_social_share' ] );
+			add_action( 'wp_dark_mode_loaded', [ $this, 'wp_dark_initialize_social_share' ] );
 			// Admin menu page.
-			add_action( 'admin_menu', [ $this, 'social_share_admin_menu' ], 40 );
+			add_action( 'admin_menu', [ $this, 'wp_dark_social_share_admin_menu' ], 40 );
 			// Scripts.
-			add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ], 20 );
+			add_action( 'admin_enqueue_scripts', [ $this, 'wp_dark_admin_enqueue_scripts' ], 20 );
 			// Ajax.
-			add_action( 'wp_ajax_wpdm_social_share_save_options', [ $this, 'wpdm_social_share_save_options' ], 99 );
-			add_action( 'wp_ajax_wpdm_social_share_counter', [ $this, 'wpdm_social_share_counter' ], 99 );
-			add_action( 'wp_ajax_no_priv_wpdm_social_share_counter', [ $this, 'wpdm_social_share_counter' ], 99 );
+			add_action( 'wp_ajax_wp_dark_social_share_save_options', [ $this, 'wp_dark_social_share_save_options' ], 99 );
+			add_action( 'wp_ajax_wp_dark_social_share_counter', [ $this, 'wp_dark_social_share_counter' ], 99 );
+			add_action( 'wp_ajax_nopriv_wp_dark_social_share_counter', [ $this, 'wp_dark_social_share_counter' ], 99 );
 
 			// Admin header.
-			add_action( 'admin_head', [ $this, 'admin_head' ] );
+			add_action( 'admin_head', [ $this, 'wp_dark_admin_head' ] );
 
 			if ( true === wp_validate_boolean( get_option( 'wpdm_social_share_enable' ) ) ) {
-				$this->hooks_if_social_share_enabled();
+				$this->wp_dark_hooks_if_social_share_enabled();
 			}
 		}
 
@@ -59,8 +59,8 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 * @since 2.3.5
 		 * @return void
 		 */
-		public function filters() {
-			add_filter( 'wpdarkmode_settings_option_names', [ $this, 'wpdm_settings_option_names' ] );
+		public function wp_dark_filters() {
+			add_filter( 'wp_dark_social_share_settings_option_names', [ $this, 'wp_dark_settings_option_names' ] );
 		}
 
 
@@ -70,19 +70,42 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 * @since 2.3.5
 		 * @return void
 		 */
-		public function hooks_if_social_share_enabled() {
+		public function wp_dark_hooks_if_social_share_enabled() {
 
-			global $social_share;
-			$social_share                            = $this->social_share_options();
-			$social_share->all_channels              = $this->channels();
-			$social_share->get_kses_extended_ruleset = $this->get_kses_extended_ruleset();
+			/**
+			 * Populating $wp_dark_mode_social_share here would run immediately, since actions()
+			 * (and this method) fire synchronously when the plugin file is required -
+			 * long before Ultimate's own `init`-hooked boot has registered its
+			 * `wp_dark_social_share_available_channel_ids` filter. That made the pro
+			 * channel ids always read as empty, even with Ultimate active. Deferring
+			 * this to `wp` (fires per-request, well after every plugin's `init` code
+			 * has run) fixes it without moving the actual hook registrations, which
+			 * are harmless to register early.
+			 */
+			add_action( 'wp', [ $this, 'wp_dark_populate_social_share_global' ] );
 
 			// Actions.
-			add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 5 );
-			add_action( 'wp_head', [ $this, 'wp_head' ], 10 );
+			add_action( 'wp_enqueue_scripts', [ $this, 'wp_dark_wp_enqueue_scripts' ], 5 );
+			add_action( 'wp_head', [ $this, 'wp_dark_wp_head' ], 10 );
 
 			// Filters.
-			add_filter( 'the_content', [ $this, 'the_content' ], 90 );
+			add_filter( 'the_content', [ $this, 'wp_dark_the_content' ], 90 );
+		}
+
+		/**
+		 * Populates the global $wp_dark_mode_social_share object with resolved options and
+		 * channel/availability data. Must run after `init` so extension plugins
+		 * (e.g. WP Dark Mode Ultimate) have already registered their filters.
+		 *
+		 * @since 5.3.13
+		 * @return void
+		 */
+		public function wp_dark_populate_social_share_global() {
+			global $wp_dark_mode_social_share;
+			$wp_dark_mode_social_share                             = $this->wp_dark_social_share_options();
+			$wp_dark_mode_social_share->all_channels               = $this->wp_dark_channels();
+			$wp_dark_mode_social_share->available_channel_ids       = $this->wp_dark_available_channel_ids();
+			$wp_dark_mode_social_share->get_kses_extended_ruleset = $this->wp_dark_get_kses_extended_ruleset();
 		}
 
 		/**
@@ -90,16 +113,16 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 *
 		 * @since 2.3.4
 		 */
-		public function initialize_social_share() {
+		public function wp_dark_initialize_social_share() {
 			if ( ! get_option( 'wpdm_social_share_init', false ) ) {
 				update_option( 'wpdm_social_share_init', true );
 
 				// Create database table.
-				$this->create_database_table();
+				$this->wp_dark_create_database_table();
 			}
 
 			// Reset to default options.
-			$options = $this->social_share_default_options();
+			$options = $this->wp_dark_social_share_default_options();
 
 			foreach ( $options as $key => $value ) {
 				$name = 'wpdm_social_share_' . $key;
@@ -116,7 +139,7 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 * @since 2.3.5
 		 * @return void
 		 */
-		public function create_database_table() {
+		public function wp_dark_create_database_table() {
 			global $wpdb;
 			$table_name      = $wpdb->prefix . 'wpdm_social_shares';
 			$charset_collate = $wpdb->get_charset_collate();
@@ -141,7 +164,7 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 *
 		 * @return array
 		 */
-		public function get_kses_extended_ruleset() {
+		public function wp_dark_get_kses_extended_ruleset() {
 			$kses_defaults = wp_kses_allowed_html( 'post' );
 
 			$svg_args = [
@@ -174,7 +197,7 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 * @since 2.3.5
 		 * @return array
 		 */
-		public function social_share_default_options() {
+		public function wp_dark_social_share_default_options() {
 
 			$social_share_default_options = [
 				'enable'                 => 0,
@@ -226,7 +249,7 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 				'saved'                  => 0,
 			];
 
-			return apply_filters( 'wpdm_social_share_social_share_default_options', $social_share_default_options );
+			return apply_filters( 'wp_dark_social_share_social_share_default_options', $social_share_default_options );
 		}
 
 		/**
@@ -235,14 +258,49 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 * @since 2.3.5
 		 * @return object
 		 */
-		public function social_share_options() {
-			$options = $this->social_share_default_options();
+		public function wp_dark_social_share_options() {
+			$options = $this->wp_dark_social_share_default_options();
 
 			$option_values = array_map( function ( $key ) use ( $options ) {
-				return $this->get_section_values( $key, $options );
+				return $this->wp_dark_get_section_values( $key, $options );
 			}, array_keys( $options ) );
 
-			return (object) array_combine( array_keys( $options ), $option_values );
+			$options = (object) array_combine( array_keys( $options ), $option_values );
+
+			/**
+			 * These settings are fully implemented and already hold their real,
+			 * saved value from $options above - the filters below only let other
+			 * code (e.g. WP Dark Mode Ultimate) override that value further, the
+			 * same way channels are extended via
+			 * wp_dark_social_share_available_channel_ids. The saved value itself
+			 * is always the default passed to apply_filters(), never a fixed
+			 * fallback, so nothing here can discard what was actually saved.
+			 *
+			 * @since {next}
+			 */
+			$filtered_keys = array(
+				'button_spacing'         => 'wp_dark_social_share_button_spacing',
+				'show_total_share_count' => 'wp_dark_social_share_show_total_share_count',
+				'minimum_share_count'    => 'wp_dark_social_share_minimum_share_count',
+				'maximum_click_count'    => 'wp_dark_social_share_maximum_click_count',
+				'channel_visibility'     => 'wp_dark_social_share_channel_visibility',
+				'hide_button_on'         => 'wp_dark_social_share_hide_button_on',
+				'post_types'             => 'wp_dark_social_share_post_types',
+				'button_template'        => 'wp_dark_social_share_button_template',
+			);
+
+			foreach ( $filtered_keys as $option_key => $filter_name ) {
+				$options->{ $option_key } = apply_filters( $filter_name, $options->{ $option_key } );
+			}
+
+			/**
+			 * Extension point for other plugins (e.g. WP Dark Mode Ultimate) to adjust
+			 * resolved social share options. No-op when nothing is hooked.
+			 *
+			 * @since 5.3.12
+			 * @param object $options Resolved social share options.
+			 */
+			return apply_filters( 'wp_dark_social_share_resolved_options', $options );
 		}
 
 
@@ -252,7 +310,7 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 * @since 5.0.0
 		 * @return array
 		 */
-		public function get_section_values( $key, $options ) {
+		public function wp_dark_get_section_values( $key, $options ) {
 			$value = get_option( 'wpdm_social_share_' . $key );
 			if ( null === $value ) {
 				return $options[ $key ];
@@ -270,7 +328,7 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 * @since 2.3.5
 		 * @return array
 		 */
-		public function channels() {
+		public function wp_dark_channels() {
 			$channels = [
 				[
 					'id'   => 'facebook',
@@ -446,7 +504,26 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 				],
 			];
 
-			return apply_filters( 'wpdm_social_share_channels', $channels );
+			return apply_filters( 'wp_dark_social_share_channels', $channels );
+		}
+
+		/**
+		 * IDs of channels that can be enabled/toggled in the free plugin.
+		 *
+		 * Channel icons/names in channels() ship for all channels so locked tiles can
+		 * render with their real brand icon (a Guideline 11 upsell display, same as
+		 * showing locked Color Preset swatches). Only the IDs returned here can
+		 * actually be toggled on/saved - everything else renders as a locked teaser
+		 * tile that opens the upgrade prompt. WP Dark Mode Ultimate hooks this filter
+		 * to return the full channel list once active.
+		 *
+		 * @since 5.3.12
+		 * @return array
+		 */
+		public function wp_dark_available_channel_ids() {
+			$channel_ids = [ 'facebook', 'twitter', 'pinterest', 'reddit', 'copy', 'chatgpt', 'grok', 'perplexity', 'gemini', 'claude' ];
+
+			return apply_filters( 'wp_dark_social_share_available_channel_ids', $channel_ids );
 		}
 
 
@@ -455,7 +532,7 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 *
 		 * @since 2.3.5
 		 */
-		public function social_share_admin_menu() {
+		public function wp_dark_social_share_admin_menu() {
 
 			add_submenu_page(
 				'wp-dark-mode',
@@ -463,7 +540,7 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 				__( 'Social Share', 'wp-dark-mode' ),
 				'manage_options',
 				'wp-dark-mode-social-share',
-				[ $this, 'render_social_share' ],
+				[ $this, 'wp_dark_render_social_share' ],
 				1
 			);
 		}
@@ -474,8 +551,8 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 * @return void
 		 * @version 1.0.0
 		 */
-		public function render_social_share() {
-			$this->render_template( 'admin/social-share/base' );
+		public function wp_dark_render_social_share() {
+			$this->wp_dark_render_template( 'admin/social-share/base' );
 		}
 
 		/**
@@ -483,17 +560,17 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 *
 		 * @since 2.3.5
 		 */
-		public function admin_head() {
-			$this->wp_head();
+		public function wp_dark_admin_head() {
+			$this->wp_dark_wp_head();
 			?>
 			<style>
-				._wpdm-social-share-admin-menu {
+				._wp-dark-social-share-admin-menu {
 					display: flex;
 					align-items: justify-between;
 					gap: 5px;
 				}
 
-				._wpdm-social-share-new-badge {
+				._wp-dark-social-share-new-badge {
 					display: inline-flex;
 					align-items: center;
 					justify-content: center;
@@ -509,7 +586,7 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 					background: linear-gradient(180deg, #EE5913 0%, #FF6F2C 100%); 
 				}
 
-				._wpdm-social-share-new-badge svg {
+				._wp-dark-social-share-new-badge svg {
 					width: 11px;
 					height: 11px;
 					fill: currentColor;
@@ -523,16 +600,19 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 *
 		 * @since 2.3.5
 		 */
-		public function wp_head() {
+		public function wp_dark_wp_head() {
 			echo '<style id="social-share-root">
 				:root {
-					--wpdm-social-share-scale: ' . esc_html( get_option( 'wpdm_social_share_button_size', 1.2 ) ) . ';
+					--wpdm-social-share-scale: ' . floatval( get_option( 'wpdm_social_share_button_size', 1.2 ) ) . ';
+					--wp-dark-social-share-scale: ' . floatval( get_option( 'wpdm_social_share_button_size', 1.2 ) ) . ';
 				}
 				._fixed-size {
 					--wpdm-social-share-scale: 1.2 !important;
+					--wp-dark-social-share-scale: 1.2 !important;
 				}
 				._fixed-size-large {
 					--wpdm-social-share-scale: 1.4 !important;
+					--wp-dark-social-share-scale: 1.4 !important;
 				}
 			</style>';
 		}
@@ -544,8 +624,8 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 * @param null|object $hook The page hook.
 		 * @since 2.3.5
 		 */
-		public function admin_enqueue_scripts( $hook = null ) {
-			if ( ! isset( $_GET['page'] ) || 'wp-dark-mode-social-share' !== $_GET['page'] ) {
+		public function wp_dark_admin_enqueue_scripts( $hook = null ) {
+			if ( ! isset( $_GET['page'] ) || 'wp-dark-mode-social-share' !== sanitize_text_field( wp_unslash( $_GET['page'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only page-hook check, no data written or output.
 				return;
 			}
 
@@ -561,9 +641,9 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 				[
 					'ajax_url'    => admin_url( 'admin-ajax.php' ),
 					'security_key'       => wp_create_nonce( 'wp_dark_mode_social_share_security' ),
-					'options'     => $this->social_share_options(),
-					'is_pro'      => $this->is_ultimate(),
-					'is_ultimate'      => $this->is_ultimate(),
+					'options'     => $this->wp_dark_social_share_options(),
+					'is_pro'      => $this->wp_dark_is_ultimate(),
+					'is_ultimate'      => $this->wp_dark_is_ultimate(),
 					'post_types'  => array_map( function ( $post_type ) {
 						return [
 							'id'            => $post_type->name,
@@ -571,7 +651,8 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 							'singular_name' => $post_type->labels->singular_name,
 						];
 					}, get_post_types( [ 'public' => true ], 'objects' ) ),
-					'channels'    => $this->channels(),
+					'channels'    => $this->wp_dark_channels(),
+					'available_channel_ids' => $this->wp_dark_available_channel_ids(),
 				]
 			);
 
@@ -588,11 +669,11 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 *
 		 * @return void
 		 */
-		public function wp_enqueue_scripts() {
+		public function wp_dark_wp_enqueue_scripts() {
 			wp_enqueue_style( 'wp-dark-mode-social-share', WP_DARK_MODE_ASSETS . '/css/social-share.min.css', [], WP_DARK_MODE_VERSION );
 			wp_enqueue_script( 'wp-dark-mode-social-share', WP_DARK_MODE_ASSETS . '/js/social-share.min.js', [ 'jquery' ], WP_DARK_MODE_VERSION, true );
 
-			$options = $this->social_share_options();
+			$options = $this->wp_dark_social_share_options();
 
 			// Localize script.
 			wp_localize_script(
@@ -602,9 +683,10 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 					'ajax_url'     => admin_url( 'admin-ajax.php' ),
 					'security_key' => wp_create_nonce( 'wp_dark_mode_social_share_security' ),
 					'options'      => $options,
-					'is_pro'       => $this->is_ultimate(),
-					'is_ultimate'  => $this->is_ultimate(),
-					'channels'     => $this->channels(),
+					'is_pro'       => $this->wp_dark_is_ultimate(),
+					'is_ultimate'  => $this->wp_dark_is_ultimate(),
+					'channels'     => $this->wp_dark_channels(),
+					'available_channel_ids' => $this->wp_dark_available_channel_ids(),
 					'permalink'    => get_permalink(),
 					'post_id'      => get_the_ID(),
 					'title'        => get_the_title(),
@@ -613,7 +695,7 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 					'site_url'     => home_url(),
 					'language'     => get_locale(),
 					'labels'       => [
-						'copied' => apply_filters( 'wpdm_social_share_label_copied', 'Copied' ),
+						'copied' => apply_filters( 'wp_dark_social_share_label_copied', 'Copied' ),
 					],
 				]
 			);
@@ -625,14 +707,17 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 * @return void
 		 * @version 1.0.0
 		 */
-		public function wpdm_social_share_save_options() {
-			$inputs = file_get_contents( 'php://input' );
-
+		public function wp_dark_social_share_save_options() {
 			/**
-			 * Sanitize inputs.
+			 * Decode first, then sanitize per field below. Sanitising the raw JSON
+			 * string beforehand strips characters that are legal inside a payload.
 			 */
-			$inputs = sanitize_text_field( $inputs );
-			$inputs = json_decode( $inputs, true );
+			$inputs = json_decode( file_get_contents( 'php://input' ), true );
+
+			// Bail on malformed payloads rather than emitting notices on every key access.
+			if ( ! is_array( $inputs ) || ! isset( $inputs['security_key'], $inputs['options'] ) || ! is_array( $inputs['options'] ) ) {
+				wp_send_json_error( __( 'Invalid request', 'wp-dark-mode' ) );
+			}
 
 			/**
 			 * Check nonce
@@ -648,12 +733,15 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 
 			$options = $inputs['options'];
 
+			$sanitized_options = array();
+
 			foreach ( $options as $key => $value ) {
-				$value = $this->recursive_sanitizer( $value );
+				$value                        = $this->wp_dark_recursive_sanitizer( $value );
+				$sanitized_options[ $key ]     = $value;
 				update_option( 'wpdm_social_share_' . $key, $value );
 			}
 
-			wp_send_json_success( $options );
+			wp_send_json_success( $sanitized_options );
 		}
 
 		/**
@@ -662,10 +750,10 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 * @param array|string $value Value to sanitize.
 		 * @return array|string
 		 */
-		public function recursive_sanitizer( $value ) {
+		public function wp_dark_recursive_sanitizer( $value ) {
 			if ( is_array( $value ) ) {
 				foreach ( $value as $key => $val ) {
-					$value[ $key ] = $this->recursive_sanitizer( $val );
+					$value[ $key ] = $this->wp_dark_recursive_sanitizer( $val );
 				}
 			} else {
 				$value = sanitize_text_field( $value );
@@ -681,8 +769,8 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 * @param array $option_keys Options keys collection.
 		 * @since 2.3.5
 		 */
-		public function wpdm_settings_option_names( $option_keys ) {
-			$social_share_options = $this->social_share_default_options();
+		public function wp_dark_settings_option_names( $option_keys ) {
+			$social_share_options = $this->wp_dark_social_share_default_options();
 			$keys                 = array_keys( $social_share_options );
 
 			$key_formatized = array_map( function ( $key ) {
@@ -698,10 +786,10 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 * @param null|array $options Options container.
 		 * @return mixed
 		 */
-		public function get_social_share_buttons( $options = null ) {
-			global $social_share;
+		public function wp_dark_get_social_share_buttons( $options = null ) {
+			global $wp_dark_mode_social_share;
 
-			$social_share = (object) array_merge( (array) $social_share, $options );
+			$wp_dark_mode_social_share = (object) array_merge( (array) $wp_dark_mode_social_share, $options );
 			$content      = '';
 
 			// Assign template to content.
@@ -718,7 +806,7 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 * @param string $content Post content.
 		 * @since 2.4.5
 		 */
-		public function the_content( $content ) {
+		public function wp_dark_the_content( $content ) {
 
 			// If frontend.
 			if ( ! is_singular() ) {
@@ -730,9 +818,9 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 				return $content;
 			}
 
-			global $social_share;
+			global $wp_dark_mode_social_share;
 
-			$post_types = $social_share->post_types;
+			$post_types = $wp_dark_mode_social_share->post_types;
 
 			// If post type is not enabled, return content.
 			if ( ! $post_types || ! is_array( $post_types ) || ! in_array( get_post_type(), $post_types, false ) ) {
@@ -747,8 +835,8 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 				'permalink' => $permalink,
 			];
 
-			$template        = $this->get_social_share_buttons( $options );
-			$button_position = $social_share->button_position;
+			$template        = $this->wp_dark_get_social_share_buttons( $options );
+			$button_position = $wp_dark_mode_social_share->button_position;
 
 			if ( 'both' === $button_position ) {
 				$content = $template . $content . $template;
@@ -769,9 +857,8 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 *
 		 * @return int|null
 		 */
-		public static function get_social_share_count( $channel, $permalink ) {
+		public static function wp_dark_get_social_share_count( $channel, $permalink ) {
 			global $wpdb;
-			$table_name = $wpdb->prefix . 'wpdm_social_shares';
 
 			$post_id = $permalink;
 
@@ -781,10 +868,12 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 				$post_id = url_to_postid( $permalink );
 			}
 
-			$shares = $wpdb->get_var( // phpcs:ignore.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom analytics table, no core API available.
+			$shares = $wpdb->get_var(
 				$wpdb->prepare(
-					'SELECT COUNT(ID) as count FROM `%s` WHERE channel = %s AND (url = %s OR post_id = %d)',
-					$table_name,
+					// The table name is derived in code and cannot be a placeholder;
+					// identifiers are not quotable via prepare(). Data values remain bound.
+					"SELECT COUNT(ID) as count FROM {$wpdb->prefix}wpdm_social_shares WHERE channel = %s AND (url = %s OR post_id = %d)",
 					$channel,
 					$permalink,
 					$post_id
@@ -800,7 +889,7 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 * @param string $url The shared url.
 		 * @return array
 		 */
-		public static function get_share_count_by_url( $url ) {
+		public static function wp_dark_get_share_count_by_url( $url ) {
 			global $wpdb;
 
 			$count = $wpdb->get_results( // phpcs:ignore.
@@ -815,12 +904,19 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 *
 		 * @return void
 		 */
-		public function wpdm_social_share_counter() {
+		public function wp_dark_social_share_counter() {
 
-			$inputs = file_get_contents( 'php://input' );
-			$inputs = sanitize_text_field( $inputs );
-			$inputs = json_decode( $inputs, true );
-			$security_key  = sanitize_text_field( wp_unslash( $inputs['security_key'] ) );
+			// Decode first, then sanitize per field. Sanitising the raw JSON string
+			// beforehand strips characters that are legal inside a JSON payload.
+			$inputs = json_decode( file_get_contents( 'php://input' ), true );
+
+			// Bail on malformed payloads rather than emitting notices on every key access.
+			if ( ! is_array( $inputs ) || ! isset( $inputs['security_key'], $inputs['channel'], $inputs['url'], $inputs['post_id'] ) ) {
+				wp_send_json_error( __( 'Invalid request', 'wp-dark-mode' ) );
+				wp_die();
+			}
+
+			$security_key = sanitize_text_field( wp_unslash( $inputs['security_key'] ) );
 
 			// Verify nonce.
 			if ( ! wp_verify_nonce( $security_key, 'wp_dark_mode_social_share_security' ) ) {
@@ -828,15 +924,32 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 				wp_die();
 			}
 
+			/**
+			 * This endpoint is reachable by logged-out visitors, and the nonce that
+			 * guards it is printed into every public page, so it is a CSRF token
+			 * rather than an access control. Rate limit per IP to prevent unbounded
+			 * row injection. Mirrors the limiter used by the visitor endpoint.
+			 */
+			$ip             = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
+			$rate_limit_key = 'wpdm_share_rate_' . md5( $ip );
+			$request_count  = (int) get_transient( $rate_limit_key );
+
+			if ( $request_count >= apply_filters( 'wp_dark_social_share_rate_limit', 30 ) ) {
+				wp_send_json_error( __( 'Rate limit exceeded', 'wp-dark-mode' ) );
+				wp_die();
+			}
+
+			set_transient( $rate_limit_key, $request_count + 1, HOUR_IN_SECONDS );
+
 			$channel = sanitize_text_field( $inputs['channel'] );
 
 			if ( empty( $channel ) ) {
 				wp_send_json_error( __( 'Invalid channel', 'wp-dark-mode' ) );
 			}
 
-			$url        = sanitize_text_field( $inputs['url'] );
-			$post_id    = sanitize_text_field( $inputs['post_id'] );
-			$user_agent = sanitize_text_field( $inputs['user_agent'] );
+			$url        = esc_url_raw( $inputs['url'] );
+			$post_id    = absint( $inputs['post_id'] );
+			$user_agent = isset( $inputs['user_agent'] ) ? sanitize_text_field( $inputs['user_agent'] ) : '';
 			$user_id    = get_current_user_id();
 
 			global $wpdb;
@@ -854,7 +967,7 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 				]
 			);
 
-			$shares       = $this->get_share_count_by_url( $url );
+			$shares       = $this->wp_dark_get_share_count_by_url( $url );
 			$total_shares = array_sum( array_column( $shares, 'total' ) );
 
 			if ( null !== $last_id ) {
@@ -876,7 +989,7 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		 *
 		 * @return string Comma-separated list of post topics
 		 */
-		private function get_post_topics() {
+		private function wp_dark_get_post_topics() {
 			$post_id = get_the_ID();
 			if ( ! $post_id ) {
 				return '';
@@ -901,5 +1014,5 @@ if ( ! class_exists( __NAMESPACE__ . 'SocialShare' ) ) {
 		}
 	}
 
-	SocialShare::init();
+	Wp_Dark_Social_Share::wp_dark_init();
 }

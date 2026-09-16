@@ -13,7 +13,7 @@ namespace WP_Dark_Mode\Admin;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
-if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Upgrade' ) ) {
 
 	/**
 	 * Adjusts the upgrade process for WP Dark Mode from older versions
@@ -21,28 +21,28 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 	 * @package WP Dark Mode
 	 * @since 5.0.0
 	 */
-	class Upgrade extends \WP_Dark_Mode\Base {
+	class Wp_Dark_Upgrade extends \WP_Dark_Mode\Wp_Dark_Base {
 
 		// Use options trait.
-		use \WP_Dark_Mode\Traits\Options;
+		use \WP_Dark_Mode\Traits\Wp_Dark_Options;
 
 		/**
 		 * Actions needed for the class
 		 */
-		public function actions() {
+		public function wp_dark_actions() {
 
 			$upgraded_version = get_option( 'wp_dark_mode_upgraded_version', '0.0.0' );
 
 			// Bail, if the version is already upgraded.
 			if ( version_compare( '5.0.0', $upgraded_version, '<=' ) ) {
 				// For users already on 5.0.0+, only run version-specific upgrades.
-				add_action( 'admin_init', [ $this, 'run_version_specific_upgrades' ] );
+				add_action( 'admin_init', [ $this, 'wp_dark_run_version_specific_upgrades' ] );
 				return;
 			}
 
 			// For users below 5.0.0, run full upgrade first (priority 10), then version-specific upgrades (priority 20).
-			add_action( 'admin_init', [ $this, 'run_upgrade' ], 10 );
-			add_action( 'admin_init', [ $this, 'run_version_specific_upgrades' ], 20 );
+			add_action( 'admin_init', [ $this, 'wp_dark_run_upgrade' ], 10 );
+			add_action( 'admin_init', [ $this, 'wp_dark_run_version_specific_upgrades' ], 20 );
 		}
 
 		/**
@@ -50,13 +50,13 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 		 *
 		 * @since 5.2.19
 		 */
-		public function run_version_specific_upgrades() {
+		public function wp_dark_run_version_specific_upgrades() {
 			// Use separate option for preset sync to avoid conflicts with main upgrade version.
 			$preset_sync_version = get_option( 'wp_dark_mode_preset_sync_version', '0.0.0' );
 
 			// Sync predefined presets for version 5.2.20 and above.
 			if ( version_compare( $preset_sync_version, '5.2.20', '<' ) ) {
-				$this->sync_predefined_presets();
+				$this->wp_dark_sync_predefined_presets();
 				update_option( 'wp_dark_mode_preset_sync_version', WP_DARK_MODE_VERSION );
 			}
 		}
@@ -66,39 +66,39 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function run_upgrade() {
+		public function wp_dark_run_upgrade() {
 			// Single value options.
-			$this->update_one_to_one_options();
+			$this->wp_dark_update_one_to_one_options();
 
 			// Upgrade modes.
-			$this->upgrade_modes();
+			$this->wp_dark_upgrade_modes();
 
 			// Upgrade exclude posts.
-			$this->upgrade_exclude_posts();
+			$this->wp_dark_upgrade_exclude_posts();
 
 			// Upgrade exclude categories.
-			$this->upgrade_exclude_categories();
+			$this->wp_dark_upgrade_exclude_categories();
 
-			$this->upgrade_woocommerce_settings();
+			$this->wp_dark_upgrade_woocommerce_settings();
 
 			// Upgrade position values.
-			$this->upgrade_position_values();
+			$this->wp_dark_upgrade_position_values();
 
 			// Upgrade color presets.
-			$this->upgrade_color_presets();
+			$this->wp_dark_upgrade_color_presets();
 
 			// Upgrade image settings.
-			$this->upgrade_image_settings();
+			$this->wp_dark_upgrade_image_settings();
 
 			// Upgrade video settings.
-			$this->upgrade_video_settings();
+			$this->wp_dark_upgrade_video_settings();
 
 			// Upgrade performance settings.
-			$this->upgrade_performance_settings();
+			$this->wp_dark_upgrade_performance_settings();
 
-			$this->upgrade_notices();
+			$this->wp_dark_upgrade_notices();
 
-			$this->set_option( 'version', WP_DARK_MODE_VERSION );
+			$this->wp_dark_set_option( 'version', WP_DARK_MODE_VERSION );
 
 			update_option( 'wp_dark_mode_upgraded_version', WP_DARK_MODE_VERSION );
 		}
@@ -110,7 +110,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function old_option_sets() {
+		public function wp_dark_old_option_sets() {
 
 			/**
 			 * One to one pair update.
@@ -183,8 +183,8 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function update_one_to_one_options() {
-			$old_option_sets = $this->old_option_sets();
+		public function wp_dark_update_one_to_one_options() {
+			$old_option_sets = $this->wp_dark_old_option_sets();
 
 			// Bail, if old option sets are not set.
 			if ( ! $old_option_sets ) {
@@ -240,11 +240,11 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 
 					// For floating_switch_attention_effect.
 					if ( 'attention_effect' === $old_key ) {
-						$this->set_option( 'floating_switch_enabled_attention_effect', 'none' !== $value );
+						$this->wp_dark_set_option( 'floating_switch_enabled_attention_effect', 'none' !== $value );
 					}
 
 					// update option.
-					$this->set_option( $new_key, $value );
+					$this->wp_dark_set_option( $new_key, $value );
 
 				}
 			}
@@ -259,7 +259,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 		 * @return mixed
 		 * @since 5.0.0
 		 */
-		public function get_old_settings( $section = 'wp_dark_mode_general', $key = '', $default = '' ) {
+		public function wp_dark_get_old_settings( $section = 'wp_dark_mode_general', $key = '', $default = '' ) {
 			$settings = get_option( $section );
 			$value = isset( $settings[ $key ] ) ? $settings[ $key ] : $default;
 
@@ -276,7 +276,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 		 *
 		 * @since 5.0.0
 		 */
-		public function upgrade_modes() {
+		public function wp_dark_upgrade_modes() {
 			$advance = get_option( 'wp_dark_mode_advanced', null );
 
 			// Bail, if advance settings are not set.
@@ -301,20 +301,20 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 			$end_time = isset( $advance['end_at'] ) ? $advance['end_at'] : '06:00';
 
 			// update option.
-			$this->set_option( 'frontend_time_starts', gmdate('g:i A', strtotime( $start_time )) );
-			$this->set_option( 'frontend_time_ends', gmdate('g:i A', strtotime( $end_time )) );
+			$this->wp_dark_set_option( 'frontend_time_starts', gmdate('g:i A', strtotime( $start_time )) );
+			$this->wp_dark_set_option( 'frontend_time_ends', gmdate('g:i A', strtotime( $end_time )) );
 
 			// update mode.
-			$this->set_option( 'frontend_mode', $new_mode );
+			$this->wp_dark_set_option( 'frontend_mode', $new_mode );
 		}
 
 		/**
 		 * Upgrade exclude posts
 		 */
-		public function upgrade_exclude_posts() {
+		public function wp_dark_upgrade_exclude_posts() {
 			// Get all exclude posts.
-			$exclude_posts = $this->get_old_settings( 'wp_dark_mode_triggers', 'exclude_posts', [] );
-			$exclude_pages = $this->get_old_settings( 'wp_dark_mode_triggers', 'exclude_pages', [] );
+			$exclude_posts = $this->wp_dark_get_old_settings( 'wp_dark_mode_triggers', 'exclude_posts', [] );
+			$exclude_pages = $this->wp_dark_get_old_settings( 'wp_dark_mode_triggers', 'exclude_pages', [] );
 
 			// Merge exclude posts and pages arrays
 			if ( ! empty( $exclude_pages ) ) {
@@ -322,8 +322,8 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 			}
 
 			// Get all exclude posts except.
-			$exclude_posts_except = $this->get_old_settings( 'wp_dark_mode_triggers', 'exclude_posts_except', [] );
-			$exclude_pages_except = $this->get_old_settings( 'wp_dark_mode_triggers', 'exclude_pages_except', [] );
+			$exclude_posts_except = $this->wp_dark_get_old_settings( 'wp_dark_mode_triggers', 'exclude_posts_except', [] );
+			$exclude_pages_except = $this->wp_dark_get_old_settings( 'wp_dark_mode_triggers', 'exclude_pages_except', [] );
 
 			// Merge exclude posts and pages arrays
 			if ( ! empty( $exclude_pages_except ) ) {
@@ -337,7 +337,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 				$exclude_posts = array_filter( $exclude_posts );
 
 				// update option.
-				$this->set_option( 'excludes_posts', $exclude_posts );
+				$this->wp_dark_set_option( 'excludes_posts', $exclude_posts );
 			}
 
 			// Update exclude all posts.
@@ -347,28 +347,28 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 				$exclude_posts_except = array_filter( $exclude_posts_except );
 
 				// update option.
-				$this->set_option( 'excludes_posts_except', $exclude_posts_except );
+				$this->wp_dark_set_option( 'excludes_posts_except', $exclude_posts_except );
 			}
 
 			// Update exclude all posts.
 
 			// Get exclude all posts or not.
-			$exclude_all_posts = $this->get_old_settings( 'wp_dark_mode_triggers', 'exclude_all_posts', false );
-			$exclude_all_pages = $this->get_old_settings( 'wp_dark_mode_triggers', 'exclude_all_pages', false );
+			$exclude_all_posts = $this->wp_dark_get_old_settings( 'wp_dark_mode_triggers', 'exclude_all_posts', false );
+			$exclude_all_pages = $this->wp_dark_get_old_settings( 'wp_dark_mode_triggers', 'exclude_all_pages', false );
 
 			// Merge exclude all posts and pages arrays
 			$exclude_all_posts = wp_validate_boolean( $exclude_all_pages ) || wp_validate_boolean($exclude_all_posts);
 
-			$this->set_option( 'excludes_posts_all', $exclude_all_posts );
+			$this->wp_dark_set_option( 'excludes_posts_all', $exclude_all_posts );
 		}
 
 		/**
 		 * Upgrade exclude categories
 		 */
-		public function upgrade_exclude_categories() {
+		public function wp_dark_upgrade_exclude_categories() {
 			// Get all exclude categories.
-			$exclude_categories = $this->get_old_settings( 'wp_dark_mode_triggers', 'exclude_categories', [] );
-			$exclude_tags = $this->get_old_settings( 'wp_dark_mode_triggers', 'exclude_tags', [] );
+			$exclude_categories = $this->wp_dark_get_old_settings( 'wp_dark_mode_triggers', 'exclude_categories', [] );
+			$exclude_tags = $this->wp_dark_get_old_settings( 'wp_dark_mode_triggers', 'exclude_tags', [] );
 
 			// Merge exclude categories and tags arrays
 			if ( $exclude_tags && ! empty( $exclude_tags ) ) {
@@ -381,12 +381,12 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 				$exclude_categories = array_filter( $exclude_categories );
 
 				// update option.
-				$this->set_option( 'excludes_taxonomies', $exclude_categories );
+				$this->wp_dark_set_option( 'excludes_taxonomies', $exclude_categories );
 			}
 
 			// Get all exclude categories except.
-			$exclude_categories_except = $this->get_old_settings( 'wp_dark_mode_triggers', 'specific_categories', [] );
-			$exclude_tags_except = $this->get_old_settings( 'wp_dark_mode_triggers', 'specific_tags', [] );
+			$exclude_categories_except = $this->wp_dark_get_old_settings( 'wp_dark_mode_triggers', 'specific_categories', [] );
+			$exclude_tags_except = $this->wp_dark_get_old_settings( 'wp_dark_mode_triggers', 'specific_tags', [] );
 
 			// Merge exclude categories and tags arrays
 			if ( $exclude_tags_except && ! empty( $exclude_tags_except ) ) {
@@ -399,23 +399,23 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 				$exclude_categories_except = array_filter( $exclude_categories_except );
 
 				// update option.
-				$this->set_option( 'excludes_taxonomies_except', $exclude_categories_except );
+				$this->wp_dark_set_option( 'excludes_taxonomies_except', $exclude_categories_except );
 			}
 
 			// Update exclude all categories.
 
 			// Get exclude all categories or not.
-			$exclude_all_categories = $this->get_old_settings( 'wp_dark_mode_triggers', 'exclude_all_categories', false );
-			$exclude_all_tags = $this->get_old_settings( 'wp_dark_mode_triggers', 'exclude_all_tags', false );
+			$exclude_all_categories = $this->wp_dark_get_old_settings( 'wp_dark_mode_triggers', 'exclude_all_categories', false );
+			$exclude_all_tags = $this->wp_dark_get_old_settings( 'wp_dark_mode_triggers', 'exclude_all_tags', false );
 
 			// Merge exclude all categories and tags arrays
 			$exclude_all_categories = wp_validate_boolean( $exclude_all_categories ) || wp_validate_boolean($exclude_all_tags);
 
-			$this->set_option( 'excludes_taxonomies_all', $exclude_all_categories );
+			$this->wp_dark_set_option( 'excludes_taxonomies_all', $exclude_all_categories );
 		}
 
 		// Upgrade WooCommerce Products.
-		public function upgrade_woocommerce_settings() {
+		public function wp_dark_upgrade_woocommerce_settings() {
 			// Get all exclude categories.
 			$woo_settings = get_option('wp_dark_mode_wc');
 
@@ -434,62 +434,62 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 
 			// Update exclude all categories.
 			if ( $exclude_wc_categories && ! empty( $exclude_wc_categories ) ) {
-				$this->set_option( 'excludes_wc_categories', $exclude_wc_categories );
+				$this->wp_dark_set_option( 'excludes_wc_categories', $exclude_wc_categories );
 			}
 
 			// Update exclude all categories.
 			if ( $exclude_products && ! empty( $exclude_products ) ) {
 				// update option.
 				$exclude_products = array_map( 'intval', $exclude_products );
-				$this->set_option( 'excludes_wc_products', $exclude_products );
+				$this->wp_dark_set_option( 'excludes_wc_products', $exclude_products );
 			}
 
 			// Update exclude all categories.
 			if ( $exclude_wc_categories_except && ! empty( $exclude_wc_categories_except ) ) {
-				$this->set_option( 'excludes_wc_categories_except', $exclude_wc_categories_except );
+				$this->wp_dark_set_option( 'excludes_wc_categories_except', $exclude_wc_categories_except );
 			}
 
 			// Update exclude all categories.
 			if ( $exclude_products_except && ! empty( $exclude_products_except ) ) {
 				// update option.
 				$exclude_products_except = array_map( 'intval', $exclude_products_except );
-				$this->set_option( 'excludes_wc_products_except', $exclude_products_except );
+				$this->wp_dark_set_option( 'excludes_wc_products_except', $exclude_products_except );
 			}
 
-			$this->set_option( 'excludes_wc_categories_all', $exclude_all_wc_categories );
-			$this->set_option( 'excludes_wc_products_all', $exclude_all_products );
+			$this->wp_dark_set_option( 'excludes_wc_categories_all', $exclude_all_wc_categories );
+			$this->wp_dark_set_option( 'excludes_wc_products_all', $exclude_all_products );
 		}
 
 		/**
 		 * Upgrade position values
 		 */
-		public function upgrade_position_values() {
-			$old_position = $this->get_old_settings( 'wp_dark_mode_switch', 'switcher_position', 'right_bottom' );
+		public function wp_dark_upgrade_position_values() {
+			$old_position = $this->wp_dark_get_old_settings( 'wp_dark_mode_switch', 'switcher_position', 'right_bottom' );
 
 			// If old_position is not custom.
 			if ( 'custom' !== $old_position ) {
 				// update option.
 				$new_position = 'right_bottom' === $old_position ? 'right' : 'left';
-				$this->set_option( 'floating_switch_position', $new_position );
+				$this->wp_dark_set_option( 'floating_switch_position', $new_position );
 			}
 
 			// If old_position is custom.
-			$switch_side = $this->get_old_settings( 'wp_dark_mode_switch', 'switch_side', 'right_bottom' );
-			$bottom_spacing = $this->get_old_settings( 'wp_dark_mode_switch', 'bottom_spacing', 10 );
-			$side_spacing = $this->get_old_settings( 'wp_dark_mode_switch', 'side_spacing', 10 );
+			$switch_side = $this->wp_dark_get_old_settings( 'wp_dark_mode_switch', 'switch_side', 'right_bottom' );
+			$bottom_spacing = $this->wp_dark_get_old_settings( 'wp_dark_mode_switch', 'bottom_spacing', 10 );
+			$side_spacing = $this->wp_dark_get_old_settings( 'wp_dark_mode_switch', 'side_spacing', 10 );
 
 			// update option.
 			$updated_switch_side = 'right_bottom' === $switch_side ? 'right' : 'left';
-			$this->set_option( 'floating_switch_position_side', $updated_switch_side );
+			$this->wp_dark_set_option( 'floating_switch_position_side', $updated_switch_side );
 
-			$this->set_option( 'floating_switch_position_side_value', $side_spacing );
-			$this->set_option( 'floating_switch_position_bottom_value', $bottom_spacing );
+			$this->wp_dark_set_option( 'floating_switch_position_side_value', $side_spacing );
+			$this->wp_dark_set_option( 'floating_switch_position_bottom_value', $bottom_spacing );
 		}
 
 		/**
 		 * Upgrade custom colors
 		 */
-		public function upgrade_color_presets() {
+		public function wp_dark_upgrade_color_presets() {
 
 			$color = get_option( 'wp_dark_mode_color' );
 
@@ -504,7 +504,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 			// Create custom preset.
 			if ( 'on' === $color['customize_colors'] ) {
 				// If colors are set, create a new preset.
-				$color_presets = $this->get_option( 'color_presets', [] );
+				$color_presets = $this->wp_dark_get_option( 'color_presets', [] );
 
 				$new_preset = isset( $color_presets[0] ) ? $color_presets[0] : [];
 
@@ -521,7 +521,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 				$mode = 'custom';
 
 				// update option.
-				$this->set_option( 'color_presets', $color_presets );
+				$this->wp_dark_set_option( 'color_presets', $color_presets );
 			} else {
 				if ( 'on' === $color['enable_preset'] ) {
 
@@ -539,14 +539,14 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 			}
 
 			// update option.
-			$this->set_option( 'color_preset_id', $preset_id );
-			$this->set_option( 'color_mode', $mode );
+			$this->wp_dark_set_option( 'color_preset_id', $preset_id );
+			$this->wp_dark_set_option( 'color_mode', $mode );
 		}
 
 		/**
 		 * Upgrade image settings
 		 */
-		public function upgrade_image_settings() {
+		public function wp_dark_upgrade_image_settings() {
 
 			// Update image replacements.
 			$images       = get_option( 'wp_dark_mode_image_settings' );
@@ -571,25 +571,25 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 				];
 			}
 
-			$this->set_option( 'image_replaces', $image_replaces );
+			$this->wp_dark_set_option( 'image_replaces', $image_replaces );
 
 			// Update low brightness.
 			$new_low_brightness = 'on' === $images['low_brightness'];
 
 			// update option.
-			$this->set_option( 'image_enabled_low_brightness', $new_low_brightness );
+			$this->wp_dark_set_option( 'image_enabled_low_brightness', $new_low_brightness );
 
 			// Update grayscale.
 			$new_grayscale = 'on' === $images['grayscale'];
 
 			// update option.
-			$this->set_option( 'image_enabled_low_grayscale', $new_grayscale );
+			$this->wp_dark_set_option( 'image_enabled_low_grayscale', $new_grayscale );
 		}
 
 		/**
 		 * Upgrade video settings
 		 */
-		public function upgrade_video_settings() {
+		public function wp_dark_upgrade_video_settings() {
 			// Update video replacements.
 			$videos       = get_option( 'wp_dark_mode_video_settings' );
 
@@ -613,14 +613,14 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 				];
 			}
 
-			$this->set_option( 'video_replaces', $video_replaces );
+			$this->wp_dark_set_option( 'video_replaces', $video_replaces );
 		}
 
 		/**
 		 * Upgrade performance settings
 		 */
-		public function upgrade_performance_settings() {
-			$performance_mode = $this->get_old_settings( 'wp_dark_mode_performance', 'performance_mode', null );
+		public function wp_dark_upgrade_performance_settings() {
+			$performance_mode = $this->wp_dark_get_old_settings( 'wp_dark_mode_performance', 'performance_mode', null );
 
 			// Bail, if performance mode is not set.
 			if ( is_null( $performance_mode ) ) {
@@ -629,18 +629,18 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 
 			// If performance mode is set, update load_scripts_in_footer.
 			if ( 'on' === $performance_mode ) {
-				$this->set_option( 'load_scripts_in_footer', true );
+				$this->wp_dark_set_option( 'load_scripts_in_footer', true );
 			} else {
-				$this->set_option( 'load_scripts_in_footer', false );
+				$this->wp_dark_set_option( 'load_scripts_in_footer', false );
 			}
 		}
 
 		/**
 		 * Upgrade notices
 		 */
-		public function upgrade_notices() {
-			$install = \WP_Dark_Mode\Admin\Install::get_instance();
-			$install->set_notices();
+		public function wp_dark_upgrade_notices() {
+			$install = \WP_Dark_Mode\Admin\Wp_Dark_Install::wp_dark_get_instance();
+			$install->wp_dark_set_notices();
 		}
 
 		/**
@@ -652,7 +652,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 		 *
 		 * @since 5.2.19
 		 */
-		public function sync_predefined_presets() {
+		public function wp_dark_sync_predefined_presets() {
 			// Check if color_presets option exists in database.
 			$saved_presets = get_option( 'wp_dark_mode_color_presets', false );
 
@@ -671,7 +671,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 			}
 
 			// Get the latest predefined presets from code.
-			$predefined_presets = \WP_Dark_Mode\Config::predefined_presets();
+			$predefined_presets = \WP_Dark_Mode\Wp_Dark_Config::wp_dark_predefined_presets();
 
 			// Ensure saved_presets is an array.
 			if ( ! is_array( $saved_presets ) ) {
@@ -701,5 +701,5 @@ if ( ! class_exists( __NAMESPACE__ . 'Upgrade' ) ) {
 	}
 
 	// Instantiate the class.
-	Upgrade::init();
+	Wp_Dark_Upgrade::wp_dark_init();
 }

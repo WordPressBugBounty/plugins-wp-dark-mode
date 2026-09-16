@@ -12,26 +12,26 @@ namespace WP_Dark_Mode;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit( 1 );
 
-if ( ! class_exists( __NAMESPACE__ . 'Extended' ) ) {
+if ( ! class_exists( __NAMESPACE__ . 'Wp_Dark_Extended' ) ) {
 	/**
 	 * Extends for WP Dark Mode
 	 *
 	 * @package WP Dark Mode
 	 * @since 5.0.0
 	 */
-	class Extended extends Base {
+	class Wp_Dark_Extended extends Wp_Dark_Base {
 
 		// Use option trait.
-		use \WP_Dark_Mode\Traits\Options;
+		use \WP_Dark_Mode\Traits\Wp_Dark_Options;
 
 		/**
 		 * Filters
 		 *
 		 * @since 5.0.0
 		 */
-		public function filters() {
+		public function wp_dark_filters() {
 			// the content
-			add_filter( 'wp_dark_mode_excluded_elements', array( $this, 'get_system_default_excluded_elements' ), 10 );
+			add_filter( 'wp_dark_mode_excluded_elements', array( $this, 'wp_dark_get_system_default_excluded_elements' ), 10 );
 		}
 
 		/**
@@ -41,7 +41,7 @@ if ( ! class_exists( __NAMESPACE__ . 'Extended' ) ) {
 		 * @param string $elements
 		 * @return string
 		 */
-		public function get_system_default_excluded_elements( $elements ) {
+		public function wp_dark_get_system_default_excluded_elements( $elements ) {
 
 			$elements .= ( ! empty( $elements ) ? ', ' : ' ' ) . '#wpadminbar, .wp-dark-mode-switch, .elementor-button-content-wrapper';
 
@@ -50,5 +50,5 @@ if ( ! class_exists( __NAMESPACE__ . 'Extended' ) ) {
 	}
 
 	// Instantiate the class.
-	Extended::init();
+	Wp_Dark_Extended::wp_dark_init();
 }
