@@ -4,7 +4,7 @@ Tags: dark mode, dark, night mode, dark theme, accessibility
 Requires at least: 5.2
 Tested up to: 7.0  
 Requires PHP: 5.6  
-Stable tag: 5.3.16
+Stable tag: 5.3.17
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -306,6 +306,9 @@ Yes, You can toggle modes by keyboard shortcut `(Ctrl + Alt + D)`.
 
 
 == Changelog ==
+
+= 5.3.17 – 17 SEP 2026 =
+* **Fix:** Improved Color Presets to correctly apply colors to links, buttons, and input fields, along with the background color. 
 
 = 5.3.16 – 16 SEP 2026 =
 * **Improvement:** Updated plugin banner and icon assets.

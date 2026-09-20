@@ -329,7 +329,7 @@ const isColorModified = (category, property) => {
 }
 
 const getSelectedPaletteData = () => {
-    return colorPalettes.value.find(p => p.id === selectedPalette.value)
+    return colorPalettes.value.find(p => p.id === Number(selectedPalette.value))
 }
 
 // Computed property for the selected palette to ensure reactivity
@@ -401,7 +401,7 @@ const updatePresetData = () => {
         ai_generated: true,
         ai_prompt: originalPrompt.value,
         ai_generated_palettes: allGeneratedPalettes.value,
-        ai_selected_palette_id: selectedPalette.value,
+        ai_selected_palette_id: Number(selectedPalette.value),
         created_at: new Date().toISOString(),
     }
 
@@ -521,7 +521,7 @@ onMounted(() => {
         showResults.value = true
 
         // Auto-select the palette (use saved selection or default to first)
-        selectedPalette.value = existingPreset.ai_selected_palette_id || 1
+        selectedPalette.value = Number(existingPreset.ai_selected_palette_id) || 1
 
         // Set state for save buttons to appear
         state.aiPaletteSelected = true
