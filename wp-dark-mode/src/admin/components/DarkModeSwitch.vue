@@ -42,16 +42,27 @@ const config = computed(() => props.config || {});
 const isActive = computed(() => props.active || false);
 const isActiveLargeFont = computed(() => props.activeLargeFont || false);
 
+// Reject icon URLs that could break out of the src="" attribute or
+// carry a script-executing scheme when concatenated into markup.
+const sanitizeIconUrl = (url) => {
+    if (!url || typeof url !== 'string') return null;
+    if (/["'<>`]/.test(url)) return null;
+    if (/^\s*(javascript|data|vbscript):/i.test(url)) return null;
+    return url;
+};
+
 const html = computed(() => {
     const mod = "Switch_" + id.value;
 
-    // iconLight and iconDark should be wrapped in img tag if not empty 
+    // iconLight and iconDark should be wrapped in img tag if not empty
     if (config.value.iconLight) {
-        config.value.iconLight = config.value.iconLight.startsWith('http') ? `<img src="${config.value.iconLight}" />` : config.value.iconLight;
+        const safeUrl = sanitizeIconUrl(config.value.iconLight);
+        config.value.iconLight = config.value.iconLight.startsWith('http') ? (safeUrl ? `<img src="${safeUrl}" />` : null) : config.value.iconLight;
     }
 
     if (config.value.iconDark) {
-        config.value.iconDark = config.value.iconDark.startsWith('http') ? `<img src="${config.value.iconDark}" />` : config.value.iconDark;
+        const safeUrl = sanitizeIconUrl(config.value.iconDark);
+        config.value.iconDark = config.value.iconDark.startsWith('http') ? (safeUrl ? `<img src="${safeUrl}" />` : null) : config.value.iconDark;
     }
 
 

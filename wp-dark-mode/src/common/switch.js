@@ -5,6 +5,21 @@ import Accessibility from './Accessibility'
 
 const source = typeof window.wp_dark_mode_admin_json !== 'undefined' ? window.wp_dark_mode_admin_json : window.wp_dark_mode_json;
 
+/**
+ * Reject icon URLs that could break out of the src="" attribute or
+ * carry a script-executing scheme when concatenated into markup.
+ *
+ * @param {string} url
+ * @returns {string|null}
+ */
+function sanitizeIconUrl(url) {
+	if (!url || typeof url !== 'string') return null;
+
+	if (/["'<>`]/.test(url)) return null;
+	if (/^\s*(javascript|data|vbscript):/i.test(url)) return null;
+
+	return url;
+}
 
 class DarkModeSwitch extends Base {
 
@@ -423,8 +438,10 @@ class DarkModeSwitch extends Base {
 		const switchStyle = 'Switch_' + (config.style || 1);
 
 		// Wrap iconLight and iconDark inside img if exists.
-		config.iconLight = config.iconLight ? '<img src="' + config.iconLight + '" width="100%"></img>' : null;
-		config.iconDark = config.iconDark ? '<img src="' + config.iconDark + '" width="100%"></img>' : null;
+		const safeIconLight = sanitizeIconUrl(config.iconLight);
+		const safeIconDark = sanitizeIconUrl(config.iconDark);
+		config.iconLight = safeIconLight ? '<img src="' + safeIconLight + '" width="100%"></img>' : null;
+		config.iconDark = safeIconDark ? '<img src="' + safeIconDark + '" width="100%"></img>' : null;
 
 		/**
 		 * Premium switch styles are registered into this object by the Ultimate

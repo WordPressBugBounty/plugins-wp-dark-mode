@@ -36,9 +36,14 @@ function DarkModeImage() {
 		// when it darkens an element.
 		if (WPDarkMode.isActive) return;
 
+		// Only elements the background-image swap actually darkened get
+		// restored. Ultimate marks those with wp-dark-mode-bg-image. Its
+		// separate <img> src swap also stores dataset.lightSrc, so without
+		// this check an <img> would be given a background it never had.
+		if (!element.classList.contains('wp-dark-mode-bg-image')) return;
+
 		const lightSrc = element.dataset.lightSrc;
 		if (lightSrc) {
-			element.style.background = `url(${lightSrc})`;
 			element.style.backgroundImage = `url(${lightSrc})`;
 		}
 	}
