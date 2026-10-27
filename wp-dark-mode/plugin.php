@@ -3,7 +3,7 @@
  * Plugin name: Dark Mode - Improve Accessibility with AI Powered Dark Theme
  * Plugin URI: https://wppool.dev/wp-dark-mode
  * Description: WP Dark Mode automatically enables a stunning dark mode of your website based on user's operating system. Supports macOS, Windows, Android & iOS.
- * Version: 5.3.19
+ * Version: 5.3.20
  * Author: WPPOOL
  * Author URI: https://wppool.dev
  * License: GPLv2 or later
@@ -26,7 +26,7 @@ if ( defined( 'WP_DARK_MODE_VERSION' ) ) {
 // Check if WP_Dark_Mode defined.
 if ( ! defined( 'WP_DARK_MODE_VERSION' ) ) {
 	define( 'WP_DARK_MODE_FILE', __FILE__ );
-	define( 'WP_DARK_MODE_VERSION', '5.3.19' );
+	define( 'WP_DARK_MODE_VERSION', '5.3.20' );
 
 	/**
 	 * Loads composer's autoloader, which provides the Appsero\Client SDK.

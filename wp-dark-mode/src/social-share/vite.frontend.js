@@ -15,6 +15,10 @@ export default defineConfig(
 				},
 			},
 
+			// Keep class fields native so esbuild does not inject helper vars
+			// (e.g. `_`) above the IIFE, where they clash with other globals.
+			target: 'es2022',
+
 			outDir: path.resolve( __dirname, '../../assets' ),
 			sourcemap: false,
 			minify: true,

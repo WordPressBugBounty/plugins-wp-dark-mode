@@ -4,7 +4,7 @@ Tags: dark mode, dark, night mode, dark theme, accessibility
 Requires at least: 5.2
 Tested up to: 7.1  
 Requires PHP: 5.6  
-Stable tag: 5.3.19
+Stable tag: 5.3.20
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -306,6 +306,9 @@ Yes, You can toggle modes by keyboard shortcut `(Ctrl + Alt + D)`.
 
 
 == Changelog ==
+
+= 5.3.20 – 27 OCT 2026 =
+* **Fix:** Resolved a conflict with Ad Inserter that hid the floating dark mode switch.
 
 = 5.3.19 – 29 SEP 2026 =
 * **Enhancement:** Enhanced compatibility to support WordPress 7.1.
