@@ -54,8 +54,12 @@ if ( empty( $countdown_timer ) || $countdown_timer < time() ) {
 	set_transient( 'wp_dark_mode_promo_countdown_timer', $countdown_timer, 14 * HOUR_IN_SECONDS );
 }
 
-$campaign_starts = strtotime( '2026-06-24 17:00:00' );
-$campaign_ends   = strtotime( '2026-07-14 23:59:59' );
+// BFCM 2026: 9 Nov 5 PM to 5 Dec 5 PM, Bangladesh Standard Time (UTC+6).
+$campaign_starts = strtotime( '2026-11-09T17:00:00+06:00' );
+$campaign_ends   = strtotime( '2026-12-05T17:00:00+06:00' );
+
+// Campaign timer shows 3 days and restarts every 3 days from $campaign_starts until $campaign_ends.
+$campaign_repeat = 3 * DAY_IN_SECONDS;
 
 $is_campaign = $campaign_ends > time() && $campaign_starts < time();
 
@@ -64,6 +68,13 @@ $data = array(
 	'counter_time' => $is_campaign ? $campaign_ends : $countdown_timer,
 	'discount'     => $is_campaign ? 50 : 35,
 );
+
+// Recurring countdown data for JS, in ms.
+$campaign_timer = $is_campaign ? array(
+	'start'  => $campaign_starts * 1000,
+	'end'    => $campaign_ends * 1000,
+	'repeat' => $campaign_repeat * 1000,
+) : null;
 
 $class = 'wp-dark-mode-promo-campaign';
 
@@ -95,7 +106,7 @@ $class = 'wp-dark-mode-promo-campaign';
 		<?php
 		echo wp_sprintf(
 			'<h3 class="promo-title">%s</h3>',
-			$is_campaign ? esc_html__( 'SUMMER SALE â˜€ï¸', 'wp-dark-mode' ) : esc_html__( 'Unlock all the features', 'wp-dark-mode' )
+			$is_campaign ? esc_html__( 'BLACK FRIDAY & CYBER MONDAY', 'wp-dark-mode' ) : esc_html__( 'Unlock all the features', 'wp-dark-mode' )
 		);
 
 		echo wp_sprintf(
@@ -125,14 +136,14 @@ $class = 'wp-dark-mode-promo-campaign';
 			</div>
 		</div>
 
-		<a class="wp-dark-popup-button" href="<?php echo esc_url( $is_campaign ? 'https://lnk.wppool.dev/AAGukuk' : 'https://go.wppool.dev/LaSV' ); ?>" target="_blank"><?php echo $is_campaign ? esc_html__( 'Save Now ðŸ’°', 'wp-dark-mode' ) : /* translators: 1: discount amount, 2: percent sign */ wp_sprintf( esc_html__( 'Claim %1$s%2$s Discount', 'wp-dark-mode' ), esc_html( $data['discount'] ), '%' ); ?></a>
+		<a class="wp-dark-popup-button" href="<?php echo esc_url( $is_campaign ? 'https://lnk.wppool.dev/6RDGtV6' : 'https://go.wppool.dev/LaSV' ); ?>" target="_blank"><?php echo $is_campaign ? esc_html__( 'Claim The Deal →', 'wp-dark-mode' ) : /* translators: 1: discount amount, 2: percent sign */ wp_sprintf( esc_html__( 'Claim %1$s%2$s Discount', 'wp-dark-mode' ), esc_html( $data['discount'] ), '%' ); ?></a>
 
 		<a class="wp-dark-popup-demo-link" href="https://go.wppool.dev/bjxy" target="_blank"><?php esc_html_e( 'Try a FREE demo', 'wp-dark-mode' ); ?></a>
 	</div>
 
 	<style>
 		.promo-title {
-			font-size: <?php echo $is_campaign ? 23 : 20; ?>px;
+			font-size: 20px;
 		}
 		.wp-dark-mode-promo {
 			opacity: .95;
@@ -198,6 +209,13 @@ $class = 'wp-dark-mode-promo-campaign';
 			font-size: 18px;
 			padding: 10px 20px;
 		}
+		<?php if ( $is_campaign ) : ?>
+		.wp-dark-mode-promo-inner .wp-dark-popup-button,
+		.wp-dark-mode-promo-inner .wp-dark-popup-button:hover {
+			background: #FFD23F;
+			color: #111111 !important;
+		}
+		<?php endif; ?>
 	</style>
 
 
@@ -217,7 +235,16 @@ $class = 'wp-dark-mode-promo-campaign';
 			startCountdown () {
 				// Use PHP Unix timestamp directly (Ã— 1000 for JS ms).
 				// This avoids timezone parsing bugs from date strings without timezone info.
-				const countDownDate = <?php echo (int) $data['counter_time']; ?> * 1000;
+				const campaign = <?php echo wp_json_encode( $campaign_timer ); ?>;
+
+				// During the campaign the countdown restarts every campaign.repeat ms, capped at campaign.end.
+				const getCountDownDate = () => {
+					if ( ! campaign ) {
+						return <?php echo (int) $data['counter_time']; ?> * 1000;
+					}
+					const cycles = Math.floor( ( Date.now() - campaign.start ) / campaign.repeat ) + 1;
+					return Math.min( campaign.start + cycles * campaign.repeat, campaign.end );
+				};
 
 				const pad = n => String( Math.max( 0, n ) ).padStart( 2, '0' );
 
@@ -243,7 +270,7 @@ $class = 'wp-dark-mode-promo-campaign';
 				};
 
 				// Render immediately (no 1-second blank on open).
-				const dist0 = countDownDate - Date.now();
+				const dist0 = getCountDownDate() - Date.now();
 				if ( dist0 > 0 ) {
 					render( calc( dist0 ) );
 				} else {
@@ -252,7 +279,7 @@ $class = 'wp-dark-mode-promo-campaign';
 				}
 
 				const x = setInterval( function () {
-					const distance = countDownDate - Date.now();
+					const distance = getCountDownDate() - Date.now();
 
 					if ( distance <= 0 ) {
 						clearInterval( x );
